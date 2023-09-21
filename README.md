@@ -5,10 +5,6 @@
 
 > This project is for device monitoring
 
-## Link
-
-👉 https://moldmecca.thingplus.net
-
 ## Author
 
 👤 **Daliworks**
