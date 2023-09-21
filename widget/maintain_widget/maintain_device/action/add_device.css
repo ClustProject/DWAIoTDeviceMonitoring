@@ -1,0 +1,321 @@
+#add-device-form form {
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+  min-height: 70vh;
+}
+#add-device-form input[type='number']::-webkit-outer-spin-button,
+#add-device-form input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#add-device-form input[type='number'] {
+  -moz-appearance: textfield;
+}
+#add-device-form .dialog-title-box {
+  padding: 2em;
+  border-bottom: 1px solid var(--tb-service-border-1);
+}
+#add-device-form .dialog-title {
+  color: var(--tb-service-font-5);
+  font-size: 1.6em;
+}
+#add-device-form .dialog-close {
+  all: unset;
+  cursor: pointer;
+  color: var(--tb-service-font-3);
+  transition-property: color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#add-device-form .dialog-close i {
+  font-size: 1.4em;
+}
+#add-device-form .dialog-close:hover {
+  color: var(--tb-service-font-5);
+}
+
+#add-device-form .step-controller {
+  padding: 2em 4em;
+}
+#add-device-form .step {
+  position: relative;
+  display: inline-block;
+  padding: 0.3em;
+  background-color: var(--tb-service-border-1);
+  border: 1px solid var(--tb-service-border-1);
+  color: var(--tb-service-border-1);
+  transition-property: color, border-color, background-color;
+  transition-duration: var(--tb-config-color-duration);
+  border-radius: 50%;
+  cursor: pointer;
+}
+#add-device-form .step i {
+  font-size: 1.4em;
+}
+#add-device-form .step.prev {
+  background-color: var(--tb-service-accent);
+  border: 0.1em solid var(--tb-service-accent);
+  color: var(--tb-service-font-0);
+}
+#add-device-form .step.current {
+  background-color: var(--tb-service-font-0);
+  border: 0.3em solid var(--tb-service-accent);
+  color: var(--tb-service-font-0);
+}
+#add-device-form .step:after {
+  content: attr(data-label);
+  position: absolute;
+  top: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--tb-service-font-3);
+  white-space: nowrap;
+  font-size: 1.2em;
+}
+#add-device-form .step.current:after {
+  color: var(--tb-service-font-5);
+}
+#add-device-form .step-progress-line {
+  width: 100%;
+  height: 0.2em;
+  background-color: var(--tb-service-border-1);
+  transition-property: background-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#add-device-form .step-progress-line.prev {
+  background-color: var(--tb-service-accent);
+}
+
+#add-device-form .mat-dialog-content {
+  padding: var(--tb-config-padding) !important;
+}
+#add-device-form .mat-dialog-content::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+#add-device-form .mat-dialog-content::-webkit-scrollbar-thumb {
+  border: 2px solid #00000000;
+  background-clip: padding-box;
+  background-color: var(--tb-service-accent);
+}
+#add-device-form .mat-dialog-content::-webkit-scrollbar-thumb:hover {
+  border: 1px solid #00000000;
+}
+
+#add-device-form .header-row,
+#add-device-form .sub-row {
+  width: 100%;
+}
+
+#add-device-form .header-row {
+  background-color: var(--tb-service-background-1);
+  padding: 1.6em;
+  border: 1px solid var(--tb-service-border-0);
+}
+
+#add-device-form .sub-row-box {
+  padding: 1.6em;
+  border: 1px solid var(--tb-service-border-0);
+  border-top: none;
+}
+
+#add-device-form .label-box {
+  color: var(--tb-service-font-3);
+  font-size: 1.2em;
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#add-device-form .input-box.disabled .label-box {
+  color: var(--tb-service-font-1);
+}
+#add-device-form .value-box {
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#add-device-form .value-box.no-border {
+  border: none !important;
+}
+
+#add-device-form .input-box:not(.disabled) .value-box:hover {
+  border-color: var(--tb-service-border-3);
+}
+#add-device-form .input-box:not(.disabled) .value-box:focus-within {
+  border-color: var(--tb-service-accent);
+  caret-color: var(--tb-service-accent);
+}
+#add-device-form .value-box *::placeholder {
+  color: var(--tb-service-font-4);
+}
+#add-device-form .value-box input {
+  color: var(--tb-service-font-5);
+  font-size: 1.4em;
+  padding: calc(16em / 14);
+  caret-color: var(--tb-service-accent);
+}
+#add-device-form .input-box.disabled .value-box {
+  background-color: var(--tb-service-background-1);
+}
+#add-device-form .input-box.disabled .value-box input {
+  color: var(--tb-service-font-2);
+  cursor: default;
+}
+#add-device-form .side-label {
+  color: var(--tb-service-font-4);
+  font-size: 1.4em;
+}
+#add-device-form .switch-track {
+  position: relative;
+  width: 3.6em;
+  height: 1.6em;
+  border-radius: 0.8em;
+  background-color: var(--tb-service-border-1);
+  transition-property: background-color;
+  transition-duration: var(--tb-config-color-duration);
+  cursor: pointer;
+}
+#add-device-form .switch-track.active {
+  background-color: var(--tb-service-accent);
+}
+#add-device-form .switch-ball {
+  position: absolute;
+  top: 50%;
+  left: 0.8em;
+  transform: translate(-50%, -50%);
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 0.6em;
+  background-color: var(--tb-service-background-0);
+  transition-property: left;
+  transition-duration: var(--tb-config-color-duration);
+}
+#add-device-form .switch-track.active .switch-ball {
+  left: calc(100% - 0.8em);
+}
+#add-device-form .radio-box .radio-circle {
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  border: 1px solid var(--tb-service-border-1);
+}
+#add-device-form .radio-box .radio-circle {
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  border: 0.1em solid var(--tb-service-border-1);
+}
+#add-device-form .radio-box.active .radio-circle {
+  width: 2em;
+  height: 2em;
+  border: 0.6em solid var(--tb-service-accent);
+}
+#add-device-form .radio-box .radio-label {
+  font-size: 1.4em;
+  color: var(--tb-service-font-4);
+}
+#add-device-form .input-small {
+  width: 2em;
+}
+#add-device-form .unit-label {
+  color: var(--tb-service-font-4);
+  font-size: 1.4em;
+}
+
+#add-device-form .value-box .mat-select-trigger {
+  font-size: 1.4em;
+  padding: calc(16em / 14);
+  line-height: 1;
+}
+#add-device-form .value-box .mat-select-value {
+  font-family: var(--tb-config-font-family);
+  font-weight: 300;
+  font-size: 1em;
+  color: var(--tb-service-font-5);
+}
+#add-device-form .value-box .mat-select-arrow {
+  font-family: var(--tb-config-font-family);
+  font-weight: 300;
+  border-left: 0.4em solid transparent;
+  border-right: 0.4em solid transparent;
+  border-top: 0.4em solid;
+  color: var(--tb-service-accent);
+}
+#add-device-form .description-box {
+  margin-top: calc(0.6em / 1.2);
+  color: var(--tb-service-font-3);
+  font-size: 1.2em;
+}
+#add-device-form .description-box b {
+  color: var(--tb-service-accent);
+}
+#add-device-form .error-box {
+  display: none;
+  color: var(--tb-service-warn);
+  font-size: 1.2em;
+}
+#add-device-form .input-box.error .label-box {
+  color: var(--tb-service-warn);
+}
+#add-device-form .input-box.error .value-box {
+  border: 1px solid var(--tb-service-warn);
+}
+#add-device-form .input-box.error .description-box {
+  display: none;
+}
+#add-device-form .input-box.error .error-box {
+  display: block;
+  margin-top: calc(0.6em / 1.2);
+}
+
+#add-device-form .mat-dialog-actions {
+  padding: 2em;
+  border-top: 1px solid var(--tb-service-border-1);
+}
+#add-device-form .button {
+  all: unset;
+  padding: 0.6em 1.4em;
+  font-size: 1.4em;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#add-device-form .save-button,
+#add-device-form .next-button {
+  color: var(--tb-service-font-0);
+  background-color: var(--tb-service-accent);
+}
+#add-device-form .save-button:hover,
+#add-device-form .next-button:hover {
+  background-color: var(--tb-service-accent-hover);
+}
+#add-device-form .save-button:active,
+#add-device-form .next-button:active {
+  background-color: var(--tb-service-accent-pressed);
+}
+#add-device-form .close-button,
+#add-device-form .prev-button {
+  color: var(--tb-service-font-5);
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+}
+#add-device-form .close-button:hover,
+#add-device-form .prev-button:hover {
+  border-color: var(--tb-service-border-3);
+}
+#add-device-form .close-button:active,
+#add-device-form .prev-button:active {
+  background-color: var(--tb-service-border-0);
+}
+#add-device-form .button:disabled,
+#add-device-form .button[disabled] {
+  background-color: var(--tb-service-font-1);
+  color: var(--tb-service-font-0);
+  cursor: default;
+}
+
+@media (min-width: 960px) {
+  #add-device-form form {
+    width: 24vw;
+  }
+}

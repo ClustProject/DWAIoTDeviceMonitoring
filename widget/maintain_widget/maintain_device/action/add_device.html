@@ -1,0 +1,532 @@
+<div id="add-device-form">
+  <form
+    #addEntityForm="ngForm"
+    [formGroup]="addEntityFormGroup"
+    (ngSubmit)="save()"
+    style="font-size: {{calcFontSize()}}px;"
+  >
+    <div class="dialog-title-box" fxLayoutAlign="space-between center">
+      <span class="dialog-title" translate>thingplus.dialog.create-device-title</span>
+      <button class="dialog-close" (click)="cancel()" type="button">
+        <mat-icon class="material-icons">close</mat-icon>
+      </button>
+    </div>
+    <mat-progress-bar color="warn" mode="indeterminate" *ngIf="isLoading$ | async"> </mat-progress-bar>
+    <div style="height: 0.4em" *ngIf="!(isLoading$ | async)"></div>
+    <div class="step-controller" fxLayoutAlign="space-between center">
+      <div
+        class="step"
+        [ngClass]="{'prev': currentStep > 0, 'current': currentStep == 0, 'next': currentStep < 0}"
+        (click)="selectStep($event, 0)"
+        fxLayoutAlign="center center"
+        [attr.data-label]="t('thingplus.label.step-basic')"
+      >
+        <i class="material-icons">check</i>
+      </div>
+      <div class="step-progress-line" [ngClass]="{'prev': currentStep > 0, 'next': currentStep < 0}"></div>
+      <div
+        class="step"
+        [ngClass]="{'prev': currentStep > 1, 'current': currentStep == 1, 'next': currentStep < 1}"
+        (click)="selectStep($event, 1)"
+        fxLayoutAlign="center center"
+        [attr.data-label]="t('thingplus.label.step-standard')"
+      >
+        <i class="material-icons">check</i>
+      </div>
+      <div class="step-progress-line" [ngClass]="{'prev': currentStep > 1, 'next': currentStep < 1}"></div>
+      <div
+        class="step"
+        [ngClass]="{'prev': currentStep > 2, 'current': currentStep == 2, 'next': currentStep < 2}"
+        (click)="selectStep($event, 2)"
+        fxLayoutAlign="center center"
+        [attr.data-label]="t('thingplus.label.step-work')"
+      >
+        <i class="material-icons">check</i>
+      </div>
+      <div class="step-progress-line" [ngClass]="{'prev': currentStep > 2, 'next': currentStep < 2}"></div>
+      <div
+        class="step"
+        [ngClass]="{'prev': currentStep > 3, 'current': currentStep == 3, 'next': currentStep < 3}"
+        (click)="selectStep($event, 3)"
+        fxLayoutAlign="center center"
+        [attr.data-label]="t('thingplus.label.step-parameter')"
+      >
+        <i class="material-icons">check</i>
+      </div>
+    </div>
+    <div mat-dialog-content fxFlex fxLayout="column" fxLayoutGap="2em">
+      <div class="step-content step-content-0" *ngIf="currentStep == 0" fxLayout="column" fxLayoutGap="2em">
+        <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+          <div
+            fxFlex="100"
+            fxLayout="column"
+            fxLayoutGap="0.6em"
+            class="input-box"
+            [ngClass]="{'disabled': ownerLevel != 0}"
+          >
+            <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+              <label translate>thingplus.label.customerL1</label>
+            </div>
+            <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+              <mat-select
+                formControlName="customerL1"
+                (selectionChange)="setCustomerL1($event)"
+                *ngIf="ownerLevel == 0"
+              >
+                <mat-option *ngFor="let customerL1 of customerL1List" [value]="customerL1.value">
+                  {{customerL1.name}}
+                </mat-option>
+              </mat-select>
+              <input matInput formControlName="customerL1Name" *ngIf="ownerLevel != 0" readonly />
+            </div>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+          <div
+            fxFlex="100"
+            fxLayout="column"
+            fxLayoutGap="0.6em"
+            class="input-box"
+            [ngClass]="{'error': ownerLevel <= 1 && addEntityFormGroup.get('customerL2').hasError('required'), 'disabled': ownerLevel > 1}"
+          >
+            <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+              <label translate>thingplus.label.customerL2</label>
+              <span> * </span>
+            </div>
+            <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+              <mat-select formControlName="customerL2" required *ngIf="ownerLevel <= 1">
+                <mat-option *ngFor="let customerL2 of customerL2List" [value]="customerL2.value">
+                  {{customerL2.name}}
+                </mat-option>
+              </mat-select>
+              <input matInput formControlName="customerL2Name" *ngIf="ownerLevel > 1" readonly />
+            </div>
+            <div class="error-box" translate>thingplus.help.error-required-customerL2</div>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+          <div
+            fxFlex="100"
+            fxLayout="column"
+            fxLayoutGap="0.6em"
+            class="input-box"
+            [ngClass]="{error: addEntityFormGroup.get('label').hasError('required') || addEntityFormGroup.get('label').hasError('maxlength')}"
+          >
+            <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+              <label translate>thingplus.label.device-name</label>
+              <span> * </span>
+            </div>
+            <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+              <input matInput formControlName="label" required />
+            </div>
+            <div class="error-box" *ngIf="addEntityFormGroup.get('label').hasError('required')" translate>
+              thingplus.help.error-required-device-name
+            </div>
+            <div class="error-box" *ngIf="addEntityFormGroup.get('label').hasError('maxlength')" translate>
+              thingplus.help.error-max-length
+            </div>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+          <div fxFlex="100" fxLayout="column" fxLayoutGap="0.6em" class="input-box">
+            <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+              <label translate>thingplus.label.device-id</label>
+              <span> * </span>
+            </div>
+            <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+              <input matInput formControlName="name" required />
+            </div>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+          <div
+            fxFlex="100"
+            fxLayout="column"
+            fxLayoutGap="0.6em"
+            class="input-box"
+            [ngClass]="{'error': ownerLevel <= 1 && addEntityFormGroup.get('model').hasError('required')}"
+          >
+            <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+              <label translate>thingplus.label.device-model</label>
+              <span> * </span>
+            </div>
+            <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+              <mat-select formControlName="model" required>
+                <mat-option *ngFor="let model of modelList" [value]="model.value"> {{model.name}} </mat-option>
+              </mat-select>
+            </div>
+            <div class="error-box" translate>thingplus.help.error-required-device-model</div>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start end">
+          <div fxFlex fxLayout="column" fxLayoutGap="0.6em" class="input-box">
+            <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+              <label translate>thingplus.label.manager</label>
+            </div>
+            <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+              <mat-select formControlName="user" (selectionChange)="setUser($event)">
+                <mat-option *ngFor="let user of userList" [value]="user.value"> {{user.name}} </mat-option>
+              </mat-select>
+            </div>
+          </div>
+          <div fxFlex fxLayout="column" fxLayoutGap="0.6em" class="input-box disabled">
+            <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em"></div>
+            <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+              <input matInput [value]="selectedPhone" readonly />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step-content step-content-1" *ngIf="currentStep == 1" fxLayout="column" fxLayoutGap="2em">
+        <div fxLayout="column" fxLayoutAlign="start center" formGroupName="plannedOperationTime">
+          <div class="header-row" fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+            <div fxFlex="100" fxLayout="column" fxLayoutGap="0.6em" class="input-box">
+              <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+                <label class="side-label" translate>thingplus.label.divide-by-weekday</label>
+                <div class="switch-track" [ngClass]="{'active': divideWeek}" (click)="divideWeek = !divideWeek">
+                  <div class="switch-ball"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sub-row" fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+            <div
+              fxFlex
+              class="sub-row-box"
+              fxLayout="row"
+              fxLayoutAlign="space-between center"
+              fxLayoutGap="0.6em"
+              *ngIf="!divideWeek"
+            >
+              <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="1em" class="input-box">
+                <label class="side-label" translate>thingplus.label.everyday</label>
+                <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="0.6em">
+                  <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="0.6em">
+                    <input
+                      class="input-small"
+                      type="number"
+                      step="1"
+                      min="0"
+                      max="24"
+                      maxlength="2"
+                      matInput
+                      formControlName="everydayHour"
+                    />
+                  </div>
+                  <span class="unit-label" translate>thingplus.time-format.hours</span>
+                  <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="0.6em">
+                    <input
+                      class="input-small"
+                      type="number"
+                      step="1"
+                      min="0"
+                      max="60"
+                      maxlength="2"
+                      matInput
+                      formControlName="everydayMin"
+                    />
+                  </div>
+
+                  <span class="unit-label" translate>thingplus.time-format.minute</span>
+                </div>
+              </div>
+            </div>
+            <div fxFlex formArrayName="week" *ngIf="divideWeek">
+              <div
+                fxFlex
+                class="sub-row-box"
+                fxLayout="row"
+                fxLayoutAlign="space-between center"
+                fxLayoutGap="0.6em"
+                *ngFor="let day of getWeek().controls; index as i"
+              >
+                <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="1em" class="input-box">
+                  <label class="side-label" translate>{{'thingplus.time-format.weekday-long.' + dayList[i]}}</label>
+                  <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="0.6em" [formGroupName]="i">
+                    <div class="value-box" fxLayoutAlign="center center">
+                      <input
+                        class="input-small"
+                        type="number"
+                        step="1"
+                        min="0"
+                        max="24"
+                        maxlength="2"
+                        matInput
+                        formControlName="hour"
+                      />
+                    </div>
+                    <span class="unit-label" translate>thingplus.time-format.hours</span>
+                    <div class="value-box" fxLayoutAlign="center center">
+                      <input
+                        class="input-small"
+                        type="number"
+                        step="1"
+                        min="0"
+                        max="60"
+                        maxlength="2"
+                        matInput
+                        formControlName="min"
+                      />
+                    </div>
+                    <span class="unit-label" translate>thingplus.time-format.minute</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="start center" formGroupName="trialConfig">
+          <div class="header-row" fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+            <div fxFlex="100" fxLayout="column" fxLayoutGap="0.6em" class="input-box">
+              <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+                <label class="side-label" translate>thingplus.label.is-active-trial</label>
+                <div
+                  class="switch-track"
+                  [ngClass]="{'active': isActiveTrial}"
+                  (click)="isActiveTrial = !isActiveTrial"
+                >
+                  <div class="switch-ball"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sub-row" fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+            <div
+              fxFlex
+              class="sub-row-box"
+              fxLayout="row"
+              fxLayoutAlign="space-between center"
+              fxLayoutGap="0.6em"
+              *ngIf="isActiveTrial"
+            >
+              <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="1em" class="input-box">
+                <label class="side-label" translate>thingplus.label.trial-time</label>
+                <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="0.6em">
+                  <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="0.6em">
+                    <input class="input-small" type="number" step="1" matInput formControlName="trialMin" />
+                  </div>
+                  <span class="unit-label"> ~ </span>
+                  <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="0.6em">
+                    <input class="input-small" type="number" step="1" matInput formControlName="trialMax" />
+                  </div>
+
+                  <span class="unit-label" translate>thingplus.time-format.minute</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="start center">
+          <div class="header-row" fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+            <div fxFlex="100" fxLayout="column" fxLayoutGap="0.6em" class="input-box">
+              <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+                <label class="side-label" translate>thingplus.label.no-work-state</label>
+                <div fxLayoutAlign="end center" fxLayoutGap="1.8em">
+                  <div
+                    class="radio-box"
+                    [ngClass]="{'active': noWorkState == 'STOP'}"
+                    fxLayoutAlign="start center"
+                    fxLayoutGap="0.6em"
+                    (click)="noWorkState = 'STOP'"
+                  >
+                    <div class="radio-circle"></div>
+                    <div class="radio-label" translate>thingplus.state.stopped</div>
+                  </div>
+                  <div
+                    class="radio-box"
+                    [ngClass]="{'active': noWorkState == 'WAIT'}"
+                    fxLayoutAlign="start center"
+                    fxLayoutGap="0.6em"
+                    (click)="noWorkState = 'WAIT'"
+                  >
+                    <div class="radio-circle"></div>
+                    <div class="radio-label" translate>thingplus.state.waiting</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step-content step-content-2" *ngIf="currentStep == 2" fxLayout="column" fxLayoutGap="2em">
+        <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+          <div
+            fxFlex
+            fxLayout="column"
+            fxLayoutGap="0.6em"
+            class="input-box"
+            [ngClass]="{'error': ownerLevel <= 1 && addEntityFormGroup.get('stopPower').hasError('required')}"
+          >
+            <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+              <label translate>thingplus.parameter.stop-power</label>
+              <span> * </span>
+            </div>
+            <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+              <input matInput type="number" formControlName="stopPower" required />
+            </div>
+            <div class="description-box"><b>*</b> {{'thingplus.help.error-required-stop-power' | translate}}</div>
+            <div class="error-box" translate>thingplus.help.error-required-stop-power</div>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+          <div
+            fxFlex
+            fxLayout="column"
+            fxLayoutGap="0.6em"
+            class="input-box"
+            [ngClass]="{'error': ownerLevel <= 1 && addEntityFormGroup.get('waitPowerLimit').hasError('required')}"
+          >
+            <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+              <label translate>thingplus.parameter.wait-power-limit</label>
+              <span> * </span>
+            </div>
+            <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+              <input matInput type="number" formControlName="waitPowerLimit" required />
+            </div>
+            <div class="description-box"><b>*</b> {{'thingplus.help.error-required-wait-power-limit' | translate}}</div>
+            <div class="error-box" translate>thingplus.help.error-required-wait-power-limit</div>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+          <div
+            fxFlex
+            fxLayout="column"
+            fxLayoutGap="0.6em"
+            class="input-box"
+            [ngClass]="{'error': ownerLevel <= 1 && addEntityFormGroup.get('workPowerLimit').hasError('required')}"
+          >
+            <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+              <label translate>thingplus.parameter.work-power-limit</label>
+              <span> * </span>
+            </div>
+            <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+              <input matInput type="number" formControlName="workPowerLimit" required />
+            </div>
+            <div class="description-box"><b>*</b> {{'thingplus.help.error-required-work-power-limit' | translate}}</div>
+            <div class="error-box" translate>thingplus.help.error-required-work-power-limit</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-content step-content-3" *ngIf="currentStep == 3" fxLayout="column" fxLayoutGap="2em">
+        <div fxLayout="column" fxLayoutGap="2em" formGroupName="electricLimit">
+          <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+            <div fxFlex fxLayout="column" fxLayoutGap="0.6em" class="input-box">
+              <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+                <label>{{'thingplus.parameter.volt' | translate}} {{'thingplus.label.limit-high' | translate}}</label>
+              </div>
+              <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+                <input matInput type="number" formControlName="voltHigh" />
+              </div>
+            </div>
+            <div fxFlex fxLayout="column" fxLayoutGap="0.6em" class="input-box">
+              <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+                <label>{{'thingplus.parameter.volt' | translate}} {{'thingplus.label.limit-low' | translate}}</label>
+              </div>
+              <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+                <input matInput type="number" formControlName="voltLow" />
+              </div>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+            <div fxFlex="50" fxLayout="column" fxLayoutGap="0.6em" class="input-box">
+              <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+                <label>
+                  {{'thingplus.parameter.volt-imbal' | translate}} {{'thingplus.label.limit-high' | translate}}
+                </label>
+              </div>
+              <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+                <input matInput type="number" formControlName="voltImbal" />
+              </div>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+            <div fxFlex="50" fxLayout="column" fxLayoutGap="0.6em" class="input-box">
+              <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+                <label>{{'thingplus.parameter.curr' | translate}} {{'thingplus.label.limit-high' | translate}}</label>
+              </div>
+              <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+                <input matInput type="number" formControlName="curr" />
+              </div>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+            <div fxFlex="50" fxLayout="column" fxLayoutGap="0.6em" class="input-box">
+              <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+                <label
+                  >{{'thingplus.parameter.curr-imbal' | translate}} {{'thingplus.label.limit-high' | translate}}</label
+                >
+              </div>
+              <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+                <input matInput type="number" formControlName="currImbal" />
+              </div>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+            <div fxFlex="50" fxLayout="column" fxLayoutGap="0.6em" class="input-box">
+              <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+                <label
+                  >{{'thingplus.parameter.power-factor' | translate}} {{'thingplus.label.limit-low' | translate}}</label
+                >
+              </div>
+              <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+                <input matInput type="number" formControlName="pf" />
+              </div>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+            <div fxFlex="50" fxLayout="column" fxLayoutGap="0.6em" class="input-box">
+              <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+                <label>{{'thingplus.parameter.thd' | translate}} {{'thingplus.label.limit-high' | translate}}</label>
+              </div>
+              <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+                <input matInput type="number" formControlName="thd" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="1em">
+      <button
+        class="button prev-button"
+        [disabled]="(isLoading$ | async)"
+        type="button"
+        (click)="prevStep()"
+        *ngIf="currentStep > 0"
+        translate
+      >
+        thingplus.action.prev-step
+      </button>
+      <button
+        class="button close-button"
+        [disabled]="(isLoading$ | async)"
+        type="button"
+        (click)="cancel()"
+        cdkFocusInitial
+        *ngIf="currentStep == 0"
+        translate
+      >
+        thingplus.action.close
+      </button>
+      <button
+        class="button next-button"
+        type="button"
+        (click)="nextStep()"
+        [disabled]="(isLoading$ | async) || addEntityForm.invalid"
+        *ngIf="currentStep < 3"
+        translate
+      >
+        thingplus.action.next-step
+      </button>
+      <button
+        class="button save-button"
+        type="submit"
+        [disabled]="(isLoading$ | async) || addEntityForm.invalid"
+        *ngIf="currentStep == 3"
+        translate
+      >
+        thingplus.action.save
+      </button>
+    </div>
+  </form>
+</div>

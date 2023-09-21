@@ -1,0 +1,128 @@
+<div id="widget" fxLayout="column" fxLayoutAlign="center center">
+  <div class="widget-tab" fxLayoutAlign="start center" *ngIf="tabList && tabList.length > 1">
+    <div
+      class="tab"
+      *ngFor="let tab of tabList"
+      fxLayoutAlign="center center"
+      [ngClass]="{'active': tab.isActive}"
+      (click)="selectTab(tab.id)"
+    >
+      {{tab.label | translate}}
+    </div>
+  </div>
+  <header class="widget-header" fxLayoutAlign="space-between center">
+    <section class="widget-header-left-section" fxFlex fxLayoutAlign="start center" fxLayoutGap="1em">
+      <div class="widget-title" translate>title</div>
+    </section>
+    <section class="widget-header-right-section" fxFlex fxLayoutAlign="end center" fxLayoutGap="1em">
+      <div
+        class="entity-controller"
+        *ngIf="ownerLevel == 0 && filterLevel <= 1"
+        fxLayoutAlign="end center"
+        fxLayoutGap="1em"
+      >
+        <span class="normal-label" translate> thingplus.selector.workspace-selection </span>
+        <mat-select class="entity-selector" (ngModelChange)="setCustomerL1($event)" [ngModel]="selectedCustomerL1">
+          <mat-option *ngFor="let customerL1 of customerL1List" [value]="customerL1.value">
+            {{customerL1.name}}
+          </mat-option>
+        </mat-select>
+        <mat-select
+          class="entity-selector"
+          *ngIf="filterLevel == 0"
+          (ngModelChange)="setCustomerL2($event)"
+          [ngModel]="selectedCustomerL2"
+        >
+          <mat-option *ngFor="let customerL2 of customerL2List" [value]="customerL2.value">
+            {{customerL2.name}}
+          </mat-option>
+        </mat-select>
+      </div>
+      <div class="widget-action" fxLayoutAlign="end center" fxLayoutGap="1em">
+        <div
+          class="widget-header-action"
+          *ngFor="let headerAction of headerActionList"
+          fxLayoutAlign="start center"
+          fxLayoutGap="0.5em"
+          (click)="headerAction.action($event)"
+        >
+          <span translate>{{headerAction.name}}</span>
+          <i class="material-icons">{{headerAction.icon}}</i>
+        </div>
+      </div>
+    </section>
+  </header>
+  <main class="widget-content">
+    <section class="table-section">
+      <table class="table">
+        <thead>
+          <tr>
+            <th
+              *ngFor="let th of mainThList"
+              (click)="changeSort($event, th)"
+              [attr.rowspan]="th.rowspan"
+              [attr.colspan]="th.colspan"
+              #tooltip="matTooltip"
+              [matTooltip]="th.help"
+              matTooltipClass="tp-service-tooltip"
+              [ngClass]="{'DESC': th.order == 'DESC','ASC': th.order == 'ASC','main': !th.index}"
+            >
+              <div class="th-box" fxLayoutAlign="start center" fxLayoutGap="0.5em">
+                <span class="th-label">{{th.label}}</span>
+                <i class="th-help material-icons" *ngIf="th.help">help</i>
+                <i class="th-sort material-icons">arrow_upward</i>
+              </div>
+            </th>
+            <th *ngIf="hasCellAction" rowspan="2" [ngStyle]="{'width': actionSize}"></th>
+          </tr>
+          <tr>
+            <th class="sub" *ngFor="let th of subThList" (click)="changeSort($event, th)" [ngClass]="th.order">
+              <div class="th-box" fxLayoutAlign="start center" fxLayoutGap="0.5em">
+                <span class="th-label">{{th.label}}</span>
+                <i class="th-sort material-icons">arrow_upward</i>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tr of trList">
+            <td
+              *ngFor="let td of tr.tdList"
+              [ngStyle]="td.style"
+              [innerHTML]="td.value"
+              (click)="td.action && td.action($event)"
+            ></td>
+            <td *ngIf="hasCellAction" class="action">
+              <div class="cell-action-box" fxLayoutAlign="start center" fxLayoutGap="0.5em">
+                <i
+                  *ngFor="let cellAction of cellActionList"
+                  class="material-icons cell-action"
+                  (click)="cellAction.action($event, tr.index)"
+                >
+                  {{cellAction.icon}}
+                </i>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <footer class="widget-footer" fxLayoutAlign="end center">
+    <section class="page-section" fxLayoutAlign="end center" fxLayoutGap="0.5em">
+      <div class="material-icons page-button first-button" (click)="getFirstPage()">first_page</div>
+      <div class="material-icons page-button prev-button" (click)="getPrevPage()">keyboard_arrow_left</div>
+      <div
+        class="page-button page-number-button"
+        [class.big]="page.isBig"
+        [class.active]="page.isActive"
+        *ngFor="let page of pageList"
+        (click)="changePage($event, page)"
+      >
+        {{page.number}}
+      </div>
+      <div class="material-icons page-button next-button" (click)="getNextPage()">keyboard_arrow_right</div>
+      <div class="material-icons page-button last-button" (click)="getLastPage()">last_page</div>
+    </section>
+  </footer>
+</div>

@@ -1,0 +1,195 @@
+#add-modified-state-form form {
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+  word-break: keep-all;
+}
+#add-modified-state-form .dialog-title-box {
+  padding: 2em;
+  border-bottom: 1px solid var(--tb-service-border-1);
+}
+#add-modified-state-form .dialog-title {
+  color: var(--tb-service-font-5);
+  font-size: 1.6em;
+}
+#add-modified-state-form .dialog-close {
+  all: unset;
+  cursor: pointer;
+  color: var(--tb-service-font-3);
+  transition-property: color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#add-modified-state-form .dialog-close i {
+  font-size: 1.4em;
+}
+#add-modified-state-form .dialog-close:hover {
+  color: var(--tb-service-font-5);
+}
+
+#add-modified-state-form .mat-dialog-content {
+  padding: var(--tb-config-padding) !important;
+}
+#add-modified-state-form .mat-dialog-content::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+#add-modified-state-form .mat-dialog-content::-webkit-scrollbar-thumb {
+  border: 2px solid #00000000;
+  background-clip: padding-box;
+  background-color: var(--tb-service-accent);
+}
+#add-modified-state-form .mat-dialog-content::-webkit-scrollbar-thumb:hover {
+  border: 1px solid #00000000;
+}
+
+#add-modified-state-form .label-box {
+  color: var(--tb-service-font-4);
+  font-size: 1.2em;
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#add-modified-state-form .value-box {
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+  color: var(--tb-service-font-5);
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#add-modified-state-form .value-box:hover {
+  border-color: var(--tb-service-border-3);
+}
+#add-modified-state-form .value-box:focus-within {
+  border-color: var(--tb-service-accent);
+  caret-color: var(--tb-service-accent);
+}
+#add-modified-state-form .value-box *::placeholder {
+  color: var(--tb-service-font-4);
+}
+#add-modified-state-form .value-box input {
+  color: var(--tb-service-font-5);
+  font-size: 1.4em;
+  padding: calc(16em / 14);
+  caret-color: var(--tb-service-accent);
+}
+#add-modified-state-form .value-box .mat-select-trigger {
+  font-size: 1.4em;
+  padding: calc(16em / 14);
+  line-height: 1;
+}
+#add-modified-state-form .value-box .mat-select-value {
+  font-family: var(--tb-config-font-family);
+  font-weight: 300;
+  font-size: 1em;
+  color: var(--tb-service-font-5);
+}
+#add-modified-state-form .value-box .mat-select-arrow {
+  font-family: var(--tb-config-font-family);
+  font-weight: 300;
+  border-left: 0.4em solid transparent;
+  border-right: 0.4em solid transparent;
+  border-top: 0.4em solid;
+  color: var(--tb-service-accent);
+}
+#add-modified-state-form .error-box {
+  display: none;
+  color: var(--tb-service-warn);
+  font-size: 1.2em;
+}
+#add-modified-state-form .input-box.error .label-box {
+  color: var(--tb-service-warn);
+}
+#add-modified-state-form .input-box.error .value-box {
+  border: 1px solid var(--tb-service-warn);
+}
+#add-modified-state-form .input-box.error .error-box {
+  display: block;
+  margin-top: calc(0.6em / 1.2);
+}
+
+/* Date Controller */
+#add-modified-state-form .date-controller {
+  margin-right: var(--tb-config-padding);
+}
+#add-modified-state-form .date-selector {
+  position: relative;
+  width: 100%;
+  line-height: 1;
+  color: var(--tb-service-font-5);
+  /* background-color: var(--tb-service-background-0); */
+  /* border: 1px solid var(--tb-service-border-0);*/
+  padding: 0.6em 0.9em;
+  cursor: pointer;
+  transition-property: border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#add-modified-state-form .date-selector:hover {
+  border-color: var(--tb-service-border-3);
+}
+#add-modified-state-form .date-selector input {
+  font-family: var(--tb-config-font-family);
+  font-size: 1.4em;
+  padding: 0;
+  font-weight: 300;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.3;
+}
+#add-modified-state-form .select-arrow {
+  border-left: 0.5em solid transparent;
+  border-right: 0.5em solid transparent;
+  border-top: 0.5em solid;
+  color: var(--tb-service-accent);
+}
+#add-modified-state-form .start-date,
+#add-modified-state-form .end-date {
+  all: unset;
+  width: 100%;
+}
+#add-modified-state-form .hidden {
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#add-modified-state-form .mat-dialog-actions {
+  padding: 2em;
+  border-top: 1px solid var(--tb-service-border-1);
+}
+#add-modified-state-form .button {
+  all: unset;
+  padding: 0.6em 1.4em;
+  font-size: 1.4em;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#add-modified-state-form .save-button {
+  color: var(--tb-service-font-0);
+  background-color: var(--tb-service-accent);
+}
+#add-modified-state-form .save-button:hover {
+  background-color: var(--tb-service-accent-hover);
+}
+#add-modified-state-form .save-button:active {
+  background-color: var(--tb-service-accent-pressed);
+}
+#add-modified-state-form .close-button {
+  color: var(--tb-service-font-5);
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+}
+#add-modified-state-form .close-button:hover {
+  border-color: var(--tb-service-border-3);
+}
+#add-modified-state-form .close-button:active {
+  background-color: var(--tb-service-border-0);
+}
+
+@media (min-width: 960px) {
+  #add-modified-state-form form {
+    width: 24vw;
+  }
+}

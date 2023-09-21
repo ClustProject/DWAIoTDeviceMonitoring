@@ -1,0 +1,21 @@
+<div id="widget" fxLayout="column" fxLayoutAlign="start center">
+  <header class="widget-header" fxLayoutAlign="space-between center" fxLayoutGap="1em">
+    <section class="widget-header-left-section" fxFlex="100" fxLayoutAlign="start center" fxLayoutGap="1em">
+      <div class="widget-title">title</div>
+    </section>
+  </header>
+  <main class="widget-content">
+    <section class="chart-section" fxLayout="column" fxLayoutAlign="space-between center">
+      <div fxFlex="5 1 80%" class="chart-container">
+        <canvas class="chart"></canvas>
+      </div>
+      <div class="legend-container" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="2em">
+        <div class="legend-box" *ngFor="let legend of legendList" fxLayoutAlign="start center" fxLayoutGap="0.5em">
+          <div class="legend-circle" [ngStyle]="{'color': legend.color}"></div>
+          <div class="legend-label">{{legend.label}}</div>
+          <div class="legend-value">{{legend.value}}</div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>

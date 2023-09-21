@@ -1,0 +1,295 @@
+{
+  "title": "Delay Report",
+  "image": null,
+  "mobileHide": false,
+  "mobileOrder": null,
+  "configuration": {
+    "description": "",
+    "widgets": {
+      "77c9f5d4-e1ba-a24b-1d52-c265faa1039a": {
+        "isSystemType": false,
+        "bundleAlias": "moldmecca_report_widgets",
+        "typeAlias": "delay_report",
+        "type": "timeseries",
+        "title": "New widget",
+        "image": null,
+        "description": null,
+        "sizeX": 8,
+        "sizeY": 5,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "08377b11-cfbd-881f-5fd6-4921891251a3",
+              "filterId": null,
+              "dataKeys": []
+            },
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "2b29c675-0199-d52c-a781-d5d4134152f6",
+              "filterId": null,
+              "dataKeys": [
+                {
+                  "name": "TP_WaitPowerUsageRaw",
+                  "type": "timeseries",
+                  "label": "TP_WaitPowerUsageRaw",
+                  "color": "#4caf50",
+                  "settings": {},
+                  "_hash": 0.8603336821435985
+                }
+              ]
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "timewindowMs": 60000
+            }
+          },
+          "showTitle": false,
+          "backgroundColor": "#fff",
+          "color": "rgba(0, 0, 0, 0.87)",
+          "padding": "0px",
+          "settings": {
+            "widget": {
+              "originWidth": 1630
+            }
+          },
+          "title": "thingplus.page.report.delay-report",
+          "dropShadow": false,
+          "enableFullscreen": false,
+          "titleStyle": {
+            "font-family": "var(--tb-config-font-family)",
+            "font-size": "1.6em",
+            "font-weight": 600,
+            "letter-spacing": "var(--tb-config-letter-spacing)",
+            "color": "var(--tb-service-font-5)"
+          },
+          "showTitleIcon": false,
+          "titleTooltip": "",
+          "widgetStyle": {
+            "cursor": "default",
+            "box-shadow": "0px 2px 10px 0 rgba(0, 0, 0, 0.04)"
+          },
+          "noDataDisplayMessage": "",
+          "showLegend": false,
+          "legendConfig": {
+            "direction": "column",
+            "position": "bottom",
+            "sortDataKeys": false,
+            "showMin": false,
+            "showMax": false,
+            "showAvg": true,
+            "showTotal": false
+          },
+          "useDashboardTimewindow": true,
+          "actions": {
+            "headerButton": [],
+            "widgetHeaderButton": [
+              {
+                "name": "Downloads",
+                "icon": "file_download",
+                "useShowWidgetActionFunction": null,
+                "showWidgetActionFunction": "return true;",
+                "type": "custom",
+                "customFunction": "let { custom, $scope } = widgetContext;\n\nlet csv = $scope.thList.map(x => x.label) + '\\r\\n';\n\nfor (let i in custom.mainData) {\n  let datas = [];\n  for (let j in $scope.thList) {\n    let formatter = $scope.thList[j].formatter;\n    let data = custom.mainData[i][$scope.thList[j].key];\n    if (formatter) {\n      data = formatter(data);\n    }\n    datas.push(data);\n  }\n  csv += datas.join(',') + '\\r\\n';\n}\n\nfileDownload(csv);\n\nfunction fileDownload(content) {\n  let blob = new Blob(['\\ufeff' + content], {\n    type: 'application/csv;charset=utf-8;',\n  });\n  let elem = window.document.createElement('a');\n  elem.href = window.URL.createObjectURL(blob);\n  elem.download = `Delay_Report_${moment(custom.startTs).format('YYYY-MM-DD')} ${moment(custom.endTs).format(\n    'YYYY-MM-DD'\n  )}.csv`;\n  document.body.appendChild(elem);\n  elem.click();\n  document.body.removeChild(elem);\n}\n",
+                "openInSeparateDialog": false,
+                "openInPopover": false,
+                "id": "caa36e94-f842-071d-90fa-e83eab69ef88"
+              }
+            ]
+          }
+        },
+        "row": 0,
+        "col": 0,
+        "id": "77c9f5d4-e1ba-a24b-1d52-c265faa1039a"
+      },
+      "8416ff9d-c08b-86aa-ac0a-e31883099070": {
+        "isSystemType": false,
+        "bundleAlias": "moldmecca_selector_widgets",
+        "typeAlias": "target_selector",
+        "type": "latest",
+        "title": "New widget",
+        "image": null,
+        "description": null,
+        "sizeX": 8,
+        "sizeY": 1,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "08377b11-cfbd-881f-5fd6-4921891251a3",
+              "filterId": null,
+              "dataKeys": []
+            },
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "2b29c675-0199-d52c-a781-d5d4134152f6",
+              "filterId": null,
+              "dataKeys": []
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "timewindowMs": 60000
+            }
+          },
+          "showTitle": false,
+          "backgroundColor": "rgba(255,255,255,0)",
+          "color": "var(--tb-service-accent)",
+          "padding": "0px",
+          "settings": {
+            "widget": {
+              "originWidth": 1630,
+              "selectLimit": 31
+            }
+          },
+          "title": "thingplus.page.report.delay-report",
+          "showTitleIcon": false,
+          "titleTooltip": "",
+          "dropShadow": false,
+          "enableFullscreen": false,
+          "widgetStyle": {
+            "cursor": "default"
+          },
+          "titleStyle": {
+            "font-family": "var(--tb-config-font-family)",
+            "font-size": "2em",
+            "font-weight": 500,
+            "letter-spacing": "-0.05em",
+            "color": "var(--tb-service-font-5)"
+          },
+          "noDataDisplayMessage": "",
+          "showLegend": false
+        },
+        "row": 0,
+        "col": 0,
+        "id": "8416ff9d-c08b-86aa-ac0a-e31883099070"
+      }
+    },
+    "states": {
+      "default": {
+        "name": "{i18n:thingplus.menu.report}",
+        "root": true,
+        "layouts": {
+          "main": {
+            "widgets": {
+              "77c9f5d4-e1ba-a24b-1d52-c265faa1039a": {
+                "sizeX": 95,
+                "sizeY": 38,
+                "row": 4,
+                "col": 1
+              },
+              "8416ff9d-c08b-86aa-ac0a-e31883099070": {
+                "sizeX": 97,
+                "sizeY": 4,
+                "row": 0,
+                "col": 0
+              }
+            },
+            "gridSettings": {
+              "backgroundColor": "var(--tb-service-background-4)",
+              "columns": 97,
+              "margin": 0,
+              "marginUnit": "px",
+              "mobileMargin": 0,
+              "backgroundSizeMode": "100%",
+              "autoFillHeight": true,
+              "backgroundImageUrl": null,
+              "mobileAutoFillHeight": false,
+              "mobileRowHeight": 70
+            }
+          }
+        }
+      }
+    },
+    "entityAliases": {
+      "08377b11-cfbd-881f-5fd6-4921891251a3": {
+        "id": "08377b11-cfbd-881f-5fd6-4921891251a3",
+        "alias": "Current User Owner",
+        "filter": {
+          "type": "singleEntity",
+          "resolveMultiple": false,
+          "singleEntity": {
+            "entityType": "CURRENT_USER_OWNER",
+            "id": "13814000-1dd2-11b2-8080-808080808080"
+          }
+        }
+      },
+      "2b29c675-0199-d52c-a781-d5d4134152f6": {
+        "id": "2b29c675-0199-d52c-a781-d5d4134152f6",
+        "alias": "Selected Entity",
+        "filter": {
+          "type": "stateEntity",
+          "resolveMultiple": false,
+          "stateEntityParamName": null,
+          "defaultStateEntity": {
+            "entityType": "CURRENT_USER_OWNER",
+            "id": "13814000-1dd2-11b2-8080-808080808080"
+          }
+        }
+      },
+      "5e1e2f7e-03a5-92ba-bb9d-4d358c2065f7": {
+        "id": "5e1e2f7e-03a5-92ba-bb9d-4d358c2065f7",
+        "alias": "All Devices",
+        "filter": {
+          "type": "deviceSearchQuery",
+          "resolveMultiple": true,
+          "rootStateEntity": true,
+          "stateEntityParamName": null,
+          "defaultStateEntity": {
+            "entityType": "CURRENT_USER_OWNER",
+            "id": "13814000-1dd2-11b2-8080-808080808080"
+          },
+          "rootEntity": null,
+          "direction": "FROM",
+          "maxLevel": 3,
+          "fetchLastLevelOnly": false,
+          "relationType": "Contains",
+          "deviceTypes": [
+            "device"
+          ]
+        }
+      }
+    },
+    "filters": {},
+    "timewindow": {
+      "hideInterval": false,
+      "hideAggregation": false,
+      "hideAggInterval": false,
+      "hideTimezone": false,
+      "selectedTab": 1,
+      "history": {
+        "historyType": 1,
+        "fixedTimewindow": {
+          "startTimeMs": 1690815600000,
+          "endTimeMs": 1691039616905
+        },
+        "interval": 5530000
+      },
+      "aggregation": {
+        "type": "AVG",
+        "limit": 25000
+      }
+    },
+    "settings": {
+      "stateControllerId": "entity",
+      "showTitle": false,
+      "showDashboardsSelect": false,
+      "showEntitiesSelect": false,
+      "showDashboardTimewindow": false,
+      "showDashboardExport": false,
+      "toolbarAlwaysOpen": true,
+      "titleColor": "rgba(0,0,0,0.870588)",
+      "showDashboardLogo": false,
+      "dashboardLogoUrl": null,
+      "hideToolbar": true,
+      "showFilters": false,
+      "showUpdateDashboardImage": false
+    }
+  },
+  "name": "Delay Report"
+}

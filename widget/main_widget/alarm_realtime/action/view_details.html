@@ -1,0 +1,59 @@
+<div id="view-details-form">
+  <form #editEntityForm="ngForm" [formGroup]="editEntityFormGroup" style="font-size: {{calcFontSize()}}px;">
+    <div class="dialog-title-box" fxLayoutAlign="space-between center">
+      <span class="dialog-title">{{entityLabel}} {{"thingplus.dialog.detail-alarm" | translate}}</span>
+      <button class="dialog-close" (click)="cancel()" type="button">
+        <mat-icon class="material-icons">close</mat-icon>
+      </button>
+    </div>
+    <mat-progress-bar color="warn" mode="indeterminate" *ngIf="isLoading$ | async"> </mat-progress-bar>
+    <div style="height: 0.4em" *ngIf="!(isLoading$ | async)"></div>
+    <div mat-dialog-content>
+      <div class="info" fxLayoutAlign="space-between">
+        <div
+          class="label-box"
+          fxFlex="33.33"
+          *ngFor="let label of labelList"
+          fxFlex
+          fxLayout="column"
+          fxLayoutAlign="start start"
+        >
+          <div class="label">{{label.label}}</div>
+          <div class="value">{{label.value}}</div>
+        </div>
+      </div>
+      <div class="info" fxLayoutAlign="space-between">
+        <div
+          class="label-box"
+          fxFlex="33.33"
+          *ngFor="let label of labelList2"
+          fxFlex
+          fxLayout="column"
+          fxLayoutAlign="start start"
+        >
+          <div class="label">{{label.label}}</div>
+          <div class="value">{{label.value}}</div>
+        </div>
+      </div>
+      <div class="legend" fxLayoutAlign="start center" fxLayoutGap="2.4em" *ngIf="showTrend">
+        <div class="legend-box" *ngFor="let legend of legendList" fxLayoutAlign="start center" fxLayoutGap="0.5em">
+          <div class="legend-circle" [ngStyle]="{'color': legend.color}"></div>
+          <div class="legend-label">{{legend.label}}</div>
+        </div>
+      </div>
+      <div class="chart" *ngIf="showTrend"></div>
+    </div>
+    <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="1em">
+      <button
+        class="button close-button"
+        [disabled]="(isLoading$ | async)"
+        type="button"
+        (click)="cancel()"
+        cdkFocusInitial
+        translate
+      >
+        thingplus.action.close
+      </button>
+    </div>
+  </form>
+</div>

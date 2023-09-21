@@ -1,0 +1,232 @@
+#edit-holiday-form form {
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+}
+#edit-holiday-form .dialog-title-box {
+  padding: 2em;
+  border-bottom: 1px solid var(--tb-service-border-1);
+}
+#edit-holiday-form .dialog-title {
+  color: var(--tb-service-font-5);
+  font-size: 1.6em;
+}
+#edit-holiday-form .dialog-close {
+  all: unset;
+  cursor: pointer;
+  color: var(--tb-service-font-3);
+  transition-property: color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#edit-holiday-form .dialog-close i {
+  font-size: 1.4em;
+}
+#edit-holiday-form .dialog-close:hover {
+  color: var(--tb-service-font-5);
+}
+
+#edit-holiday-form .mat-dialog-content {
+  padding: var(--tb-config-padding) !important;
+}
+#edit-holiday-form .mat-dialog-content::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+#edit-holiday-form .mat-dialog-content::-webkit-scrollbar-thumb {
+  border: 2px solid #00000000;
+  background-clip: padding-box;
+  background-color: var(--tb-service-accent);
+}
+#edit-holiday-form .mat-dialog-content::-webkit-scrollbar-thumb:hover {
+  border: 1px solid #00000000;
+}
+
+/* Date Controller */
+#edit-holiday-form .date-controller {
+  margin-right: var(--tb-config-padding);
+}
+#edit-holiday-form .date-selector {
+  position: relative;
+  width: 100%;
+  line-height: 1;
+  color: var(--tb-service-font-5);
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+  padding: 0.6em 0.9em;
+  cursor: pointer;
+  transition-property: border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#edit-holiday-form .date-selector:hover {
+  border-color: var(--tb-service-border-3);
+}
+#edit-holiday-form .date-selector input {
+  font-family: var(--tb-config-font-family);
+  font-size: 1.4em;
+  font-weight: 300;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.3;
+}
+#edit-holiday-form .select-arrow {
+  border-left: 0.5em solid transparent;
+  border-right: 0.5em solid transparent;
+  border-top: 0.5em solid;
+  margin-right: 1.6em;
+  color: var(--tb-service-accent);
+}
+#edit-holiday-form .target-date {
+  all: unset;
+  width: 100%;
+  cursor: pointer;
+}
+#edit-holiday-form .hidden {
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#edit-holiday-form .label-box {
+  color: var(--tb-service-font-3);
+  font-size: 1.2em;
+  line-height: 1;
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#edit-holiday-form .input-box.disabled .label-box {
+  color: var(--tb-service-font-1);
+}
+#edit-holiday-form .value-box {
+  position: relative;
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#edit-holiday-form .value-box.no-border {
+  border: none !important;
+}
+
+#edit-holiday-form .input-box:not(.disabled) .value-box:hover {
+  border-color: var(--tb-service-border-3);
+}
+#edit-holiday-form .input-box:not(.disabled) .value-box:focus-within {
+  border-color: var(--tb-service-accent);
+  caret-color: var(--tb-service-accent);
+}
+#edit-holiday-form .value-box *::placeholder {
+  color: var(--tb-service-font-4);
+}
+#edit-holiday-form .value-box input {
+  color: var(--tb-service-font-5);
+  font-size: 1.4em;
+  padding: calc(16em / 14);
+  caret-color: var(--tb-service-accent);
+}
+#edit-holiday-form .input-box.disabled .value-box {
+  background-color: var(--tb-service-background-1);
+}
+#edit-holiday-form .input-box.disabled .value-box input {
+  color: var(--tb-service-font-2);
+  cursor: default;
+}
+#edit-holiday-form .radio-btn {
+  all: unset;
+  color: var(--tb-service-font-5);
+  border: 1px solid var(--tb-service-border-0);
+  font-size: 1.4em;
+  padding: calc(16em / 14);
+  cursor: pointer;
+}
+#edit-holiday-form .input-box:not(.disabled) .radio-btn:not(.active):hover {
+  border-color: var(--tb-service-border-3);
+}
+#edit-holiday-form .input-box:not(.disabled) .radio-btn.active {
+  color: var(--tb-service-accent);
+  border-color: var(--tb-service-accent);
+}
+#edit-holiday-form .input-box.disabled .radio-btn:not(.active) {
+  color: var(--tb-service-font-1);
+  cursor: default;
+}
+#edit-holiday-form .input-box.disabled .radio-btn.active {
+  border-color: var(--tb-service-border-3);
+  cursor: default;
+}
+#edit-holiday-form .value-box .mat-select-trigger {
+  font-size: 1.4em;
+  padding: calc(16em / 14);
+  line-height: 1;
+}
+#edit-holiday-form .value-box .mat-select-value {
+  font-family: var(--tb-config-font-family);
+  font-weight: 300;
+  font-size: 1em;
+  color: var(--tb-service-font-5);
+}
+#edit-holiday-form .value-box .mat-select-arrow {
+  font-family: var(--tb-config-font-family);
+  font-weight: 300;
+  border-left: 0.4em solid transparent;
+  border-right: 0.4em solid transparent;
+  border-top: 0.4em solid;
+  color: var(--tb-service-accent);
+}
+#edit-holiday-form .error-box {
+  display: none;
+  color: var(--tb-service-warn);
+  font-size: 1.2em;
+}
+#edit-holiday-form .input-box.error .label-box {
+  color: var(--tb-service-warn);
+}
+#edit-holiday-form .input-box.error .value-box {
+  border: 1px solid var(--tb-service-warn);
+}
+#edit-holiday-form .input-box.error .error-box {
+  display: block;
+  margin-top: calc(0.6em / 1.2);
+}
+
+#edit-holiday-form .mat-dialog-actions {
+  padding: 2em;
+  border-top: 1px solid var(--tb-service-border-1);
+}
+#edit-holiday-form .button {
+  all: unset;
+  padding: 0.6em 1.4em;
+  font-size: 1.4em;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#edit-holiday-form .save-button {
+  color: var(--tb-service-font-0);
+  background-color: var(--tb-service-accent);
+}
+#edit-holiday-form .save-button:hover {
+  background-color: var(--tb-service-accent-hover);
+}
+#edit-holiday-form .save-button:active {
+  background-color: var(--tb-service-accent-pressed);
+}
+#edit-holiday-form .close-button {
+  color: var(--tb-service-font-5);
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+}
+#edit-holiday-form .close-button:hover {
+  border-color: var(--tb-service-border-3);
+}
+#edit-holiday-form .close-button:active {
+  background-color: var(--tb-service-border-0);
+}
+
+@media (min-width: 960px) {
+  #edit-holiday-form form {
+    width: 24vw;
+  }
+}

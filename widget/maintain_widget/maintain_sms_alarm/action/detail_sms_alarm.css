@@ -1,0 +1,188 @@
+#detail-sms-alarm-form form {
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+  min-height: 70vh;
+}
+#detail-sms-alarm-form .dialog-title-box {
+  padding: 2em;
+  border-bottom: 1px solid var(--tb-service-border-1);
+}
+#detail-sms-alarm-form .dialog-title {
+  color: var(--tb-service-font-5);
+  font-size: 1.6em;
+}
+#detail-sms-alarm-form .dialog-close {
+  all: unset;
+  cursor: pointer;
+  color: var(--tb-service-font-3);
+  transition-property: color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#detail-sms-alarm-form .dialog-close i {
+  font-size: 1.4em;
+}
+#detail-sms-alarm-form .dialog-close:hover {
+  color: var(--tb-service-font-5);
+}
+
+#detail-sms-alarm-form .mat-dialog-content {
+  padding: var(--tb-config-padding) !important;
+}
+#detail-sms-alarm-form .mat-dialog-content::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+#detail-sms-alarm-form .mat-dialog-content::-webkit-scrollbar-thumb {
+  border: 2px solid #00000000;
+  background-clip: padding-box;
+  background-color: var(--tb-service-accent);
+}
+#detail-sms-alarm-form .mat-dialog-content::-webkit-scrollbar-thumb:hover {
+  border: 1px solid #00000000;
+}
+
+#detail-sms-alarm-form .section-label {
+  font-size: 1.4em;
+  font-weight: 500;
+  color: var(--tb-service-font-5);
+  margin-top: calc(16em / 14);
+}
+#detail-sms-alarm-form .section-label:first-child {
+  margin-top: 0;
+}
+#detail-sms-alarm-form .label-box {
+  color: var(--tb-service-font-4);
+  background-color: var(--tb-service-background-1);
+  font-size: 1.2em;
+  padding: calc(9em / 12) calc(16em / 12);
+  border: 1px solid var(--tb-service-border-0);
+  border-bottom: none;
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#detail-sms-alarm-form .value-box {
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#detail-sms-alarm-form .value-box.no-border {
+  border: none !important;
+}
+#detail-sms-alarm-form .value-box input {
+  color: var(--tb-service-font-5);
+  font-size: 1.4em;
+  padding: calc(16em / 14);
+  caret-color: var(--tb-service-accent);
+  cursor: default;
+}
+
+#detail-sms-alarm-form .radio-btn {
+  all: unset;
+  color: var(--tb-service-font-5);
+  border: 1px solid var(--tb-service-border-0);
+  background-color: var(--tb-service-background-1);
+  font-size: 1.4em;
+  padding: calc(16em / 14);
+  text-align: center;
+  cursor: pointer;
+}
+#detail-sms-alarm-form .input-box:not(.disabled) .radio-btn:not(.active):hover {
+  border-color: var(--tb-service-border-3);
+}
+#detail-sms-alarm-form .input-box:not(.disabled) .radio-btn.active {
+  color: var(--tb-service-accent);
+  border-color: var(--tb-service-accent);
+}
+#detail-sms-alarm-form .input-box.disabled .radio-btn:not(.active) {
+  color: var(--tb-service-font-1);
+  cursor: default;
+}
+#detail-sms-alarm-form .input-box.disabled .radio-btn.active {
+  border-color: var(--tb-service-border-3);
+  background-color: var(--tb-service-background-0);
+  cursor: default;
+}
+
+#detail-sms-alarm-form .grid-box {
+  gap: 1em;
+  max-width: 100%;
+}
+#detail-sms-alarm-form .chip {
+  border: 1px solid var(--tb-service-border-0);
+  color: var(--tb-service-font-5);
+  padding: 1em;
+  overflow: hidden;
+  max-width: 100%;
+}
+#detail-sms-alarm-form .chip-label {
+  font-size: 1.4em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#detail-sms-alarm-form .chip-name {
+  color: var(--tb-service-accent);
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+#detail-sms-alarm-form .group-box {
+  border: 1px solid var(--tb-service-border-0);
+  padding: 1.6em;
+}
+#detail-sms-alarm-form .mat-checkbox-background {
+  background-color: var(--tb-service-background-1);
+}
+#detail-sms-alarm-form .mat-checkbox.mat-checkbox-checked .mat-checkbox-background {
+  background-color: var(--tb-service-font-3);
+}
+#detail-sms-alarm-form .mat-checkbox-checkmark-path {
+  stroke: var(--tb-service-font-0) !important;
+}
+#detail-sms-alarm-form .mat-checkbox .mat-checkbox-inner-container {
+  width: 1.8em;
+  height: 1.8em;
+}
+#detail-sms-alarm-form .mat-checkbox .mat-checkbox-label {
+  color: var(--tb-service-font-5);
+  font-size: 1.4em;
+}
+#detail-sms-alarm-form .mat-checkbox .mat-checkbox-frame {
+  border-color: var(--tb-service-border-0);
+  z-index: 1;
+}
+#detail-sms-alarm-form .mat-checkbox.mat-checkbox-checked .mat-checkbox-frame {
+  border-color: var(--tb-service-font-3);
+}
+
+#detail-sms-alarm-form .mat-dialog-actions {
+  padding: 2em;
+  border-top: 1px solid var(--tb-service-border-1);
+}
+#detail-sms-alarm-form .button {
+  all: unset;
+  padding: 0.6em 1.4em;
+  font-size: 1.4em;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#detail-sms-alarm-form .close-button {
+  color: var(--tb-service-font-5);
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+}
+#detail-sms-alarm-form .close-button:hover {
+  border-color: var(--tb-service-border-3);
+}
+#detail-sms-alarm-form .close-button:active {
+  background-color: var(--tb-service-border-0);
+}
+
+@media (min-width: 960px) {
+  #detail-sms-alarm-form form {
+    width: 24vw;
+  }
+}

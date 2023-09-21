@@ -1,0 +1,45 @@
+<div id="widget" fxLayout="column" fxLayoutAlign="start center">
+  <header class="widget-header" fxLayoutAlign="space-between center" fxLayoutGap="1em">
+    <section class="widget-header-left-section" fxFlex="100" fxLayoutAlign="start center" fxLayoutGap="1em">
+      <div class="widget-title" translate>title</div>
+    </section>
+    <section class="widget-header-right-section" fxFlex="100" fxLayoutAlign="end center" fxLayoutGap="1em">
+      <div class="widget-action" fxLayoutAlign="end center" fxLayoutGap="1em">
+        <div
+          class="widget-header-action"
+          *ngFor="let headerAction of headerActionList"
+          fxLayoutAlign="start center"
+          fxLayoutGap="0.5em"
+          (click)="headerAction.action($event)"
+        >
+          <i class="material-icons">{{headerAction.icon}}</i>
+        </div>
+      </div>
+    </section>
+  </header>
+  <main class="widget-content">
+    <section class="table-section">
+      <div class="table thead">
+        <div class="tr">
+          <div class="th" *ngFor="let th of thList" (click)="changeSort($event, th)" [ngClass]="th.order">
+            <div class="th-box" fxLayoutAlign="start center" fxLayoutGap="0.5em">
+              <span class="th-label">{{th.label}}</span>
+              <i class="th-sort material-icons">arrow_upward</i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="table tbody">
+        <div class="tr" *ngFor="let tr of trList">
+          <div class="td" *ngFor="let td of tr.tdList"><span>{{td.value}}</span></div>
+        </div>
+      </div>
+      <div class="table tfoot">
+        <div class="tr">
+          <div class="td" colspan="2"><span>합계</span></div>
+          <div class="td" *ngFor="let tfoot of tfootList"><span [innerHTML]="tfoot.value"></span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>

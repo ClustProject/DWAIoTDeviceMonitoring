@@ -1,0 +1,393 @@
+{
+  "title": "Customer Management - L1",
+  "image": null,
+  "mobileHide": false,
+  "mobileOrder": null,
+  "configuration": {
+    "description": "",
+    "widgets": {
+      "56869d1a-7f42-4bf2-b73d-938a71a9920a": {
+        "isSystemType": false,
+        "bundleAlias": "moldmecca_maintain_widgets",
+        "typeAlias": "maintain_entity",
+        "type": "latest",
+        "title": "New widget",
+        "image": null,
+        "description": null,
+        "sizeX": 7.5,
+        "sizeY": 3,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "c4dca7de-8fd9-1a94-6658-9beb4576f63d",
+              "filterId": null,
+              "dataKeys": []
+            },
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "9006e580-6198-5fed-173b-3292b24945c9",
+              "filterId": "2442522c-0239-bd1a-093f-6f937dca9898",
+              "dataKeys": [
+                {
+                  "name": "customerL1Name",
+                  "type": "attribute",
+                  "label": "thingplus.label.customerL1-name",
+                  "color": "#2196f3",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": false
+                  },
+                  "_hash": 0.6505505364749378,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "title",
+                  "type": "entityField",
+                  "label": "thingplus.label.customerL2-name",
+                  "color": "#4caf50",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": false
+                  },
+                  "_hash": 0.9414371185984209,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "TP_TotalDevice",
+                  "type": "timeseries",
+                  "label": "thingplus.label.device-count",
+                  "color": "#f44336",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": false
+                  },
+                  "_hash": 0.34104311502379936,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "manager",
+                  "type": "attribute",
+                  "label": "thingplus.label.manager",
+                  "color": "#ffc107",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": false
+                  },
+                  "_hash": 0.3210577911160841,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "phone",
+                  "type": "entityField",
+                  "label": "thingplus.label.phone",
+                  "color": "#607d8b",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": false
+                  },
+                  "_hash": 0.49825387958094103,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "email",
+                  "type": "entityField",
+                  "label": "thingplus.label.email",
+                  "color": "#9c27b0",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": false
+                  },
+                  "_hash": 0.005780240883733967,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "createdTime",
+                  "type": "entityField",
+                  "label": "thingplus.label.registration-date",
+                  "color": "#8bc34a",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": true,
+                    "cellContentFunction": "if(value != 0){\n    var timeFormat = ctx.custom.t('thingplus.time-format.ymd') \n    return moment(value).format(timeFormat)\n}else {\n    return '-'\n}\n"
+                  },
+                  "_hash": 0.4722641734719122,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                }
+              ]
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "timewindowMs": 60000
+            }
+          },
+          "showTitle": false,
+          "backgroundColor": "var(--tb-service-background-0)",
+          "color": "var(--tb-service-accent)",
+          "padding": "0px",
+          "settings": {
+            "widget": {
+              "originWidth": 1635,
+              "filterLevel": 2
+            }
+          },
+          "title": "thingplus.page.admin.customerL2-list",
+          "showTitleIcon": false,
+          "titleTooltip": "",
+          "dropShadow": true,
+          "enableFullscreen": false,
+          "widgetStyle": {
+            "cursor": "default"
+          },
+          "titleStyle": {
+            "font-family": "var(--tb-config-font-family)",
+            "font-size": "1.6em",
+            "font-weight": 500,
+            "letter-spacing": "-0.04em",
+            "color": "var(--tb-service-font-5)"
+          },
+          "noDataDisplayMessage": "",
+          "showLegend": false,
+          "actions": {
+            "widgetHeaderButton": [
+              {
+                "name": "thingplus.action.new",
+                "icon": "add",
+                "useShowWidgetActionFunction": null,
+                "showWidgetActionFunction": "return true;",
+                "type": "customPretty",
+                "customHtml": "<div id=\"add-customerL2-form\">\n  <form\n    #addEntityForm=\"ngForm\"\n    [formGroup]=\"addEntityFormGroup\"\n    (ngSubmit)=\"save()\"\n    style=\"font-size: {{calcFontSize()}}px;\"\n  >\n    <div class=\"dialog-title-box\" fxLayoutAlign=\"space-between center\">\n      <span class=\"dialog-title\" translate>thingplus.dialog.create-customerL2-title</span>\n      <button class=\"dialog-close\" (click)=\"cancel()\" type=\"button\">\n        <mat-icon class=\"material-icons\">close</mat-icon>\n      </button>\n    </div>\n    <mat-progress-bar color=\"warn\" mode=\"indeterminate\" *ngIf=\"isLoading$ | async\"> </mat-progress-bar>\n    <div style=\"height: 0.4em\" *ngIf=\"!(isLoading$ | async)\"></div>\n    <div mat-dialog-content fxLayout=\"column\" fxLayoutGap=\"2em\">\n      <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n        <div\n          fxFlex=\"100\"\n          fxLayout=\"column\"\n          fxLayoutGap=\"0.6em\"\n          class=\"input-box\"\n          [ngClass]=\"{'error': ownerLevel == 0 && addEntityFormGroup.get('customerL1').hasError('required'), 'disabled': ownerLevel != 0}\"\n        >\n          <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n            <label translate>thingplus.label.customerL1</label>\n            <span> * </span>\n          </div>\n          <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.6em\">\n            <mat-select formControlName=\"customerL1\" required *ngIf=\"ownerLevel == 0\">\n              <mat-option *ngFor=\"let customerL1 of customerL1List\" [value]=\"customerL1.value\">\n                {{customerL1.name}}\n              </mat-option>\n            </mat-select>\n            <input matInput formControlName=\"customerL1Name\" *ngIf=\"ownerLevel != 0\" readonly />\n          </div>\n          <div class=\"error-box\" translate>thingplus.help.error-required-customerL1</div>\n        </div>\n      </div>\n      <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n        <div\n          fxFlex=\"100\"\n          fxLayout=\"column\"\n          fxLayoutGap=\"0.6em\"\n          class=\"input-box\"\n          [ngClass]=\"{error: addEntityFormGroup.get('title').hasError('required') || addEntityFormGroup.get('title').hasError('maxlength')}\"\n        >\n          <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n            <label translate>thingplus.label.customerL2-name</label>\n            <span> * </span>\n          </div>\n          <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.6em\">\n            <input matInput formControlName=\"title\" required />\n          </div>\n          <div class=\"error-box\" *ngIf=\"addEntityFormGroup.get('title').hasError('required')\" translate>\n            thingplus.help.error-required-customerL2-name\n          </div>\n          <div class=\"error-box\" *ngIf=\"addEntityFormGroup.get('title').hasError('maxlength')\" translate>\n            thingplus.help.error-max-length\n          </div>\n        </div>\n      </div>\n      <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n        <div fxFlex fxLayout=\"column\" fxLayoutGap=\"0.6em\" class=\"input-box\">\n          <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n            <label translate>thingplus.label.manager</label>\n          </div>\n          <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.6em\">\n            <input matInput maxlength=\"16\" formControlName=\"manager\" />\n          </div>\n        </div>\n      </div>\n      <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n        <div fxFlex fxLayout=\"column\" fxLayoutGap=\"0.6em\" class=\"input-box\">\n          <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n            <label translate>thingplus.label.phone</label>\n          </div>\n          <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.6em\">\n            <input matInput maxlength=\"16\" formControlName=\"phone\" />\n          </div>\n        </div>\n      </div>\n      <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n        <div\n          fxFlex\n          fxLayout=\"column\"\n          fxLayoutGap=\"0.6em\"\n          class=\"input-box\"\n          [ngClass]=\"{error: addEntityFormGroup.get('email').hasError('email')}\"\n        >\n          <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n            <label translate>thingplus.label.email</label>\n          </div>\n          <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.6em\">\n            <input matInput formControlName=\"email\" type=\"email\" email />\n          </div>\n          <div class=\"error-box\" *ngIf=\"addEntityFormGroup.get('email').hasError('email')\" translate>\n            thingplus.help.error-invalid-email-id\n          </div>\n        </div>\n      </div>\n    </div>\n    <div mat-dialog-actions fxLayout=\"row\" fxLayoutAlign=\"end center\" fxLayoutGap=\"1em\">\n      <button\n        class=\"button close-button\"\n        [disabled]=\"(isLoading$ | async)\"\n        type=\"button\"\n        (click)=\"cancel()\"\n        cdkFocusInitial\n        translate\n      >\n        thingplus.action.close\n      </button>\n      <button\n        class=\"button save-button\"\n        type=\"submit\"\n        [disabled]=\"(isLoading$ | async) || addEntityForm.invalid\"\n        translate\n      >\n        thingplus.action.save\n      </button>\n    </div>\n  </form>\n</div>\n",
+                "customCss": "#add-customerL2-form form {\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n}\n#add-customerL2-form .dialog-title-box {\n  padding: 2em;\n  border-bottom: 1px solid var(--tb-service-border-1);\n}\n#add-customerL2-form .dialog-title {\n  color: var(--tb-service-font-5);\n  font-size: 1.6em;\n}\n#add-customerL2-form .dialog-close {\n  all: unset;\n  cursor: pointer;\n  color: var(--tb-service-font-3);\n  transition-property: color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#add-customerL2-form .dialog-close i {\n  font-size: 1.4em;\n}\n#add-customerL2-form .dialog-close:hover {\n  color: var(--tb-service-font-5);\n}\n\n#add-customerL2-form .mat-dialog-content {\n  padding: var(--tb-config-padding) !important;\n}\n#add-customerL2-form .mat-dialog-content::-webkit-scrollbar {\n  width: 6px;\n  height: 6px;\n}\n#add-customerL2-form .mat-dialog-content::-webkit-scrollbar-thumb {\n  border: 2px solid #00000000;\n  background-clip: padding-box;\n  background-color: var(--tb-service-accent);\n}\n#add-customerL2-form .mat-dialog-content::-webkit-scrollbar-thumb:hover {\n  border: 1px solid #00000000;\n}\n\n#add-customerL2-form .label-box {\n  color: var(--tb-service-font-3);\n  font-size: 1.2em;\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#add-customerL2-form .input-box.disabled .label-box {\n  color: var(--tb-service-font-1);\n}\n#add-customerL2-form .value-box {\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n\n#add-customerL2-form .input-box:not(.disabled) .value-box:hover {\n  border-color: var(--tb-service-border-3);\n}\n#add-customerL2-form .input-box:not(.disabled) .value-box:focus-within {\n  border-color: var(--tb-service-accent);\n  caret-color: var(--tb-service-accent);\n}\n#add-customerL2-form .value-box *::placeholder {\n  color: var(--tb-service-font-4);\n}\n#add-customerL2-form .value-box input {\n  color: var(--tb-service-font-5);\n  font-size: 1.4em;\n  padding: calc(16em / 14);\n  caret-color: var(--tb-service-accent);\n}\n#add-customerL2-form .input-box.disabled .value-box {\n  background-color: var(--tb-service-background-1);\n}\n#add-customerL2-form .input-box.disabled .value-box input {\n  color: var(--tb-service-font-2);\n  cursor: default;\n}\n#add-customerL2-form .value-box .mat-select-trigger {\n  font-size: 1.4em;\n  padding: calc(16em / 14);\n  line-height: 1;\n}\n#add-customerL2-form .value-box .mat-select-value {\n  font-family: var(--tb-config-font-family);\n  font-weight: 300;\n  font-size: 1em;\n  color: var(--tb-service-font-5);\n}\n#add-customerL2-form .value-box .mat-select-arrow {\n  font-family: var(--tb-config-font-family);\n  font-weight: 300;\n  border-left: 0.4em solid transparent;\n  border-right: 0.4em solid transparent;\n  border-top: 0.4em solid;\n  color: var(--tb-service-accent);\n}\n#add-customerL2-form .error-box {\n  display: none;\n  color: var(--tb-service-warn);\n  font-size: 1.2em;\n}\n#add-customerL2-form .input-box.error .label-box {\n  color: var(--tb-service-warn);\n}\n#add-customerL2-form .input-box.error .value-box {\n  border: 1px solid var(--tb-service-warn);\n}\n#add-customerL2-form .input-box.error .error-box {\n  display: block;\n  margin-top: calc(0.6em / 1.2);\n}\n\n#add-customerL2-form .mat-dialog-actions {\n  padding: 2em;\n  border-top: 1px solid var(--tb-service-border-1);\n}\n#add-customerL2-form .button {\n  all: unset;\n  padding: 0.6em 1.4em;\n  font-size: 1.4em;\n  box-sizing: border-box;\n  cursor: pointer;\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#add-customerL2-form .save-button {\n  color: var(--tb-service-font-0);\n  background-color: var(--tb-service-accent);\n}\n#add-customerL2-form .save-button:hover {\n  background-color: var(--tb-service-accent-hover);\n}\n#add-customerL2-form .save-button:active {\n  background-color: var(--tb-service-accent-pressed);\n}\n#add-customerL2-form .close-button {\n  color: var(--tb-service-font-5);\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n}\n#add-customerL2-form .close-button:hover {\n  border-color: var(--tb-service-border-3);\n}\n#add-customerL2-form .close-button:active {\n  background-color: var(--tb-service-border-0);\n}\n\n@media (min-width: 960px) {\n  #add-customerL2-form form {\n    width: 24vw;\n  }\n}\n",
+                "customFunction": "let $injector = widgetContext.$scope.$injector;\nlet customDialog = $injector.get(widgetContext.servicesMap.get('customDialog'));\nlet customerService = $injector.get(widgetContext.servicesMap.get('customerService'));\nlet entityRelationService = $injector.get(widgetContext.servicesMap.get('entityRelationService'));\nlet attributeService = $injector.get(widgetContext.servicesMap.get('attributeService'));\nlet dashboardService = $injector.get(widgetContext.servicesMap.get('dashboardService'));\n\nconst t = widgetContext.custom.t;\n\nopenAddEntityDialog();\n\nconst DASHBOARD_LIST = [\n  'Home',\n  'Device Details',\n  'State Timeline',\n  'Event',\n  'Energy Monitoring',\n  'Report',\n  'Total Work Report',\n  'Work Report',\n  'Delay Report',\n  'Cost Report',\n  'User Management - L2',\n  'Device Management',\n  'Schedule Management',\n  'Alarm Management',\n  'Report Management',\n];\nconst TP_CONTROL_TOKEN = 'TP_CONTROL_MOLDMECCA';\n\nfunction openAddEntityDialog() {\n  customDialog.customDialog(htmlTemplate, AddEntityDialogController).subscribe();\n}\n\nfunction AddEntityDialogController(instance) {\n  let vm = instance;\n  vm.ownerId = widgetContext.defaultSubscription.configuredDatasources[0].entity.id;\n  vm.ownerLevel = widgetContext.$scope.ownerLevel;\n  vm.t = t;\n  vm.dashboardList = [];\n  vm.customerL1List = [{ name: t('thingplus.selector.select-customerL1'), value: '' }];\n  if (vm.ownerLevel == 0) {\n    vm.customerL1List = vm.customerL1List.concat(\n      widgetContext.custom.customerL1List\n        .map(x => {\n          return {\n            name: x.name,\n            value: x.id.id,\n          };\n        })\n        .sort((a, b) => {\n          if (a.name > b.name) return 1;\n          if (a.name < b.name) return -1;\n          return 0;\n        })\n    );\n  }\n\n  vm.addEntityFormGroup = vm.fb.group({\n    customerL1Name: [entityName],\n    title: [t('thingplus.label.customerL2') + ' A', [vm.validators.required, vm.validators.maxLength(16)]],\n    manager: [''],\n    email: ['', [vm.validators.email]],\n    phone: [''],\n  });\n  if (vm.ownerLevel == 0) {\n    vm.addEntityFormGroup.controls.customerL1 = vm.fb.control('', [vm.validators.required]);\n  }\n\n  getWhiteLabelParams();\n\n  vm.calcFontSize = function () {\n    const originWidth = widgetContext.settings.widget.originWidth;\n    let widgetFontSize = _.round((widgetContext.width / originWidth) * 10, 2);\n    if (widgetFontSize < 6.25) {\n      widgetFontSize = 6.25;\n    }\n    return widgetFontSize;\n  };\n  vm.cancel = function () {\n    vm.dialogRef.close(null);\n  };\n  vm.save = async function () {\n    vm.addEntityFormGroup.markAsPristine();\n    vm.dashboardList = await getDashboardList();\n    saveCustomer().subscribe(customer => {\n      widgetContext.rxjs\n        .forkJoin([saveRelation(customer), assignDashboard(customer), saveAttribute(customer)])\n        .subscribe(() => {\n          widgetContext.updateAliases();\n          vm.dialogRef.close(null);\n        });\n    });\n  };\n\n  function getWhiteLabelParams() {\n    widgetContext.http.get('/api/whiteLabel/whiteLabelParams').subscribe(data => {\n      vm.originWhiteLabelParams = data;\n    });\n  }\n\n  function saveCustomer() {\n    let customerL1Id = vm.addEntityFormGroup.get('customerL1')\n      ? vm.addEntityFormGroup.get('customerL1').value\n      : entityId.id;\n    let title = vm.addEntityFormGroup.get('title').value;\n    let phone = vm.addEntityFormGroup.get('phone').value;\n    let email = vm.addEntityFormGroup.get('email').value;\n\n    let customerBody = {\n      additionalInfo: {\n        description: '',\n        parentCustomerId: customerL1Id,\n      },\n      title: title,\n      phone: phone,\n      email: email,\n    };\n    return customerService.saveCustomer(customerBody);\n  }\n\n  function saveRelation(customer) {\n    let CustomerL1Id = vm.addEntityFormGroup.get('customerL1')\n      ? vm.addEntityFormGroup.get('customerL1').value\n      : entityId.id;\n    let relationBody = {\n      from: {\n        entityType: 'CUSTOMER',\n        id: CustomerL1Id,\n      },\n      to: customer.id,\n      type: 'Contains',\n    };\n    return entityRelationService.saveRelation(relationBody);\n  }\n\n  function saveAttribute(customer) {\n    let manager = vm.addEntityFormGroup.get('manager').value;\n    let customerL1Name = entityName;\n    let customerL1Id = vm.addEntityFormGroup.get('customerL1') ? vm.addEntityFormGroup.get('customerL1').value : null;\n    if (customerL1Id) {\n      let customerL1Index = vm.customerL1List.findIndex(x => x.value == customerL1Id);\n      if (customerL1Index !== -1) {\n        customerL1Name = vm.customerL1List[customerL1Index].name;\n      }\n    }\n    let sidemenu = {\n      admin: getSideMenu(vm.dashboardList, 'ADMIN'),\n      general: getSideMenu(vm.dashboardList, 'GENERAL'),\n    };\n    let pushAlarmConfig = {\n      isEnable: true,\n      isEnablePopup: false,\n      isBlinkIcon: true,\n      typeList: [\n        'working',\n        'stopped',\n        'unconnected',\n        'over-current',\n        'low-voltage',\n        'high-voltage',\n        'voltage-imbalance',\n        'current-imbalance',\n        'thd',\n        'power-factor',\n      ],\n      severityList: [],\n      targetDashboard: vm.dashboardList['Device Details'],\n      targetDashboardState: 'default',\n    };\n    let attributeBody = [\n      { key: 'customerL1Name', value: customerL1Name },\n      { key: 'customerType', value: 'CUSTOMER_L2' },\n      { key: 'manager', value: manager },\n      { key: 'whiteLabelParams', value: vm.originWhiteLabelParams },\n      { key: 'sidemenu', value: sidemenu },\n      { key: 'TP_PUSH_ALARM_CONFIG', value: pushAlarmConfig },\n    ];\n    return attributeService.saveEntityAttributes(customer.id, 'SERVER_SCOPE', attributeBody);\n  }\n\n  function assignDashboard(customer) {\n    let observables = [];\n    for (let i in vm.dashboardList) {\n      observables.push(\n        widgetContext.http.post(`/api/v1/${TP_CONTROL_TOKEN}/attributes`, {\n          TP_CTRL_ASSIGN_DASHBOARD: {\n            customerId: customer.id.id,\n            dashboardId: vm.dashboardList[i],\n          },\n        })\n      );\n    }\n\n    return widgetContext.rxjs.forkJoin(observables);\n  }\n}\n\nasync function getDashboardList() {\n  let dashboardList;\n  if (widgetContext.currentUser.authority == 'TENANT_ADMIN') {\n    dashboardList = await widgetContext.http.get(`/api/tenant/dashboards?pageSize=1024&page=0`).toPromise();\n  } else {\n    let customerId = widgetContext.currentUser.customerId;\n    dashboardList = await widgetContext.http\n      .get(`/api/customer/${customerId}/dashboards?pageSize=1024&page=0`)\n      .toPromise();\n  }\n  let result = {};\n  for (let i in dashboardList.data) {\n    if (DASHBOARD_LIST.includes(dashboardList.data[i].title)) {\n      result[dashboardList.data[i].title] = dashboardList.data[i].id.id;\n    }\n  }\n  return result;\n}\n\nfunction getSideMenu(dashboardList, auth) {\n  const SIDEMENU = [\n    { title: 'thingplus.menu.home', id: dashboardList['Home'], icon: 'dashboard' },\n    { title: 'thingplus.menu.device-details', id: dashboardList['Device Details'], icon: 'devices_other' },\n    {\n      title: 'thingplus.menu.device-monitoring',\n      id: dashboardList['State Timeline'],\n      icon: 'info',\n      pages: [\n        { title: 'thingplus.menu.state-timeline', id: dashboardList['State Timeline'], icon: 'navigate_next' },\n        { title: 'thingplus.menu.event', id: dashboardList['Event'], icon: 'navigate_next' },\n      ],\n    },\n    { title: 'thingplus.menu.energy-monitoring', id: dashboardList['Energy Monitoring'], icon: 'flash_on' },\n    {\n      title: 'thingplus.menu.report',\n      id: dashboardList['Report'],\n      icon: 'insert_chart',\n      pages: [\n        {\n          title: 'thingplus.menu.entire-report',\n          id: dashboardList['Report'],\n          icon: 'navigate_next',\n        },\n        {\n          title: 'thingplus.menu.total-work-report',\n          id: dashboardList['Total Work Report'],\n          icon: 'navigate_next',\n        },\n        {\n          title: 'thingplus.menu.work-report',\n          id: dashboardList['Work Report'],\n          icon: 'navigate_next',\n        },\n        {\n          title: 'thingplus.menu.delay-report',\n          id: dashboardList['Delay Report'],\n          icon: 'navigate_next',\n        },\n        {\n          title: 'thingplus.menu.cost-report',\n          id: dashboardList['Cost Report'],\n          icon: 'navigate_next',\n        },\n      ],\n    },\n  ];\n  if (auth == 'ADMIN') {\n    SIDEMENU.push({\n      title: 'thingplus.menu.management',\n      id: dashboardList['User Management - L2'],\n      icon: 'settings',\n      pages: [\n        {\n          title: 'thingplus.menu.user-management',\n          id: dashboardList['User Management - L2'],\n          icon: 'navigate_next',\n        },\n        {\n          title: 'thingplus.menu.device-management',\n          id: dashboardList['Device Management'],\n          icon: 'navigate_next',\n        },\n        {\n          title: 'thingplus.menu.schedule-management',\n          id: dashboardList['Schedule Management'],\n          icon: 'navigate_next',\n        },\n        {\n          title: 'thingplus.menu.alarm-management',\n          id: dashboardList['Alarm Management'],\n          icon: 'navigate_next',\n        },\n        {\n          title: 'thingplus.menu.report-management',\n          id: dashboardList['Report Management'],\n          icon: 'navigate_next',\n        },\n      ],\n    });\n  }\n  return SIDEMENU;\n}\n",
+                "customResources": [],
+                "openInSeparateDialog": false,
+                "openInPopover": false,
+                "id": "6e8a5647-5a53-4915-93e7-e33ad168efdc"
+              }
+            ],
+            "actionCellButton": [
+              {
+                "name": "Edit",
+                "icon": "edit",
+                "useShowWidgetActionFunction": null,
+                "showWidgetActionFunction": "return true;",
+                "type": "customPretty",
+                "customHtml": "<div id=\"edit-customerL2-form\">\n  <form\n    #editEntityForm=\"ngForm\"\n    [formGroup]=\"editEntityFormGroup\"\n    (ngSubmit)=\"save()\"\n    style=\"font-size: {{calcFontSize()}}px;\"\n  >\n    <div class=\"dialog-title-box\" fxLayoutAlign=\"space-between center\">\n      <span class=\"dialog-title\" translate>thingplus.dialog.edit-customerL2-title</span>\n      <button class=\"dialog-close\" (click)=\"cancel()\" type=\"button\">\n        <mat-icon class=\"material-icons\">close</mat-icon>\n      </button>\n    </div>\n    <mat-progress-bar color=\"warn\" mode=\"indeterminate\" *ngIf=\"isLoading$ | async\"> </mat-progress-bar>\n    <div style=\"height: 0.4em\" *ngIf=\"!(isLoading$ | async)\"></div>\n    <div mat-dialog-content fxLayout=\"column\" fxLayoutGap=\"2em\">\n      <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n        <div fxFlex=\"100\" fxLayout=\"column\" fxLayoutGap=\"0.6em\" class=\"input-box disabled\">\n          <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n            <label translate>thingplus.label.customerL1</label>\n            <span> * </span>\n          </div>\n          <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.6em\">\n            <input matInput formControlName=\"customerL1Name\" readonly />\n          </div>\n        </div>\n      </div>\n      <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n        <div\n          fxFlex=\"100\"\n          fxLayout=\"column\"\n          fxLayoutGap=\"0.6em\"\n          class=\"input-box\"\n          [ngClass]=\"{error: editEntityFormGroup.get('title').hasError('required') || editEntityFormGroup.get('title').hasError('maxlength')}\"\n        >\n          <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n            <label translate>thingplus.label.customerL2-name</label>\n            <span> * </span>\n          </div>\n          <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.6em\">\n            <input matInput formControlName=\"title\" required />\n          </div>\n          <div class=\"error-box\" *ngIf=\"editEntityFormGroup.get('title').hasError('required')\" translate>\n            thingplus.help.error-required-customerL1-name\n          </div>\n          <div class=\"error-box\" *ngIf=\"editEntityFormGroup.get('title').hasError('maxlength')\" translate>\n            thingplus.help.error-max-length\n          </div>\n        </div>\n      </div>\n      <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n        <div fxFlex fxLayout=\"column\" fxLayoutGap=\"0.6em\" class=\"input-box\">\n          <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n            <label translate>thingplus.label.manager</label>\n          </div>\n          <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.6em\">\n            <input matInput maxlength=\"16\" formControlName=\"manager\" />\n          </div>\n        </div>\n      </div>\n      <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n        <div fxFlex fxLayout=\"column\" fxLayoutGap=\"0.6em\" class=\"input-box\">\n          <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n            <label translate>thingplus.label.phone</label>\n          </div>\n          <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.6em\">\n            <input matInput maxlength=\"16\" formControlName=\"phone\" />\n          </div>\n        </div>\n      </div>\n      <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n        <div\n          fxFlex\n          fxLayout=\"column\"\n          fxLayoutGap=\"0.6em\"\n          class=\"input-box\"\n          [ngClass]=\"{error: editEntityFormGroup.get('email').hasError('email')}\"\n        >\n          <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n            <label translate>thingplus.label.email</label>\n          </div>\n          <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.6em\">\n            <input matInput formControlName=\"email\" />\n          </div>\n          <div class=\"error-box\" *ngIf=\"editEntityFormGroup.get('email').hasError('email')\" translate>\n            thingplus.help.error-invalid-email-id\n          </div>\n        </div>\n      </div>\n    </div>\n    <div mat-dialog-actions fxLayout=\"row\" fxLayoutAlign=\"end center\" fxLayoutGap=\"1em\">\n      <button\n        class=\"button close-button\"\n        [disabled]=\"(isLoading$ | async)\"\n        type=\"button\"\n        (click)=\"cancel()\"\n        cdkFocusInitial\n        translate\n      >\n        thingplus.action.close\n      </button>\n      <button\n        class=\"button save-button\"\n        type=\"submit\"\n        [disabled]=\"(isLoading$ | async) || editEntityForm.invalid\"\n        translate\n      >\n        thingplus.action.save\n      </button>\n    </div>\n  </form>\n</div>\n",
+                "customCss": "#edit-customerL2-form form {\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n}\n#edit-customerL2-form .dialog-title-box {\n  padding: 2em;\n  border-bottom: 1px solid var(--tb-service-border-1);\n}\n#edit-customerL2-form .dialog-title {\n  color: var(--tb-service-font-5);\n  font-size: 1.6em;\n}\n#edit-customerL2-form .dialog-close {\n  all: unset;\n  cursor: pointer;\n  color: var(--tb-service-font-3);\n  transition-property: color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#edit-customerL2-form .dialog-close i {\n  font-size: 1.4em;\n}\n#edit-customerL2-form .dialog-close:hover {\n  color: var(--tb-service-font-5);\n}\n\n#edit-customerL2-form .mat-dialog-content {\n  padding: var(--tb-config-padding) !important;\n}\n#edit-customerL2-form .mat-dialog-content::-webkit-scrollbar {\n  width: 6px;\n  height: 6px;\n}\n#edit-customerL2-form .mat-dialog-content::-webkit-scrollbar-thumb {\n  border: 2px solid #00000000;\n  background-clip: padding-box;\n  background-color: var(--tb-service-accent);\n}\n#edit-customerL2-form .mat-dialog-content::-webkit-scrollbar-thumb:hover {\n  border: 1px solid #00000000;\n}\n\n#edit-customerL2-form .label-box {\n  color: var(--tb-service-font-3);\n  font-size: 1.2em;\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#edit-customerL2-form .input-box.disabled .label-box {\n  color: var(--tb-service-font-1);\n}\n#edit-customerL2-form .value-box {\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n\n#edit-customerL2-form .input-box:not(.disabled) .value-box:hover {\n  border-color: var(--tb-service-border-3);\n}\n#edit-customerL2-form .input-box:not(.disabled) .value-box:focus-within {\n  border-color: var(--tb-service-accent);\n  caret-color: var(--tb-service-accent);\n}\n#edit-customerL2-form .value-box *::placeholder {\n  color: var(--tb-service-font-4);\n}\n#edit-customerL2-form .value-box input {\n  color: var(--tb-service-font-5);\n  font-size: 1.4em;\n  padding: calc(16em / 14);\n  caret-color: var(--tb-service-accent);\n}\n#edit-customerL2-form .input-box.disabled .value-box {\n  background-color: var(--tb-service-background-1);\n}\n#edit-customerL2-form .input-box.disabled .value-box input {\n  color: var(--tb-service-font-2);\n  cursor: default;\n}\n#edit-customerL2-form .value-box .mat-select-trigger {\n  font-size: 1.4em;\n  padding: calc(16em / 14);\n  line-height: 1;\n}\n#edit-customerL2-form .value-box .mat-select-value {\n  font-family: var(--tb-config-font-family);\n  font-weight: 300;\n  font-size: 1em;\n  color: var(--tb-service-font-5);\n}\n#edit-customerL2-form .value-box .mat-select-arrow {\n  font-family: var(--tb-config-font-family);\n  font-weight: 300;\n  border-left: 0.4em solid transparent;\n  border-right: 0.4em solid transparent;\n  border-top: 0.4em solid;\n  color: var(--tb-service-accent);\n}\n#edit-customerL2-form .error-box {\n  display: none;\n  color: var(--tb-service-warn);\n  font-size: 1.2em;\n}\n#edit-customerL2-form .input-box.error .label-box {\n  color: var(--tb-service-warn);\n}\n#edit-customerL2-form .input-box.error .value-box {\n  border: 1px solid var(--tb-service-warn);\n}\n#edit-customerL2-form .input-box.error .error-box {\n  display: block;\n  margin-top: calc(0.6em / 1.2);\n}\n\n#edit-customerL2-form .mat-dialog-actions {\n  padding: 2em;\n  border-top: 1px solid var(--tb-service-border-1);\n}\n#edit-customerL2-form .button {\n  all: unset;\n  padding: 0.6em 1.4em;\n  font-size: 1.4em;\n  box-sizing: border-box;\n  cursor: pointer;\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#edit-customerL2-form .save-button {\n  color: var(--tb-service-font-0);\n  background-color: var(--tb-service-accent);\n}\n#edit-customerL2-form .save-button:hover {\n  background-color: var(--tb-service-accent-hover);\n}\n#edit-customerL2-form .save-button:active {\n  background-color: var(--tb-service-accent-pressed);\n}\n#edit-customerL2-form .close-button {\n  color: var(--tb-service-font-5);\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n}\n#edit-customerL2-form .close-button:hover {\n  border-color: var(--tb-service-border-3);\n}\n#edit-customerL2-form .close-button:active {\n  background-color: var(--tb-service-border-0);\n}\n\n@media (min-width: 960px) {\n  #edit-customerL2-form form {\n    width: 24vw;\n  }\n}\n",
+                "customFunction": "let $injector = widgetContext.$scope.$injector;\nlet customDialog = $injector.get(widgetContext.servicesMap.get('customDialog'));\nlet customerService = $injector.get(widgetContext.servicesMap.get('customerService'));\nlet attributeService = $injector.get(widgetContext.servicesMap.get('attributeService'));\n\nconst t = widgetContext.custom.t;\n\nopenEditEntityDialog();\n\nfunction openEditEntityDialog() {\n  customDialog.customDialog(htmlTemplate, EditEntityDialogController).subscribe();\n}\n\nfunction EditEntityDialogController(instance) {\n  let vm = instance;\n  const originWidth = widgetContext.settings.widget.originWidth;\n  vm.fontSize = _.round((widgetContext.width / originWidth) * 10, 2);\n  vm.ownerId = widgetContext.defaultSubscription.configuredDatasources[0].entity.id;\n  vm.ownerLevel = widgetContext.$scope.ownerLevel;\n  vm.t = t;\n\n  vm.editEntityFormGroup = vm.fb.group({\n    customerL1Name: [additionalParams.customerL1Name],\n    title: [additionalParams.title, [vm.validators.required, vm.validators.maxLength(16)]],\n    manager: [additionalParams.manager],\n    phone: [additionalParams.phone],\n    email: [additionalParams.email, [vm.validators.email]],\n  });\n\n  getCustomer(entityId.id).subscribe(customer => {\n    vm.originCustomer = customer;\n  });\n\n  vm.calcFontSize = function () {\n    const originWidth = widgetContext.settings.widget.originWidth;\n    let widgetFontSize = _.round((widgetContext.width / originWidth) * 10, 2);\n    if (widgetFontSize < 6.25) {\n      widgetFontSize = 6.25;\n    }\n    return widgetFontSize;\n  };\n  vm.cancel = function () {\n    vm.dialogRef.close(null);\n  };\n  vm.save = async function () {\n    vm.editEntityFormGroup.markAsPristine();\n    saveCustomer().subscribe(customer => {\n      saveAttribute(customer).subscribe(() => {\n        widgetContext.updateAliases();\n        vm.dialogRef.close(null);\n      });\n    });\n  };\n\n  function getCustomer(customerId) {\n    return customerService.getCustomer(customerId);\n  }\n\n  function saveCustomer() {\n    if (_.isNil(vm.originCustomer)) return;\n    vm.originCustomer.title = vm.editEntityFormGroup.get('title').value;\n    vm.originCustomer.phone = vm.editEntityFormGroup.get('phone').value;\n    vm.originCustomer.email = vm.editEntityFormGroup.get('email').value;\n    return customerService.saveCustomer(vm.originCustomer);\n  }\n\n  function saveAttribute(customer) {\n    let manager = vm.editEntityFormGroup.get('manager').value;\n    let attributeBody = [{ key: 'manager', value: manager }];\n    return attributeService.saveEntityAttributes(customer.id, 'SERVER_SCOPE', attributeBody);\n  }\n}\n",
+                "customResources": [],
+                "openInSeparateDialog": false,
+                "openInPopover": false,
+                "id": "29f6eda2-6c63-1eec-9fad-18dd1ea4e024"
+              },
+              {
+                "name": "Delete",
+                "icon": "delete",
+                "useShowWidgetActionFunction": null,
+                "showWidgetActionFunction": "return true;",
+                "type": "customPretty",
+                "customHtml": "<div id=\"delete-customerL2-form\">\n  <form\n    #deleteEntityForm=\"ngForm\"\n    [formGroup]=\"deleteEntityFormGroup\"\n    (ngSubmit)=\"save()\"\n    style=\"font-size: {{calcFontSize()}}px;\"\n  >\n    <div class=\"dialog-title-box\" fxLayoutAlign=\"space-between center\">\n      <span class=\"dialog-title\" translate>thingplus.dialog.delete-customerL2-title</span>\n      <button class=\"dialog-close\" (click)=\"cancel()\" type=\"button\">\n        <mat-icon class=\"material-icons\">close</mat-icon>\n      </button>\n    </div>\n    <mat-progress-bar color=\"warn\" mode=\"indeterminate\" *ngIf=\"isLoading$ | async\"> </mat-progress-bar>\n    <div style=\"height: 4px\" *ngIf=\"!(isLoading$ | async)\"></div>\n    <div mat-dialog-content fxLayout=\"column\">\n      <div fxLayout=\"row\" fxLayoutGap=\"8px\" fxLayout.xs=\"column\" fxLayoutGap.xs=\"0\">\n        <div class=\"label\">{{'thingplus.dialog.delete-customerL2-content' | translate:{entityName: entityName} }}</div>\n      </div>\n    </div>\n    <div mat-dialog-actions fxLayout=\"row\" fxLayoutAlign=\"end center\" fxLayoutGap=\"1em\">\n      <button\n        class=\"button close-button\"\n        [disabled]=\"(isLoading$ | async)\"\n        type=\"button\"\n        (click)=\"cancel()\"\n        cdkFocusInitial\n        translate\n      >\n        thingplus.action.close\n      </button>\n      <button\n        class=\"button delete-button\"\n        type=\"submit\"\n        [disabled]=\"(isLoading$ | async) || deleteEntityForm.invalid\"\n        translate\n      >\n        thingplus.action.delete\n      </button>\n    </div>\n  </form>\n</div>\n",
+                "customCss": "#delete-customerL2-form form {\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n}\n#delete-customerL2-form .dialog-title-box {\n  padding: 2em;\n  border-bottom: 1px solid var(--tb-service-border-1);\n}\n#delete-customerL2-form .dialog-title {\n  color: var(--tb-service-font-5);\n  font-size: 1.6em;\n}\n#delete-customerL2-form .dialog-close {\n  all: unset;\n  cursor: pointer;\n  color: var(--tb-service-font-3);\n  transition-property: color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#delete-customerL2-form .dialog-close i {\n  font-size: 1.4em;\n}\n#delete-customerL2-form .dialog-close:hover {\n  color: var(--tb-service-font-5);\n}\n\n#delete-customerL2-form .mat-dialog-content {\n  padding: var(--tb-config-padding) !important;\n}\n#delete-customerL2-form .mat-dialog-content::-webkit-scrollbar {\n  width: 6px;\n  height: 6px;\n}\n#delete-customerL2-form .mat-dialog-content::-webkit-scrollbar-thumb {\n  border: 2px solid #00000000;\n  background-clip: padding-box;\n  background-color: var(--tb-service-accent);\n}\n#delete-customerL2-form .mat-dialog-content::-webkit-scrollbar-thumb:hover {\n  border: 1px solid #00000000;\n}\n\n#delete-customerL2-form .label {\n  color: var(--tb-service-font-5);\n  font-size: 1.4em;\n}\n\n#delete-customerL2-form .mat-dialog-actions {\n  padding: 2em;\n  border-top: 1px solid var(--tb-service-border-1);\n}\n#delete-customerL2-form .button {\n  all: unset;\n  padding: 0.6em 1.4em;\n  font-size: 1.4em;\n  box-sizing: border-box;\n  cursor: pointer;\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#delete-customerL2-form .delete-button {\n  color: var(--tb-service-font-0);\n  background-color: var(--tb-service-warn);\n}\n#delete-customerL2-form .delete-button:hover {\n  background-color: var(--tb-service-warn-hover);\n}\n#delete-customerL2-form .delete-button:active {\n  background-color: var(--tb-service-warn-pressed);\n}\n#delete-customerL2-form .close-button {\n  color: var(--tb-service-font-5);\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n}\n#delete-customerL2-form .close-button:hover {\n  border-color: var(--tb-service-border-3);\n}\n#delete-customerL2-form .close-button:active {\n  background-color: var(--tb-service-border-0);\n}\n\n@media (min-width: 960px) {\n  #delete-customerL2-form form {\n    width: 24vw;\n  }\n}\n",
+                "customFunction": "let $injector = widgetContext.$scope.$injector;\nlet dialogs = $injector.get(widgetContext.servicesMap.get('dialogs'));\nlet customDialog = $injector.get(widgetContext.servicesMap.get('customDialog'));\nlet customerService = $injector.get(widgetContext.servicesMap.get('customerService'));\n\nconst t = widgetContext.custom.t;\n\nopenDeleteEntityDialog();\n\nfunction openDeleteEntityDialog() {\n  customDialog.customDialog(htmlTemplate, DeleteEntityDialogController).subscribe();\n}\n\nfunction DeleteEntityDialogController(instance) {\n  let vm = instance;\n  const originWidth = widgetContext.settings.widget.originWidth;\n  vm.fontSize = _.round((widgetContext.width / originWidth) * 10, 2);\n  vm.entityName = entityName;\n  vm.deleteEntityFormGroup = vm.fb.group({});\n\n  vm.calcFontSize = function () {\n    const originWidth = widgetContext.settings.widget.originWidth;\n    let widgetFontSize = _.round((widgetContext.width / originWidth) * 10, 2);\n    if (widgetFontSize < 6.25) {\n      widgetFontSize = 6.25;\n    }\n    return widgetFontSize;\n  };\n  vm.cancel = function () {\n    vm.dialogRef.close(null);\n  };\n  vm.save = function () {\n    vm.deleteEntityFormGroup.markAsPristine();\n    widgetContext.http.get(`/api/customers/${entityId.id}/devices?page=0&pageSize=1`).subscribe(devices => {\n      if (devices.totalElements <= 0) {\n        deleteEntityObservable(entityId).subscribe(\n          function success() {\n            widgetContext.updateAliases();\n            vm.dialogRef.close(null);\n          },\n          function fail() {\n            showErrorDialog();\n            vm.dialogRef.close(null);\n          }\n        );\n      } else {\n        window.alert(t('thingplus.help.error-customerL1-contains-equipment'));\n        vm.dialogRef.close(null);\n      }\n    });\n  };\n\n  function deleteEntityObservable(entityId) {\n    return customerService.deleteCustomer(entityId.id);\n  }\n\n  function showErrorDialog() {\n    let title = t('thingplus.dialog.error-delete-title');\n    let content = t('thingplus.dialog.error-delete-content');\n    dialogs.alert(title, content, 'CLOSE').subscribe(function (result) {});\n  }\n}\n",
+                "customResources": [],
+                "openInSeparateDialog": false,
+                "openInPopover": false,
+                "id": "f594b752-d5b3-b308-ae67-bb23d0b55764"
+              }
+            ]
+          }
+        },
+        "row": 0,
+        "col": 0,
+        "id": "56869d1a-7f42-4bf2-b73d-938a71a9920a"
+      }
+    },
+    "states": {
+      "customerL2-management": {
+        "name": "{i18n:thingplus.menu.customer-management}",
+        "root": true,
+        "layouts": {
+          "main": {
+            "widgets": {
+              "56869d1a-7f42-4bf2-b73d-938a71a9920a": {
+                "sizeX": 95,
+                "sizeY": 47,
+                "row": 1,
+                "col": 1
+              }
+            },
+            "gridSettings": {
+              "backgroundColor": "var(--tb-service-background-4)",
+              "columns": 97,
+              "margin": 0,
+              "marginUnit": "px",
+              "mobileMargin": 0,
+              "backgroundSizeMode": "100%",
+              "autoFillHeight": true,
+              "backgroundImageUrl": null,
+              "mobileAutoFillHeight": true,
+              "mobileRowHeight": 70
+            }
+          }
+        }
+      }
+    },
+    "entityAliases": {
+      "c4dca7de-8fd9-1a94-6658-9beb4576f63d": {
+        "id": "c4dca7de-8fd9-1a94-6658-9beb4576f63d",
+        "alias": "Current User Owner",
+        "filter": {
+          "type": "singleEntity",
+          "resolveMultiple": false,
+          "singleEntity": {
+            "entityType": "CURRENT_USER_OWNER",
+            "id": "13814000-1dd2-11b2-8080-808080808080"
+          }
+        }
+      },
+      "9006e580-6198-5fed-173b-3292b24945c9": {
+        "id": "9006e580-6198-5fed-173b-3292b24945c9",
+        "alias": "Customer L2",
+        "filter": {
+          "type": "relationsQuery",
+          "resolveMultiple": true,
+          "rootStateEntity": false,
+          "stateEntityParamName": null,
+          "defaultStateEntity": null,
+          "rootEntity": {
+            "entityType": "CURRENT_USER_OWNER",
+            "id": "13814000-1dd2-11b2-8080-808080808080"
+          },
+          "direction": "FROM",
+          "maxLevel": 2,
+          "fetchLastLevelOnly": false,
+          "filters": [
+            {
+              "relationType": "Contains",
+              "entityTypes": [
+                "CUSTOMER"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "filters": {
+      "2442522c-0239-bd1a-093f-6f937dca9898": {
+        "id": "2442522c-0239-bd1a-093f-6f937dca9898",
+        "filter": "Is Customer L2",
+        "keyFilters": [
+          {
+            "key": {
+              "type": "ATTRIBUTE",
+              "key": "customerType"
+            },
+            "valueType": "STRING",
+            "predicates": [
+              {
+                "keyFilterPredicate": {
+                  "operation": "EQUAL",
+                  "value": {
+                    "defaultValue": "CUSTOMER_L2",
+                    "dynamicValue": null
+                  },
+                  "ignoreCase": false,
+                  "type": "STRING"
+                },
+                "userInfo": {
+                  "editable": true,
+                  "label": "",
+                  "autogeneratedLabel": true,
+                  "order": 0
+                }
+              }
+            ]
+          }
+        ],
+        "editable": true
+      }
+    },
+    "timewindow": {
+      "displayValue": "",
+      "hideInterval": false,
+      "hideAggregation": false,
+      "hideAggInterval": false,
+      "hideTimezone": false,
+      "selectedTab": 0,
+      "realtime": {
+        "realtimeType": 0,
+        "interval": 1000,
+        "timewindowMs": 60000,
+        "quickInterval": "CURRENT_DAY"
+      },
+      "history": {
+        "historyType": 0,
+        "interval": 1000,
+        "timewindowMs": 60000,
+        "fixedTimewindow": {
+          "startTimeMs": 1674707599648,
+          "endTimeMs": 1674793999648
+        },
+        "quickInterval": "CURRENT_DAY"
+      },
+      "aggregation": {
+        "type": "AVG",
+        "limit": 25000
+      }
+    },
+    "settings": {
+      "stateControllerId": "entity",
+      "showTitle": false,
+      "showDashboardsSelect": true,
+      "showEntitiesSelect": false,
+      "showDashboardTimewindow": false,
+      "showDashboardExport": false,
+      "toolbarAlwaysOpen": true,
+      "titleColor": "rgba(0,0,0,0.870588)",
+      "showDashboardLogo": false,
+      "dashboardLogoUrl": null,
+      "hideToolbar": true,
+      "showFilters": false,
+      "showUpdateDashboardImage": false
+    }
+  },
+  "name": "Customer Management - L1"
+}

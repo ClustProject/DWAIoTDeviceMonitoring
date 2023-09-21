@@ -1,0 +1,168 @@
+#widget {
+  width: 100%;
+  height: 100%;
+  font-size: 10px;
+  font-family: var(--tb-config-font-family);
+  user-select: none;
+  white-space: nowrap;
+  letter-spacing: var(--tb-config-letter-spacing);
+}
+
+/*
+  Widget Header Area
+*/
+header.widget-header {
+  width: 100%;
+  padding: var(--tb-config-padding);
+}
+/* page-section */
+.page-section .current-page {
+  font-size: 1.2em;
+  padding-right: 1em;
+  letter-spacing: 0.05em;
+  color: var(--tb-service-font-5);
+}
+.page-section .page-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.5em;
+  min-width: 20px;
+  height: 1.5em;
+  min-height: 20px;
+  font-size: 1.6em;
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+  cursor: pointer;
+  color: var(--tb-service-accent);
+  transition-property: border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+.page-section .page-button:hover {
+  border: 1px solid var(--tb-service-accent-hover);
+  z-index: 1;
+}
+.page-section .page-button:active {
+  border: 1px solid var(--tb-service-accent-pressed);
+  z-index: 1;
+}
+
+/*
+  Widget Content Area
+*/
+main.widget-content {
+  width: 100%;
+}
+
+/* table-section */
+.table-section {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+.table-section::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.table-section::-webkit-scrollbar-thumb {
+  border: 2px solid #00000000;
+  background-clip: padding-box;
+  background-color: var(--tb-service-accent);
+}
+.table-section::-webkit-scrollbar-thumb:hover {
+  border: 1px solid #00000000;
+}
+.table-section .table {
+  min-width: 100%;
+  height: 100%;
+  border-spacing: 0px;
+  box-sizing: border-box;
+  table-layout: fixed;
+  border-collapse: collapse;
+  white-space: nowrap;
+}
+.table-section thead tr {
+  background-color: var(--tb-service-background-1);
+  border-top: 1px solid var(--tb-service-border-1);
+  border-bottom: 1px solid var(--tb-service-border-1);
+}
+.table-section th {
+  cursor: pointer;
+  color: var(--tb-service-font-3);
+  padding: 1.68em 0.14em;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre;
+  font-size: 1em;
+  line-height: 1;
+}
+.table-section th:first-child {
+  padding-left: 1.68em;
+}
+.table-section th:last-child {
+  padding-right: 1.68em;
+}
+.table-section th .th-label {
+  font-size: 1.2em;
+  margin-right: 0.5em;
+}
+.table-section th .th-sort {
+  font-size: 1.4em;
+  opacity: 0;
+  vertical-align: top;
+  transition-property: transform, opacity;
+  transition-duration: var(--tb-config-color-duration);
+  color: var(--tb-service-accent);
+}
+.table-section th:not(.DESC):not(.ASC):hover .th-sort {
+  opacity: 0.4;
+}
+.table-section th.ASC .th-sort {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+.table-section th.DESC .th-sort {
+  opacity: 1;
+  transform: rotate(180deg);
+}
+.table-section tbody tr {
+  border-bottom: 1px solid var(--tb-service-border-1);
+  transition-property: background-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+.table-section tbody tr:nth-child(odd) {
+  background-color: var(--tb-service-background-0);
+}
+.table-section tbody tr:nth-child(even) {
+  background-color: var(--tb-service-background-1);
+}
+.table-section td {
+  line-height: 1;
+  color: var(--tb-service-font-4);
+  padding: 0em 0.1em;
+  font-size: 1.4em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: text;
+}
+.table-section td:first-child {
+  padding-left: 1.2em;
+}
+.table-section td:last-child {
+  padding-right: 1.2em;
+}
+.table-section tbody tr:hover {
+  background-color: var(--tb-service-background-2);
+}
+.table-section .td-state {
+  font-size: calc(1em / 1.4);
+}
+.table-section .td-state-color {
+  width: 0.8em;
+  height: 0.4em;
+  background-color: currentColor;
+}
+.table-section .td-state-label {
+  font-size: 1.4em;
+}

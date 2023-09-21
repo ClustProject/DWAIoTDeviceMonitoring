@@ -1,0 +1,151 @@
+<div id="add-holiday-form">
+  <form
+    #addEntityForm="ngForm"
+    [formGroup]="addEntityFormGroup"
+    (ngSubmit)="save()"
+    style="font-size: {{calcFontSize()}}px;"
+  >
+    <div class="dialog-title-box" fxLayoutAlign="space-between center">
+      <span class="dialog-title" translate>thingplus.dialog.create-holiday-title</span>
+      <button class="dialog-close" (click)="cancel()" type="button">
+        <mat-icon class="material-icons">close</mat-icon>
+      </button>
+    </div>
+    <mat-progress-bar color="warn" mode="indeterminate" *ngIf="isLoading$ | async"> </mat-progress-bar>
+    <div style="height: 0.4em" *ngIf="!(isLoading$ | async)"></div>
+    <div mat-dialog-content fxLayout="column" fxLayoutGap="2em">
+      <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+        <div fxFlex="100" fxLayout="column" fxLayoutGap="0.6em" class="input-box">
+          <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+            <label translate>thingplus.label.select-holiday</label>
+          </div>
+          <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+            <mat-datetimepicker #targetDatePicker type="date"></mat-datetimepicker>
+            <input
+              class="hidden"
+              matInput
+              readonly
+              [(ngModel)]="targetDate"
+              [matDatetimepicker]="targetDatePicker"
+              (ngModelChange)="setTargetDate($event)"
+              [ngModelOptions]="{standalone: true}"
+            />
+            <input
+              class="target-date"
+              (click)="targetDatePicker.open()"
+              [(ngModel)]="viewTargetDate"
+              [ngModelOptions]="{standalone: true}"
+              readonly
+            />
+            <div class="select-arrow"></div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+        <div fxFlex="100" fxLayout="column" fxLayoutGap="0.6em" class="input-box">
+          <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+            <label translate>thingplus.label.repeat-holiday</label>
+          </div>
+          <div class="value-box no-border" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+            <button
+              class="radio-btn"
+              type="button"
+              fxFlex
+              [ngClass]="{'active': addEntityFormGroup.get('isAlways').value == true}"
+              (click)="setIsAlways($event, true)"
+              translate
+            >
+              thingplus.label.every-year
+            </button>
+            <button
+              class="radio-btn"
+              type="button"
+              fxFlex
+              [ngClass]="{'active': addEntityFormGroup.get('isAlways').value != true}"
+              (click)="setIsAlways($event, false)"
+              translate
+            >
+              thingplus.label.set-range
+            </button>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start end">
+        <div
+          fxFlex
+          fxLayout="column"
+          fxLayoutAlign="end stretch"
+          fxLayoutGap="0.6em"
+          class="input-box"
+          [ngClass]="{'disabled': addEntityFormGroup.get('isAlways').value == true}"
+        >
+          <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+            <label translate>thingplus.label.date-range</label>
+          </div>
+          <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="0.6em">
+            <mat-select
+              formControlName="startYear"
+              (selectionChange)="setStartYear($event)"
+              [disabled]="addEntityFormGroup.get('isAlways').value == true"
+            >
+              <mat-option *ngFor="let startYear of startYearList" [value]="startYear.value">
+                {{startYear.name}}
+              </mat-option>
+            </mat-select>
+          </div>
+        </div>
+        <div
+          fxFlex
+          fxLayout="column"
+          fxLayoutAlign="end stretch"
+          fxLayoutGap="0.6em"
+          class="input-box"
+          [ngClass]="{'disabled': addEntityFormGroup.get('isAlways').value == true}"
+        >
+          <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+            <label> </label>
+          </div>
+          <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="0.6em">
+            <mat-select
+              formControlName="endYear"
+              (selectionChange)="setEndYear($event)"
+              [disabled]="addEntityFormGroup.get('isAlways').value == true"
+            >
+              <mat-option *ngFor="let endYear of endYearList" [value]="endYear.value"> {{endYear.name}} </mat-option>
+            </mat-select>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+        <div fxFlex fxLayout="column" fxLayoutGap="0.6em" class="input-box">
+          <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+            <label translate>thingplus.label.content</label>
+          </div>
+          <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+            <input matInput formControlName="content" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="1em">
+      <button
+        class="button close-button"
+        [disabled]="(isLoading$ | async)"
+        type="button"
+        (click)="cancel()"
+        cdkFocusInitial
+        translate
+      >
+        thingplus.action.close
+      </button>
+      <button
+        class="button save-button"
+        type="submit"
+        [disabled]="(isLoading$ | async) || addEntityForm.invalid"
+        translate
+      >
+        thingplus.action.save
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,186 @@
+<div id="edit-system-alarm-form">
+  <form
+    #editEntityForm="ngForm"
+    [formGroup]="editEntityFormGroup"
+    (ngSubmit)="save()"
+    style="font-size: {{calcFontSize()}}px;"
+  >
+    <div class="dialog-title-box" fxLayoutAlign="space-between center">
+      <span class="dialog-title" translate>thingplus.dialog.edit-system-alarm</span>
+      <button class="dialog-close" (click)="cancel()" type="button">
+        <mat-icon class="material-icons">close</mat-icon>
+      </button>
+    </div>
+    <mat-progress-bar color="warn" mode="indeterminate" *ngIf="isLoading$ | async"> </mat-progress-bar>
+    <div style="height: 0.4em" *ngIf="!(isLoading$ | async)"></div>
+    <div class="step-controller" fxLayoutAlign="space-between center">
+      <div
+        class="step"
+        [ngClass]="{'prev': currentStep > 0, 'current': currentStep == 0, 'next': currentStep < 0}"
+        (click)="selectStep($event, 0)"
+        fxLayoutAlign="center center"
+        [attr.data-label]="t('thingplus.label.step-basic')"
+      >
+        <i class="material-icons">check</i>
+      </div>
+      <div class="step-progress-line" [ngClass]="{'prev': currentStep > 0, 'next': currentStep < 0}"></div>
+      <div
+        class="step"
+        [ngClass]="{'prev': currentStep > 1, 'current': currentStep == 1, 'next': currentStep < 1}"
+        (click)="selectStep($event, 1)"
+        fxLayoutAlign="center center"
+        [attr.data-label]="t('thingplus.label.step-select-alarm')"
+      >
+        <i class="material-icons">check</i>
+      </div>
+    </div>
+    <div mat-dialog-content fxFlex fxLayout="column" fxLayoutGap="2em">
+      <div class="step-content step-content-0" *ngIf="currentStep == 0" fxLayout="column" fxLayoutGap="2em">
+        <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+          <div fxFlex="100" fxLayout="column" fxLayoutGap="0.6em" class="input-box">
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="0.6em" class="group-box">
+              <label class="side-label" translate>thingplus.label.snooze</label>
+              <div class="switch-track" [ngClass]="{'active': snooze}" (click)="snooze = !snooze">
+                <div class="switch-ball"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center" *ngIf="snooze">
+          <div fxFlex="100" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1em" class="input-box">
+            <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="0.6em">
+              <mat-select formControlName="reAlarmMs">
+                <mat-option [value]="12">12</mat-option>
+                <mat-option [value]="24">24</mat-option>
+                <mat-option [value]="36">36</mat-option>
+                <mat-option [value]="48">48</mat-option>
+              </mat-select>
+            </div>
+            <span class="unit-label" translate>thingplus.label.snooze-for</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-content step-content-1" *ngIf="currentStep == 1" fxLayout="column" fxLayoutGap="2em">
+        <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+          <div fxFlex="100" fxLayout="column" fxLayoutGap="0.6em" class="input-box">
+            <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+              <label translate>thingplus.label.device-state</label>
+            </div>
+            <div
+              class="group-box"
+              fxFlex="100"
+              fxLayout="column"
+              fxLayoutAlign="start stretch"
+              fxLayoutGap="1em"
+              formGroupName="deviceState"
+            >
+              <div fxFlex="100" fxLayoutAlign="space-between center">
+                <mat-checkbox fxFlex="50" (change)="checkEntire($event, 'deviceState')">
+                  {{'thingplus.selector.select-all' | translate}}
+                </mat-checkbox>
+                <mat-checkbox fxFlex="50" formControlName="delayed">
+                  {{'thingplus.alarm-type.delayed' | translate}}
+                </mat-checkbox>
+              </div>
+              <div fxFlex="100" fxLayoutAlign="space-between center">
+                <mat-checkbox fxFlex="50" formControlName="unconnected">
+                  {{'thingplus.alarm-type.unconnected' | translate}}
+                </mat-checkbox>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+          <div fxFlex="100" fxLayout="column" fxLayoutGap="0.6em" class="input-box">
+            <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+              <label translate>thingplus.label.electric-quality</label>
+            </div>
+            <div
+              class="group-box"
+              fxFlex="100"
+              fxLayout="column"
+              fxLayoutAlign="start stretch"
+              fxLayoutGap="1em"
+              formGroupName="electricQuality"
+            >
+              <div fxFlex="100" fxLayoutAlign="space-between center">
+                <mat-checkbox fxFlex="50" (change)="checkEntire($event, 'electricQuality')">
+                  {{'thingplus.selector.select-all' | translate}}
+                </mat-checkbox>
+                <mat-checkbox fxFlex="50" formControlName="over-current">
+                  {{'thingplus.alarm-type.over-current' | translate}}
+                </mat-checkbox>
+              </div>
+              <div fxFlex="100" fxLayoutAlign="space-between center">
+                <mat-checkbox fxFlex="50" formControlName="low-voltage">
+                  {{'thingplus.alarm-type.low-voltage' | translate}}
+                </mat-checkbox>
+                <mat-checkbox fxFlex="50" formControlName="high-voltage">
+                  {{'thingplus.alarm-type.high-voltage' | translate}}
+                </mat-checkbox>
+              </div>
+              <div fxFlex="100" fxLayoutAlign="space-between center">
+                <mat-checkbox fxFlex="50" formControlName="volt-imbalance">
+                  {{'thingplus.alarm-type.volt-imbalance' | translate}}
+                </mat-checkbox>
+                <mat-checkbox fxFlex="50" formControlName="curr-imbalance">
+                  {{'thingplus.alarm-type.curr-imbalance' | translate}}
+                </mat-checkbox>
+              </div>
+              <div fxFlex="100" fxLayoutAlign="space-between center">
+                <mat-checkbox fxFlex="50" formControlName="thd">
+                  {{'thingplus.alarm-type.thd' | translate}}
+                </mat-checkbox>
+                <mat-checkbox fxFlex="50" formControlName="power-factor">
+                  {{'thingplus.alarm-type.power-factor' | translate}}
+                </mat-checkbox>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="1em">
+      <button
+        class="button prev-button"
+        [disabled]="(isLoading$ | async)"
+        type="button"
+        (click)="prevStep()"
+        *ngIf="currentStep > 0"
+        translate
+      >
+        thingplus.action.prev-step
+      </button>
+      <button
+        class="button close-button"
+        [disabled]="(isLoading$ | async)"
+        type="button"
+        (click)="cancel()"
+        cdkFocusInitial
+        *ngIf="currentStep == 0"
+        translate
+      >
+        thingplus.action.close
+      </button>
+      <button
+        class="button next-button"
+        type="button"
+        (click)="nextStep()"
+        [disabled]="(isLoading$ | async)"
+        *ngIf="currentStep < 1"
+        translate
+      >
+        thingplus.action.next-step
+      </button>
+      <button
+        class="button save-button"
+        type="submit"
+        [disabled]="(isLoading$ | async) || editEntityForm.invalid"
+        *ngIf="currentStep == 1"
+        translate
+      >
+        thingplus.action.save
+      </button>
+    </div>
+  </form>
+</div>

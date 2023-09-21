@@ -1,0 +1,31 @@
+{
+  "schema": {
+    "title": "Settings",
+    "type": "object",
+    "properties": {
+      "widget": {
+        "type": "object",
+        "required": ["originWidth"],
+        "properties": {
+          "originWidth": {
+            "title": "Origin Widget Width",
+            "type": "number",
+            "default": 1630
+          },
+          "filterLevel": {
+            "title": "Filter Level",
+            "type": "number",
+            "default": 2
+          }
+        }
+      }
+    }
+  },
+  "form": [["widget.originWidth", "widget.filterLevel"]],
+  "groupInfoes": [
+    {
+      "formIndex": 0,
+      "GroupTitle": "Widget"
+    }
+  ]
+}

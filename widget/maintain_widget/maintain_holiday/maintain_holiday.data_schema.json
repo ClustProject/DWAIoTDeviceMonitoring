@@ -1,0 +1,62 @@
+{
+  "schema": {
+    "type": "object",
+    "title": "DataKeySettings",
+    "properties": {
+      "hidden": {
+        "title": "Hide from table",
+        "type": "boolean",
+        "default": false
+      },
+      "useCellStyleFunction": {
+        "title": "Use cell style function",
+        "type": "boolean",
+        "default": false
+      },
+      "cellStyleFunction": {
+        "title": "Cell style function: f(value, row, ctx)",
+        "type": "string",
+        "default": ""
+      },
+      "useCellContentFunction": {
+        "title": "Use cell content function",
+        "type": "boolean",
+        "default": false
+      },
+      "cellContentFunction": {
+        "title": "Cell content function: f(value, row, ctx)",
+        "type": "string",
+        "default": ""
+      },
+      "useCellActionFunction": {
+        "title": "Use cell action function",
+        "type": "boolean",
+        "default": false
+      },
+      "cellActionFunction": {
+        "title": "Cell action function: f(value, tr, td, row, ctx)",
+        "type": "string",
+        "default": ""
+      }
+    },
+    "required": []
+  },
+  "form": [
+    "hidden",
+    "useCellStyleFunction",
+    {
+      "key": "cellStyleFunction",
+      "type": "javascript"
+    },
+    "useCellContentFunction",
+    {
+      "key": "cellContentFunction",
+      "type": "javascript"
+    },
+    "useCellActionFunction",
+    {
+      "key": "cellActionFunction",
+      "type": "javascript"
+    }
+  ]
+}

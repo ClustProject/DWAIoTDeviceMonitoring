@@ -1,0 +1,496 @@
+{
+  "title": "State Timeline",
+  "image": null,
+  "mobileHide": false,
+  "mobileOrder": null,
+  "configuration": {
+    "description": "",
+    "widgets": {
+      "3a876d2f-4e77-b38a-70a0-0371c2c21cb4": {
+        "isSystemType": false,
+        "bundleAlias": "moldmecca_info_widgets",
+        "typeAlias": "state_timeline",
+        "type": "latest",
+        "title": "New widget",
+        "image": null,
+        "description": null,
+        "sizeX": 7.5,
+        "sizeY": 3,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "fcb37668-3c29-f308-b320-ab4952e2ac37",
+              "filterId": null,
+              "dataKeys": []
+            },
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "c52a996e-fd2f-2401-f394-626c06679aa6",
+              "filterId": null,
+              "dataKeys": [
+                {
+                  "name": "TP_AnalysisState",
+                  "type": "timeseries",
+                  "label": "TP_AnalysisState",
+                  "color": "#f44336",
+                  "settings": {},
+                  "_hash": 0.1205706144772154
+                },
+                {
+                  "name": "TP_ModifiedState",
+                  "type": "timeseries",
+                  "label": "TP_ModifiedState",
+                  "color": "#4caf50",
+                  "settings": {},
+                  "_hash": 0.6946733592753402
+                },
+                {
+                  "name": "TP_OperationState",
+                  "type": "timeseries",
+                  "label": "TP_OperationState",
+                  "color": "#f44336",
+                  "settings": {},
+                  "_hash": 0.7600266590894336
+                },
+                {
+                  "name": "TP_ConnectionState",
+                  "type": "timeseries",
+                  "label": "TP_ConnectionState",
+                  "color": "#ffc107",
+                  "settings": {},
+                  "_hash": 0.3092652418971764
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "e3ab3715-0afe-6537-1259-379088b68164",
+              "filterId": null,
+              "dataKeys": []
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "timewindowMs": 60000
+            }
+          },
+          "showTitle": false,
+          "backgroundColor": "#fff",
+          "color": "rgba(0, 0, 0, 0.87)",
+          "padding": "0px",
+          "settings": {
+            "widget": {
+              "originWidth": 1630,
+              "filterLevel": 0
+            }
+          },
+          "title": "thingplus.menu.state-timeline",
+          "showTitleIcon": false,
+          "titleTooltip": "",
+          "dropShadow": false,
+          "enableFullscreen": false,
+          "widgetStyle": {
+            "cursor": "default",
+            "box-shadow": "0px 2px 10px 0 rgba(0, 0, 0, 0.04)"
+          },
+          "titleStyle": {
+            "font-family": "var(--tb-config-font-family)",
+            "font-size": "1.6em",
+            "font-weight": 600,
+            "letter-spacing": "var(--tb-config-letter-spacing)",
+            "color": "var(--tb-service-font-5)"
+          },
+          "noDataDisplayMessage": "",
+          "showLegend": false,
+          "actions": {
+            "headerButton": [],
+            "viewChart": [
+              {
+                "name": "View Chart",
+                "icon": "more_horiz",
+                "useShowWidgetActionFunction": null,
+                "showWidgetActionFunction": "return true;",
+                "type": "customPretty",
+                "customHtml": "<div id=\"active-power-form\">\n  <form #editEntityForm=\"ngForm\" [formGroup]=\"editEntityFormGroup\" style=\"font-size: {{calcFontSize()}}px;\">\n    <div class=\"dialog-title-box\" fxLayoutAlign=\"space-between center\">\n      <span class=\"dialog-title\">{{entityLabel}} {{\"thingplus.dialog.detail-active-power\" | translate}}</span>\n      <button class=\"dialog-close\" (click)=\"cancel()\" type=\"button\">\n        <mat-icon class=\"material-icons\">close</mat-icon>\n      </button>\n    </div>\n    <mat-progress-bar color=\"warn\" mode=\"indeterminate\" *ngIf=\"isLoading$ | async\"> </mat-progress-bar>\n    <div style=\"height: 0.4em\" *ngIf=\"!(isLoading$ | async)\"></div>\n    <div mat-dialog-content>\n      <div class=\"legend\" fxLayoutAlign=\"start center\" fxLayoutGap=\"2.4em\">\n        <div\n          class=\"legend-box\"\n          *ngFor=\"let legend of legendList\"\n          fxLayoutAlign=\"start center\"\n          fxLayoutGap=\"0.5em\"\n          (mouseenter)=\"legendEnter($event, legend)\"\n          (mouseleave)=\"legendLeave($event, legend)\"\n        >\n          <div class=\"legend-circle\" [ngStyle]=\"{'color': legend.color}\"></div>\n          <div class=\"legend-label\">{{legend.label}}</div>\n        </div>\n      </div>\n      <div class=\"chart\"></div>\n    </div>\n    <div mat-dialog-actions fxLayout=\"row\" fxLayoutAlign=\"end center\" fxLayoutGap=\"1em\">\n      <button\n        class=\"button close-button\"\n        [disabled]=\"(isLoading$ | async)\"\n        type=\"button\"\n        (click)=\"cancel()\"\n        cdkFocusInitial\n        translate\n      >\n        thingplus.action.close\n      </button>\n    </div>\n  </form>\n</div>\n",
+                "customCss": "#active-power-form form {\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n  cursor: default;\n  width: 40vw;\n}\n#active-power-form .dialog-title-box {\n  padding: 2em;\n  border-bottom: 1px solid var(--tb-service-border-1);\n}\n#active-power-form .dialog-title {\n  color: var(--tb-service-font-5);\n  font-size: 1.6em;\n}\n#active-power-form .dialog-close {\n  all: unset;\n  cursor: pointer;\n  color: var(--tb-service-font-3);\n  transition-property: color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#active-power-form .dialog-close i {\n  font-size: 1.4em;\n}\n#active-power-form .dialog-close:hover {\n  color: var(--tb-service-font-5);\n}\n\n#active-power-form .mat-dialog-content {\n  padding: var(--tb-config-padding) !important;\n}\n#active-power-form .mat-dialog-content::-webkit-scrollbar {\n  width: 6px;\n  height: 6px;\n}\n#active-power-form .mat-dialog-content::-webkit-scrollbar-thumb {\n  border: 2px solid #00000000;\n  background-clip: padding-box;\n  background-color: var(--tb-service-accent);\n}\n#active-power-form .mat-dialog-content::-webkit-scrollbar-thumb:hover {\n  border: 1px solid #00000000;\n}\n\n#active-power-form .legend {\n  width: 100%;\n  padding-bottom: 2em;\n}\n#active-power-form .legend-circle {\n  width: 0.6em;\n  height: 0.6em;\n  background-color: currentColor;\n}\n#active-power-form .legend-label {\n  font-size: 1.2em;\n  color: var(--tb-service-font-4);\n}\n#active-power-form .legend-box.hidden .legend-label {\n  text-decoration: line-through;\n}\n\n#active-power-form .chart {\n  width: 100%;\n}\n#active-power-form .chart svg {\n  width: 100%;\n  height: auto;\n}\n#active-power-form .chart .tooltip:hover {\n  stroke: var(--tb-service-font-5);\n}\n#active-power-form .bar-rect {\n  transition-property: transform, height;\n  transition-duration: var(--tb-config-color-duration);\n}\n#active-power-form .bar-rect-active {\n  transform: translateY(2px);\n  height: 6px;\n}\n#active-power-form .bar-rect-target {\n  transform: translateY(-2px);\n  height: 14px;\n}\n\n#active-power-form .mat-dialog-actions {\n  padding: 2em;\n  border-top: 1px solid var(--tb-service-border-1);\n}\n#active-power-form .button {\n  all: unset;\n  padding: 0.6em 1.4em;\n  font-size: 1.4em;\n  box-sizing: border-box;\n  cursor: pointer;\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#active-power-form .close-button {\n  color: var(--tb-service-font-5);\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n}\n#active-power-form .close-button:hover {\n  border-color: var(--tb-service-border-3);\n}\n#active-power-form .close-button:active {\n  background-color: var(--tb-service-border-0);\n}\n",
+                "customFunction": "let $injector = widgetContext.$scope.$injector;\nlet customDialog = $injector.get(widgetContext.servicesMap.get('customDialog'));\nlet attributeService = $injector.get(widgetContext.servicesMap.get('attributeService'));\n\nconst t = widgetContext.custom.t;\nconst STANDARD_WINDOW_SIZE = 1920 / 100;\nconst HOUR_MS = 3600000;\nconst DAY_MS = 24 * HOUR_MS;\nconst STATUS = {\n  stopped: { priority: 0, content: 'thingplus.state.stopped', color: 'var(--tb-service-state-stopped)' },\n  waiting: { priority: 1, content: 'thingplus.state.waiting', color: 'var(--tb-service-state-waiting)' },\n  working: { priority: 2, content: 'thingplus.state.working', color: 'var(--tb-service-state-working)' },\n  trial: { priority: 3, content: 'thingplus.state.trial', color: 'var(--tb-service-state-trial)' },\n  unconnected: { priority: 4, content: 'thingplus.state.unconnected', color: 'var(--tb-service-state-unconnected)' },\n};\n\nopenEditEntityDialog();\n\nfunction openEditEntityDialog() {\n  customDialog.customDialog(htmlTemplate, EditEntityDialogController).subscribe();\n}\n\nfunction EditEntityDialogController(instance) {\n  let vm = instance;\n  vm.ownerId = widgetContext.defaultSubscription.configuredDatasources[0].entity.id;\n  vm.t = t;\n  vm.isFirstLoad = true;\n  vm.entityLabel = entityLabel;\n\n  vm.editEntityFormGroup = vm.fb.group({});\n\n  vm.isLoading$.subscribe(async x => {\n    if (vm.isFirstLoad) {\n      vm.isFirstLoad = false;\n      vm.$form = $('#active-power-form');\n      vm.lineData = await loadData();\n      if (vm.lineData['f1_watt']) {\n        vm.lineData = vm.lineData['f1_watt'].map(d => {\n          if (d.value < 0) d.value = 0;\n          return { ts: moment(d.ts).valueOf(), value: d.value };\n        });\n      } else {\n        vm.lineData = [];\n      }\n      drawChart();\n    }\n  });\n\n  vm.legendList = [\n    { key: 'stopped', color: 'var(--tb-service-state-stopped)', label: t('thingplus.state.stopped') },\n    { key: 'waiting', color: 'var(--tb-service-state-waiting)', label: t('thingplus.state.waiting') },\n    { key: 'working', color: 'var(--tb-service-state-working)', label: t('thingplus.state.working') },\n    { key: 'trial', color: 'var(--tb-service-state-trial)', label: t('thingplus.state.trial') },\n    { key: 'unconnected', color: 'var(--tb-service-state-unconnected)', label: t('thingplus.state.unconnected') },\n  ];\n\n  vm.calcFontSize = function () {\n    const originWidth = widgetContext.settings.widget.originWidth;\n    let widgetFontSize = _.round((widgetContext.width / originWidth) * 10, 2);\n    if (widgetFontSize < 6.25) {\n      widgetFontSize = 6.25;\n    }\n    return widgetFontSize;\n  };\n  vm.cancel = function () {\n    vm.dialogRef.close(null);\n  };\n  vm.legendEnter = function (e, d) {\n    $(`.bar-rect`, vm.$form).addClass('bar-rect-active');\n    $(`.bar-rect-${d.key}`, vm.$form).removeClass('bar-rect-active');\n    $(`.bar-rect-${d.key}`, vm.$form).addClass('bar-rect-target');\n  };\n  vm.legendLeave = function (e, d) {\n    $(`.bar-rect`, vm.$form).removeClass('bar-rect-active');\n    $(`.bar-rect`, vm.$form).removeClass('bar-rect-target');\n  };\n\n  // Add the event listeners that show or hide the tooltip.\n  const bisect = d3.bisector(d => d.ts).center;\n\n  function drawChart() {\n    vm.d3Config = {\n      viewWidth: 960,\n      viewHeight: 540,\n      barHeight: 10,\n      barMargin: 15,\n      margin: {\n        top: 5,\n        right: 0,\n        bottom: 40,\n        left: 60,\n      },\n    };\n\n    // svg 영역 정의\n    vm.$d3 = d3\n      .select($('.chart', vm.$form)[0])\n      .append('svg')\n      .attr('viewBox', `0 0 ${vm.d3Config.viewWidth} ${vm.d3Config.viewHeight}`)\n      .attr('width', vm.d3Config.viewWidth)\n      .attr('height', vm.d3Config.viewHeight);\n\n    if (vm.lineData.length > 0) {\n      vm.$d3\n        .on('pointerenter pointermove', pointermoved)\n        .on('pointerleave', pointerleft)\n        .on('touchstart', event => event.preventDefault());\n    }\n\n    drawXAxis();\n    drawYAxis();\n    drawMain();\n    drawBar();\n    vm.$vertical = vm.$d3.select('.main-group').append('g');\n    vm.$horizontal = vm.$d3.select('.main-group').append('g');\n    if (vm.lineData.length > 0) {\n      drawLine();\n    }\n\n    // Create the tooltip container.\n    vm.$tooltip = vm.$d3.select('.main-group').append('g');\n  }\n\n  function drawXAxis() {\n    let { custom } = widgetContext;\n    let { viewWidth, viewHeight, margin } = vm.d3Config;\n    const width = viewWidth - margin.left - margin.right;\n    const height = margin.bottom;\n\n    // xAxis 그리기\n    vm.xAxis = d3\n      .scaleTime()\n      .domain(d3.extent([custom.startTs, custom.endTs]))\n      .range([0, width]);\n    vm.$xAxis = vm.$d3\n      .append('g')\n      .attr('class', 'axis')\n      .attr('transform', 'translate(' + margin.left + ', ' + (viewHeight - height) + ')')\n      .style('font-size', '12px')\n      .style('font-family', 'var(--tb-config-font-family)')\n      .style('color', 'var(--tb-service-font-4)')\n      .style('stroke-width', '0.1em')\n      .call(\n        d3\n          .axisBottom(vm.xAxis)\n          .ticks(7)\n          .tickFormat(date => formatDate(date))\n      );\n  }\n\n  function drawYAxis() {\n    let { custom } = widgetContext;\n    let { viewWidth, viewHeight, margin, barHeight, barMargin } = vm.d3Config;\n    const width = viewWidth - margin.left - margin.right;\n    const height = viewHeight - margin.top - margin.bottom;\n\n    // xAxis 그리기\n    vm.yAxis = d3.scaleLinear([d3.max(vm.lineData, d => d.value), 0], [0, height - barHeight - 2 * barMargin]);\n    vm.$yAxis = vm.$d3\n      .append('g')\n      .attr('class', 'axis')\n      .attr('transform', 'translate(' + (viewWidth - width) + ', ' + margin.top + ')')\n      .style('font-size', '12px')\n      .style('font-family', 'var(--tb-config-font-family)')\n      .style('color', 'var(--tb-service-font-4)')\n      .style('stroke-width', '0.1em')\n      .call(d3.axisLeft(vm.yAxis).ticks(5));\n  }\n\n  function drawMain() {\n    let { custom } = widgetContext;\n    let { viewWidth, viewHeight, barMargin, barHeight, margin } = vm.d3Config;\n    const x = vm.xAxis;\n\n    vm.$d3\n      .append('g')\n      .attr('class', 'main-group')\n      .append('rect')\n      .attr('class', 'background')\n      .attr('x', margin.left)\n      .attr('width', viewWidth - margin.left - margin.right)\n      .attr('height', viewHeight - margin.bottom)\n      .attr('fill', 'var(--tb-service-background-1)')\n      .attr('stroke', 'var(--tb-service-border-1)');\n\n    let dayLineList = [custom.startTs];\n    let interval = (_.floor((custom.endTs - custom.startTs - 1) / (7 * DAY_MS)) + 1) * DAY_MS;\n    for (let i = custom.startTs; i < moment(custom.endTs).endOf('day').valueOf(); i += interval) {\n      if (moment(i).startOf('day').valueOf() > custom.startTs) {\n        dayLineList.push(moment(i).startOf('day').valueOf());\n      }\n    }\n    dayLineList.sort();\n\n    vm.$d3\n      .select(`.main-group`)\n      .append('g')\n      .attr('class', `day-group`)\n      .selectAll('g')\n      .data(dayLineList)\n      .enter()\n      .append('rect')\n      .attr('class', 'day-line')\n      .attr('x', d => margin.left + x(d))\n      .attr('width', d => {\n        let endTs = d + interval;\n        if (endTs > custom.endTs) {\n          endTs = custom.endTs;\n        }\n        if (d == custom.startTs) {\n          endTs = moment(d)\n            .add(_.floor(interval / DAY_MS), 'days')\n            .startOf('day')\n            .valueOf();\n        }\n        return x(endTs) - x(d);\n      })\n      .attr('height', viewHeight - margin.bottom)\n      .attr('fill', (d, i) => {\n        return i % 2 == 0 ? 'var(--tb-service-background-4)' : 'var(--tb-service-background-2)';\n      })\n      .attr('opacity', 0.5)\n      .attr('stroke', 'var(--tb-service-border-1)');\n  }\n\n  function drawBar() {\n    let { custom } = widgetContext;\n    let { viewWidth, viewHeight, barMargin, barHeight, margin } = vm.d3Config;\n    const x = vm.xAxis;\n\n    // 상태 변화 막대 그리기\n    vm.$d3.select('.main-group').append('g').attr('class', `bar`);\n\n    vm.$d3\n      .select(`.bar`)\n      .append('g')\n      .selectAll('g')\n      .data(custom.labelList[additionalParams.index])\n      .enter()\n      .append('rect')\n      .attr('class', d => `bar-rect bar-rect-${d.status} tooltip tooltip-${d.index}`)\n      .attr('fill', d => {\n        if (d.status == 'unconnected' || d.status == 'nodata') {\n          return STATUS.unconnected.color;\n        } else if (d.status == 'stopped') {\n          return STATUS.stopped.color;\n        } else if (d.status == 'waiting') {\n          return STATUS.waiting.color;\n        } else {\n          return STATUS.working.color;\n        }\n      })\n      .attr('x', d => margin.left + x(d.time))\n      .attr('y', viewHeight - margin.bottom - barHeight - barMargin)\n      .attr('width', d => x(d.nextTime) - x(d.time))\n      .attr('height', barHeight);\n\n    for (let i in custom.labelList[additionalParams.index]) {\n      let $content = $('<div></div>');\n      $content.css({\n        color: 'var(--tb-service-font-0)',\n        backgroundColor: 'rgba(0,0,0,0.8)',\n        lineHeight: 1.5,\n        borderRadius: `${8 / STANDARD_WINDOW_SIZE}vw`,\n        padding: `${12 / STANDARD_WINDOW_SIZE}vw`,\n      });\n\n      let startTime = moment(custom.labelList[additionalParams.index][i].time).format(custom.ymdhm);\n      let endTime = moment(custom.labelList[additionalParams.index][i].nextTime).format(custom.ymdhm);\n      let $date = $(`<div>${startTime} ~ ${endTime}</div>`);\n      $date.css({\n        textAlign: 'center',\n        fontSize: `${12 / STANDARD_WINDOW_SIZE}vw`,\n      });\n\n      let $description = $(`<div></div>`);\n      if (\n        custom.labelList[additionalParams.index][i].status &&\n        custom.labelList[additionalParams.index][i].status !== ''\n      ) {\n        $description.html(`(${t(STATUS[custom.labelList[additionalParams.index][i].status].content)})`);\n      }\n      $description.css({\n        textAlign: 'center',\n        fontSize: `${12 / STANDARD_WINDOW_SIZE}vw`,\n      });\n\n      $content.append($date);\n      $content.append($description);\n\n      $(`.tooltip-${custom.labelList[additionalParams.index][i].index}`, vm.$form).tooltipster({\n        content: $content,\n        interactive: true,\n        theme: 'tooltipster-transparent',\n        trigger: 'hover',\n        delay: 100,\n      });\n    }\n  }\n\n  function drawLine() {\n    let { custom } = widgetContext;\n    let { viewWidth, viewHeight, barHeight, barMargin, margin } = vm.d3Config;\n    const x = vm.xAxis;\n    const y = vm.yAxis;\n\n    vm.$d3.select('.main-group').append('g').attr('class', `line`);\n\n    const line = d3\n      .line()\n      .x(d => x(d.ts))\n      .y(d => y(d.value));\n\n    vm.$d3\n      .select(`.line`)\n      .append('path')\n      .style('transform', `translate(${margin.left}px, ${margin.top}px)`)\n      .attr('fill', 'none')\n      .attr('stroke', 'var(--tb-service-font-3)')\n      .attr('stroke-width', 1)\n      .attr(\n        'd',\n        line([\n          { ts: custom.startTs, value: 0 },\n          { ts: custom.endTs, value: 0 },\n        ])\n      );\n\n    // 상태 변화 막대 그리기\n\n    vm.$d3\n      .select(`.line`)\n      .append('path')\n      .style('transform', `translate(${margin.left}px, ${margin.top}px)`)\n      .attr('fill', 'none')\n      .attr('stroke', 'var(--tb-alarm-major)')\n      .attr('stroke-width', 1.5)\n      .attr('d', line(vm.lineData));\n  }\n\n  function pointermoved(event) {\n    let { custom } = widgetContext;\n    let { viewWidth, viewHeight, barMargin, barHeight, margin } = vm.d3Config;\n    const i = bisect(vm.lineData, vm.xAxis.invert(d3.pointer(event)[0] - margin.left));\n    vm.$tooltip.style('display', null);\n    vm.$vertical.style('display', null);\n    vm.$horizontal.style('display', null);\n    let standard = (viewHeight - margin.bottom - barHeight - 2 * barMargin) / 2;\n    let yTrans = 0;\n    let xTrans = 0;\n    if (vm.xAxis(vm.lineData[i].ts) < margin.left + 60) {\n      xTrans = 60;\n    }\n    if (vm.xAxis(vm.lineData[i].ts) > viewWidth - margin.left - margin.right - 60) {\n      xTrans = -60;\n    }\n    if (vm.yAxis(vm.lineData[i].value) > standard) {\n      yTrans = -60;\n    } else {\n      yTrans = 0;\n    }\n    vm.$tooltip.attr(\n      'transform',\n      `translate(${margin.left + vm.xAxis(vm.lineData[i].ts) + xTrans},${vm.yAxis(vm.lineData[i].value) + yTrans})`\n    );\n    vm.$vertical.attr('transform', `translate(${margin.left + vm.xAxis(vm.lineData[i].ts)},0)`);\n    vm.$horizontal.attr('transform', `translate(0,${vm.yAxis(vm.lineData[i].value) + margin.top})`);\n\n    const path = vm.$tooltip.selectAll('path').data([,]).join('path').attr('fill', 'rgba(25,25,25,0.9)');\n    const text = vm.$tooltip\n      .selectAll('text')\n      .data([,])\n      .join('text')\n      .call(text =>\n        text\n          .selectAll('tspan')\n          .data([formatFullDate(vm.lineData[i].ts), formatValue(vm.lineData[i].value)])\n          .join('tspan')\n          .attr('x', 0)\n          .attr('y', (_, i) => `${i * 1.1}em`)\n          .attr('font-weight', (_, i) => (i ? null : 'bold'))\n          .attr('fill', 'var(--tb-service-font-0)')\n          .attr('font-size', '16px')\n          .text(d => d)\n      );\n\n    vm.$vertical\n      .selectAll('path')\n      .data([,])\n      .join('path')\n      .attr('stroke', 'var(--tb-service-font-3)')\n      .attr('stroke-width', 1)\n      .attr('d', `M0,0V${viewHeight - margin.bottom - barHeight - 2 * barMargin}`);\n    vm.$horizontal\n      .selectAll('path')\n      .data([,])\n      .join('path')\n      .attr('stroke', 'var(--tb-service-font-3)')\n      .attr('stroke-width', 1)\n      .attr('d', `M${margin.left},0H${viewWidth - margin.right}`);\n\n    size(text, path);\n  }\n\n  function pointerleft() {\n    vm.$tooltip.style('display', 'none');\n    vm.$vertical.style('display', 'none');\n    vm.$horizontal.style('display', 'none');\n  }\n\n  function size(text, path) {\n    const { x, y, width: w, height: h } = text.node().getBBox();\n    text.attr('transform', `translate(${-w / 2},${15 - y})`);\n    path.attr('d', `M${-w / 2 - 10},5H-15H${w / 2 + 10}v${h + 20}h-${w + 20}z`);\n  }\n}\n\nfunction loadData() {\n  return new Promise((resolve, reject) => {\n    let acc = 'NONE';\n    if (widgetContext.custom.endTs - widgetContext.custom.startTs > 31 * DAY_MS) {\n      acc = 'MAX';\n    }\n    attributeService\n      .getEntityTimeseries(\n        entityId,\n        ['f1_watt'],\n        widgetContext.custom.startTs,\n        widgetContext.custom.endTs,\n        50000,\n        acc,\n        Math.floor((widgetContext.custom.endTs - widgetContext.custom.startTs) / 500),\n        'ASC',\n        true\n      )\n      .subscribe(datas => {\n        resolve(datas);\n      });\n  });\n}\n\nfunction getStyle(target) {\n  return widgetContext.custom.computedStyle.getPropertyValue(target);\n}\n\nfunction formatDate(date) {\n  if (d3.timeHour(date) < date) {\n    return d3.timeFormat(t('thingplus.time-format.d3-hm'))(date);\n  } else if (d3.timeDay(date) < date) {\n    return d3.timeFormat(t('thingplus.time-format.d3-dh'))(date);\n  } else {\n    return d3.timeFormat(t('thingplus.time-format.d3-md'))(date);\n  }\n}\n\nfunction formatFullDate(date) {\n  return moment(date).format('YYYY-MM-DD HH:mm');\n}\n\nfunction formatValue(value) {\n  return value.toLocaleString() + 'W';\n}\n",
+                "customResources": [],
+                "openInSeparateDialog": false,
+                "openInPopover": false,
+                "id": "0a8b6416-b2ed-1f30-77a9-14bc5437aa59"
+              }
+            ],
+            "toEdit": [
+              {
+                "name": "To Edit",
+                "icon": "more_horiz",
+                "useShowWidgetActionFunction": null,
+                "showWidgetActionFunction": "return true;",
+                "type": "updateDashboardState",
+                "targetDashboardStateId": "change-timeline",
+                "setEntityId": true,
+                "stateEntityParamName": null,
+                "openRightLayout": false,
+                "openInSeparateDialog": false,
+                "openInPopover": false,
+                "id": "418862d3-6fea-5fd6-8c07-d51897c5f034"
+              }
+            ]
+          }
+        },
+        "row": 0,
+        "col": 0,
+        "id": "3a876d2f-4e77-b38a-70a0-0371c2c21cb4"
+      },
+      "da0a008b-2d15-4489-1078-72f9a94884b2": {
+        "isSystemType": false,
+        "bundleAlias": "moldmecca_info_widgets",
+        "typeAlias": "change_timeline",
+        "type": "timeseries",
+        "title": "New widget",
+        "image": null,
+        "description": null,
+        "sizeX": 8,
+        "sizeY": 5,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "fcb37668-3c29-f308-b320-ab4952e2ac37",
+              "filterId": null,
+              "dataKeys": []
+            },
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "c52a996e-fd2f-2401-f394-626c06679aa6",
+              "filterId": null,
+              "dataKeys": [
+                {
+                  "name": "range",
+                  "type": "timeseries",
+                  "label": "thingplus.label.time-range",
+                  "color": "#607d8b",
+                  "settings": {},
+                  "_hash": 0.8874235598273885,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "state",
+                  "type": "timeseries",
+                  "label": "thingplus.label.state-history",
+                  "color": "#9c27b0",
+                  "settings": {},
+                  "_hash": 0.7299204386138014,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "author",
+                  "type": "timeseries",
+                  "label": "thingplus.label.author",
+                  "color": "#8bc34a",
+                  "settings": {},
+                  "_hash": 0.0017044961527403757,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "phone",
+                  "type": "timeseries",
+                  "label": "thingplus.label.phone",
+                  "color": "#3f51b5",
+                  "settings": {},
+                  "_hash": 0.2713913916561437,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "modifiedTs",
+                  "type": "timeseries",
+                  "label": "thingplus.label.modified-time",
+                  "color": "#e91e63",
+                  "settings": {},
+                  "_hash": 0.9368332351603028,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                }
+              ]
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "timewindowMs": 60000
+            }
+          },
+          "showTitle": false,
+          "backgroundColor": "#fff",
+          "color": "rgba(0, 0, 0, 0.87)",
+          "padding": "0px",
+          "settings": {
+            "widget": {
+              "originWidth": 1630
+            }
+          },
+          "title": "thingplus.menu.change-timeline",
+          "dropShadow": false,
+          "enableFullscreen": false,
+          "titleStyle": {
+            "font-family": "var(--tb-config-font-family)",
+            "font-size": "1.6em",
+            "font-weight": 500,
+            "letter-spacing": "var(--tb-config-letter-spacing)",
+            "color": "var(--tb-service-font-5)"
+          },
+          "showTitleIcon": false,
+          "titleTooltip": "",
+          "widgetStyle": {
+            "cursor": "default",
+            "box-shadow": "0px 2px 10px 0 rgba(0, 0, 0, 0.04)"
+          },
+          "noDataDisplayMessage": "",
+          "showLegend": false,
+          "useDashboardTimewindow": true,
+          "actions": {
+            "viewChart": [],
+            "customAction": [
+              {
+                "name": "thingplus.action.reset",
+                "icon": "refresh",
+                "useShowWidgetActionFunction": null,
+                "showWidgetActionFunction": "return true;",
+                "type": "custom",
+                "customFunction": "let startTs = additionalParams.startTs;\nlet endTs = additionalParams.endTs;\nwidgetContext.http\n  .delete(\n    `/api/plugins/telemetry/DEVICE/${entityId.id}/timeseries/delete?keys=TP_ModifiedState&startTs=${startTs}&endTs=${endTs}&rewriteLatestIfDeleted=true`\n  )\n  .subscribe(() => {\n    widgetContext.updateAliases();\n  });\n",
+                "openInSeparateDialog": false,
+                "openInPopover": false,
+                "id": "5255afd1-13df-888a-57df-900a91652c15"
+              },
+              {
+                "name": "thingplus.action.view-pattern",
+                "icon": "show_chart",
+                "useShowWidgetActionFunction": null,
+                "showWidgetActionFunction": "return true;",
+                "type": "customPretty",
+                "customHtml": "<div id=\"active-power-form\">\n  <form #editEntityForm=\"ngForm\" [formGroup]=\"editEntityFormGroup\" style=\"font-size: {{calcFontSize()}}px;\">\n    <div class=\"dialog-title-box\" fxLayoutAlign=\"space-between center\">\n      <span class=\"dialog-title\">{{entityLabel}} {{\"thingplus.dialog.detail-active-power\" | translate}}</span>\n      <button class=\"dialog-close\" (click)=\"cancel()\" type=\"button\">\n        <mat-icon class=\"material-icons\">close</mat-icon>\n      </button>\n    </div>\n    <mat-progress-bar color=\"warn\" mode=\"indeterminate\" *ngIf=\"isLoading$ | async\"> </mat-progress-bar>\n    <div style=\"height: 0.4em\" *ngIf=\"!(isLoading$ | async)\"></div>\n    <div mat-dialog-content>\n      <div class=\"legend\" fxLayoutAlign=\"start center\" fxLayoutGap=\"2.4em\">\n        <div\n          class=\"legend-box\"\n          *ngFor=\"let legend of legendList\"\n          fxLayoutAlign=\"start center\"\n          fxLayoutGap=\"0.5em\"\n          (mouseenter)=\"legendEnter($event, legend)\"\n          (mouseleave)=\"legendLeave($event, legend)\"\n        >\n          <div class=\"legend-circle\" [ngStyle]=\"{'color': legend.color}\"></div>\n          <div class=\"legend-label\">{{legend.label}}</div>\n        </div>\n      </div>\n      <div class=\"chart\"></div>\n    </div>\n    <div mat-dialog-actions fxLayout=\"row\" fxLayoutAlign=\"end center\" fxLayoutGap=\"1em\">\n      <button\n        class=\"button close-button\"\n        [disabled]=\"(isLoading$ | async)\"\n        type=\"button\"\n        (click)=\"cancel()\"\n        cdkFocusInitial\n        translate\n      >\n        thingplus.action.close\n      </button>\n    </div>\n  </form>\n</div>\n",
+                "customCss": "#active-power-form form {\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n  cursor: default;\n  width: 40vw;\n}\n#active-power-form .dialog-title-box {\n  padding: 2em;\n  border-bottom: 1px solid var(--tb-service-border-1);\n}\n#active-power-form .dialog-title {\n  color: var(--tb-service-font-5);\n  font-size: 1.6em;\n}\n#active-power-form .dialog-close {\n  all: unset;\n  cursor: pointer;\n  color: var(--tb-service-font-3);\n  transition-property: color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#active-power-form .dialog-close i {\n  font-size: 1.4em;\n}\n#active-power-form .dialog-close:hover {\n  color: var(--tb-service-font-5);\n}\n\n#active-power-form .mat-dialog-content {\n  padding: var(--tb-config-padding) !important;\n}\n#active-power-form .mat-dialog-content::-webkit-scrollbar {\n  width: 6px;\n  height: 6px;\n}\n#active-power-form .mat-dialog-content::-webkit-scrollbar-thumb {\n  border: 2px solid #00000000;\n  background-clip: padding-box;\n  background-color: var(--tb-service-accent);\n}\n#active-power-form .mat-dialog-content::-webkit-scrollbar-thumb:hover {\n  border: 1px solid #00000000;\n}\n\n#active-power-form .legend {\n  width: 100%;\n  padding-bottom: 2em;\n}\n#active-power-form .legend-circle {\n  width: 0.6em;\n  height: 0.6em;\n  background-color: currentColor;\n}\n#active-power-form .legend-label {\n  font-size: 1.2em;\n  color: var(--tb-service-font-4);\n}\n#active-power-form .legend-box.hidden .legend-label {\n  text-decoration: line-through;\n}\n\n#active-power-form .chart {\n  width: 100%;\n}\n#active-power-form .chart svg {\n  width: 100%;\n  height: auto;\n}\n#active-power-form .chart .tooltip:hover {\n  stroke: var(--tb-service-font-5);\n}\n#active-power-form .bar-rect {\n  transition-property: transform, height;\n  transition-duration: var(--tb-config-color-duration);\n}\n#active-power-form .bar-rect-active {\n  transform: translateY(2px);\n  height: 6px;\n}\n#active-power-form .bar-rect-target {\n  transform: translateY(-2px);\n  height: 14px;\n}\n\n#active-power-form .mat-dialog-actions {\n  padding: 2em;\n  border-top: 1px solid var(--tb-service-border-1);\n}\n#active-power-form .button {\n  all: unset;\n  padding: 0.6em 1.4em;\n  font-size: 1.4em;\n  box-sizing: border-box;\n  cursor: pointer;\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#active-power-form .close-button {\n  color: var(--tb-service-font-5);\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n}\n#active-power-form .close-button:hover {\n  border-color: var(--tb-service-border-3);\n}\n#active-power-form .close-button:active {\n  background-color: var(--tb-service-border-0);\n}\n",
+                "customFunction": "let $injector = widgetContext.$scope.$injector;\nlet customDialog = $injector.get(widgetContext.servicesMap.get('customDialog'));\nlet attributeService = $injector.get(widgetContext.servicesMap.get('attributeService'));\n\nconst t = widgetContext.custom.t;\nconst STANDARD_WINDOW_SIZE = 1920 / 100;\nconst HOUR_MS = 3600000;\nconst DAY_MS = 24 * HOUR_MS;\nconst STATUS = {\n  stopped: { priority: 0, content: 'thingplus.state.stopped', color: 'var(--tb-service-state-stopped)' },\n  waiting: { priority: 1, content: 'thingplus.state.waiting', color: 'var(--tb-service-state-waiting)' },\n  working: { priority: 2, content: 'thingplus.state.working', color: 'var(--tb-service-state-working)' },\n  trial: { priority: 3, content: 'thingplus.state.trial', color: 'var(--tb-service-state-trial)' },\n  unconnected: { priority: 4, content: 'thingplus.state.unconnected', color: 'var(--tb-service-state-unconnected)' },\n};\n\nopenEditEntityDialog();\n\nfunction openEditEntityDialog() {\n  customDialog.customDialog(htmlTemplate, EditEntityDialogController).subscribe();\n}\n\nfunction EditEntityDialogController(instance) {\n  let vm = instance;\n  vm.ownerId = widgetContext.defaultSubscription.configuredDatasources[0].entity.id;\n  vm.t = t;\n  vm.isFirstLoad = true;\n  vm.entityLabel = entityLabel;\n\n  vm.editEntityFormGroup = vm.fb.group({});\n\n  vm.isLoading$.subscribe(async x => {\n    if (vm.isFirstLoad) {\n      vm.isFirstLoad = false;\n      vm.$form = $('#active-power-form');\n      vm.lineData = await loadData();\n      if (vm.lineData['f1_watt']) {\n        vm.lineData = vm.lineData['f1_watt'].map(d => {\n          if (d.value < 0) d.value = 0;\n          return { ts: moment(d.ts).valueOf(), value: d.value };\n        });\n      } else {\n        vm.lineData = [];\n      }\n      drawChart();\n    }\n  });\n\n  vm.legendList = [\n    { key: 'watt', color: 'var(--tb-alarm-major)', label: t('thingplus.parameter.active-power') },\n    { key: 'stopped', color: 'var(--tb-service-state-stopped)', label: t('thingplus.state.stopped') },\n    { key: 'waiting', color: 'var(--tb-service-state-waiting)', label: t('thingplus.state.waiting') },\n    { key: 'working', color: 'var(--tb-service-state-working)', label: t('thingplus.state.working') },\n    { key: 'trial', color: 'var(--tb-service-state-trial)', label: t('thingplus.state.trial') },\n    { key: 'unconnected', color: 'var(--tb-service-state-unconnected)', label: t('thingplus.state.unconnected') },\n  ];\n\n  vm.calcFontSize = function () {\n    const originWidth = widgetContext.settings.widget.originWidth;\n    let widgetFontSize = _.round((widgetContext.width / originWidth) * 10, 2);\n    if (widgetFontSize < 6.25) {\n      widgetFontSize = 6.25;\n    }\n    return widgetFontSize;\n  };\n  vm.cancel = function () {\n    vm.dialogRef.close(null);\n  };\n  vm.legendEnter = function (e, d) {\n    if (d.key == 'watt') return;\n    $(`.bar-rect`, vm.$form).addClass('bar-rect-active');\n    $(`.bar-rect-${d.key}`, vm.$form).removeClass('bar-rect-active');\n    $(`.bar-rect-${d.key}`, vm.$form).addClass('bar-rect-target');\n  };\n  vm.legendLeave = function (e, d) {\n    if (d.key == 'watt') return;\n    $(`.bar-rect`, vm.$form).removeClass('bar-rect-active');\n    $(`.bar-rect`, vm.$form).removeClass('bar-rect-target');\n  };\n\n  // Add the event listeners that show or hide the tooltip.\n  const bisect = d3.bisector(d => d.ts).center;\n\n  function drawChart() {\n    vm.d3Config = {\n      viewWidth: 960,\n      viewHeight: 540,\n      barHeight: 10,\n      barMargin: 15,\n      margin: {\n        top: 5,\n        right: 0,\n        bottom: 40,\n        left: 60,\n      },\n    };\n\n    // svg 영역 정의\n    vm.$d3 = d3\n      .select($('.chart', vm.$form)[0])\n      .append('svg')\n      .attr('viewBox', `0 0 ${vm.d3Config.viewWidth} ${vm.d3Config.viewHeight}`)\n      .attr('width', vm.d3Config.viewWidth)\n      .attr('height', vm.d3Config.viewHeight);\n\n    if (vm.lineData.length > 0) {\n      vm.$d3\n        .on('pointerenter pointermove', pointermoved)\n        .on('pointerleave', pointerleft)\n        .on('touchstart', event => event.preventDefault());\n    }\n\n    drawXAxis();\n    drawYAxis();\n    drawMain();\n    drawBar();\n    if (vm.lineData.length > 0) {\n      drawLine();\n    }\n\n    // Create the tooltip container.\n    vm.$vertical = vm.$d3.select('.main-group').append('g');\n    vm.$horizontal = vm.$d3.select('.main-group').append('g');\n    vm.$tooltip = vm.$d3.select('.main-group').append('g');\n  }\n\n  function drawXAxis() {\n    let { custom } = widgetContext;\n    let { viewWidth, viewHeight, margin } = vm.d3Config;\n    const width = viewWidth - margin.left - margin.right;\n    const height = margin.bottom;\n\n    // xAxis 그리기\n    vm.xAxis = d3\n      .scaleTime()\n      .domain(d3.extent([custom.startTs, custom.endTs]))\n      .range([0, width]);\n    vm.$xAxis = vm.$d3\n      .append('g')\n      .attr('class', 'axis')\n      .attr('transform', 'translate(' + margin.left + ', ' + (viewHeight - height) + ')')\n      .style('font-size', '12px')\n      .style('font-family', 'var(--tb-config-font-family)')\n      .style('color', 'var(--tb-service-font-4)')\n      .style('stroke-width', '0.1em')\n      .call(\n        d3\n          .axisBottom(vm.xAxis)\n          .ticks(7)\n          .tickFormat(date => formatDate(date))\n      );\n  }\n\n  function drawYAxis() {\n    let { custom } = widgetContext;\n    let { viewWidth, viewHeight, margin, barHeight, barMargin } = vm.d3Config;\n    const width = viewWidth - margin.left - margin.right;\n    const height = viewHeight - margin.top - margin.bottom;\n\n    // xAxis 그리기\n    vm.yAxis = d3.scaleLinear([d3.max(vm.lineData, d => d.value), 0], [0, height - barHeight - 2 * barMargin]);\n    vm.$yAxis = vm.$d3\n      .append('g')\n      .attr('class', 'axis')\n      .attr('transform', 'translate(' + (viewWidth - width) + ', ' + margin.top + ')')\n      .style('font-size', '12px')\n      .style('font-family', 'var(--tb-config-font-family)')\n      .style('color', 'var(--tb-service-font-4)')\n      .style('stroke-width', '0.1em')\n      .call(d3.axisLeft(vm.yAxis).ticks(5));\n  }\n\n  function drawMain() {\n    let { custom } = widgetContext;\n    let { viewWidth, viewHeight, barMargin, barHeight, margin } = vm.d3Config;\n    const x = vm.xAxis;\n\n    vm.$d3\n      .append('g')\n      .attr('class', 'main-group')\n      .append('rect')\n      .attr('class', 'background')\n      .attr('x', margin.left)\n      .attr('width', viewWidth - margin.left - margin.right)\n      .attr('height', viewHeight - margin.bottom)\n      .attr('fill', 'var(--tb-service-background-1)')\n      .attr('stroke', 'var(--tb-service-border-1)');\n\n    let dayLineList = [custom.startTs];\n    let interval = (_.floor((custom.endTs - custom.startTs - 1) / (7 * DAY_MS)) + 1) * DAY_MS;\n    for (let i = custom.startTs; i < moment(custom.endTs).endOf('day').valueOf(); i += interval) {\n      if (moment(i).startOf('day').valueOf() > custom.startTs) {\n        dayLineList.push(moment(i).startOf('day').valueOf());\n      }\n    }\n    dayLineList.sort();\n\n    vm.$d3\n      .select(`.main-group`)\n      .append('g')\n      .attr('class', `day-group`)\n      .selectAll('g')\n      .data(dayLineList)\n      .enter()\n      .append('rect')\n      .attr('class', 'day-line')\n      .attr('x', d => margin.left + x(d))\n      .attr('width', d => {\n        let endTs = d + interval;\n        if (endTs > custom.endTs) {\n          endTs = custom.endTs;\n        }\n        if (d == custom.startTs) {\n          endTs = moment(d)\n            .add(_.floor(interval / DAY_MS), 'days')\n            .startOf('day')\n            .valueOf();\n        }\n        return x(endTs) - x(d);\n      })\n      .attr('height', viewHeight - margin.bottom)\n      .attr('fill', (d, i) => {\n        return i % 2 == 0 ? 'var(--tb-service-background-4)' : 'var(--tb-service-background-2)';\n      })\n      .attr('opacity', 0.5)\n      .attr('stroke', 'var(--tb-service-border-1)');\n  }\n\n  function drawBar() {\n    let { custom } = widgetContext;\n    let { viewWidth, viewHeight, barMargin, barHeight, margin } = vm.d3Config;\n    const x = vm.xAxis;\n\n    // 상태 변화 막대 그리기\n    vm.$d3.select('.main-group').append('g').attr('class', `bar`);\n\n    vm.$d3\n      .select(`.bar`)\n      .append('g')\n      .selectAll('g')\n      .data(custom.labelList[0])\n      .enter()\n      .append('rect')\n      .attr('class', d => `bar-rect bar-rect-${d.status} tooltip tooltip-${d.index}`)\n      .attr('fill', d => {\n        if (d.status == 'unconnected' || d.status == 'nodata') {\n          return STATUS.unconnected.color;\n        } else if (d.status == 'stopped') {\n          return STATUS.stopped.color;\n        } else if (d.status == 'waiting') {\n          return STATUS.waiting.color;\n        } else {\n          return STATUS.working.color;\n        }\n      })\n      .attr('x', d => margin.left + x(d.time))\n      .attr('y', viewHeight - margin.bottom - barHeight - barMargin)\n      .attr('width', d => x(d.nextTime) - x(d.time))\n      .attr('height', barHeight);\n\n    for (let i in custom.labelList[0]) {\n      let $content = $('<div></div>');\n      $content.css({\n        color: 'var(--tb-service-font-0)',\n        backgroundColor: 'rgba(0,0,0,0.8)',\n        lineHeight: 1.5,\n        borderRadius: `${8 / STANDARD_WINDOW_SIZE}vw`,\n        padding: `${12 / STANDARD_WINDOW_SIZE}vw`,\n      });\n\n      let startTime = moment(custom.labelList[0][i].time).format(custom.ymdhm);\n      let endTime = moment(custom.labelList[0][i].nextTime).format(custom.ymdhm);\n      let $date = $(`<div>${startTime} ~ ${endTime}</div>`);\n      $date.css({\n        textAlign: 'center',\n        fontSize: `${12 / STANDARD_WINDOW_SIZE}vw`,\n      });\n\n      let $description = $(`<div></div>`);\n      if (custom.labelList[0][i].status && custom.labelList[0][i].status !== '') {\n        $description.html(`(${t(STATUS[custom.labelList[0][i].status].content)})`);\n      }\n      $description.css({\n        textAlign: 'center',\n        fontSize: `${12 / STANDARD_WINDOW_SIZE}vw`,\n      });\n\n      $content.append($date);\n      $content.append($description);\n\n      $(`.tooltip-${custom.labelList[0][i].index}`, vm.$form).tooltipster({\n        content: $content,\n        interactive: true,\n        theme: 'tooltipster-transparent',\n        trigger: 'hover',\n        delay: 100,\n      });\n    }\n  }\n\n  function drawLine() {\n    let { custom } = widgetContext;\n    let { viewWidth, viewHeight, barHeight, barMargin, margin } = vm.d3Config;\n    const x = vm.xAxis;\n    const y = vm.yAxis;\n\n    vm.$d3.select('.main-group').append('g').attr('class', `line`);\n\n    const line = d3\n      .line()\n      .x(d => x(d.ts))\n      .y(d => y(d.value));\n\n    vm.$d3\n      .select(`.line`)\n      .append('path')\n      .style('transform', `translate(${margin.left}px, ${margin.top}px)`)\n      .attr('fill', 'none')\n      .attr('stroke', 'var(--tb-service-font-3)')\n      .attr('stroke-width', 1)\n      .attr(\n        'd',\n        line([\n          { ts: custom.startTs, value: 0 },\n          { ts: custom.endTs, value: 0 },\n        ])\n      );\n\n    // 상태 변화 막대 그리기\n\n    vm.$d3\n      .select(`.line`)\n      .append('path')\n      .style('transform', `translate(${margin.left}px, ${margin.top}px)`)\n      .attr('fill', 'none')\n      .attr('stroke', 'var(--tb-alarm-major)')\n      .attr('stroke-width', 1.5)\n      .attr('d', line(vm.lineData));\n  }\n\n  function pointermoved(event) {\n    let { custom } = widgetContext;\n    let { viewWidth, viewHeight, barMargin, barHeight, margin } = vm.d3Config;\n    const i = bisect(vm.lineData, vm.xAxis.invert(d3.pointer(event)[0] - margin.left));\n    vm.$tooltip.style('display', null);\n    vm.$vertical.style('display', null);\n    vm.$horizontal.style('display', null);\n    let standard = (viewHeight - margin.bottom - barHeight - 2 * barMargin) / 2;\n    let yTrans = 0;\n    let xTrans = 0;\n    if (vm.xAxis(vm.lineData[i].ts) < margin.left + 60) {\n      xTrans = 60;\n    }\n    if (vm.xAxis(vm.lineData[i].ts) > viewWidth - margin.left - margin.right - 60) {\n      xTrans = -60;\n    }\n    if (vm.yAxis(vm.lineData[i].value) > standard) {\n      yTrans = -60;\n    } else {\n      yTrans = 0;\n    }\n    vm.$tooltip.attr(\n      'transform',\n      `translate(${margin.left + vm.xAxis(vm.lineData[i].ts) + xTrans},${vm.yAxis(vm.lineData[i].value) + yTrans})`\n    );\n    vm.$vertical.attr('transform', `translate(${margin.left + vm.xAxis(vm.lineData[i].ts)},0)`);\n    vm.$horizontal.attr('transform', `translate(0,${vm.yAxis(vm.lineData[i].value) + margin.top})`);\n\n    const path = vm.$tooltip.selectAll('path').data([,]).join('path').attr('fill', 'rgba(25,25,25,0.9)');\n    const text = vm.$tooltip\n      .selectAll('text')\n      .data([,])\n      .join('text')\n      .call(text =>\n        text\n          .selectAll('tspan')\n          .data([formatFullDate(vm.lineData[i].ts), formatValue(vm.lineData[i].value)])\n          .join('tspan')\n          .attr('x', 0)\n          .attr('y', (_, i) => `${i * 1.1}em`)\n          .attr('font-weight', (_, i) => (i ? null : 'bold'))\n          .attr('fill', 'var(--tb-service-font-0)')\n          .attr('font-size', '16px')\n          .text(d => d)\n      );\n\n    vm.$vertical\n      .selectAll('path')\n      .data([,])\n      .join('path')\n      .attr('stroke', 'var(--tb-service-font-3)')\n      .attr('stroke-width', 1)\n      .attr('d', `M0,0V${viewHeight - margin.bottom - barHeight - 2 * barMargin}`);\n    vm.$horizontal\n      .selectAll('path')\n      .data([,])\n      .join('path')\n      .attr('stroke', 'var(--tb-service-font-3)')\n      .attr('stroke-width', 1)\n      .attr('d', `M${margin.left},0H${viewWidth - margin.right}`);\n\n    size(text, path);\n  }\n\n  function pointerleft() {\n    vm.$tooltip.style('display', 'none');\n    vm.$vertical.style('display', 'none');\n    vm.$horizontal.style('display', 'none');\n  }\n\n  function size(text, path) {\n    const { x, y, width: w, height: h } = text.node().getBBox();\n    text.attr('transform', `translate(${-w / 2},${15 - y})`);\n    path.attr('d', `M${-w / 2 - 10},5H-15H${w / 2 + 10}v${h + 20}h-${w + 20}z`);\n  }\n}\n\nfunction loadData() {\n  return new Promise((resolve, reject) => {\n    let acc = 'NONE';\n    if (widgetContext.custom.endTs - widgetContext.custom.startTs > 31 * DAY_MS) {\n      acc = 'MAX';\n    }\n    attributeService\n      .getEntityTimeseries(\n        entityId,\n        ['f1_watt'],\n        widgetContext.custom.startTs,\n        widgetContext.custom.endTs,\n        50000,\n        acc,\n        Math.floor((widgetContext.custom.endTs - widgetContext.custom.startTs) / 500),\n        'ASC',\n        true\n      )\n      .subscribe(datas => {\n        resolve(datas);\n      });\n  });\n}\n\nfunction getStyle(target) {\n  return widgetContext.custom.computedStyle.getPropertyValue(target);\n}\n\nfunction formatDate(date) {\n  if (d3.timeHour(date) < date) {\n    return d3.timeFormat(t('thingplus.time-format.d3-hm'))(date);\n  } else if (d3.timeDay(date) < date) {\n    return d3.timeFormat(t('thingplus.time-format.d3-dh'))(date);\n  } else {\n    return d3.timeFormat(t('thingplus.time-format.d3-md'))(date);\n  }\n}\n\nfunction formatFullDate(date) {\n  return moment(date).format('YYYY-MM-DD HH:mm');\n}\n\nfunction formatValue(value) {\n  return value.toLocaleString() + 'W';\n}\n",
+                "customResources": [],
+                "openInSeparateDialog": false,
+                "openInPopover": false,
+                "id": "fb64b474-6f34-036e-f6d5-ad176eb9b34b"
+              }
+            ],
+            "headerButton": [],
+            "actionCellButton": [
+              {
+                "name": "delete",
+                "icon": "delete",
+                "useShowWidgetActionFunction": null,
+                "showWidgetActionFunction": "return true;",
+                "type": "customPretty",
+                "customHtml": "<div id=\"delete-modified-state-form\">\n  <form\n    #deleteEntityForm=\"ngForm\"\n    [formGroup]=\"deleteEntityFormGroup\"\n    (ngSubmit)=\"save()\"\n    style=\"font-size: {{calcFontSize()}}px;\"\n  >\n    <div class=\"dialog-title-box\" fxLayoutAlign=\"space-between center\">\n      <span class=\"dialog-title\" translate>thingplus.dialog.delete-modified-state-title</span>\n      <button class=\"dialog-close\" (click)=\"cancel()\" type=\"button\">\n        <mat-icon class=\"material-icons\">close</mat-icon>\n      </button>\n    </div>\n    <mat-progress-bar color=\"warn\" mode=\"indeterminate\" *ngIf=\"isLoading$ | async\"> </mat-progress-bar>\n    <div style=\"height: 4px\" *ngIf=\"!(isLoading$ | async)\"></div>\n    <div mat-dialog-content fxLayout=\"column\">\n      <div fxLayout=\"row\" fxLayoutGap=\"8px\" fxLayout.xs=\"column\" fxLayoutGap.xs=\"0\">\n        <div class=\"label\">\n          {{'thingplus.dialog.delete-modified-state-content' | translate:{range: range, state: state} }}\n        </div>\n      </div>\n    </div>\n    <div mat-dialog-actions fxLayout=\"row\" fxLayoutAlign=\"end center\" fxLayoutGap=\"1em\">\n      <button\n        class=\"button close-button\"\n        [disabled]=\"(isLoading$ | async)\"\n        type=\"button\"\n        (click)=\"cancel()\"\n        cdkFocusInitial\n        translate\n      >\n        thingplus.action.close\n      </button>\n      <button\n        class=\"button delete-button\"\n        type=\"submit\"\n        [disabled]=\"(isLoading$ | async) || deleteEntityForm.invalid\"\n        translate\n      >\n        thingplus.action.delete\n      </button>\n    </div>\n  </form>\n</div>\n",
+                "customCss": "#delete-modified-state-form form {\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n}\n#delete-modified-state-form .dialog-title-box {\n  padding: 2em;\n  border-bottom: 1px solid var(--tb-service-border-1);\n}\n#delete-modified-state-form .dialog-title {\n  color: var(--tb-service-font-5);\n  font-size: 1.6em;\n}\n#delete-modified-state-form .dialog-close {\n  all: unset;\n  cursor: pointer;\n  color: var(--tb-service-font-3);\n  transition-property: color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#delete-modified-state-form .dialog-close i {\n  font-size: 1.4em;\n}\n#delete-modified-state-form .dialog-close:hover {\n  color: var(--tb-service-font-5);\n}\n\n#delete-modified-state-form .mat-dialog-content {\n  padding: var(--tb-config-padding) !important;\n}\n#delete-modified-state-form .mat-dialog-content::-webkit-scrollbar {\n  width: 6px;\n  height: 6px;\n}\n#delete-modified-state-form .mat-dialog-content::-webkit-scrollbar-thumb {\n  border: 2px solid #00000000;\n  background-clip: padding-box;\n  background-color: var(--tb-service-accent);\n}\n#delete-modified-state-form .mat-dialog-content::-webkit-scrollbar-thumb:hover {\n  border: 1px solid #00000000;\n}\n\n#delete-modified-state-form .label {\n  color: var(--tb-service-font-5);\n  font-size: 1.4em;\n}\n\n#delete-modified-state-form .mat-dialog-actions {\n  padding: 2em;\n  border-top: 1px solid var(--tb-service-border-1);\n}\n#delete-modified-state-form .button {\n  all: unset;\n  padding: 0.6em 1.4em;\n  font-size: 1.4em;\n  box-sizing: border-box;\n  cursor: pointer;\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#delete-modified-state-form .delete-button {\n  color: var(--tb-service-font-0);\n  background-color: var(--tb-service-warn);\n}\n#delete-modified-state-form .delete-button:hover {\n  background-color: var(--tb-service-warn-hover);\n}\n#delete-modified-state-form .delete-button:active {\n  background-color: var(--tb-service-warn-pressed);\n}\n#delete-modified-state-form .close-button {\n  color: var(--tb-service-font-5);\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n}\n#delete-modified-state-form .close-button:hover {\n  border-color: var(--tb-service-border-3);\n}\n#delete-modified-state-form .close-button:active {\n  background-color: var(--tb-service-border-0);\n}\n\n@media (min-width: 960px) {\n  #delete-modified-state-form form {\n    width: 24vw;\n  }\n}\n",
+                "customFunction": "let $injector = widgetContext.$scope.$injector;\nlet dialogs = $injector.get(widgetContext.servicesMap.get('dialogs'));\nlet customDialog = $injector.get(widgetContext.servicesMap.get('customDialog'));\n\nconst t = widgetContext.custom.t;\n\nopenDeleteEntityDialog();\n\nfunction openDeleteEntityDialog() {\n  customDialog.customDialog(htmlTemplate, DeleteEntityDialogController).subscribe();\n}\n\nfunction DeleteEntityDialogController(instance) {\n  let vm = instance;\n  vm.entityName = entityName;\n  vm.range = additionalParams.range;\n  vm.state = additionalParams.state;\n  vm.deleteEntityFormGroup = vm.fb.group({});\n\n  vm.calcFontSize = function () {\n    const originWidth = widgetContext.settings.widget.originWidth;\n    let widgetFontSize = _.round((widgetContext.width / originWidth) * 10, 2);\n    if (widgetFontSize < 6.25) {\n      widgetFontSize = 6.25;\n    }\n    return widgetFontSize;\n  };\n  vm.cancel = function () {\n    vm.dialogRef.close(null);\n  };\n  vm.save = function () {\n    vm.deleteEntityFormGroup.markAsPristine();\n    deleteEntityObservable().subscribe(\n      function success() {\n        widgetContext.updateAliases();\n        vm.dialogRef.close(null);\n      },\n      function fail() {\n        showErrorDialog();\n        vm.dialogRef.close(null);\n      }\n    );\n  };\n\n  function deleteEntityObservable() {\n    let targetTs = additionalParams.targetData.startTs;\n    return widgetContext.http.delete(\n      `/api/plugins/telemetry/DEVICE/${entityId.id}/timeseries/delete?keys=TP_ModifiedState&startTs=${targetTs}&endTs=${\n        targetTs + 1\n      }&rewriteLatestIfDeleted=true`\n    );\n  }\n\n  function showErrorDialog() {\n    let title = t('thingplus.dialog.error-delete-title');\n    let content = t('thingplus.dialog.error-delete-content');\n    dialogs.alert(title, content, 'CLOSE').subscribe(function (result) {});\n  }\n}\n",
+                "customResources": [],
+                "openInSeparateDialog": false,
+                "openInPopover": false,
+                "id": "9cdfaf6d-8b5f-3643-0870-141be2644836"
+              }
+            ],
+            "addModifiedState": [
+              {
+                "name": "thingplus.action.modify-state",
+                "icon": "add",
+                "useShowWidgetActionFunction": null,
+                "showWidgetActionFunction": "return true;",
+                "type": "customPretty",
+                "customHtml": "<div id=\"add-modified-state-form\">\n  <form\n    #addEntityForm=\"ngForm\"\n    [formGroup]=\"addEntityFormGroup\"\n    (ngSubmit)=\"save()\"\n    style=\"font-size: {{calcFontSize()}}px;\"\n  >\n    <div class=\"dialog-title-box\" fxLayoutAlign=\"space-between center\">\n      <span class=\"dialog-title\" translate>thingplus.dialog.create-modified-state-title</span>\n      <button class=\"dialog-close\" (click)=\"cancel()\" type=\"button\">\n        <mat-icon class=\"material-icons\">close</mat-icon>\n      </button>\n    </div>\n    <mat-progress-bar color=\"warn\" mode=\"indeterminate\" *ngIf=\"isLoading$ | async\"> </mat-progress-bar>\n    <div style=\"height: 0.4em\" *ngIf=\"!(isLoading$ | async)\"></div>\n    <div mat-dialog-content fxLayout=\"column\" fxLayoutGap=\"2em\">\n      <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n        <div fxFlex=\"100\" fxLayout=\"column\" fxLayoutGap=\"0.6em\" class=\"input-box\">\n          <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n            <label translate>thingplus.label.start-time</label>\n          </div>\n          <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.6em\">\n            <div class=\"date-selector\" fxLayoutAlign=\"space-between center\">\n              <mat-datetimepicker #startDatePicker type=\"datetime\"></mat-datetimepicker>\n              <input\n                class=\"hidden\"\n                matInput\n                readonly\n                [(ngModel)]=\"startDate\"\n                [ngModelOptions]=\"{ standalone: true }\"\n                [max]=\"endDate\"\n                [matDatetimepicker]=\"startDatePicker\"\n                (ngModelChange)=\"setStartDate($event)\"\n              />\n              <input class=\"start-date\" (click)=\"startDatePicker.open()\" formControlName=\"viewStartDate\" readonly />\n              <div class=\"select-arrow\"></div>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n        <div fxFlex=\"100\" fxLayout=\"column\" fxLayoutGap=\"0.6em\" class=\"input-box\">\n          <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n            <label translate>thingplus.label.end-time</label>\n          </div>\n          <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.6em\">\n            <div class=\"date-selector\" fxLayoutAlign=\"space-between center\">\n              <mat-datetimepicker #endDatePicker type=\"datetime\"></mat-datetimepicker>\n              <input\n                class=\"hidden\"\n                matInput\n                readonly\n                [(ngModel)]=\"endDate\"\n                [ngModelOptions]=\"{ standalone: true }\"\n                [max]=\"endDate\"\n                [matDatetimepicker]=\"endDatePicker\"\n                (ngModelChange)=\"setEndDate($event)\"\n              />\n              <input class=\"end-date\" (click)=\"endDatePicker.open()\" formControlName=\"viewEndDate\" readonly />\n              <div class=\"select-arrow\"></div>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n        <div fxFlex=\"100\" fxLayout=\"column\" fxLayoutGap=\"0.6em\" class=\"input-box\">\n          <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n            <label translate>thingplus.label.after-state</label>\n          </div>\n          <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.6em\">\n            <mat-select formControlName=\"state\">\n              <mat-option *ngFor=\"let state of stateList\" [value]=\"state.value\"> {{state.name}} </mat-option>\n            </mat-select>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div mat-dialog-actions fxLayout=\"row\" fxLayoutAlign=\"end center\" fxLayoutGap=\"1em\">\n      <button\n        class=\"button close-button\"\n        [disabled]=\"(isLoading$ | async)\"\n        type=\"button\"\n        (click)=\"cancel()\"\n        cdkFocusInitial\n        translate\n      >\n        thingplus.action.close\n      </button>\n      <button\n        class=\"button save-button\"\n        type=\"submit\"\n        [disabled]=\"(isLoading$ | async) || addEntityForm.invalid\"\n        translate\n      >\n        thingplus.action.save\n      </button>\n    </div>\n  </form>\n</div>\n",
+                "customCss": "#add-modified-state-form form {\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n  word-break: keep-all;\n}\n#add-modified-state-form .dialog-title-box {\n  padding: 2em;\n  border-bottom: 1px solid var(--tb-service-border-1);\n}\n#add-modified-state-form .dialog-title {\n  color: var(--tb-service-font-5);\n  font-size: 1.6em;\n}\n#add-modified-state-form .dialog-close {\n  all: unset;\n  cursor: pointer;\n  color: var(--tb-service-font-3);\n  transition-property: color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#add-modified-state-form .dialog-close i {\n  font-size: 1.4em;\n}\n#add-modified-state-form .dialog-close:hover {\n  color: var(--tb-service-font-5);\n}\n\n#add-modified-state-form .mat-dialog-content {\n  padding: var(--tb-config-padding) !important;\n}\n#add-modified-state-form .mat-dialog-content::-webkit-scrollbar {\n  width: 6px;\n  height: 6px;\n}\n#add-modified-state-form .mat-dialog-content::-webkit-scrollbar-thumb {\n  border: 2px solid #00000000;\n  background-clip: padding-box;\n  background-color: var(--tb-service-accent);\n}\n#add-modified-state-form .mat-dialog-content::-webkit-scrollbar-thumb:hover {\n  border: 1px solid #00000000;\n}\n\n#add-modified-state-form .label-box {\n  color: var(--tb-service-font-4);\n  font-size: 1.2em;\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#add-modified-state-form .value-box {\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n  color: var(--tb-service-font-5);\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#add-modified-state-form .value-box:hover {\n  border-color: var(--tb-service-border-3);\n}\n#add-modified-state-form .value-box:focus-within {\n  border-color: var(--tb-service-accent);\n  caret-color: var(--tb-service-accent);\n}\n#add-modified-state-form .value-box *::placeholder {\n  color: var(--tb-service-font-4);\n}\n#add-modified-state-form .value-box input {\n  color: var(--tb-service-font-5);\n  font-size: 1.4em;\n  padding: calc(16em / 14);\n  caret-color: var(--tb-service-accent);\n}\n#add-modified-state-form .value-box .mat-select-trigger {\n  font-size: 1.4em;\n  padding: calc(16em / 14);\n  line-height: 1;\n}\n#add-modified-state-form .value-box .mat-select-value {\n  font-family: var(--tb-config-font-family);\n  font-weight: 300;\n  font-size: 1em;\n  color: var(--tb-service-font-5);\n}\n#add-modified-state-form .value-box .mat-select-arrow {\n  font-family: var(--tb-config-font-family);\n  font-weight: 300;\n  border-left: 0.4em solid transparent;\n  border-right: 0.4em solid transparent;\n  border-top: 0.4em solid;\n  color: var(--tb-service-accent);\n}\n#add-modified-state-form .error-box {\n  display: none;\n  color: var(--tb-service-warn);\n  font-size: 1.2em;\n}\n#add-modified-state-form .input-box.error .label-box {\n  color: var(--tb-service-warn);\n}\n#add-modified-state-form .input-box.error .value-box {\n  border: 1px solid var(--tb-service-warn);\n}\n#add-modified-state-form .input-box.error .error-box {\n  display: block;\n  margin-top: calc(0.6em / 1.2);\n}\n\n/* Date Controller */\n#add-modified-state-form .date-controller {\n  margin-right: var(--tb-config-padding);\n}\n#add-modified-state-form .date-selector {\n  position: relative;\n  width: 100%;\n  line-height: 1;\n  color: var(--tb-service-font-5);\n  /* background-color: var(--tb-service-background-0); */\n  /* border: 1px solid var(--tb-service-border-0);*/\n  padding: 0.6em 0.9em;\n  cursor: pointer;\n  transition-property: border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#add-modified-state-form .date-selector:hover {\n  border-color: var(--tb-service-border-3);\n}\n#add-modified-state-form .date-selector input {\n  font-family: var(--tb-config-font-family);\n  font-size: 1.4em;\n  padding: 0;\n  font-weight: 300;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  line-height: 1.3;\n}\n#add-modified-state-form .select-arrow {\n  border-left: 0.5em solid transparent;\n  border-right: 0.5em solid transparent;\n  border-top: 0.5em solid;\n  color: var(--tb-service-accent);\n}\n#add-modified-state-form .start-date,\n#add-modified-state-form .end-date {\n  all: unset;\n  width: 100%;\n}\n#add-modified-state-form .hidden {\n  visibility: hidden;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n\n#add-modified-state-form .mat-dialog-actions {\n  padding: 2em;\n  border-top: 1px solid var(--tb-service-border-1);\n}\n#add-modified-state-form .button {\n  all: unset;\n  padding: 0.6em 1.4em;\n  font-size: 1.4em;\n  box-sizing: border-box;\n  cursor: pointer;\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#add-modified-state-form .save-button {\n  color: var(--tb-service-font-0);\n  background-color: var(--tb-service-accent);\n}\n#add-modified-state-form .save-button:hover {\n  background-color: var(--tb-service-accent-hover);\n}\n#add-modified-state-form .save-button:active {\n  background-color: var(--tb-service-accent-pressed);\n}\n#add-modified-state-form .close-button {\n  color: var(--tb-service-font-5);\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n}\n#add-modified-state-form .close-button:hover {\n  border-color: var(--tb-service-border-3);\n}\n#add-modified-state-form .close-button:active {\n  background-color: var(--tb-service-border-0);\n}\n\n@media (min-width: 960px) {\n  #add-modified-state-form form {\n    width: 24vw;\n  }\n}\n",
+                "customFunction": "let $injector = widgetContext.$scope.$injector;\nlet customDialog = $injector.get(widgetContext.servicesMap.get('customDialog'));\nlet attributeService = $injector.get(widgetContext.servicesMap.get('attributeService'));\nlet userService = $injector.get(widgetContext.servicesMap.get('userService'));\n\nconst t = widgetContext.custom.t;\n\nopenAddEntityDialog();\n\nfunction openAddEntityDialog() {\n  customDialog.customDialog(htmlTemplate, AddEntityDialogController).subscribe();\n}\n\nfunction AddEntityDialogController(instance) {\n  let vm = instance;\n  vm.ownerId = widgetContext.defaultSubscription.configuredDatasources[0].entity.id;\n  vm.t = t;\n  vm.startDate = moment(additionalParams.startTs).toDate();\n  vm.endDate = moment().toDate();\n\n  vm.stateList = [\n    { name: t('thingplus.state.stopped'), value: 0 },\n    { name: t('thingplus.state.waiting'), value: 1 },\n    { name: t('thingplus.state.working'), value: 2 },\n    { name: t('thingplus.state.trial'), value: 3 },\n  ];\n  let startDate = vm.startDate;\n  let endDate = vm.endDate;\n  if (widgetContext.custom.dateSelection) {\n    startDate = widgetContext.custom.dateSelection[0];\n    endDate = widgetContext.custom.dateSelection[1];\n  }\n\n  vm.addEntityFormGroup = vm.fb.group({\n    viewStartDate: [moment(startDate).format('YYYY-MM-DD HH:mm'), [vm.validators.required]],\n    viewEndDate: [moment(endDate).format('YYYY-MM-DD HH:mm'), [vm.validators.required]],\n    state: [2, []],\n  });\n\n  vm.setStartDate = function (e) {\n    vm.startDate = e;\n    vm.addEntityFormGroup.patchValue(\n      {\n        viewStartDate: moment(vm.startDate).format('YYYY-MM-DD HH:mm'),\n      },\n      { emitEvent: true }\n    );\n  };\n  vm.setEndDate = function (e) {\n    vm.endDate = e;\n    vm.addEntityFormGroup.patchValue(\n      {\n        viewEndDate: moment(vm.endDate).format('YYYY-MM-DD HH:mm'),\n      },\n      { emitEvent: true }\n    );\n  };\n  vm.calcFontSize = function () {\n    const originWidth = widgetContext.settings.widget.originWidth;\n    let widgetFontSize = _.round((widgetContext.width / originWidth) * 10, 2);\n    if (widgetFontSize < 6.25) {\n      widgetFontSize = 6.25;\n    }\n    return widgetFontSize;\n  };\n  vm.cancel = function () {\n    vm.dialogRef.close(null);\n  };\n  vm.save = function () {\n    let viewStartDate = vm.addEntityFormGroup.get('viewStartDate').value;\n    let viewEndDate = vm.addEntityFormGroup.get('viewEndDate').value;\n    let state = vm.addEntityFormGroup.get('state').value;\n    getUserInfo(widgetContext.currentUser.userId).subscribe(user => {\n      saveModifiedState(viewStartDate, viewEndDate, state, user).subscribe(() => {\n        widgetContext.updateAliases();\n        vm.dialogRef.close(null);\n      });\n    });\n  };\n}\n\nfunction getUnconnectState(startDate, endDate) {\n  let startTs = moment(startDate).valueOf();\n  let endTs = moment(endDate).valueOf();\n  let target = widgetContext.custom.labelList[1];\n  let filterTarget = target.filter(\n    x =>\n      x.status == 'unconnected' &&\n      ((x.nextTime > startTs && x.time < endTs) || (x.time <= startTs && x.nextTime > startTs))\n  );\n\n  filterTarget.sort((a, b) => b.time - a.time);\n  return filterTarget;\n}\n\nfunction getUserInfo(userId) {\n  return userService.getUser(userId);\n}\n\nfunction saveModifiedState(startDate, endDate, state, user) {\n  let filterTarget = getUnconnectState(startDate, endDate);\n\n  let telemetryBody = [];\n  for (let i in filterTarget) {\n    let start = moment(filterTarget[i].time).valueOf();\n    if (start < moment(startDate).valueOf()) {\n      start = moment(startDate).valueOf();\n    }\n    let end = moment(filterTarget[i].nextTime).valueOf();\n    if (end > moment(endDate).valueOf()) {\n      end = moment(endDate).valueOf();\n    }\n    let modifiedState = {\n      modifiedTs: moment().valueOf(),\n      startTs: start,\n      endTs: end,\n      state: state,\n      author: user.firstName ? user.firstName : user.email,\n      phone: user.additionalInfo && user.additionalInfo.phone ? user.additionalInfo.phone : '',\n    };\n    telemetryBody.push({ ts: modifiedState.startTs, values: { TP_ModifiedState: modifiedState } });\n  }\n  return widgetContext.http.post(\n    `/api/plugins/telemetry/${entityId.entityType}/${entityId.id}/timeseries/TELEMETRY`,\n    telemetryBody\n  );\n}\n",
+                "customResources": [],
+                "openInSeparateDialog": false,
+                "openInPopover": false,
+                "id": "ab86e937-036b-4aff-230a-e388fe408b0c"
+              }
+            ]
+          }
+        },
+        "row": 0,
+        "col": 0,
+        "id": "da0a008b-2d15-4489-1078-72f9a94884b2"
+      }
+    },
+    "states": {
+      "state-timeline": {
+        "name": "{i18n:thingplus.menu.state-timeline}",
+        "root": true,
+        "layouts": {
+          "main": {
+            "widgets": {
+              "3a876d2f-4e77-b38a-70a0-0371c2c21cb4": {
+                "sizeX": 95,
+                "sizeY": 43,
+                "row": 1,
+                "col": 1,
+                "mobileHeight": 10
+              }
+            },
+            "gridSettings": {
+              "backgroundColor": "var(--tb-service-background-4)",
+              "columns": 97,
+              "margin": 0,
+              "marginUnit": "px",
+              "mobileMargin": 0,
+              "backgroundSizeMode": "100%",
+              "autoFillHeight": true,
+              "backgroundImageUrl": null,
+              "mobileAutoFillHeight": true,
+              "mobileRowHeight": 50
+            }
+          }
+        }
+      },
+      "change-timeline": {
+        "name": "{i18n:thingplus.menu.change-timeline}",
+        "root": false,
+        "layouts": {
+          "main": {
+            "widgets": {
+              "da0a008b-2d15-4489-1078-72f9a94884b2": {
+                "sizeX": 95,
+                "sizeY": 58,
+                "row": 1,
+                "col": 1
+              }
+            },
+            "gridSettings": {
+              "backgroundColor": "var(--tb-service-background-4)",
+              "columns": 97,
+              "margin": 0,
+              "backgroundSizeMode": "100%",
+              "autoFillHeight": true,
+              "backgroundImageUrl": null,
+              "mobileAutoFillHeight": false,
+              "mobileRowHeight": 70
+            }
+          }
+        }
+      }
+    },
+    "entityAliases": {
+      "fcb37668-3c29-f308-b320-ab4952e2ac37": {
+        "id": "fcb37668-3c29-f308-b320-ab4952e2ac37",
+        "alias": "Current User Owner",
+        "filter": {
+          "type": "singleEntity",
+          "resolveMultiple": false,
+          "singleEntity": {
+            "entityType": "CURRENT_USER_OWNER",
+            "id": "13814000-1dd2-11b2-8080-808080808080"
+          }
+        }
+      },
+      "c52a996e-fd2f-2401-f394-626c06679aa6": {
+        "id": "c52a996e-fd2f-2401-f394-626c06679aa6",
+        "alias": "Selected Entity",
+        "filter": {
+          "type": "stateEntity",
+          "resolveMultiple": false,
+          "stateEntityParamName": null,
+          "defaultStateEntity": {
+            "entityType": "CURRENT_USER_OWNER",
+            "id": "13814000-1dd2-11b2-8080-808080808080"
+          }
+        }
+      },
+      "e3ab3715-0afe-6537-1259-379088b68164": {
+        "id": "e3ab3715-0afe-6537-1259-379088b68164",
+        "alias": "Selected Device",
+        "filter": {
+          "type": "deviceSearchQuery",
+          "resolveMultiple": true,
+          "rootStateEntity": true,
+          "stateEntityParamName": null,
+          "defaultStateEntity": {
+            "entityType": "CURRENT_USER_OWNER",
+            "id": "13814000-1dd2-11b2-8080-808080808080"
+          },
+          "rootEntity": null,
+          "direction": "FROM",
+          "maxLevel": 3,
+          "fetchLastLevelOnly": false,
+          "relationType": "Contains",
+          "deviceTypes": [
+            "device"
+          ]
+        }
+      }
+    },
+    "filters": {},
+    "timewindow": {
+      "displayValue": "",
+      "hideInterval": false,
+      "hideAggregation": false,
+      "hideAggInterval": false,
+      "hideTimezone": false,
+      "selectedTab": 0,
+      "realtime": {
+        "realtimeType": 0,
+        "interval": 1000,
+        "timewindowMs": 60000,
+        "quickInterval": "CURRENT_DAY"
+      },
+      "history": {
+        "historyType": 0,
+        "interval": 1000,
+        "timewindowMs": 60000,
+        "fixedTimewindow": {
+          "startTimeMs": 1674707283399,
+          "endTimeMs": 1674793683399
+        },
+        "quickInterval": "CURRENT_DAY"
+      },
+      "aggregation": {
+        "type": "AVG",
+        "limit": 25000
+      }
+    },
+    "settings": {
+      "stateControllerId": "entity",
+      "showTitle": false,
+      "showDashboardsSelect": false,
+      "showEntitiesSelect": false,
+      "showDashboardTimewindow": false,
+      "showDashboardExport": false,
+      "toolbarAlwaysOpen": true,
+      "titleColor": "rgba(0,0,0,0.870588)",
+      "showDashboardLogo": false,
+      "dashboardLogoUrl": null,
+      "hideToolbar": true,
+      "showFilters": false,
+      "showUpdateDashboardImage": false
+    }
+  },
+  "name": "State Timeline"
+}

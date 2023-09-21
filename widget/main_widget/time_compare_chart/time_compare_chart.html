@@ -1,0 +1,38 @@
+<div id="widget" fxLayout="column" fxLayoutAlign="start center">
+  <header class="widget-header" fxLayoutAlign="space-between center" fxLayoutGap="1em">
+    <section class="widget-header-left-section" fxFlex="100" fxLayoutAlign="start center" fxLayoutGap="1em">
+      <div class="widget-title" translate>title</div>
+    </section>
+    <section class="widget-header-right-section" fxFlex="100" fxLayoutAlign="end center" fxLayoutGap="1em">
+      <div class="widget-action" fxLayoutAlign="end center" fxLayoutGap="1em">
+        <div
+          class="widget-header-action"
+          *ngFor="let headerAction of headerActionList"
+          fxLayoutAlign="start center"
+          fxLayoutGap="0.5em"
+          (click)="headerAction.action($event)"
+        >
+          <i class="material-icons">{{headerAction.icon}}</i>
+        </div>
+      </div>
+    </section>
+  </header>
+  <section class="compare-section" fxLayoutAlign="space-between start">
+    <div
+      class="compare-box"
+      *ngFor="let compare of compareList"
+      fxLayout="column"
+      fxLayoutAlign="start start"
+      fxLayoutGap="0.2em"
+    >
+      <label class="compare-label" translate>{{compare.label}}</label>
+      <div class="compare-value-box" fxLayoutAlign="center center" fxLayoutGap="0.2em">
+        <span class="compare-value">{{compare.value}}%</span>
+        <span class="compare-direction material-icons {{compare.direction}}">{{compare.icon}}</span>
+      </div>
+    </div>
+  </section>
+  <section class="chart-section">
+    <canvas class="chart"></canvas>
+  </section>
+</div>

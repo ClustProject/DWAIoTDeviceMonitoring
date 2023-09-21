@@ -1,0 +1,169 @@
+{
+  "title": "Cam",
+  "image": null,
+  "mobileHide": false,
+  "mobileOrder": null,
+  "configuration": {
+    "description": "",
+    "widgets": {
+      "6d1475ac-8d87-30d5-2293-1bcd4fb6fdfb": {
+        "isSystemType": false,
+        "bundleAlias": "moldmecca_maintain_widgets",
+        "typeAlias": "test",
+        "type": "latest",
+        "title": "New widget",
+        "image": null,
+        "description": null,
+        "sizeX": 9.5,
+        "sizeY": 6,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "046efd8f-26ab-e636-7814-329ed203f934",
+              "filterId": null,
+              "dataKeys": []
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "timewindowMs": 60000
+            }
+          },
+          "showTitle": false,
+          "backgroundColor": "#fff",
+          "color": "rgba(0, 0, 0, 0.87)",
+          "padding": "0px",
+          "settings": {
+            "widget": {
+              "originWidth": 1630
+            }
+          },
+          "title": "thingplus.menu.cam-check",
+          "showTitleIcon": false,
+          "titleTooltip": "",
+          "dropShadow": false,
+          "enableFullscreen": false,
+          "widgetStyle": {
+            "cursor": "default",
+            "box-shadow": "0px 2px 10px 0 rgba(0, 0, 0, 0.04)"
+          },
+          "titleStyle": {
+            "font-family": "var(--tb-config-font-family)",
+            "font-size": "1.6em",
+            "font-weight": 500,
+            "letter-spacing": "var(--tb-config-letter-spacing)",
+            "color": "var(--tb-service-font-5)",
+            "white-space": "nowrap",
+            "overflow": "hidden",
+            "text-overflow": "elipsis"
+          },
+          "noDataDisplayMessage": "",
+          "showLegend": false
+        },
+        "row": 0,
+        "col": 0,
+        "id": "6d1475ac-8d87-30d5-2293-1bcd4fb6fdfb"
+      }
+    },
+    "states": {
+      "default": {
+        "name": "Cam",
+        "root": true,
+        "layouts": {
+          "main": {
+            "widgets": {
+              "6d1475ac-8d87-30d5-2293-1bcd4fb6fdfb": {
+                "sizeX": 97,
+                "sizeY": 57,
+                "row": 0,
+                "col": 0,
+                "mobileHeight": 7
+              }
+            },
+            "gridSettings": {
+              "backgroundColor": "#eeeeee",
+              "columns": 97,
+              "margin": 0,
+              "backgroundSizeMode": "100%",
+              "autoFillHeight": true,
+              "backgroundImageUrl": null,
+              "mobileAutoFillHeight": false,
+              "mobileRowHeight": 70
+            }
+          }
+        }
+      }
+    },
+    "entityAliases": {
+      "4dce7a12-0159-78df-1355-94ec62b0b066": {
+        "id": "4dce7a12-0159-78df-1355-94ec62b0b066",
+        "alias": "s",
+        "filter": {
+          "type": "deviceType",
+          "resolveMultiple": true,
+          "deviceType": "device",
+          "deviceNameFilter": ""
+        }
+      },
+      "046efd8f-26ab-e636-7814-329ed203f934": {
+        "id": "046efd8f-26ab-e636-7814-329ed203f934",
+        "alias": "Current User Owner",
+        "filter": {
+          "type": "singleEntity",
+          "resolveMultiple": false,
+          "singleEntity": {
+            "entityType": "CURRENT_USER_OWNER",
+            "id": "13814000-1dd2-11b2-8080-808080808080"
+          }
+        }
+      }
+    },
+    "filters": {},
+    "timewindow": {
+      "displayValue": "",
+      "hideInterval": false,
+      "hideAggregation": false,
+      "hideAggInterval": false,
+      "hideTimezone": false,
+      "selectedTab": 0,
+      "realtime": {
+        "realtimeType": 0,
+        "interval": 1000,
+        "timewindowMs": 60000,
+        "quickInterval": "CURRENT_DAY"
+      },
+      "history": {
+        "historyType": 0,
+        "interval": 1000,
+        "timewindowMs": 60000,
+        "fixedTimewindow": {
+          "startTimeMs": 1677403078096,
+          "endTimeMs": 1677489478096
+        },
+        "quickInterval": "CURRENT_DAY"
+      },
+      "aggregation": {
+        "type": "AVG",
+        "limit": 25000
+      }
+    },
+    "settings": {
+      "stateControllerId": "entity",
+      "showTitle": false,
+      "showDashboardsSelect": true,
+      "showEntitiesSelect": true,
+      "showDashboardTimewindow": true,
+      "showDashboardExport": true,
+      "toolbarAlwaysOpen": true,
+      "titleColor": "rgba(0,0,0,0.870588)",
+      "showDashboardLogo": false,
+      "dashboardLogoUrl": null,
+      "hideToolbar": true,
+      "showFilters": true,
+      "showUpdateDashboardImage": true
+    }
+  },
+  "name": "Cam"
+}

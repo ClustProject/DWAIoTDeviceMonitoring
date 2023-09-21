@@ -1,0 +1,169 @@
+{
+  "ruleChain": {
+    "additionalInfo": {
+      "description": ""
+    },
+    "name": "Upload File",
+    "type": "CORE",
+    "firstRuleNodeId": null,
+    "root": false,
+    "debugMode": false,
+    "configuration": null
+  },
+  "metadata": {
+    "firstNodeIndex": null,
+    "nodes": [
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 140,
+          "layoutY": 543
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Start Upload",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 86400,
+          "useEndtime": true,
+          "endTime": "16:00:00",
+          "jsScript": "var msg = { };\nvar metadata = {  };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn { msg: msg, metadata: metadata, msgType: msgType };",
+          "originatorId": "7d99c250-b8ba-11ed-8d0d-21e1d787e420",
+          "originatorType": "CUSTOMER"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 438,
+          "layoutY": 652
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbDuplicateRelatedNode",
+        "name": "To Device",
+        "debugMode": false,
+        "configuration": {
+          "relationsQuery": {
+            "fetchLastLevelOnly": false,
+            "direction": "FROM",
+            "maxLevel": 2,
+            "filters": [
+              {
+                "relationType": "Contains",
+                "entityTypes": [
+                  "DEVICE"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 138,
+          "layoutY": 648
+        },
+        "type": "org.thingsboard.rule.engine.metadata.TbGetTenantAttributeNode",
+        "name": "Get Token",
+        "debugMode": false,
+        "configuration": {
+          "telemetry": false,
+          "attrMapping": {
+            "token": "jwtToken"
+          }
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 753,
+          "layoutY": 653
+        },
+        "type": "org.thingsboard.rule.engine.metadata.TbGetOriginatorFieldsNode",
+        "name": "Get Originator Info",
+        "debugMode": false,
+        "configuration": {
+          "fieldsMapping": {
+            "id": "originatorId",
+            "label": "originatorLabel",
+            "name": "originatorName"
+          }
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1046,
+          "layoutY": 764
+        },
+        "type": "org.thingsboard.rule.engine.rest.TbRestApiCallNode",
+        "name": "Upload",
+        "debugMode": true,
+        "configuration": {
+          "restEndpointUrlPattern": "https://nl2c22v4t5.execute-api.ap-northeast-2.amazonaws.com/dev/moldmecca-data-upload",
+          "requestMethod": "POST",
+          "useSimpleClientHttpFactory": true,
+          "enableProxy": false,
+          "useSystemProxyProperties": false,
+          "proxyScheme": null,
+          "proxyHost": null,
+          "proxyPort": 0,
+          "proxyUser": null,
+          "proxyPassword": null,
+          "readTimeoutMs": 0,
+          "maxParallelRequestsCount": 0,
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "useRedisQueueForMsgPersistence": false,
+          "trimQueue": false,
+          "maxQueueSize": 0,
+          "credentials": {
+            "type": "anonymous"
+          }
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 754,
+          "layoutY": 767
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Create Message",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "var now = new Date()\nnow.setMinutes(0)\nnow.setSeconds(0)\nnow.setMilliseconds(0)\n\nvar start = now.getTime() - 86400000 - 7200000\nvar end = now.getTime() - 1\n\nvar newMsg = {\n    host: 'https://moldmecca.thingplus.net',\n    jwtToken: metadata.jwtToken,\n    deviceId: metadata.originatorId,\n    deviceLabel: metadata.originatorLabel,\n    startTs: start,\n    endTs: end\n}\n\nreturn {msg: newMsg, metadata: metadata, msgType: msgType};"
+        }
+      }
+    ],
+    "connections": [
+      {
+        "fromIndex": 0,
+        "toIndex": 2,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 1,
+        "toIndex": 3,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 1,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 3,
+        "toIndex": 5,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 5,
+        "toIndex": 4,
+        "type": "Success"
+      }
+    ],
+    "ruleChainConnections": null
+  }
+}

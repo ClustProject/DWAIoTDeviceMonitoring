@@ -1,0 +1,79 @@
+#widget {
+  width: 100%;
+  height: 100%;
+  font-size: 10px;
+  font-family: var(--tb-config-font-family);
+  user-select: none;
+  white-space: nowrap;
+  letter-spacing: var(--tb-config-letter-spacing);
+}
+
+/*
+  Widget Header Area
+*/
+header.widget-header {
+  width: 100%;
+  padding: var(--tb-config-padding);
+  border-bottom: 1px solid var(--tb-service-border-1);
+}
+
+.widget-header-right-section .widget-header-action {
+  cursor: pointer;
+  color: var(--tb-service-font-3);
+  transition-property: color;
+  transition-duration: var(--tb-config-color-duration);
+}
+.widget-header-right-section .widget-header-action i {
+  font-size: 2em;
+  font-weight: bold;
+}
+.widget-header-right-section .widget-header-action:hover {
+  color: var(--tb-service-accent-hover);
+}
+.widget-header-right-section .widget-header-action:active {
+  color: var(--tb-service-accent-pressed);
+}
+
+/*
+  Widget Content Area
+*/
+.compare-section {
+  width: 100%;
+  height: 6em;
+  padding: var(--tb-config-padding);
+  padding-bottom: 0px;
+}
+.compare-section .compare-box {
+  height: 100%;
+}
+.compare-section .compare-label {
+  font-size: 1.2em;
+  color: var(--tb-service-font-4);
+}
+.compare-section .compare-value {
+  font-size: 1.6em;
+  font-weight: 600;
+  color: var(--tb-service-font-5);
+}
+.compare-section .compare-direction {
+  display: none;
+  font-size: 1.2em;
+}
+.compare-section .compare-direction.high {
+  display: inline-block;
+  color: var(--tb-service-compare-high);
+}
+.compare-section .compare-direction.low {
+  display: inline-block;
+  color: var(--tb-service-compare-low);
+}
+
+/* chart-section */
+.chart-section {
+  width: 100%;
+  padding: var(--tb-config-padding);
+}
+.chart-section .chart-box {
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,312 @@
+{
+  "ruleChain": {
+    "additionalInfo": {
+      "description": ""
+    },
+    "name": "Check Operation",
+    "type": "CORE",
+    "firstRuleNodeId": null,
+    "root": false,
+    "debugMode": false,
+    "configuration": null
+  },
+  "metadata": {
+    "firstNodeIndex": 11,
+    "nodes": [
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1644,
+          "layoutY": 149
+        },
+        "type": "org.thingsboard.rule.engine.metadata.TbGetOriginatorFieldsNode",
+        "name": "Get Originator Label",
+        "debugMode": false,
+        "configuration": {
+          "fieldsMapping": {
+            "label": "originatorLabel"
+          }
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1939,
+          "layoutY": 150
+        },
+        "type": "org.thingsboard.rule.engine.action.TbCreateAlarmNode",
+        "name": "Create Delayed",
+        "debugMode": false,
+        "configuration": {
+          "alarmDetailsBuildJs": "var details = {};\nif (metadata.prevAlarmDetails) {\n    details = JSON.parse(metadata.prevAlarmDetails);\n    //remove prevAlarmDetails from metadata\n    delete metadata.prevAlarmDetails;\n    //now metadata is the same as it comes IN this rule node\n}\ndetails.customerL1Name = metadata.ss_customerL1Name\ndetails.customerL2Name = metadata.ss_customerL2Name\ndetails.customerTitle = metadata.ss_customerL2Name\ndetails.originatorLabel = metadata.originatorLabel\ndetails.category = 'state'\n\nreturn details;",
+          "useMessageAlarmData": false,
+          "alarmType": "delayed",
+          "severity": "MAJOR",
+          "propagate": true,
+          "relationTypes": [],
+          "dynamicSeverity": false
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1645,
+          "layoutY": 361
+        },
+        "type": "org.thingsboard.rule.engine.action.TbClearAlarmNode",
+        "name": "Clear Delayed",
+        "debugMode": false,
+        "configuration": {
+          "alarmDetailsBuildJs": "var details = {};\nif (metadata.prevAlarmDetails) {\n    details = JSON.parse(metadata.prevAlarmDetails);\n    //remove prevAlarmDetails from metadata\n    delete metadata.prevAlarmDetails;\n    //now metadata is the same as it comes IN this rule node\n}\n\n\nreturn details;",
+          "alarmType": "delayed"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1335,
+          "layoutY": 263
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsSwitchNode",
+        "name": "Check Delay",
+        "debugMode": true,
+        "configuration": {
+          "jsScript": "// 최근 데이터가 대기 이면서 1시간 전인경우 지연으로 판단\nif (msg.lastData.ts < new Date().getTime() - 60 * 60 * 1000 && msg.lastData.value == 'WAIT') {\n  return ['delayed'];\n} else {\n  if (metadata.TP_OperationState) {\n    var states = JSON.parse(metadata.TP_OperationState);\n    // 최근 1시간 데이터에 동작이 하나라도 있으면 정상\n    if (states.findIndex(x=>x.value == 'WORK') != -1) {\n      return ['normal'];\n    } else {\n      for (let i = 0; i < states.length; i++) {\n        // 최근 1시간 데이터에 30분이상 연속된 정지 데이터가 존재하면 정상\n        if (states[i].value == 'STOP') {\n          if (states[i - 1] && states[i].ts - states[i - 1].ts >= 30 * 60 * 1000) {\n            return ['normal'];\n          }\n          if (states[i + 1] && states[i + 1].ts - states[i].ts >= 30 * 60 * 1000) {\n            return ['normal'];\n          }\n        }\n      }\n    }\n    return ['delayed'];\n  }\n}\n\nreturn ['normal'];\n"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 728,
+          "layoutY": 261
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Set LastData",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "if(metadata.TP_OperationState){\n    msg.lastData = JSON.parse(metadata.TP_OperationState)\n    delete metadata.TP_OperationState\n}\nreturn {msg: msg, metadata: metadata, msgType: msgType};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1032,
+          "layoutY": 261
+        },
+        "type": "org.thingsboard.rule.engine.metadata.TbGetTelemetryNode",
+        "name": "Get State",
+        "debugMode": false,
+        "configuration": {
+          "latestTsKeyNames": [
+            "TP_OperationState"
+          ],
+          "fetchMode": "ALL",
+          "orderBy": "ASC",
+          "limit": 60,
+          "useMetadataIntervalPatterns": false,
+          "startInterval": 60,
+          "startIntervalTimeUnit": "MINUTES",
+          "endInterval": 1,
+          "endIntervalTimeUnit": "SECONDS",
+          "startIntervalPattern": "",
+          "endIntervalPattern": ""
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 723,
+          "layoutY": 150
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Create Operation State",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "var prevState = null;\nif (metadata.TP_OperationState) {\n  prevState = JSON.parse(metadata.TP_OperationState).value;\n}\n\nvar operationState = prevState;\n\nif (metadata.f1_watt) {\n  var watt = JSON.parse(metadata.f1_watt);\n  // 1분 이내의 데이터만 검사\n  if (!metadata.TP_WorkPowerLimit || watt.value > JSON.parse(metadata.TP_WorkPowerLimit).value) {\n    operationState = 'WORK';\n  } else if (!metadata.TP_WaitPowerLimit || watt.value > JSON.parse(metadata.TP_WaitPowerLimit).value) {\n    operationState = 'WAIT';\n  } else {\n    operationState = 'STOP';\n  }\n}\n\n// 이전값과 비교해 다른경우만 저장, 이전값이 없다면 현 상태 저장\nvar newMsg = {};\nmetadata.route = 'end';\nif (!prevState || prevState != operationState) {\n  metadata.route = 'save';\n  newMsg.TP_OperationState = operationState;\n}\n\nreturn { msg: newMsg, metadata: metadata, msgType: msgType };\n"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1035,
+          "layoutY": 150
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsSwitchNode",
+        "name": "Route",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "if(metadata.TP_ActivationState == 'true'){\n    return metadata.route    \n}\nreturn 'inactivated'\n"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 402,
+          "layoutY": 381
+        },
+        "type": "org.thingsboard.rule.engine.metadata.TbGetAttributesNode",
+        "name": "Get TS",
+        "debugMode": false,
+        "configuration": {
+          "tellFailureIfAbsent": false,
+          "clientAttributeNames": [],
+          "sharedAttributeNames": [],
+          "serverAttributeNames": [
+            "plannedOperationTime"
+          ],
+          "latestTsKeyNames": [
+            "TP_WorkTimeHour",
+            "TP_WorkTimeDay",
+            "TP_WaitTimeHour",
+            "TP_WaitTimeDay"
+          ],
+          "getLatestValueWithTs": true
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1031,
+          "layoutY": 376
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode",
+        "name": "Save Data",
+        "debugMode": false,
+        "configuration": {
+          "defaultTTL": 0
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 717,
+          "layoutY": 377
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Accumulate Operation Time",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "var workTimeHourAcc = 0;\nvar waitTimeHourAcc = 0;\nvar workTimeDayAcc = 0;\nvar waitTimeDayAcc = 0;\n\nvar plan = 86400000;\nif (metadata.ss_plannedOperationTime) {\n  var target = JSON.parse(metadata.ss_plannedOperationTime);\n  if (target.isDivideByWeek) {\n    var nowTs = new Date(Number(metadata.ts)).getTime() + (540 + Number(metadata.offset)) * 60 * 1000;\n    var index = new Date(nowTs).getDay() - 1;\n    if (index < 0) {\n      index = 6;\n    }\n    plan = target.week[index];\n  } else {\n    plan = target.everyday;\n  }\n}\n\nif (metadata.TP_WorkTimeHour) {\n  var target = JSON.parse(metadata.TP_WorkTimeHour);\n  var nowTs = new Date(Number(metadata.ts)).getTime() + (540 + Number(metadata.offset)) * 60 * 1000;\n  var dataTs = new Date(Number(target.ts)).getTime() + (540 + Number(metadata.offset)) * 60 * 1000;\n  if (new Date(nowTs).getHours() == new Date(dataTs).getHours() && nowTs - dataTs < 3600000) {\n    workTimeHourAcc = Number(target.value);\n  }\n}\nif (metadata.TP_WaitTimeHour) {\n  var target = JSON.parse(metadata.TP_WaitTimeHour);\n  var nowTs = new Date(Number(metadata.ts)).getTime() + (540 + Number(metadata.offset)) * 60 * 1000;\n  var dataTs = new Date(Number(target.ts)).getTime() + (540 + Number(metadata.offset)) * 60 * 1000;\n  if (new Date(nowTs).getHours() == new Date(dataTs).getHours() && nowTs - dataTs < 3600000) {\n    waitTimeHourAcc = Number(target.value);\n  }\n}\nif (metadata.TP_WorkTimeDay) {\n  var target = JSON.parse(metadata.TP_WorkTimeDay);\n  var nowTs = new Date(Number(metadata.ts)).getTime() + (540 + Number(metadata.offset)) * 60 * 1000;\n  var dataTs = new Date(Number(target.ts)).getTime() + (540 + Number(metadata.offset)) * 60 * 1000;\n  if (new Date(nowTs).getDate() == new Date(dataTs).getDate() && nowTs - dataTs < 86400000) {\n    workTimeDayAcc = Number(target.value);\n  }\n}\nif (metadata.TP_WaitTimeDay) {\n  var target = JSON.parse(metadata.TP_WaitTimeDay);\n  var nowTs = new Date(Number(metadata.ts)).getTime() + (540 + Number(metadata.offset)) * 60 * 1000;\n  var dataTs = new Date(Number(target.ts)).getTime() + (540 + Number(metadata.offset)) * 60 * 1000;\n  if (new Date(nowTs).getDate() == new Date(dataTs).getDate() && nowTs - dataTs < 86400000) {\n    waitTimeDayAcc = Number(target.value);\n  }\n}\n\nvar addTime = Number(metadata.period);\n\nvar state = 'STOP';\n// 대기 상태 검사, 설정된 대기전력보다 유효전력이 큰 경우 대기로 판단\nif (!metadata.TP_WaitPowerLimit || Number(JSON.parse(metadata.f1_watt).value) > JSON.parse(metadata.TP_WaitPowerLimit).value) {\n  state = 'WAIT';\n  waitTimeHourAcc += addTime;\n  waitTimeDayAcc += addTime;\n}\n// 가동 상태 검사, 설정된 가동전력보다 유효전력이 큰 경우 작업으로 판단\nif (!metadata.TP_WorkPowerLimit || Number(JSON.parse(metadata.f1_watt).value) > JSON.parse(metadata.TP_WorkPowerLimit).value) {\n  state = 'WORK';\n  workTimeHourAcc += addTime;\n  workTimeDayAcc += addTime;\n}\n\nvar ratio = Math.round((workTimeDayAcc / plan) * 100);\nif (plan == 0) {\n  ratio = 100;\n}\n\nvar hourTs = new Date(Number(metadata.ts));\nhourTs.setMinutes(0);\nhourTs.setSeconds(0);\nhourTs.setMilliseconds(0);\n\nvar dayTs = new Date(hourTs.getTime());\nvar dayHour = dayTs.getHours();\nif (dayHour >= 15) {\n  dayTs.setHours(15);\n} else {\n  dayTs.setDate(dayTs.getDate() - 1);\n  dayTs.setHours(15);\n}\n\nvar newMsg = [\n  {\n    ts: +metadata.ts,\n    values: {\n      TP_WorkTimeRaw: state == 'WORK' ? addTime : 0,\n      TP_WaitTimeRaw: state == 'WAIT' ? addTime : 0\n    }\n  },\n  {\n    ts: hourTs.getTime(),\n    values: {\n      TP_WorkTimeHour: workTimeHourAcc,\n      TP_WaitTimeHour: waitTimeHourAcc\n    }\n  },\n  {\n    ts: dayTs.getTime(),\n    values: {\n      TP_WorkTimeDay: workTimeDayAcc,\n      TP_WaitTimeDay: waitTimeDayAcc,\n      TP_WorkRatioDay: ratio\n    }\n  }\n];\n\nreturn { msg: newMsg, metadata: metadata, msgType: msgType };\n"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 399,
+          "layoutY": 153
+        },
+        "type": "org.thingsboard.rule.engine.metadata.TbGetAttributesNode",
+        "name": "Get Power Data",
+        "debugMode": false,
+        "configuration": {
+          "tellFailureIfAbsent": false,
+          "clientAttributeNames": [],
+          "sharedAttributeNames": [],
+          "serverAttributeNames": [
+            "customerL1Name",
+            "customerL2Name",
+            "noWorkState"
+          ],
+          "latestTsKeyNames": [
+            "f1_watt",
+            "TP_OperationState",
+            "TP_WorkPowerLimit",
+            "TP_WaitPowerLimit"
+          ],
+          "getLatestValueWithTs": true
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1336,
+          "layoutY": 153
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode",
+        "name": "Save Data",
+        "debugMode": false,
+        "configuration": {
+          "defaultTTL": 0
+        }
+      }
+    ],
+    "connections": [
+      {
+        "fromIndex": 0,
+        "toIndex": 1,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 3,
+        "toIndex": 0,
+        "type": "delayed"
+      },
+      {
+        "fromIndex": 3,
+        "toIndex": 2,
+        "type": "normal"
+      },
+      {
+        "fromIndex": 4,
+        "toIndex": 5,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 5,
+        "toIndex": 3,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 6,
+        "toIndex": 7,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 7,
+        "toIndex": 12,
+        "type": "save"
+      },
+      {
+        "fromIndex": 8,
+        "toIndex": 10,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 10,
+        "toIndex": 9,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 11,
+        "toIndex": 8,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 11,
+        "toIndex": 6,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 11,
+        "toIndex": 4,
+        "type": "Success"
+      }
+    ],
+    "ruleChainConnections": [
+      {
+        "fromIndex": 1,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "198e6bf0-3fc7-11ee-bff8-a768675c6a17"
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1944,
+          "layoutY": 254,
+          "ruleChainNodeId": "rule-chain-node-15"
+        },
+        "type": "Created"
+      }
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schema": {
+    "title": "Settings",
+    "type": "object",
+    "properties": {
+      "widget": {
+        "type": "object",
+        "required": ["originWidth"],
+        "properties": {
+          "originWidth": {
+            "title": "Origin Widget Width",
+            "type": "number",
+            "default": 1630
+          },
+          "filterLevel": {
+            "title": "Filter Level",
+            "type": "number",
+            "default": 2
+          },
+          "mainHeader": {
+            "title": "Main Header Config",
+            "type": "string",
+            "default": "1,1,1,1,1,7:label,1"
+          },
+          "subHeader": {
+            "title": "Sub Header Config",
+            "type": "string",
+            "default": "0,0,0,0,0,1,1,1,1,1,1,1,0"
+          }
+        }
+      }
+    }
+  },
+  "form": [["widget.originWidth", "widget.filterLevel", "widget.mainHeader", "widget.subHeader"]],
+  "groupInfoes": [
+    {
+      "formIndex": 0,
+      "GroupTitle": "Widget"
+    }
+  ]
+}

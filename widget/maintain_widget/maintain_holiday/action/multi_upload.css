@@ -1,0 +1,211 @@
+#multi-upload-form form {
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+  word-break: keep-all;
+}
+#multi-upload-form .dialog-title-box {
+  padding: 2em;
+  border-bottom: 1px solid var(--tb-service-border-1);
+}
+#multi-upload-form .dialog-title {
+  color: var(--tb-service-font-5);
+  font-size: 1.6em;
+}
+#multi-upload-form .dialog-close {
+  all: unset;
+  cursor: pointer;
+  color: var(--tb-service-font-3);
+  transition-property: color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#multi-upload-form .dialog-close i {
+  font-size: 1.4em;
+}
+#multi-upload-form .dialog-close:hover {
+  color: var(--tb-service-font-5);
+}
+
+#multi-upload-form .mat-dialog-content {
+  padding: var(--tb-config-padding) !important;
+}
+#multi-upload-form .mat-dialog-content::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+#multi-upload-form .mat-dialog-content::-webkit-scrollbar-thumb {
+  border: 2px solid #00000000;
+  background-clip: padding-box;
+  background-color: var(--tb-service-accent);
+}
+#multi-upload-form .mat-dialog-content::-webkit-scrollbar-thumb:hover {
+  border: 1px solid #00000000;
+}
+
+#multi-upload-form .label-box {
+  color: var(--tb-service-font-4);
+  font-size: 1.2em;
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#multi-upload-form .value-box {
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+  color: var(--tb-service-font-5);
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#multi-upload-form .value-box:hover {
+  border-color: var(--tb-service-border-3);
+}
+#multi-upload-form .value-box:focus-within {
+  border-color: var(--tb-service-accent);
+  caret-color: var(--tb-service-accent);
+}
+#multi-upload-form .value-box *::placeholder {
+  color: var(--tb-service-font-4);
+}
+#multi-upload-form .value-box input {
+  color: var(--tb-service-font-5);
+  font-size: 1.4em;
+  padding: calc(16em / 14);
+  caret-color: var(--tb-service-accent);
+}
+#multi-upload-form .error-box {
+  display: none;
+  color: var(--tb-service-warn);
+  font-size: 1.2em;
+}
+#multi-upload-form .input-box.error .label-box {
+  color: var(--tb-service-warn);
+}
+#multi-upload-form .input-box.error .value-box {
+  border: 1px solid var(--tb-service-warn);
+}
+#multi-upload-form .input-box.error .error-box {
+  display: block;
+  margin-top: calc(0.6em / 1.2);
+}
+
+#multi-upload-form #drop-area {
+  position: relative;
+  border: 1px solid var(--tb-service-border-0);
+  background: var(--tb-service-background-1);
+  width: 100%;
+  padding: 1em;
+  aspect-ratio: 420 / 180;
+  transition-property: border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#multi-upload-form #drop-area.highlight {
+  border-color: var(--tb-service-accent);
+}
+#multi-upload-form #drop-area .icon {
+  width: 4em;
+  height: 4em;
+  fill: var(--tb-service-disabled);
+}
+#multi-upload-form #drop-area .description {
+  text-align: center;
+  color: var(--tb-service-font-4);
+  font-size: 1.4em;
+}
+#multi-upload-form #drop-area .description b {
+  color: var(--tb-service-accent);
+}
+#multi-upload-form #drop-area .details {
+  text-align: center;
+  color: var(--tb-service-font-2);
+  font-size: 1.2em;
+}
+#multi-upload-form #drop-area .area-layout {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+#multi-upload-form #fileElem {
+  display: none;
+}
+#multi-upload-form .preview-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 250 / 64;
+  border: 1px dashed var(--tb-service-border-3);
+}
+#multi-upload-form .preview-icon {
+  width: 4em;
+  height: 4em;
+  fill: var(--tb-service-accent);
+}
+#multi-upload-form .preview-name {
+  font-size: 1.4em;
+  color: var(--tb-service-font-4);
+}
+#multi-upload-form .preview-detail {
+  font-size: 1.2em;
+  color: var(--tb-service-font-2);
+}
+#multi-upload-form .file-remove-btn {
+  all: unset;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  padding: 0.3em;
+  border-radius: 50%;
+  background-color: var(--tb-service-font-4);
+  cursor: pointer;
+}
+#multi-upload-form .file-remove-btn i {
+  font-size: 1.4em;
+  color: var(--tb-service-font-0);
+}
+#multi-upload-form .preview {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: 50%;
+}
+
+#multi-upload-form .mat-dialog-actions {
+  padding: 2em;
+  border-top: 1px solid var(--tb-service-border-1);
+}
+#multi-upload-form .button {
+  all: unset;
+  padding: 0.6em 1.4em;
+  font-size: 1.4em;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#multi-upload-form .save-button {
+  color: var(--tb-service-font-0);
+  background-color: var(--tb-service-accent);
+}
+#multi-upload-form .save-button:hover {
+  background-color: var(--tb-service-accent-hover);
+}
+#multi-upload-form .save-button:active {
+  background-color: var(--tb-service-accent-pressed);
+}
+#multi-upload-form .close-button {
+  color: var(--tb-service-font-5);
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+}
+#multi-upload-form .close-button:hover {
+  border-color: var(--tb-service-border-3);
+}
+#multi-upload-form .close-button:active {
+  background-color: var(--tb-service-border-0);
+}
+
+@media (min-width: 960px) {
+  #multi-upload-form form {
+    width: 24vw;
+  }
+}

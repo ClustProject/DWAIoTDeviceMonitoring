@@ -1,0 +1,87 @@
+#reset-default-schedule-form form {
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+}
+#reset-default-schedule-form .dialog-title-box {
+  padding: 2em;
+  border-bottom: 1px solid var(--tb-service-border-1);
+}
+#reset-default-schedule-form .dialog-title {
+  color: var(--tb-service-font-5);
+  font-size: 1.6em;
+}
+#reset-default-schedule-form .dialog-close {
+  all: unset;
+  cursor: pointer;
+  color: var(--tb-service-font-3);
+  transition-property: color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#reset-default-schedule-form .dialog-close i {
+  font-size: 1.4em;
+}
+#reset-default-schedule-form .dialog-close:hover {
+  color: var(--tb-service-font-5);
+}
+
+#reset-default-schedule-form .mat-dialog-content {
+  padding: var(--tb-config-padding) !important;
+}
+#reset-default-schedule-form .mat-dialog-content::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+#reset-default-schedule-form .mat-dialog-content::-webkit-scrollbar-thumb {
+  border: 2px solid #00000000;
+  background-clip: padding-box;
+  background-color: var(--tb-service-accent);
+}
+#reset-default-schedule-form .mat-dialog-content::-webkit-scrollbar-thumb:hover {
+  border: 1px solid #00000000;
+}
+
+#reset-default-schedule-form .label {
+  color: var(--tb-service-font-5);
+  font-size: 1.4em;
+}
+
+#reset-default-schedule-form .mat-dialog-actions {
+  padding: 2em;
+  border-top: 1px solid var(--tb-service-border-1);
+}
+#reset-default-schedule-form .button {
+  all: unset;
+  padding: 0.6em 1.4em;
+  font-size: 1.4em;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#reset-default-schedule-form .delete-button {
+  color: var(--tb-service-font-0);
+  background-color: var(--tb-service-warn);
+}
+#reset-default-schedule-form .delete-button:hover {
+  background-color: var(--tb-service-warn-hover);
+}
+#reset-default-schedule-form .delete-button:active {
+  background-color: var(--tb-service-warn-pressed);
+}
+#reset-default-schedule-form .close-button {
+  color: var(--tb-service-font-5);
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+}
+#reset-default-schedule-form .close-button:hover {
+  border-color: var(--tb-service-border-3);
+}
+#reset-default-schedule-form .close-button:active {
+  background-color: var(--tb-service-border-0);
+}
+
+@media (min-width: 960px) {
+  #reset-default-schedule-form form {
+    width: 24vw;
+  }
+}

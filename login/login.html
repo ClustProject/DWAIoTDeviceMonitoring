@@ -1,0 +1,158 @@
+<div class="tb-custom-login-content" fxLayout="row" fxLayoutAlign="space-between center" #container>
+  <section
+    class="login-left-side-section"
+    fxFlex="25"
+    fxFlex.lt-md="100"
+    fxLayout="column"
+    fxLayoutAlign="space-between start"
+  >
+    <div class="top-container" fxLayoutAlign="center center">
+      <img aria-label="logo" [src]="logoImageUrl" [height]="logoImageHeight" class="tb-login-logo-title" />
+    </div>
+    <div class="main-container" fxFlex fxLayoutAlign="center center">
+      <form class="tb-custom-login-form" [formGroup]="loginFormGroup" (ngSubmit)="login()">
+        <mat-progress-bar color="warn" mode="indeterminate" *ngIf="isLoading$ | async"> </mat-progress-bar>
+        <span style="height: 4px" *ngIf="!(isLoading$ | async)"></span>
+        <div class="form-toast" tb-toast fxLayout="column">
+          <div class="oauth-container tb-default" fxLayout="column" fxLayoutGap="16px" *ngIf="oauth2Clients?.length">
+            <ng-container *ngFor="let oauth2Client of oauth2Clients">
+              <a mat-raised-button class="login-with-button" href="{{ oauth2Client.url }}">
+                <mat-icon class="icon" svgIcon="{{ oauth2Client.icon }}"></mat-icon>
+                {{ 'login.login-with' | translate: {name: oauth2Client.name} }}
+              </a>
+            </ng-container>
+            <div class="container-divider">
+              <div class="line"><mat-divider></mat-divider></div>
+              <div class="text mat-typography">{{ "login.or" | translate | uppercase }}</div>
+              <div class="line"><mat-divider></mat-divider></div>
+            </div>
+          </div>
+          <div class="form-content" fxLayout="column" fxLayoutGap="1em">
+            <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+              <div fxFlex="100" class="input-box" fxLayout="column">
+                <div class="value-box" fxLayout="row" fxLayoutAlign="space-between center">
+                  <div fxFlex fxLayoutAlign="start center">
+                    <label for="username-input" class="input-icon material-icons">mail</label>
+                    <input
+                      fxFlex
+                      class="input-value"
+                      id="username-input"
+                      type="email"
+                      formControlName="username"
+                      autofocus
+                      placeholder="{{'login.username' | translate}}"
+                      required
+                      email="true"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="input-error"
+                  *ngIf="loginFormGroup.get('username').invalid && (loginFormGroup.get('username').dirty || loginFormGroup.get('username').touched)"
+                >
+                  {{ 'user.invalid-email-format' | translate }}
+                </div>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+              <div fxFlex="100" class="input-box" fxLayout="column">
+                <div class="value-box" fxLayout="row" fxLayoutAlign="space-between center">
+                  <div fxFlex fxLayoutAlign="start center">
+                    <label for="password-input" class="input-icon material-icons">lock</label>
+                    <input
+                      fxFlex
+                      class="input-value"
+                      name="password"
+                      id="password-input"
+                      [type]="showPassword ? 'text' : 'password'"
+                      formControlName="password"
+                      placeholder="{{'common.password' | translate}}"
+                      autocomplete="new-password"
+                    />
+                  </div>
+                  <input
+                    id="showPassword"
+                    name="showPassword"
+                    type="checkbox"
+                    [(ngModel)]="showPassword"
+                    [ngModelOptions]="{standalone: true}"
+                  />
+                  <label class="showPassword" for="showPassword" fxLayout="row" fxLayoutAlign="center center">
+                    <mat-icon> {{showPassword ? 'visibility' : 'visibility_off' }} </mat-icon>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+              <button class="login-button" fxFlex="100" [disabled]="(isLoading$ | async)" type="submit">
+                {{ 'login.login' | translate }}
+              </button>
+            </div>
+            <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="end center">
+              <button class="reset-password-button" type="button" (click)="routeTo('/login/resetPasswordRequest')">
+                {{ 'login.forgot-password' | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="bottom-container"></div>
+  </section>
+  <section
+    fxFlex
+    class="login-right-side-section"
+    fxLayout="column"
+    fxLayoutAlign="space-between stretch"
+    fxShow.lt-md="false"
+  >
+    <div class="top-container" fxLayoutAlign="center center">
+      <img class="content-logo" />
+    </div>
+    <div class="main-container" fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="2em">
+      <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="center center">
+        <div class="content-title">IoT 클라우드 플랫폼 기반<br /><b>설비 모니터링 서비스</b></div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="center center">
+        <div class="divide-line"></div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="center center">
+        <div class="content-detail">
+          가동 현황 및 에너지 소비 모니터링을 통해<br />설비 운영 효율을 높이고 에너지 소비를 절감할 수 있습니다.
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="center center">
+        <div class="link-container" fxLayoutAlign="center center" fxLayoutGap="1em">
+          <a
+            class="social-link"
+            href="https://www.facebook.com/hashtag/%ED%95%9C%EA%B5%AD%EA%B8%88%ED%98%95%EC%82%B0%EC%97%85%EC%A7%84%ED%9D%A5%ED%9A%8C"
+            fxLayoutAlign="center center"
+          >
+            <img
+              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGRhdGEtbmFtZT0i6re466O5IDE2MzQxMiI+CiAgICAgICAgPGcgZGF0YS1uYW1lPSLqt7jro7kgMTYzMzMyIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNDgzIC05OTkpIj4KICAgICAgICAgICAgPHJlY3QgZGF0YS1uYW1lPSLsgqzqsIHtmJUgMTQ4MzU1IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHJ4PSI0IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0ODMgOTk5KSIgc3R5bGU9ImZpbGw6bm9uZSIvPgogICAgICAgIDwvZz4KICAgICAgICA8cGF0aCBkPSJtMTIuNDYxIDUuNTctLjMwOSAyLjkzSDkuODFWMTdINi4yOTJWOC41SDQuNTM5VjUuNTdoMS43NTNWMy44MDZDNi4yOTIgMS40MjMgNy4yODMgMCAxMC4xIDBoMi4zNDF2Mi45M2gtMS40NjVjLTEuMDkzIDAtMS4xNjYuNDEzLTEuMTY2IDEuMTc2VjUuNTdoMi42NTF6IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzLjQ2MSA0KSIgc3R5bGU9ImZpbGw6I2YwZjBmMCIvPgogICAgPC9nPgo8L3N2Zz4K"
+            />
+          </a>
+          <a
+            class="social-link"
+            href="https://www.youtube.com/channel/UCDwP2sdYCed5cIcw2bb6_Xw?app=desktop"
+            fxLayoutAlign="center center"
+          >
+            <img
+              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDMwIDMwIj4KICAgIDxnPgogICAgICAgIDxyZWN0IHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgcng9IjQiIHN0eWxlPSJmaWxsOm5vbmU7Ii8+CiAgICAgICAgPHBhdGggZD0iTTIwLjc1IDcuNTc1QTIuNjUzIDIuNjUzIDAgMCAwIDE4LjUgNS40NWMtMi42MjUtLjI1LTUuMjUtLjI1LTcuODc1LS4yNXMtNS4yNSAwLTcuODc1LjI1QTIuNjYyIDIuNjYyIDAgMCAwIC4zNzUgNy41NzVhMjIuNDggMjIuNDggMCAwIDAtLjM3NSA1IDIyLjQ4IDIyLjQ4IDAgMCAwIC4zNzUgNSAyLjY1MyAyLjY1MyAwIDAgMCAyLjI1IDIuMTI1YzIuNjI1LjI1IDUuMjUuMjUgOCAuMjVzNS4yNSAwIDcuODc1LS4yNWEyLjY1MyAyLjY1MyAwIDAgMCAyLjI1LTIuMTI1IDIyLjQ4IDIyLjQ4IDAgMCAwIC4zNzUtNSAyMi40OCAyMi40OCAwIDAgMC0uMzc1LTV6TTguNSAxNS40NVY5LjdsNS4yNSAyLjg3NXoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUgMi40MjUpIiBzdHlsZT0iZmlsbDojZmZmIi8+CiAgICA8L2c+Cjwvc3ZnPgo="
+            />
+          </a>
+          <a
+            class="social-link"
+            href="https://www.google.com/search?q=%EC%82%AC%EB%8B%A8%EB%B2%95%EC%9D%B8%ED%95%9C%EA%B5%AD%EA%B8%88%ED%98%95%EC%82%B0%EC%97%85%EC%A7%84%ED%9D%A5%ED%9A%8C"
+            fxLayoutAlign="center center"
+          >
+            <img
+              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGRhdGEtbmFtZT0i6re466O5IDE2MzQxMSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0NyAtOTk5KSI+CiAgICAgICAgPHJlY3QgZGF0YS1uYW1lPSLsgqzqsIHtmJUgMTQ4MzU3IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHJ4PSI0IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1NDcgOTk5KSIgc3R5bGU9ImZpbGw6bm9uZSIvPgogICAgICAgIDxwYXRoIGQ9Ik0xNyAyLjYxNXYxLjMwOGgtMi42MTV2Mi42MTZoLTEuMzA4VjMuOTIzaC0yLjYxNVYyLjYxNWgyLjYxNVYwaDEuMzA4djIuNjE1SDE3ek0xMC4zOSAxMi43OGEzLjc1NSAzLjc1NSAwIDAgMS0xLjQzIDIuODgxQTYuNTE1IDYuNTE1IDAgMCAxIDQuNjY5IDE3QzIuNzU5IDE3IDAgMTYuMTgzIDAgMTMuODEzYTMuMTMzIDMuMTMzIDAgMCAxIC4zNzktMS4zOGMuOTA4LTEuODM4IDMuNzQ4LTIuMzA5IDUuNTc3LTIuMzZBMi42IDIuNiAwIDAgMSA1LjMgOC41NTFhMi42IDIuNiAwIDAgMSAuMjI1LS44NzggNS44ODIgNS44ODIgMCAwIDEtLjcxNS4wNTEgMy41NzUgMy41NzUgMCAwIDEtMy43LTMuNTE1IDQuMjMyIDQuMjMyIDAgMCAxIDMuMzYtNEE5LjExMiA5LjExMiAwIDAgMSA2LjM4NSAwaDQuNDY2TDkuNDcyLjgwN0g4LjA5MWEzLjU2MyAzLjU2MyAwIDAgMSAxLjUyMyAzLjAxNGMwIDIuNzA3LTIuMjg5IDIuOTExLTIuMjg5IDQuMjYgMCAxLjMxOCAzLjA2NSAxLjgzOSAzLjA2NSA0Ljd6TTcuNzI1IDQuODUzQzcuNzI1IDMuMyA2Ljg4Ni43MzYgNSAuNzM2YTIuMTMxIDIuMTMxIDAgMCAwLTIgMi4zOTFjMCAxLjU1MiAxLjAyMSAzLjk4NCAyLjg0IDMuOTg0IDEuNCAwIDEuODgtMS4wMTIgMS44OC0yLjI1OHptMS4yMjUgOC44MDZjMC0xLjQzLTEuMzQtMi4yMjctMi4zODEtMi45NTNhNC4zODMgNC4zODMgMCAwIDAtLjUxMi0uMDJjLTEuNjc0IDAtNC4xNjguNTMxLTQuMTY4IDIuNjU2IDAgMS45NjEgMi4yMDcgMi43MTggMy44NDIgMi43MTggMS41MjIgMCAzLjIxOS0uNjEzIDMuMjE5LTIuNHoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDU1MSAxMDAzKSIgc3R5bGU9ImZpbGw6I2YwZjBmMCIvPgogICAgPC9nPgo8L3N2Zz4K"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-container" fxLayoutAlign="center center"></div>
+  </section>
+</div>

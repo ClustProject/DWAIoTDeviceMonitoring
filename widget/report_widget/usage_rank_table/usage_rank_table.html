@@ -1,0 +1,37 @@
+<div id="widget" fxLayout="column" fxLayoutAlign="start center">
+  <header class="widget-header" fxLayoutAlign="space-between center" fxLayoutGap="1em">
+    <section class="widget-header-left-section" fxFlex="100" fxLayoutAlign="start center" fxLayoutGap="1em">
+      <div class="widget-title">title</div>
+    </section>
+    <section class="widget-header-right-section" fxFlex="100" fxLayoutAlign="end center" fxLayoutGap="1em">
+      <section class="page-section" fxLayoutAlign="end center" fxLayoutGap="-1px">
+        <div class="current-page">{{currentPage}}</div>
+        <div class="material-icons page-button prev-button" (click)="getPrevPage()">keyboard_arrow_left</div>
+        <div class="material-icons page-button next-button" (click)="getNextPage()">keyboard_arrow_right</div>
+      </section>
+    </section>
+  </header>
+  <main class="widget-content">
+    <section class="table-section">
+      <table class="table">
+        <thead>
+          <tr>
+            <th *ngFor="let th of thList" (click)="changeSort($event, th)" [ngClass]="th.order">
+              <div class="th-box" fxLayoutAlign="start center" fxLayoutGap="0.5em">
+                <span class="th-label">{{th.label}}</span>
+                <i class="th-sort material-icons">arrow_upward</i>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tr of trList">
+            <td *ngFor="let td of tr.tdList">
+              <span>{{td.value}}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>

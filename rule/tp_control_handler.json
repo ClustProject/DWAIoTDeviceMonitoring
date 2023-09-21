@@ -1,0 +1,112 @@
+{
+  "ruleChain": {
+    "additionalInfo": {
+      "description": ""
+    },
+    "name": "TP Control Handler",
+    "type": "CORE",
+    "firstRuleNodeId": null,
+    "root": false,
+    "debugMode": false,
+    "configuration": null
+  },
+  "metadata": {
+    "firstNodeIndex": 0,
+    "nodes": [
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 58,
+          "layoutY": 249
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsSwitchNode",
+        "name": "Routes Request",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "var routes = [];\nif(msg.TP_CTRL_ASSIGN_DASHBOARD){\n    routes.push('Assign Dashboard')\n}\nreturn routes"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 737,
+          "layoutY": 247
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Make Body",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "metadata.customerId = msg.TP_CTRL_ASSIGN_DASHBOARD.customerId\nmetadata.dashboardId = msg.TP_CTRL_ASSIGN_DASHBOARD.dashboardId\nreturn {msg: msg, metadata: metadata, msgType: msgType};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 412,
+          "layoutY": 247
+        },
+        "type": "org.thingsboard.rule.engine.metadata.TbGetTenantAttributeNode",
+        "name": "Get Token",
+        "debugMode": false,
+        "configuration": {
+          "telemetry": false,
+          "attrMapping": {
+            "token": "jwtToken"
+          }
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1040,
+          "layoutY": 247
+        },
+        "type": "org.thingsboard.rule.engine.rest.TbRestApiCallNode",
+        "name": "Request Assign Dashboard",
+        "debugMode": false,
+        "configuration": {
+          "restEndpointUrlPattern": "http://localhost:8080/api/customer/${customerId}/dashboard/${dashboardId}",
+          "requestMethod": "POST",
+          "useSimpleClientHttpFactory": true,
+          "enableProxy": false,
+          "useSystemProxyProperties": false,
+          "proxyScheme": null,
+          "proxyHost": null,
+          "proxyPort": 0,
+          "proxyUser": null,
+          "proxyPassword": null,
+          "readTimeoutMs": 0,
+          "maxParallelRequestsCount": 0,
+          "headers": {
+            "Content-Type": "application/json",
+            "X-Authorization": "Bearer ${jwtToken}"
+          },
+          "useRedisQueueForMsgPersistence": false,
+          "trimQueue": false,
+          "maxQueueSize": 0,
+          "credentials": {
+            "type": "anonymous"
+          }
+        }
+      }
+    ],
+    "connections": [
+      {
+        "fromIndex": 0,
+        "toIndex": 2,
+        "type": "Assign Dashboard"
+      },
+      {
+        "fromIndex": 1,
+        "toIndex": 3,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 1,
+        "type": "Success"
+      }
+    ],
+    "ruleChainConnections": null
+  }
+}

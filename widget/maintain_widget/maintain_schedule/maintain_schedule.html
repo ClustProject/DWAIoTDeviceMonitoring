@@ -1,0 +1,235 @@
+<div id="widget">
+  <div class="widget-tab" fxLayoutAlign="start center">
+    <div
+      class="tab"
+      *ngFor="let tab of tabList"
+      fxLayoutAlign="center center"
+      [ngClass]="{'active': tab.isActive}"
+      (click)="selectTab(tab.id)"
+    >
+      {{tab.label | translate}}
+    </div>
+  </div>
+  <header class="widget-header" fxLayoutAlign="space-between center">
+    <section class="widget-header-left-section" fxFlex fxLayoutAlign="start center" fxLayoutGap="1em">
+      <div class="widget-title" translate>title</div>
+    </section>
+    <section class="widget-header-right-section" fxFlex fxLayoutAlign="end center" fxLayoutGap="1em">
+      <div class="entity-controller" *ngIf="ownerLevel == 0" fxLayoutAlign="end center" fxLayoutGap="1em">
+        <span class="normal-label" translate>thingplus.selector.device-selection</span>
+        <mat-select
+          class="entity-selector"
+          [fxShow]="ownerLevel == 0"
+          (ngModelChange)="setCustomerL1($event)"
+          [ngModel]="selectedCustomerL1"
+        >
+          <mat-option *ngFor="let customerL1 of customerL1List" [value]="customerL1.value">
+            {{customerL1.name}}
+          </mat-option>
+        </mat-select>
+        <mat-select
+          class="entity-selector"
+          [fxShow]="ownerLevel <= 1"
+          (ngModelChange)="setCustomerL2($event)"
+          [ngModel]="selectedCustomerL2"
+        >
+          <mat-option *ngFor="let customerL2 of customerL2List" [value]="customerL2.value">
+            {{customerL2.name}}
+          </mat-option>
+        </mat-select>
+        <mat-select class="entity-selector" (ngModelChange)="setDevice($event)" [ngModel]="selectedDevice">
+          <mat-option *ngFor="let device of deviceList" [value]="device.value"> {{device.label}} </mat-option>
+        </mat-select>
+      </div>
+      <div class="date-controller" fxLayoutAlign="end center" fxLayoutGap="1em" fxShow.lt-md="false">
+        <div class="normal-label" translate>thingplus.selector.date-selection</div>
+        <mat-select class="date-selector" (ngModelChange)="setYear($event)" [ngModel]="selectedYear">
+          <mat-option *ngFor="let year of yearList" [value]="year.value"> {{year.label}} </mat-option>
+        </mat-select>
+        <mat-select class="date-selector" (ngModelChange)="setMonth($event)" [ngModel]="selectedMonth">
+          <mat-option *ngFor="let month of monthList" [value]="month.value"> {{month.label}} </mat-option>
+        </mat-select>
+      </div>
+      <button class="action-btn text-btn" (click)="search($event)" fxShow.lt-md="false">
+        <span translate>thingplus.action.search</span>
+      </button>
+      <button class="action-btn text-btn" (click)="openFilter($event)" fxShow.gt-sm="false">
+        <span translate>thingplus.action.search</span>
+      </button>
+    </section>
+  </header>
+  <header class="widget-sub-header" fxLayoutAlign="space-between center" fxLayoutGap="1em">
+    <section class="widget-header-left-section" fxLayoutAlign="start center" fxLayoutGap="1em">
+      <div class="target-month">{{targetMonth}}</div>
+      <div class="month-controller" fxLayoutAlign="start center">
+        <div class="page-button prev-btn" (click)="prevMonth($event)">
+          <i class="material-icons">keyboard_arrow_left</i>
+        </div>
+        <div class="page-button prev-btn" (click)="nextMonth($event)">
+          <i class="material-icons">keyboard_arrow_right</i>
+        </div>
+      </div>
+      <div class="today-info" fxLayoutAlign="start center" fxLayoutGap="0.8em" [fxShow]="isCurrentMonth">
+        <span class="today-date">{{todayDate}}</span>
+        <span class="today-event" [fxShow]="todayEvent">{{todayEvent}}</span>
+      </div>
+    </section>
+    <section class="widget-header-right-section" fxLayoutAlign="end center" fxLayoutGap="1em">
+      <div class="widget-action" fxLayoutAlign="end center" fxLayoutGap="1em">
+        <div
+          class="widget-header-action"
+          *ngFor="let headerAction of headerActionList"
+          fxLayoutAlign="start center"
+          fxLayoutGap="0.5em"
+          (click)="headerAction.action($event)"
+        >
+          <i class="material-icons">{{headerAction.icon}}</i>
+          <span translate>{{headerAction.name}}</span>
+        </div>
+      </div>
+    </section>
+  </header>
+  <main class="widget-content">
+    <section class="calendar-section" fxLayout="column">
+      <div class="calendar-header" fxLayout="row">
+        <div fxFlex class="calendar-header-left" fxLayout="column">
+          <div class="cell calendar-left-cell sm">
+            <span class="title" translate>thingplus.label.sort</span>
+          </div>
+          <div class="cell calendar-left-cell count-cell" fxLayoutAlign="start center" fxLayoutGap="0.8em">
+            <span class="device-count-label" translate>thingplus.label.entire</span>
+            <span class="device-count">{{deviceCount}}</span>
+          </div>
+        </div>
+        <div class="calendar-header-right" fxLayout="column">
+          <div class="calendar-top" fxLayout="row">
+            <div class="cell header-cell week-cell week-cell-{{week.length}}" *ngFor="let week of weekList">
+              {{week.label}}
+            </div>
+          </div>
+          <div class="calendar-mid" fxLayout="row">
+            <div class="cell header-cell" [ngClass]="{'holiday': day.isHoliday}" *ngFor="let day of dayList">
+              {{day.label}}
+            </div>
+          </div>
+          <div class="calendar-bot" fxLayout="row">
+            <div class="cell header-cell" [ngClass]="{'holiday': date.isHoliday}" *ngFor="let date of dateList">
+              {{date.label}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="calendar-body" fxLayout="row">
+        <div fxFlex class="calendar-body-left" fxLayout="column">
+          <div class="customer-group" *ngFor="let schedule of scheduleList">
+            <div
+              class="cell calendar-left-cell group-header lg pad"
+              fxLayoutAlign="space-between center"
+              fxLayoutGap="0.8em"
+              (click)="foldGroup($event, schedule)"
+            >
+              <div fxLayoutAlign="start center" fxLayoutGap="0.8em">
+                <div class="customer-name-box" fxLayoutAlign="start center" fxLayoutGap="0.8em">
+                  <i class="material-icons" [ngClass]="{'fold': schedule.isFold}">expand_less</i>
+                  <span class="customer-name">{{schedule.name}}</span>
+                </div>
+                <div class="device-count">{{schedule.count}}</div>
+              </div>
+              <i
+                class="device-action material-icons tooltip tooltip-customerL2"
+                [attr.data-index]="[schedule.index]"
+                (click)="changeContent($event, 'customerL2', schedule)"
+              >
+                more_vert
+              </i>
+            </div>
+            <div class="group-content" [fxShow]="!schedule.isFold">
+              <div
+                class="cell calendar-left-cell"
+                *ngFor="let device of schedule.child"
+                fxLayoutAlign="space-between center"
+              >
+                <div class="device-name-box" fxLayoutAlign="start center" fxLayoutGap="0.8em">
+                  <i class="material-icons">subdirectory_arrow_right</i>
+                  <span class="device-name">{{device.label}}</span>
+                </div>
+                <i
+                  class="device-action material-icons tooltip tooltip-device"
+                  [attr.data-index]="[schedule.index, device.index]"
+                  (click)="changeContent($event, 'device', device)"
+                >
+                  more_vert
+                </i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="calendar-body-right">
+          <div *ngFor="let schedule of scheduleList">
+            <div class="row" fxLayout="row">
+              <div
+                class="cell content-cell lg"
+                [ngClass]="{'weekend': time.isWeekend, 'today': time.todayDif == 0}"
+                *ngFor="let time of schedule.timeList"
+              >
+                <div class="line-block" *ngIf="time.value != 0"></div>
+              </div>
+            </div>
+            <div
+              class="row group-content"
+              *ngFor="let device of schedule.child"
+              fxLayout="row"
+              [fxShow]="!schedule.isFold"
+            >
+              <div
+                class="cell content-cell block-cell"
+                *ngFor="let time of device.timeList"
+                [ngClass]="{'weekend': time.isWeekend, 'today': time.todayDif == 0}"
+              >
+                <div
+                  class="block"
+                  *ngIf="time.value != 0"
+                  fxLayoutAlign="center center"
+                  [ngStyle]="{'background-color':time.color}"
+                  [ngClass]="{'prev': time.todayDif > 0, 'today': time.todayDif == 0, 'next': time.todayDif < 0}"
+                >
+                  <div
+                    class="block-action"
+                    [ngClass]="{'tooltip': time.todayDif <= 0, 'tooltip-time': time.todayDif <= 0}"
+                    [attr.data-index]="[schedule.index, device.index, time.index]"
+                    (click)="changeContent($event, 'time', time, device)"
+                    (mouseenter)="changeBlockContent($event, 'time', time, device)"
+                  ></div>
+                </div>
+                <div
+                  class="block new-block material-icons"
+                  *ngIf="time.value == 0 && time.todayDif <= 0 && !time.isHoliday"
+                  fxLayoutAlign="center center"
+                  (click)="newScheduleHandler($event, device, time)"
+                >
+                  add
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="loading-layout" [fxShow]="isLoading">
+      <div class="progress-box">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220">
+          <linearGradient id="gradient-hair">
+            <stop offset="0%" stop-color="#ed6d0053"></stop>
+            <stop offset="100%" stop-color="#ed6d00ff"></stop>
+          </linearGradient>
+          <linearGradient id="gradient-hair-2">
+            <stop offset="0%" stop-color="#ed6d0053"></stop>
+            <stop offset="50%" stop-color="#ed6d0000"></stop>
+          </linearGradient>
+          <path stroke="url('#gradient-hair')" stroke-width="20" fill="none" d="M 10 110 A 100 100 0 0 1 210 110" />
+          <path stroke="url('#gradient-hair-2')" stroke-width="20" fill="none" d="M 210 110 A 100 100 180 0 1 10 110" />
+        </svg>
+      </div>
+    </div>
+  </main>
+</div>

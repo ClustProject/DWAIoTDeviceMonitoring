@@ -1,0 +1,50 @@
+#widget {
+  width: 100%;
+  height: 100%;
+  font-size: 10px;
+  font-family: var(--tb-config-font-family);
+  user-select: none;
+  white-space: nowrap;
+  letter-spacing: var(--tb-config-letter-spacing);
+}
+
+/*
+  Widget Header Area
+*/
+header.widget-header {
+  width: 100%;
+  padding: var(--tb-config-padding);
+}
+
+/*
+  Widget Content Area
+*/
+main.widget-content {
+  width: 100%;
+}
+
+/* chart-section */
+.chart-section {
+  width: 100%;
+  height: 100%;
+  padding: var(--tb-config-padding);
+  border-top: 1px solid var(--tb-service-border-1);
+  border-right: 1px solid var(--tb-service-border-1);
+}
+.chart-section .chart-container {
+  width: 100%;
+}
+.chart-section .legend-circle {
+  width: 0.6em;
+  height: 0.6em;
+  background-color: currentColor;
+}
+.chart-section .legend-label {
+  font-size: 1.2em;
+  color: var(--tb-service-font-4);
+}
+.chart-section .legend-value {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: var(--tb-service-font-5);
+}

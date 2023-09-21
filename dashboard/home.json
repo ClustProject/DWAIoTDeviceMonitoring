@@ -1,0 +1,721 @@
+{
+  "title": "Home",
+  "image": null,
+  "mobileHide": false,
+  "mobileOrder": null,
+  "configuration": {
+    "description": "",
+    "widgets": {
+      "60411e81-4699-f13a-bfae-9f1040133329": {
+        "isSystemType": false,
+        "bundleAlias": "moldmecca_selector_widgets",
+        "typeAlias": "workspace_selector",
+        "type": "latest",
+        "title": "New widget",
+        "image": null,
+        "description": null,
+        "sizeX": 8,
+        "sizeY": 1,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "1494323b-7b86-8715-c1f2-014db48df291",
+              "filterId": null,
+              "dataKeys": [
+                {
+                  "name": "customerType",
+                  "type": "attribute",
+                  "label": "customerType",
+                  "color": "#2196f3",
+                  "settings": {},
+                  "_hash": 0.10656563166402888
+                }
+              ]
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "timewindowMs": 60000
+            }
+          },
+          "showTitle": false,
+          "backgroundColor": "rgba(54,54,54,0)",
+          "color": "var(--tb-service-accent)",
+          "padding": "0px",
+          "settings": {
+            "widget": {
+              "originWidth": 1670
+            }
+          },
+          "title": "thingplus.page.home.current-operation",
+          "showTitleIcon": false,
+          "titleTooltip": "",
+          "dropShadow": false,
+          "enableFullscreen": false,
+          "widgetStyle": {
+            "cursor": "default"
+          },
+          "titleStyle": {
+            "font-family": "var(--tb-config-font-family)",
+            "font-size": "2em",
+            "font-weight": 500,
+            "letter-spacing": "-0.05em",
+            "color": "var(--tb-service-font-5)"
+          },
+          "noDataDisplayMessage": "",
+          "showLegend": false
+        },
+        "row": 0,
+        "col": 0,
+        "id": "60411e81-4699-f13a-bfae-9f1040133329"
+      },
+      "e921f3de-dcaa-caf3-3a95-813820f340ea": {
+        "isSystemType": false,
+        "bundleAlias": "moldmecca_main_widgets",
+        "typeAlias": "summary_entity",
+        "type": "latest",
+        "title": "New widget",
+        "image": null,
+        "description": null,
+        "sizeX": 7.5,
+        "sizeY": 3,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "1494323b-7b86-8715-c1f2-014db48df291",
+              "filterId": null,
+              "dataKeys": []
+            },
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "7de8e9a8-02b1-a3fe-d471-6d5d3e7e8fe6",
+              "filterId": null,
+              "dataKeys": [
+                {
+                  "name": "TP_TotalDevice",
+                  "type": "timeseries",
+                  "label": "thingplus.page.home.total",
+                  "color": "var(--tb-service-primary)",
+                  "settings": {},
+                  "_hash": 0.5716976944419174,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "TP_StoppedDevice",
+                  "type": "timeseries",
+                  "label": "thingplus.state.stopped",
+                  "color": "#314d68",
+                  "settings": {},
+                  "_hash": 0.910551380622445,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "TP_WaitingDevice",
+                  "type": "timeseries",
+                  "label": "thingplus.state.waiting",
+                  "color": "#1f5b98",
+                  "settings": {},
+                  "_hash": 0.3182362476873195,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "TP_WorkingDevice",
+                  "type": "timeseries",
+                  "label": "thingplus.state.working",
+                  "color": "#00a1a7",
+                  "settings": {},
+                  "_hash": 0.3618357155392822,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "TP_UnconnectedDevice",
+                  "type": "timeseries",
+                  "label": "thingplus.state.unconnected",
+                  "color": "#db4e05",
+                  "settings": {},
+                  "_hash": 0.8148792260964293,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "TP_InactivatedDevice",
+                  "type": "timeseries",
+                  "label": "thingplus.state.inactivated",
+                  "color": "#68849c",
+                  "settings": {},
+                  "_hash": 0.3131230369522331,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                }
+              ]
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "timewindowMs": 60000
+            }
+          },
+          "showTitle": false,
+          "backgroundColor": "rgba(255,255,255,0)",
+          "color": "rgba(0, 0, 0, 0.87)",
+          "padding": "0px",
+          "settings": {
+            "widget": {
+              "originWidth": 1119
+            }
+          },
+          "title": "New Summary Entity",
+          "showTitleIcon": false,
+          "dropShadow": false,
+          "enableFullscreen": false,
+          "widgetStyle": {
+            "cursor": "default"
+          },
+          "noDataDisplayMessage": "",
+          "showLegend": false
+        },
+        "row": 0,
+        "col": 0,
+        "id": "e921f3de-dcaa-caf3-3a95-813820f340ea"
+      },
+      "3bf8e00b-fbb3-a1dc-8bd4-2dca3a28958e": {
+        "isSystemType": false,
+        "bundleAlias": "moldmecca_main_widgets",
+        "typeAlias": "summary_operation_ratio",
+        "type": "latest",
+        "title": "New widget",
+        "image": null,
+        "description": null,
+        "sizeX": 7.5,
+        "sizeY": 3,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "1494323b-7b86-8715-c1f2-014db48df291",
+              "filterId": null,
+              "dataKeys": []
+            },
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "7de8e9a8-02b1-a3fe-d471-6d5d3e7e8fe6",
+              "filterId": null,
+              "dataKeys": [
+                {
+                  "name": "TP_PlannedWorkTimeDay",
+                  "type": "timeseries",
+                  "label": "TP_PlannedWorkTimeDay",
+                  "color": "#4caf50",
+                  "settings": {},
+                  "_hash": 0.04941362141057204,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "TP_WorkTimeRaw",
+                  "type": "timeseries",
+                  "label": "TP_WorkTimeRaw",
+                  "color": "#f44336",
+                  "settings": {},
+                  "_hash": 0.41019899007352323,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                }
+              ]
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "timewindowMs": 60000
+            }
+          },
+          "showTitle": false,
+          "backgroundColor": "#fff",
+          "color": "rgba(0, 0, 0, 0.87)",
+          "padding": "0px",
+          "settings": {
+            "widget": {
+              "originWidth": 499
+            }
+          },
+          "title": "thingplus.energy.total-operation-rate",
+          "showTitleIcon": false,
+          "titleTooltip": "",
+          "dropShadow": false,
+          "enableFullscreen": false,
+          "widgetStyle": {
+            "cursor": "default",
+            "box-shadow": "0px 2px 10px 0 rgba(0, 0, 0, 0.04)"
+          },
+          "titleStyle": {
+            "font-family": "var(--tb-config-font-family)",
+            "font-size": "1.6em",
+            "font-weight": 500,
+            "letter-spacing": "-0.04em",
+            "color": "var(--tb-service-font-5)"
+          },
+          "noDataDisplayMessage": "",
+          "showLegend": false
+        },
+        "row": 0,
+        "col": 0,
+        "id": "3bf8e00b-fbb3-a1dc-8bd4-2dca3a28958e"
+      },
+      "99823869-0612-a84d-b6c3-cbcea88ee231": {
+        "isSystemType": false,
+        "bundleAlias": "moldmecca_main_widgets",
+        "typeAlias": "summary_device",
+        "type": "latest",
+        "title": "New widget",
+        "image": null,
+        "description": null,
+        "sizeX": 7.5,
+        "sizeY": 3,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "1494323b-7b86-8715-c1f2-014db48df291",
+              "filterId": null,
+              "dataKeys": []
+            },
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "580ba56a-e3e3-40f0-d55e-1a4b0d1f3523",
+              "filterId": null,
+              "dataKeys": [
+                {
+                  "name": "v_label",
+                  "type": "timeseries",
+                  "label": "thingplus.label.device-name",
+                  "color": "#2196f3",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": false
+                  },
+                  "_hash": 0.8026945549693167,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "v_model",
+                  "type": "timeseries",
+                  "label": "thingplus.label.device-model",
+                  "color": "#4caf50",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": false
+                  },
+                  "_hash": 0.19941946690110157,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "v_manager",
+                  "type": "timeseries",
+                  "label": "thingplus.label.manager",
+                  "color": "#f44336",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": false
+                  },
+                  "_hash": 0.42508287105374976,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "v_state",
+                  "type": "timeseries",
+                  "label": "thingplus.label.device-state",
+                  "color": "#ffc107",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": true,
+                    "cellContentFunction": "let stateList = ctx.$scope.stateList\nlet state = stateList[group.state].key\nlet label = ctx.custom.t(stateList[group.state].label)\nreturn `\n    <td>\n      <div class=\"td-state\">\n        <div class=\"td-state-color ${state}\"></div>\n        <div class=\"td-state-label\">${label}</div>\n      </div>\n    </td>\n`"
+                  },
+                  "_hash": 0.5815056315673119,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "v_usage",
+                  "type": "timeseries",
+                  "label": "thingplus.label.usage-with-unit",
+                  "color": "#607d8b",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": true,
+                    "cellContentFunction": "return value / 1000"
+                  },
+                  "_hash": 0.030595898560785928,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "v_ratio",
+                  "type": "timeseries",
+                  "label": "thingplus.label.operation-rate",
+                  "color": "#9c27b0",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": true,
+                    "cellContentFunction": "var width = group.ratio > 100 ? 100 : group.ratio;\nvar style = `width:${width}%; background-color: ${group.ratioColor}`\n\nreturn `\n    <div class=\"td-operation\">\n      <div class=\"td-progress-box\">\n        <div class=\"background\"></div>\n        <div class=\"foreground\" style=\"${style}\">\n        </div>\n      </div>\n      <span class=\"td-operation-value\">${group.ratio} %</span>\n    </div>\n`\n\nreturn content"
+                  },
+                  "_hash": 0.3307599758923798,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "model",
+                  "type": "attribute",
+                  "label": "model",
+                  "color": "#8bc34a",
+                  "settings": {
+                    "hidden": true,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": false
+                  },
+                  "_hash": 0.23633016863796596,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "manager",
+                  "type": "attribute",
+                  "label": "manager",
+                  "color": "#3f51b5",
+                  "settings": {
+                    "hidden": true,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": false
+                  },
+                  "_hash": 0.196998899564915,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "TP_ActivationState",
+                  "type": "timeseries",
+                  "label": "TP_ActivationState",
+                  "color": "#e91e63",
+                  "settings": {
+                    "hidden": true,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": false
+                  },
+                  "_hash": 0.1772648261678169,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "TP_OperationState",
+                  "type": "timeseries",
+                  "label": "TP_OperationState",
+                  "color": "#ffeb3b",
+                  "settings": {
+                    "hidden": true,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": false
+                  },
+                  "_hash": 0.6206151852076391,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "TP_PlannedWorkTimeDay",
+                  "type": "timeseries",
+                  "label": "TP_PlannedWorkTimeDay",
+                  "color": "#03a9f4",
+                  "settings": {
+                    "hidden": true,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": false
+                  },
+                  "_hash": 0.9546101192162411,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "TP_ConnectionState",
+                  "type": "timeseries",
+                  "label": "TP_ConnectionState",
+                  "color": "#ff9800",
+                  "settings": {
+                    "hidden": true,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": false
+                  },
+                  "_hash": 0.22342785583433766,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                }
+              ]
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "timewindowMs": 60000
+            }
+          },
+          "showTitle": false,
+          "backgroundColor": "rgba(255,255,255,0)",
+          "color": "rgba(0, 0, 0, 0.87)",
+          "padding": "0px",
+          "settings": {
+            "widget": {
+              "originWidth": 1630
+            }
+          },
+          "title": "thingplus.page.home.device-list-by-customer",
+          "showTitleIcon": false,
+          "dropShadow": false,
+          "enableFullscreen": false,
+          "widgetStyle": {
+            "cursor": "default"
+          },
+          "noDataDisplayMessage": "",
+          "showLegend": false,
+          "titleTooltip": "",
+          "titleStyle": {
+            "font-family": "var(--tb-config-font-family)",
+            "font-size": "2em",
+            "font-weight": 500,
+            "letter-spacing": "-0.05em",
+            "color": "var(--tb-service-font-5)"
+          },
+          "actions": {
+            "headerButton": []
+          }
+        },
+        "row": 0,
+        "col": 0,
+        "id": "99823869-0612-a84d-b6c3-cbcea88ee231"
+      }
+    },
+    "states": {
+      "default": {
+        "name": "{i18n:thingplus.menu.home}",
+        "root": true,
+        "layouts": {
+          "main": {
+            "widgets": {
+              "60411e81-4699-f13a-bfae-9f1040133329": {
+                "sizeX": 97,
+                "sizeY": 4,
+                "row": 0,
+                "col": 0,
+                "mobileHeight": 1
+              },
+              "e921f3de-dcaa-caf3-3a95-813820f340ea": {
+                "sizeX": 65,
+                "sizeY": 7,
+                "row": 4,
+                "col": 1,
+                "mobileHeight": 4
+              },
+              "3bf8e00b-fbb3-a1dc-8bd4-2dca3a28958e": {
+                "sizeX": 29,
+                "sizeY": 7,
+                "row": 4,
+                "col": 67,
+                "mobileHeight": 2
+              },
+              "99823869-0612-a84d-b6c3-cbcea88ee231": {
+                "sizeX": 97,
+                "sizeY": 36,
+                "row": 13,
+                "col": 0,
+                "mobileHeight": 10
+              }
+            },
+            "gridSettings": {
+              "backgroundColor": "var(--tb-service-background-4)",
+              "columns": 97,
+              "margin": 0,
+              "backgroundSizeMode": "100%",
+              "autoFillHeight": true,
+              "backgroundImageUrl": null,
+              "mobileAutoFillHeight": false,
+              "mobileRowHeight": 70,
+              "marginUnit": "px",
+              "mobileMargin": 10
+            }
+          }
+        }
+      }
+    },
+    "entityAliases": {
+      "1494323b-7b86-8715-c1f2-014db48df291": {
+        "id": "1494323b-7b86-8715-c1f2-014db48df291",
+        "alias": "Current User Owner",
+        "filter": {
+          "type": "singleEntity",
+          "resolveMultiple": false,
+          "singleEntity": {
+            "entityType": "CURRENT_USER_OWNER",
+            "id": "13814000-1dd2-11b2-8080-808080808080"
+          }
+        }
+      },
+      "7de8e9a8-02b1-a3fe-d471-6d5d3e7e8fe6": {
+        "id": "7de8e9a8-02b1-a3fe-d471-6d5d3e7e8fe6",
+        "alias": "Selected Entity",
+        "filter": {
+          "type": "stateEntity",
+          "resolveMultiple": false,
+          "stateEntityParamName": null,
+          "defaultStateEntity": {
+            "entityType": "CURRENT_USER_OWNER",
+            "id": "13814000-1dd2-11b2-8080-808080808080"
+          }
+        }
+      },
+      "580ba56a-e3e3-40f0-d55e-1a4b0d1f3523": {
+        "id": "580ba56a-e3e3-40f0-d55e-1a4b0d1f3523",
+        "alias": "All Devices",
+        "filter": {
+          "type": "deviceSearchQuery",
+          "resolveMultiple": true,
+          "rootStateEntity": true,
+          "stateEntityParamName": null,
+          "defaultStateEntity": {
+            "entityType": "CURRENT_USER_OWNER",
+            "id": "13814000-1dd2-11b2-8080-808080808080"
+          },
+          "rootEntity": null,
+          "direction": "FROM",
+          "maxLevel": 3,
+          "fetchLastLevelOnly": false,
+          "relationType": "Contains",
+          "deviceTypes": [
+            "device"
+          ]
+        }
+      }
+    },
+    "filters": {},
+    "timewindow": {
+      "displayValue": "",
+      "hideInterval": false,
+      "hideAggregation": false,
+      "hideAggInterval": false,
+      "hideTimezone": false,
+      "selectedTab": 0,
+      "realtime": {
+        "realtimeType": 0,
+        "interval": 1000,
+        "timewindowMs": 60000,
+        "quickInterval": "CURRENT_DAY"
+      },
+      "history": {
+        "historyType": 0,
+        "interval": 1000,
+        "timewindowMs": 60000,
+        "fixedTimewindow": {
+          "startTimeMs": 1674029747382,
+          "endTimeMs": 1674116147382
+        },
+        "quickInterval": "CURRENT_DAY"
+      },
+      "aggregation": {
+        "type": "AVG",
+        "limit": 25000
+      }
+    },
+    "settings": {
+      "stateControllerId": "entity",
+      "showTitle": false,
+      "showDashboardsSelect": false,
+      "showEntitiesSelect": false,
+      "showDashboardTimewindow": false,
+      "showDashboardExport": false,
+      "toolbarAlwaysOpen": true,
+      "titleColor": "rgba(0,0,0,0.870588)",
+      "showDashboardLogo": false,
+      "dashboardLogoUrl": null,
+      "hideToolbar": true,
+      "showFilters": false,
+      "showUpdateDashboardImage": false
+    }
+  },
+  "name": "Home"
+}

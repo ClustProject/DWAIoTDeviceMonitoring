@@ -1,0 +1,16 @@
+<div id="widget" fxLayout="column" fxLayoutAlign="start center">
+  <header class="widget-header" fxLayoutAlign="space-between center" fxLayoutGap="1em">
+    <section class="widget-header-left-section" fxFlex="100" fxLayoutAlign="start center" fxLayoutGap="1em">
+      <div class="widget-title" translate>title</div>
+    </section>
+  </header>
+  <main class="widget-content" fxLayout="column" fxLayoutAlign="space-evenly center">
+    <div class="row" *ngFor="let info of infoList" fxLayoutAlign="space-between center">
+      <div class="label-box" fxLayoutAlign="start center" fxLayoutGap="0.5em">
+        <i class="info-icon material-icons">{{info.icon}}</i>
+        <label class="info-label">{{info.label}}</label>
+      </div>
+      <div class="info-value">{{info.value}}</div>
+    </div>
+  </main>
+</div>

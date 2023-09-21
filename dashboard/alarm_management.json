@@ -1,0 +1,779 @@
+{
+  "title": "Alarm Management",
+  "image": null,
+  "mobileHide": false,
+  "mobileOrder": null,
+  "configuration": {
+    "description": "",
+    "widgets": {
+      "8c1d608c-19b2-dc01-9f18-af9d3b77c5a7": {
+        "isSystemType": false,
+        "bundleAlias": "moldmecca_maintain_widgets",
+        "typeAlias": "maintain_alarm",
+        "type": "latest",
+        "title": "New widget",
+        "image": null,
+        "description": null,
+        "sizeX": 7.5,
+        "sizeY": 3,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "435b7f5a-9b50-3ef0-afcf-cfa8c7f9828d",
+              "filterId": null,
+              "dataKeys": []
+            },
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "e349290f-640e-558a-503f-474da2b01a27",
+              "filterId": null,
+              "dataKeys": [
+                {
+                  "name": "customerType",
+                  "type": "attribute",
+                  "label": "thingplus.label.type",
+                  "color": "#2196f3",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": true,
+                    "useCellActionFunction": false,
+                    "cellContentFunction": "if(value == 'CUSTOMER_L1'){\n    return ctx.custom.t('thingplus.label.customerL1')\n}else if(value == 'CUSTOMER_L2'){\n    return ctx.custom.t('thingplus.label.customerL2')\n}\nreturn '서비스' "
+                  },
+                  "_hash": 0.1816491610838622,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "title",
+                  "type": "entityField",
+                  "label": "thingplus.label.name",
+                  "color": "#4caf50",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": false,
+                    "useCellActionFunction": false
+                  },
+                  "_hash": 0.13133764492360855,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "TP_PUSH_ALARM_CONFIG",
+                  "type": "attribute",
+                  "label": "thingplus.label.snooze",
+                  "color": "#f44336",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": true,
+                    "useCellActionFunction": false,
+                    "cellContentFunction": "try {\n  let target = JSON.parse(value);\n  if (target.reAlarmMs) {\n    return 'ON';\n  }\n} catch (err) {}\n\nreturn 'OFF';\n"
+                  },
+                  "_hash": 0.2723944909753737,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "TP_PUSH_ALARM_CONFIG",
+                  "type": "attribute",
+                  "label": "thingplus.label.device-state",
+                  "color": "#ffc107",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": true,
+                    "useCellActionFunction": false,
+                    "cellContentFunction": "let result = [];\ntry {\n  let target = JSON.parse(value);\n  if (target.typeList.includes('delayed')) result.push(ctx.custom.t('thingplus.alarm-type.delayed'));\n  if (target.typeList.includes('unconnected')) result.push(ctx.custom.t('thingplus.alarm-type.unconnected'));\n} catch (err) {}\nif (result.length > 0) {\n  return result.join(', ');\n} else {\n  return '-';\n}\n"
+                  },
+                  "_hash": 0.41236770791170674,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "TP_PUSH_ALARM_CONFIG",
+                  "type": "attribute",
+                  "label": "thingplus.label.electric-quality",
+                  "color": "#607d8b",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": true,
+                    "useCellActionFunction": false,
+                    "cellContentFunction": "let result = [];\ntry {\n  let target = JSON.parse(value);\n  if (target.typeList.includes('over-current')) result.push(ctx.custom.t('thingplus.alarm-type.over-current'));\n  if (target.typeList.includes('low-voltage')) result.push(ctx.custom.t('thingplus.alarm-type.low-voltage'));\n  if (target.typeList.includes('high-voltage')) result.push(ctx.custom.t('thingplus.alarm-type.high-voltage'));\n  if (target.typeList.includes('volt-imbalance')) result.push(ctx.custom.t('thingplus.alarm-type.volt-imbalance'));\n  if (target.typeList.includes('curr-imbalance')) result.push(ctx.custom.t('thingplus.alarm-type.curr-imbalance'));\n  if (target.typeList.includes('thd')) result.push(ctx.custom.t('thingplus.alarm-type.thd'));\n  if (target.typeList.includes('power-factor')) result.push(ctx.custom.t('thingplus.alarm-type.power-factor'));\n} catch (err) {}\n\nif (result.length > 0) {\n  return result.join(', ');\n} else {\n  return '-';\n}\n"
+                  },
+                  "_hash": 0.5184392521972714,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "1e4f93be-d6f5-44cf-3957-596c48ed00d4",
+              "filterId": null,
+              "dataKeys": [
+                {
+                  "name": "customerType",
+                  "type": "attribute",
+                  "label": "customerType",
+                  "color": "#9c27b0",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "cellStyleFunction": "",
+                    "useCellContentFunction": false,
+                    "cellContentFunction": "",
+                    "useCellActionFunction": false,
+                    "cellActionFunction": ""
+                  },
+                  "_hash": 0.6832708435870349
+                },
+                {
+                  "name": "title",
+                  "type": "entityField",
+                  "label": "제목",
+                  "color": "#8bc34a",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "cellStyleFunction": "",
+                    "useCellContentFunction": false,
+                    "cellContentFunction": "",
+                    "useCellActionFunction": false,
+                    "cellActionFunction": ""
+                  },
+                  "_hash": 0.14239216508847208
+                },
+                {
+                  "name": "TP_PUSH_ALARM_CONFIG",
+                  "type": "attribute",
+                  "label": "TP_PUSH_ALARM_CONFIG",
+                  "color": "#3f51b5",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "cellStyleFunction": "",
+                    "useCellContentFunction": false,
+                    "cellContentFunction": "",
+                    "useCellActionFunction": false,
+                    "cellActionFunction": ""
+                  },
+                  "_hash": 0.45064282126998134
+                }
+              ]
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "timewindowMs": 60000
+            }
+          },
+          "showTitle": false,
+          "backgroundColor": "#fff",
+          "color": "rgba(0, 0, 0, 0.87)",
+          "padding": "0px",
+          "settings": {
+            "widget": {
+              "originWidth": 1630,
+              "filterLevel": 2,
+              "mainHeader": "1,1,1,1,1,7:label,1",
+              "subHeader": "0,0,0,0,0,1,1,1,1,1,1,1,0"
+            }
+          },
+          "title": "thingplus.page.admin.system-alarm",
+          "showTitleIcon": false,
+          "titleTooltip": "",
+          "dropShadow": true,
+          "enableFullscreen": false,
+          "widgetStyle": {
+            "cursor": "default"
+          },
+          "titleStyle": {
+            "font-family": "var(--tb-config-font-family)",
+            "font-size": "1.6em",
+            "font-weight": 600,
+            "letter-spacing": "-0.05em",
+            "color": "var(--tb-service-font-5)"
+          },
+          "noDataDisplayMessage": "",
+          "showLegend": false,
+          "actions": {
+            "actionCellButton": [
+              {
+                "name": "Details",
+                "icon": "search",
+                "useShowWidgetActionFunction": null,
+                "showWidgetActionFunction": "return true;",
+                "type": "customPretty",
+                "customHtml": "<div id=\"detail-system-alarm-form\">\n  <form #editEntityForm=\"ngForm\" [formGroup]=\"editEntityFormGroup\" style=\"font-size: {{calcFontSize()}}px;\">\n    <div class=\"dialog-title-box\" fxLayoutAlign=\"space-between center\">\n      <span class=\"dialog-title\" translate>thingplus.dialog.detail-system-alarm</span>\n      <button class=\"dialog-close\" (click)=\"cancel()\" type=\"button\">\n        <mat-icon class=\"material-icons\">close</mat-icon>\n      </button>\n    </div>\n    <mat-progress-bar color=\"warn\" mode=\"indeterminate\" *ngIf=\"isLoading$ | async\"> </mat-progress-bar>\n    <div style=\"height: 0.4em\" *ngIf=\"!(isLoading$ | async)\"></div>\n    <div mat-dialog-content fxFlex fxLayout=\"column\" fxLayoutGap=\"calc(16em / 14)\">\n      <label class=\"section-label\">1. {{'thingplus.label.step-basic' | translate}}</label>\n      <div fxLayout=\"row\" fxLayoutAlign=\"start center\">\n        <div fxFlex=\"100\" fxLayout=\"column\" class=\"input-box\">\n          <div fxFlex fxLayout=\"row\" fxLayoutAlign=\"space-between center\" class=\"group-box\">\n            <label class=\"side-label\" translate>thingplus.label.snooze</label>\n            <label class=\"switch-label\" [ngClass]=\"{'active':snooze}\" translate>\n              {{snooze ? 'thingplus.label.on' : 'thingplus.label.off'}}\n            </label>\n          </div>\n        </div>\n      </div>\n      <div fxLayout=\"row\" fxLayoutAlign=\"start center\" *ngIf=\"snooze\">\n        <div fxFlex=\"100\" fxLayout=\"row\" fxLayoutAlign=\"start center\" class=\"input-box disabled\">\n          <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"end center\" fxLayoutGap=\"0.6em\">\n            <input matInput formControlName=\"reAlarmMs\" readonly />\n          </div>\n          <span class=\"unit-label\" translate>thingplus.label.snooze-for</span>\n        </div>\n      </div>\n      <label class=\"section-label\">2. {{'thingplus.label.step-select-alarm' | translate}}</label>\n      <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n        <div fxFlex=\"100\" fxLayout=\"column\" class=\"input-box\">\n          <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\">\n            <label translate>thingplus.label.device-state</label>\n          </div>\n          <div\n            class=\"group-box\"\n            fxFlex=\"100\"\n            fxLayout=\"column\"\n            fxLayoutAlign=\"start stretch\"\n            fxLayoutGap=\"1em\"\n            formGroupName=\"deviceState\"\n          >\n            <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n              <mat-checkbox fxFlex=\"50\" formControlName=\"delayed\" disabled>\n                {{'thingplus.alarm-type.delayed' | translate}}\n              </mat-checkbox>\n              <mat-checkbox fxFlex=\"50\" formControlName=\"unconnected\" disabled>\n                {{'thingplus.alarm-type.unconnected' | translate}}\n              </mat-checkbox>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n        <div fxFlex=\"100\" fxLayout=\"column\" class=\"input-box\">\n          <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\">\n            <label translate>thingplus.label.electric-quality</label>\n          </div>\n          <div\n            class=\"group-box\"\n            fxFlex=\"100\"\n            fxLayout=\"column\"\n            fxLayoutAlign=\"start stretch\"\n            fxLayoutGap=\"1em\"\n            formGroupName=\"electricQuality\"\n          >\n            <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n              <mat-checkbox fxFlex=\"50\" formControlName=\"over-current\" disabled>\n                {{'thingplus.alarm-type.over-current' | translate}}\n              </mat-checkbox>\n              <mat-checkbox fxFlex=\"50\" formControlName=\"low-voltage\" disabled>\n                {{'thingplus.alarm-type.low-voltage' | translate}}\n              </mat-checkbox>\n            </div>\n            <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n              <mat-checkbox fxFlex=\"50\" formControlName=\"high-voltage\" disabled>\n                {{'thingplus.alarm-type.high-voltage' | translate}}\n              </mat-checkbox>\n              <mat-checkbox fxFlex=\"50\" formControlName=\"volt-imbalance\" disabled>\n                {{'thingplus.alarm-type.volt-imbalance' | translate}}\n              </mat-checkbox>\n            </div>\n            <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n              <mat-checkbox fxFlex=\"50\" formControlName=\"curr-imbalance\" disabled>\n                {{'thingplus.alarm-type.curr-imbalance' | translate}}\n              </mat-checkbox>\n              <mat-checkbox fxFlex=\"50\" formControlName=\"thd\" disabled>\n                {{'thingplus.alarm-type.thd' | translate}}\n              </mat-checkbox>\n            </div>\n            <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n              <mat-checkbox fxFlex=\"50\" formControlName=\"power-factor\" disabled>\n                {{'thingplus.alarm-type.power-factor' | translate}}\n              </mat-checkbox>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div mat-dialog-actions fxLayout=\"row\" fxLayoutAlign=\"end center\" fxLayoutGap=\"1em\">\n      <button\n        class=\"button close-button\"\n        [disabled]=\"(isLoading$ | async)\"\n        type=\"button\"\n        (click)=\"cancel()\"\n        cdkFocusInitial\n        translate\n      >\n        thingplus.action.close\n      </button>\n    </div>\n  </form>\n</div>\n",
+                "customCss": "#detail-system-alarm-form form {\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n  min-height: 70vh;\n}\n#detail-system-alarm-form .dialog-title-box {\n  padding: 2em;\n  border-bottom: 1px solid var(--tb-service-border-1);\n}\n#detail-system-alarm-form .dialog-title {\n  color: var(--tb-service-font-5);\n  font-size: 1.6em;\n}\n#detail-system-alarm-form .dialog-close {\n  all: unset;\n  cursor: pointer;\n  color: var(--tb-service-font-3);\n  transition-property: color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#detail-system-alarm-form .dialog-close i {\n  font-size: 1.4em;\n}\n#detail-system-alarm-form .dialog-close:hover {\n  color: var(--tb-service-font-5);\n}\n\n#detail-system-alarm-form .mat-dialog-content {\n  padding: var(--tb-config-padding) !important;\n}\n#detail-system-alarm-form .mat-dialog-content::-webkit-scrollbar {\n  width: 6px;\n  height: 6px;\n}\n#detail-system-alarm-form .mat-dialog-content::-webkit-scrollbar-thumb {\n  border: 2px solid #00000000;\n  background-clip: padding-box;\n  background-color: var(--tb-service-accent);\n}\n#detail-system-alarm-form .mat-dialog-content::-webkit-scrollbar-thumb:hover {\n  border: 1px solid #00000000;\n}\n\n#detail-system-alarm-form .section-label {\n  font-size: 1.4em;\n  color: var(--tb-service-font-5);\n  margin-top: calc(16em / 14);\n}\n#detail-system-alarm-form .section-label:first-child {\n  margin-top: 0;\n}\n#detail-system-alarm-form .label-box {\n  color: var(--tb-service-font-4);\n  background-color: var(--tb-service-background-1);\n  font-size: 1.2em;\n  padding: calc(9em / 12) calc(16em / 12);\n  border: 1px solid var(--tb-service-border-0);\n  border-bottom: none;\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#detail-system-alarm-form .value-box {\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#detail-system-alarm-form .value-box.no-border {\n  border: none !important;\n}\n#detail-system-alarm-form .value-box *::placeholder {\n  color: var(--tb-service-font-4);\n}\n#detail-system-alarm-form .value-box input {\n  color: var(--tb-service-font-5);\n  font-size: 1.4em;\n  padding: calc(16em / 14);\n  caret-color: var(--tb-service-accent);\n  cursor: default;\n}\n\n#detail-system-alarm-form .side-label {\n  color: var(--tb-service-font-5);\n  font-size: 1.4em;\n}\n#detail-system-alarm-form .switch-label {\n  color: var(--tb-service-font-5);\n  font-size: 1.4em;\n}\n#detail-system-alarm-form .switch-label.active {\n  color: var(--tb-service-accent);\n}\n#detail-system-alarm-form .input-small {\n  width: 3em;\n}\n#detail-system-alarm-form .unit-label {\n  color: var(--tb-service-font-5);\n  font-size: 1.4em;\n}\n\n#detail-system-alarm-form .value-box .mat-select-trigger {\n  font-size: 1.4em;\n  padding: calc(16em / 14);\n  line-height: 1;\n}\n#detail-system-alarm-form .value-box .mat-select-value {\n  font-family: var(--tb-config-font-family);\n  font-weight: 300;\n  font-size: 1em;\n  color: var(--tb-service-font-3);\n}\n#detail-system-alarm-form .value-box .mat-select-arrow {\n  font-family: var(--tb-config-font-family);\n  font-weight: 300;\n  border-left: 0.4em solid transparent;\n  border-right: 0.4em solid transparent;\n  border-top: 0.4em solid;\n  color: var(--tb-service-font-3);\n}\n#detail-system-alarm-form .group-box {\n  border: 1px solid var(--tb-service-border-0);\n  padding: 1.6em;\n}\n#detail-system-alarm-form .mat-checkbox-background {\n  background-color: var(--tb-service-background-1);\n}\n#detail-system-alarm-form .mat-checkbox.mat-checkbox-checked .mat-checkbox-background {\n  background-color: var(--tb-service-font-3);\n}\n#detail-system-alarm-form .mat-checkbox-checkmark-path {\n  stroke: var(--tb-service-font-0) !important;\n}\n#detail-system-alarm-form .mat-checkbox .mat-checkbox-inner-container {\n  width: 1.8em;\n  height: 1.8em;\n}\n#detail-system-alarm-form .mat-checkbox .mat-checkbox-label {\n  color: var(--tb-service-font-5);\n  font-size: 1.4em;\n}\n#detail-system-alarm-form .mat-checkbox .mat-checkbox-frame {\n  border-color: var(--tb-service-border-0);\n  z-index: 1;\n}\n#detail-system-alarm-form .mat-checkbox.mat-checkbox-checked .mat-checkbox-frame {\n  border-color: var(--tb-service-font-3);\n}\n\n#detail-system-alarm-form .mat-dialog-actions {\n  padding: 2em;\n  border-top: 1px solid var(--tb-service-border-1);\n}\n#detail-system-alarm-form .button {\n  all: unset;\n  padding: 0.6em 1.4em;\n  font-size: 1.4em;\n  box-sizing: border-box;\n  cursor: pointer;\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#detail-system-alarm-form .close-button {\n  color: var(--tb-service-font-5);\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n}\n#detail-system-alarm-form .close-button:hover {\n  border-color: var(--tb-service-border-3);\n}\n#detail-system-alarm-form .close-button:active {\n  background-color: var(--tb-service-border-0);\n}\n\n@media (min-width: 960px) {\n  #detail-system-alarm-form form {\n    width: 24vw;\n  }\n}\n",
+                "customFunction": "let $injector = widgetContext.$scope.$injector;\nlet customDialog = $injector.get(widgetContext.servicesMap.get('customDialog'));\nlet deviceService = $injector.get(widgetContext.servicesMap.get('deviceService'));\nlet entityRelationService = $injector.get(widgetContext.servicesMap.get('entityRelationService'));\nlet attributeService = $injector.get(widgetContext.servicesMap.get('attributeService'));\n\nconst t = widgetContext.custom.t;\n\nopenEditEntityDialog();\n\nfunction openEditEntityDialog() {\n  customDialog.customDialog(htmlTemplate, EditEntityDialogController).subscribe();\n}\n\nfunction EditEntityDialogController(instance) {\n  let vm = instance;\n  vm.ownerId = widgetContext.defaultSubscription.configuredDatasources[0].entity.id;\n  vm.ownerLevel = widgetContext.$scope.ownerLevel;\n  vm.t = t;\n  vm.pushAlarmConfig = JSON.parse(additionalParams.TP_PUSH_ALARM_CONFIG);\n  let alarmType = {};\n  for (let i in vm.pushAlarmConfig.typeList) {\n    alarmType[vm.pushAlarmConfig.typeList[i]] = true;\n  }\n  vm.snooze = vm.pushAlarmConfig.reAlarmMs != undefined;\n\n  vm.editEntityFormGroup = vm.fb.group({\n    reAlarmMs: [Math.floor(vm.pushAlarmConfig.reAlarmMs / 3600000) || 24],\n    deviceState: vm.fb.group({\n      delayed: [alarmType.delayed || false],\n      unconnected: [alarmType.unconnected || false],\n    }),\n    electricQuality: vm.fb.group({\n      'over-current': [alarmType['over-current'] || false],\n      'low-voltage': [alarmType['low-voltage'] || false],\n      'high-voltage': [alarmType['high-voltage'] || false],\n      'volt-imbalance': [alarmType['volt-imbalance'] || false],\n      'curr-imbalance': [alarmType['curr-imbalance'] || false],\n      thd: [alarmType['thd'] || false],\n      'power-factor': [alarmType['power-factor'] || false],\n    }),\n  });\n\n  vm.calcFontSize = function () {\n    const originWidth = widgetContext.settings.widget.originWidth;\n    let widgetFontSize = _.round((widgetContext.width / originWidth) * 10, 2);\n    if (widgetFontSize < 6.25) {\n      widgetFontSize = 6.25;\n    }\n    return widgetFontSize;\n  };\n  vm.cancel = function () {\n    vm.dialogRef.close(null);\n  };\n}\n",
+                "customResources": [],
+                "openInSeparateDialog": false,
+                "openInPopover": false,
+                "id": "95c1950d-68ee-115d-5830-56a10f0d7bf0"
+              },
+              {
+                "name": "Edit",
+                "icon": "edit",
+                "useShowWidgetActionFunction": null,
+                "showWidgetActionFunction": "return true;",
+                "type": "customPretty",
+                "customHtml": "<div id=\"edit-system-alarm-form\">\n  <form\n    #editEntityForm=\"ngForm\"\n    [formGroup]=\"editEntityFormGroup\"\n    (ngSubmit)=\"save()\"\n    style=\"font-size: {{calcFontSize()}}px;\"\n  >\n    <div class=\"dialog-title-box\" fxLayoutAlign=\"space-between center\">\n      <span class=\"dialog-title\" translate>thingplus.dialog.edit-system-alarm</span>\n      <button class=\"dialog-close\" (click)=\"cancel()\" type=\"button\">\n        <mat-icon class=\"material-icons\">close</mat-icon>\n      </button>\n    </div>\n    <mat-progress-bar color=\"warn\" mode=\"indeterminate\" *ngIf=\"isLoading$ | async\"> </mat-progress-bar>\n    <div style=\"height: 0.4em\" *ngIf=\"!(isLoading$ | async)\"></div>\n    <div class=\"step-controller\" fxLayoutAlign=\"space-between center\">\n      <div\n        class=\"step\"\n        [ngClass]=\"{'prev': currentStep > 0, 'current': currentStep == 0, 'next': currentStep < 0}\"\n        (click)=\"selectStep($event, 0)\"\n        fxLayoutAlign=\"center center\"\n        [attr.data-label]=\"t('thingplus.label.step-basic')\"\n      >\n        <i class=\"material-icons\">check</i>\n      </div>\n      <div class=\"step-progress-line\" [ngClass]=\"{'prev': currentStep > 0, 'next': currentStep < 0}\"></div>\n      <div\n        class=\"step\"\n        [ngClass]=\"{'prev': currentStep > 1, 'current': currentStep == 1, 'next': currentStep < 1}\"\n        (click)=\"selectStep($event, 1)\"\n        fxLayoutAlign=\"center center\"\n        [attr.data-label]=\"t('thingplus.label.step-select-alarm')\"\n      >\n        <i class=\"material-icons\">check</i>\n      </div>\n    </div>\n    <div mat-dialog-content fxFlex fxLayout=\"column\" fxLayoutGap=\"2em\">\n      <div class=\"step-content step-content-0\" *ngIf=\"currentStep == 0\" fxLayout=\"column\" fxLayoutGap=\"2em\">\n        <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n          <div fxFlex=\"100\" fxLayout=\"column\" fxLayoutGap=\"0.6em\" class=\"input-box\">\n            <div fxFlex fxLayout=\"row\" fxLayoutAlign=\"space-between center\" fxLayoutGap=\"0.6em\" class=\"group-box\">\n              <label class=\"side-label\" translate>thingplus.label.snooze</label>\n              <div class=\"switch-track\" [ngClass]=\"{'active': snooze}\" (click)=\"snooze = !snooze\">\n                <div class=\"switch-ball\"></div>\n              </div>\n            </div>\n          </div>\n        </div>\n        <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\" *ngIf=\"snooze\">\n          <div fxFlex=\"100\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"1em\" class=\"input-box\">\n            <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"end center\" fxLayoutGap=\"0.6em\">\n              <mat-select formControlName=\"reAlarmMs\">\n                <mat-option [value]=\"12\">12</mat-option>\n                <mat-option [value]=\"24\">24</mat-option>\n                <mat-option [value]=\"36\">36</mat-option>\n                <mat-option [value]=\"48\">48</mat-option>\n              </mat-select>\n            </div>\n            <span class=\"unit-label\" translate>thingplus.label.snooze-for</span>\n          </div>\n        </div>\n      </div>\n      <div class=\"step-content step-content-1\" *ngIf=\"currentStep == 1\" fxLayout=\"column\" fxLayoutGap=\"2em\">\n        <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n          <div fxFlex=\"100\" fxLayout=\"column\" fxLayoutGap=\"0.6em\" class=\"input-box\">\n            <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n              <label translate>thingplus.label.device-state</label>\n            </div>\n            <div\n              class=\"group-box\"\n              fxFlex=\"100\"\n              fxLayout=\"column\"\n              fxLayoutAlign=\"start stretch\"\n              fxLayoutGap=\"1em\"\n              formGroupName=\"deviceState\"\n            >\n              <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n                <mat-checkbox fxFlex=\"50\" (change)=\"checkEntire($event, 'deviceState')\">\n                  {{'thingplus.selector.select-all' | translate}}\n                </mat-checkbox>\n                <mat-checkbox fxFlex=\"50\" formControlName=\"delayed\">\n                  {{'thingplus.alarm-type.delayed' | translate}}\n                </mat-checkbox>\n              </div>\n              <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n                <mat-checkbox fxFlex=\"50\" formControlName=\"unconnected\">\n                  {{'thingplus.alarm-type.unconnected' | translate}}\n                </mat-checkbox>\n              </div>\n            </div>\n          </div>\n        </div>\n        <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n          <div fxFlex=\"100\" fxLayout=\"column\" fxLayoutGap=\"0.6em\" class=\"input-box\">\n            <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n              <label translate>thingplus.label.electric-quality</label>\n            </div>\n            <div\n              class=\"group-box\"\n              fxFlex=\"100\"\n              fxLayout=\"column\"\n              fxLayoutAlign=\"start stretch\"\n              fxLayoutGap=\"1em\"\n              formGroupName=\"electricQuality\"\n            >\n              <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n                <mat-checkbox fxFlex=\"50\" (change)=\"checkEntire($event, 'electricQuality')\">\n                  {{'thingplus.selector.select-all' | translate}}\n                </mat-checkbox>\n                <mat-checkbox fxFlex=\"50\" formControlName=\"over-current\">\n                  {{'thingplus.alarm-type.over-current' | translate}}\n                </mat-checkbox>\n              </div>\n              <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n                <mat-checkbox fxFlex=\"50\" formControlName=\"low-voltage\">\n                  {{'thingplus.alarm-type.low-voltage' | translate}}\n                </mat-checkbox>\n                <mat-checkbox fxFlex=\"50\" formControlName=\"high-voltage\">\n                  {{'thingplus.alarm-type.high-voltage' | translate}}\n                </mat-checkbox>\n              </div>\n              <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n                <mat-checkbox fxFlex=\"50\" formControlName=\"volt-imbalance\">\n                  {{'thingplus.alarm-type.volt-imbalance' | translate}}\n                </mat-checkbox>\n                <mat-checkbox fxFlex=\"50\" formControlName=\"curr-imbalance\">\n                  {{'thingplus.alarm-type.curr-imbalance' | translate}}\n                </mat-checkbox>\n              </div>\n              <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n                <mat-checkbox fxFlex=\"50\" formControlName=\"thd\">\n                  {{'thingplus.alarm-type.thd' | translate}}\n                </mat-checkbox>\n                <mat-checkbox fxFlex=\"50\" formControlName=\"power-factor\">\n                  {{'thingplus.alarm-type.power-factor' | translate}}\n                </mat-checkbox>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div mat-dialog-actions fxLayout=\"row\" fxLayoutAlign=\"end center\" fxLayoutGap=\"1em\">\n      <button\n        class=\"button prev-button\"\n        [disabled]=\"(isLoading$ | async)\"\n        type=\"button\"\n        (click)=\"prevStep()\"\n        *ngIf=\"currentStep > 0\"\n        translate\n      >\n        thingplus.action.prev-step\n      </button>\n      <button\n        class=\"button close-button\"\n        [disabled]=\"(isLoading$ | async)\"\n        type=\"button\"\n        (click)=\"cancel()\"\n        cdkFocusInitial\n        *ngIf=\"currentStep == 0\"\n        translate\n      >\n        thingplus.action.close\n      </button>\n      <button\n        class=\"button next-button\"\n        type=\"button\"\n        (click)=\"nextStep()\"\n        [disabled]=\"(isLoading$ | async)\"\n        *ngIf=\"currentStep < 1\"\n        translate\n      >\n        thingplus.action.next-step\n      </button>\n      <button\n        class=\"button save-button\"\n        type=\"submit\"\n        [disabled]=\"(isLoading$ | async) || editEntityForm.invalid\"\n        *ngIf=\"currentStep == 1\"\n        translate\n      >\n        thingplus.action.save\n      </button>\n    </div>\n  </form>\n</div>\n",
+                "customCss": "#edit-system-alarm-form form {\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n  min-height: 70vh;\n}\n#edit-system-alarm-form .dialog-title-box {\n  padding: 2em;\n  border-bottom: 1px solid var(--tb-service-border-1);\n}\n#edit-system-alarm-form .dialog-title {\n  color: var(--tb-service-font-5);\n  font-size: 1.6em;\n}\n#edit-system-alarm-form .dialog-close {\n  all: unset;\n  cursor: pointer;\n  color: var(--tb-service-font-3);\n  transition-property: color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#edit-system-alarm-form .dialog-close i {\n  font-size: 1.4em;\n}\n#edit-system-alarm-form .dialog-close:hover {\n  color: var(--tb-service-font-5);\n}\n\n#edit-system-alarm-form .step-controller {\n  padding: 4em;\n}\n#edit-system-alarm-form .step {\n  position: relative;\n  display: inline-block;\n  padding: 0.3em;\n  background-color: var(--tb-service-border-1);\n  border: 1px solid var(--tb-service-border-1);\n  color: var(--tb-service-border-1);\n  transition-property: color, border-color, background-color;\n  transition-duration: var(--tb-config-color-duration);\n  border-radius: 50%;\n  cursor: pointer;\n}\n#edit-system-alarm-form .step i {\n  font-size: 1.4em;\n}\n#edit-system-alarm-form .step.prev {\n  background-color: var(--tb-service-accent);\n  border: 1px solid var(--tb-service-accent);\n  color: var(--tb-service-font-0);\n}\n#edit-system-alarm-form .step.current {\n  background-color: var(--tb-service-font-0);\n  border: 1px solid var(--tb-service-accent);\n  color: var(--tb-service-font-0);\n}\n#edit-system-alarm-form .step:after {\n  content: attr(data-label);\n  position: absolute;\n  top: 125%;\n  left: 50%;\n  transform: translateX(-50%);\n  color: var(--tb-service-font-3);\n  white-space: nowrap;\n  font-size: 1.2em;\n}\n#edit-system-alarm-form .step.current:after {\n  color: var(--tb-service-font-5);\n}\n#edit-system-alarm-form .step-progress-line {\n  width: 100%;\n  height: 2px;\n  background-color: var(--tb-service-border-1);\n  transition-property: background-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#edit-system-alarm-form .step-progress-line.prev {\n  background-color: var(--tb-service-accent);\n}\n\n#edit-system-alarm-form .mat-dialog-content {\n  padding: var(--tb-config-padding) !important;\n}\n#edit-system-alarm-form .mat-dialog-content::-webkit-scrollbar {\n  width: 6px;\n  height: 6px;\n}\n#edit-system-alarm-form .mat-dialog-content::-webkit-scrollbar-thumb {\n  border: 2px solid #00000000;\n  background-clip: padding-box;\n  background-color: var(--tb-service-accent);\n}\n#edit-system-alarm-form .mat-dialog-content::-webkit-scrollbar-thumb:hover {\n  border: 1px solid #00000000;\n}\n\n#edit-system-alarm-form .label-box {\n  color: var(--tb-service-font-3);\n  font-size: 1.2em;\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#edit-system-alarm-form .input-box.disabled .label-box {\n  color: var(--tb-service-font-1);\n}\n#edit-system-alarm-form .value-box {\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#edit-system-alarm-form .value-box.no-border {\n  border: none !important;\n}\n\n#edit-system-alarm-form .side-label {\n  color: var(--tb-service-font-4);\n  font-size: 1.4em;\n}\n#edit-system-alarm-form .switch-track {\n  position: relative;\n  width: 3.6em;\n  height: 1.6em;\n  border-radius: 0.8em;\n  background-color: var(--tb-service-font-3);\n  transition-property: background-color;\n  transition-duration: var(--tb-config-color-duration);\n  cursor: pointer;\n}\n#edit-system-alarm-form .switch-track.active {\n  background-color: var(--tb-service-accent);\n}\n#edit-system-alarm-form .switch-ball {\n  position: absolute;\n  top: 50%;\n  left: 0.8em;\n  transform: translate(-50%, -50%);\n  width: 1.2em;\n  height: 1.2em;\n  border-radius: 0.6em;\n  background-color: var(--tb-service-background-0);\n  transition-property: left;\n  transition-duration: var(--tb-config-color-duration);\n}\n#edit-system-alarm-form .switch-track.active .switch-ball {\n  left: calc(100% - 0.8em);\n}\n#edit-system-alarm-form .input-small {\n  width: 3em;\n}\n#edit-system-alarm-form .unit-label {\n  color: var(--tb-service-font-4);\n  font-size: 1.4em;\n}\n\n#edit-system-alarm-form .value-box .mat-select-trigger {\n  font-size: 1.4em;\n  padding: calc(16em / 14);\n  line-height: 1;\n}\n#edit-system-alarm-form .value-box .mat-select-value {\n  font-family: var(--tb-config-font-family);\n  font-weight: 300;\n  font-size: 1em;\n  color: var(--tb-service-font-5);\n}\n#edit-system-alarm-form .value-box .mat-select-arrow {\n  font-family: var(--tb-config-font-family);\n  font-weight: 300;\n  border-left: 0.4em solid transparent;\n  border-right: 0.4em solid transparent;\n  border-top: 0.4em solid;\n  color: var(--tb-service-accent);\n}\n#edit-system-alarm-form .group-box {\n  border: 1px solid var(--tb-service-border-0);\n  padding: 1.6em;\n}\n#edit-system-alarm-form .mat-checkbox.mat-checkbox-checked .mat-checkbox-background {\n  background-color: var(--tb-service-accent);\n}\n#edit-system-alarm-form .mat-checkbox-checkmark-path {\n  stroke: var(--tb-service-font-0) !important;\n}\n#edit-system-alarm-form .mat-checkbox .mat-checkbox-inner-container {\n  width: 1.8em;\n  height: 1.8em;\n}\n#edit-system-alarm-form .mat-checkbox .mat-checkbox-label {\n  color: var(--tb-service-font-3);\n  font-size: 1.4em;\n}\n#edit-system-alarm-form .mat-checkbox .mat-checkbox-frame {\n  border-color: var(--tb-service-border-0);\n}\n#edit-system-alarm-form .mat-checkbox.mat-checkbox-checked .mat-checkbox-frame {\n  border-color: var(--tb-service-accent);\n}\n\n#edit-system-alarm-form .mat-dialog-actions {\n  padding: 2em;\n  border-top: 1px solid var(--tb-service-border-1);\n}\n#edit-system-alarm-form .button {\n  all: unset;\n  padding: 0.6em 1.4em;\n  font-size: 1.4em;\n  box-sizing: border-box;\n  cursor: pointer;\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#edit-system-alarm-form .save-button,\n#edit-system-alarm-form .next-button {\n  color: var(--tb-service-font-0);\n  background-color: var(--tb-service-accent);\n}\n#edit-system-alarm-form .save-button:hover,\n#edit-system-alarm-form .next-button:hover {\n  background-color: var(--tb-service-accent-hover);\n}\n#edit-system-alarm-form .save-button:active,\n#edit-system-alarm-form .next-button:active {\n  background-color: var(--tb-service-accent-pressed);\n}\n#edit-system-alarm-form .close-button,\n#edit-system-alarm-form .prev-button {\n  color: var(--tb-service-font-5);\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n}\n#edit-system-alarm-form .close-button:hover,\n#edit-system-alarm-form .prev-button:hover {\n  border-color: var(--tb-service-border-3);\n}\n#edit-system-alarm-form .close-button:active,\n#edit-system-alarm-form .prev-button:active {\n  background-color: var(--tb-service-border-0);\n}\n\n@media (min-width: 960px) {\n  #edit-system-alarm-form form {\n    width: 24vw;\n  }\n}\n",
+                "customFunction": "let $injector = widgetContext.$scope.$injector;\nlet customDialog = $injector.get(widgetContext.servicesMap.get('customDialog'));\nlet deviceService = $injector.get(widgetContext.servicesMap.get('deviceService'));\nlet entityRelationService = $injector.get(widgetContext.servicesMap.get('entityRelationService'));\nlet attributeService = $injector.get(widgetContext.servicesMap.get('attributeService'));\n\nconst t = widgetContext.custom.t;\n\nopenEditEntityDialog();\n\nfunction openEditEntityDialog() {\n  customDialog.customDialog(htmlTemplate, EditEntityDialogController).subscribe();\n}\n\nfunction EditEntityDialogController(instance) {\n  let vm = instance;\n  vm.ownerId = widgetContext.defaultSubscription.configuredDatasources[0].entity.id;\n  vm.ownerLevel = widgetContext.$scope.ownerLevel;\n  vm.t = t;\n  vm.currentStep = 0;\n  vm.pushAlarmConfig = JSON.parse(additionalParams.TP_PUSH_ALARM_CONFIG);\n  let alarmType = {};\n  for (let i in vm.pushAlarmConfig.typeList) {\n    alarmType[vm.pushAlarmConfig.typeList[i]] = true;\n  }\n  vm.snooze = vm.pushAlarmConfig.reAlarmMs != undefined;\n\n  vm.editEntityFormGroup = vm.fb.group({\n    reAlarmMs: [Math.floor(vm.pushAlarmConfig.reAlarmMs / 3600000) || 24],\n    deviceState: vm.fb.group({\n      delayed: [alarmType.delayed || false],\n      unconnected: [alarmType.unconnected || false],\n    }),\n    electricQuality: vm.fb.group({\n      'over-current': [alarmType['over-current'] || false],\n      'low-voltage': [alarmType['low-voltage'] || false],\n      'high-voltage': [alarmType['high-voltage'] || false],\n      'volt-imbalance': [alarmType['volt-imbalance'] || false],\n      'curr-imbalance': [alarmType['curr-imbalance'] || false],\n      thd: [alarmType['thd'] || false],\n      'power-factor': [alarmType['power-factor'] || false],\n    }),\n  });\n\n  vm.calcFontSize = function () {\n    const originWidth = widgetContext.settings.widget.originWidth;\n    let widgetFontSize = _.round((widgetContext.width / originWidth) * 10, 2);\n    if (widgetFontSize < 6.25) {\n      widgetFontSize = 6.25;\n    }\n    return widgetFontSize;\n  };\n  vm.cancel = function () {\n    vm.dialogRef.close(null);\n  };\n  vm.save = function () {\n    vm.editEntityFormGroup.markAsPristine();\n    saveAttribute().subscribe(() => {\n      widgetContext.updateAliases();\n      vm.dialogRef.close(null);\n    });\n  };\n  vm.selectStep = function (e, index) {\n    vm.currentStep = index;\n  };\n  vm.prevStep = function () {\n    vm.currentStep--;\n  };\n  vm.nextStep = function () {\n    vm.currentStep++;\n  };\n  vm.checkEntire = function (e, target) {\n    let control = vm.editEntityFormGroup.get(target).value;\n    if (e.checked) {\n      for (let i in control) {\n        control[i] = true;\n      }\n    } else {\n      for (let i in control) {\n        control[i] = false;\n      }\n    }\n    vm.editEntityFormGroup.get(target).patchValue(control, { emitEvent: false });\n  };\n\n  function saveAttribute() {\n    let reAlarmMs = vm.editEntityFormGroup.get('reAlarmMs').value;\n    let deviceState = vm.editEntityFormGroup.get('deviceState').value;\n    let electricQuality = vm.editEntityFormGroup.get('electricQuality').value;\n\n    let newConfig = _.cloneDeep(vm.pushAlarmConfig);\n    if (vm.snooze) {\n      newConfig.reAlarmMs = reAlarmMs * 3600000;\n    } else {\n      delete newConfig.reAlarmMs;\n    }\n    newConfig.typeList = [];\n    for (let i in deviceState) {\n      if (deviceState[i]) {\n        newConfig.typeList.push(i);\n      }\n    }\n    for (let i in electricQuality) {\n      if (electricQuality[i]) {\n        newConfig.typeList.push(i);\n      }\n    }\n\n    let attributeBody = [{ key: 'TP_PUSH_ALARM_CONFIG', value: newConfig }];\n    return attributeService.saveEntityAttributes(entityId, 'SERVER_SCOPE', attributeBody);\n  }\n}\n",
+                "customResources": [],
+                "openInSeparateDialog": false,
+                "openInPopover": false,
+                "id": "3eb29d54-721a-35a9-5a42-132d60204675"
+              }
+            ]
+          }
+        },
+        "row": 0,
+        "col": 0,
+        "id": "8c1d608c-19b2-dc01-9f18-af9d3b77c5a7"
+      },
+      "ce9e35f2-d3ee-bc3b-f124-45cbd3e179f8": {
+        "isSystemType": false,
+        "bundleAlias": "moldmecca_maintain_widgets",
+        "typeAlias": "maintain_sms_alarm",
+        "type": "latest",
+        "title": "New widget",
+        "image": null,
+        "description": null,
+        "sizeX": 7.5,
+        "sizeY": 3,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "435b7f5a-9b50-3ef0-afcf-cfa8c7f9828d",
+              "filterId": null,
+              "dataKeys": []
+            },
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "8410d4b7-b582-445b-89f3-345e51de7a8a",
+              "filterId": null,
+              "dataKeys": [
+                {
+                  "name": "title",
+                  "type": "attribute",
+                  "label": "thingplus.label.alarm-name",
+                  "color": "#2196f3",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": false,
+                    "useCellActionFunction": false
+                  },
+                  "_hash": 0.009297238864786506,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "customerL2",
+                  "type": "attribute",
+                  "label": "thingplus.label.customerL2-name",
+                  "color": "#4caf50",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": true,
+                    "useCellActionFunction": false,
+                    "cellContentFunction": "if(value == ''){\n    return ctx.custom.t('thingplus.label.entire')\n}\nreturn ctx.custom.relations[value].name"
+                  },
+                  "_hash": 0.5209760302152788,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "device",
+                  "type": "attribute",
+                  "label": "thingplus.label.device-name",
+                  "color": "#f44336",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": true,
+                    "useCellActionFunction": false,
+                    "cellContentFunction": "\nif(value == ''){\n    return ctx.custom.t('thingplus.label.entire')\n}\nreturn ctx.custom.relations[value].label"
+                  },
+                  "_hash": 0.42606585248264706,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "typeList",
+                  "type": "attribute",
+                  "label": "thingplus.label.device-state",
+                  "color": "#ffc107",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": true,
+                    "useCellActionFunction": false,
+                    "cellContentFunction": "let result = JSON.parse(value)\nresult = result.filter(x => x == 'delayed' || x == 'unconnected')\nfor(let i in result){\n    result[i] = ctx.custom.t('thingplus.alarm-type.' + result[i])\n}\nif(result.length == 0){\n    return '-'\n}\nif(result.length == 1){\n    return result[0]\n}\nreturn result[0] + ' ' + ctx.custom.t('thingplus.label.and-other',{count: result.length - 1})"
+                  },
+                  "_hash": 0.054009663697671684,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "typeList",
+                  "type": "attribute",
+                  "label": "thingplus.label.electric-quality",
+                  "color": "#607d8b",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": true,
+                    "useCellActionFunction": false,
+                    "cellContentFunction": "let result = JSON.parse(value)\nresult = result.filter(x => x != 'delayed' && x != 'unconnected')\nfor(let i in result){\n    result[i] = ctx.custom.t('thingplus.alarm-type.' + result[i])\n}\nif(result.length == 0){\n    return '-'\n}\nif(result.length == 1){\n    return result[0]\n}\nreturn result[0] + ' ' + ctx.custom.t('thingplus.label.and-other',{count: result.length - 1})"
+                  },
+                  "_hash": 0.6583822706210818,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "isEnable",
+                  "type": "attribute",
+                  "label": "thingplus.label.enable",
+                  "color": "#9c27b0",
+                  "settings": {
+                    "hidden": false,
+                    "useCellStyleFunction": true,
+                    "useCellContentFunction": true,
+                    "useCellActionFunction": true,
+                    "cellStyleFunction": "return {\n    \"padding\": \"0em\",\n    \"width\": \"1em\"\n}",
+                    "cellContentFunction": "if(value == 'true'){\n    return `<div class=\"activate-switch active\"><div class=\"ball\"></div></div>`\n}\nreturn `<div class=\"activate-switch\"><div class=\"ball\"></div></div>`",
+                    "cellActionFunction": "let descriptors = ctx.actionsApi.getActionDescriptors('customAction');\nlet targetIndex = descriptors.findIndex(x => x.name == 'Enable');\nif (targetIndex != -1) {\n  ctx.actionsApi.handleWidgetAction(\n    {},\n    descriptors[targetIndex],\n    ctx.custom.mainData[tr.index].id,\n    ctx.custom.mainData[tr.index].name,\n    ctx.custom.mainData[tr.index],\n    ctx.custom.mainData[tr.index].label\n  );\n}\n"
+                  },
+                  "_hash": 0.9477564506093361,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                },
+                {
+                  "name": "receiver",
+                  "type": "attribute",
+                  "label": "receiver",
+                  "color": "#8bc34a",
+                  "settings": {
+                    "hidden": true,
+                    "useCellStyleFunction": false,
+                    "useCellContentFunction": false,
+                    "useCellActionFunction": false
+                  },
+                  "_hash": 0.9328477698232083,
+                  "units": null,
+                  "decimals": null,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                }
+              ]
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "timewindowMs": 60000
+            }
+          },
+          "showTitle": false,
+          "backgroundColor": "#fff",
+          "color": "rgba(0, 0, 0, 0.87)",
+          "padding": "0px",
+          "settings": {
+            "widget": {
+              "originWidth": 1630,
+              "filterLevel": 2,
+              "mainHeader": "1,1,1,2:thingplus.label.receive-event,1",
+              "subHeader": "0,0,0,1,1,0"
+            }
+          },
+          "title": "thingplus.menu.sms-alarm",
+          "showTitleIcon": false,
+          "titleTooltip": "",
+          "dropShadow": true,
+          "enableFullscreen": false,
+          "widgetStyle": {
+            "cursor": "default"
+          },
+          "titleStyle": {
+            "font-family": "var(--tb-config-font-family)",
+            "font-size": "1.6em",
+            "font-weight": 600,
+            "letter-spacing": "-0.05em",
+            "color": "var(--tb-service-font-5)"
+          },
+          "noDataDisplayMessage": "",
+          "showLegend": false,
+          "actions": {
+            "widgetHeaderButton": [
+              {
+                "name": "thingplus.action.new",
+                "icon": "add",
+                "useShowWidgetActionFunction": null,
+                "showWidgetActionFunction": "return true;",
+                "type": "customPretty",
+                "customHtml": "<div id=\"add-sms-alarm-form\">\n  <form\n    #addEntityForm=\"ngForm\"\n    [formGroup]=\"addEntityFormGroup\"\n    (ngSubmit)=\"save()\"\n    style=\"font-size: {{calcFontSize()}}px;\"\n  >\n    <div class=\"dialog-title-box\" fxLayoutAlign=\"space-between center\">\n      <span class=\"dialog-title\" translate>thingplus.dialog.create-sms-alarm-title</span>\n      <button class=\"dialog-close\" (click)=\"cancel()\" type=\"button\">\n        <mat-icon class=\"material-icons\">close</mat-icon>\n      </button>\n    </div>\n    <mat-progress-bar color=\"warn\" mode=\"indeterminate\" *ngIf=\"isLoading$ | async\"> </mat-progress-bar>\n    <div style=\"height: 0.4em\" *ngIf=\"!(isLoading$ | async)\"></div>\n    <div class=\"step-controller\" fxLayoutAlign=\"space-between center\">\n      <div\n        class=\"step\"\n        [ngClass]=\"{'prev': currentStep > 0, 'current': currentStep == 0, 'next': currentStep < 0}\"\n        (click)=\"selectStep($event, 0)\"\n        fxLayoutAlign=\"center center\"\n        [attr.data-label]=\"t('thingplus.label.step-basic')\"\n      >\n        <i class=\"material-icons\">check</i>\n      </div>\n      <div class=\"step-progress-line\" [ngClass]=\"{'prev': currentStep > 0, 'next': currentStep < 0}\"></div>\n      <div\n        class=\"step\"\n        [ngClass]=\"{'prev': currentStep > 1, 'current': currentStep == 1, 'next': currentStep < 1}\"\n        (click)=\"selectStep($event, 1)\"\n        fxLayoutAlign=\"center center\"\n        [attr.data-label]=\"t('thingplus.label.step-select-alarm')\"\n      >\n        <i class=\"material-icons\">check</i>\n      </div>\n      <div class=\"step-progress-line\" [ngClass]=\"{'prev': currentStep > 1, 'next': currentStep < 1}\"></div>\n      <div\n        class=\"step\"\n        [ngClass]=\"{'prev': currentStep > 2, 'current': currentStep == 2, 'next': currentStep < 2}\"\n        (click)=\"selectStep($event, 2)\"\n        fxLayoutAlign=\"center center\"\n        [attr.data-label]=\"t('thingplus.label.step-set-receive')\"\n      >\n        <i class=\"material-icons\">check</i>\n      </div>\n    </div>\n    <div mat-dialog-content fxFlex fxLayout=\"column\" fxLayoutGap=\"2em\">\n      <div class=\"step-content step-content-0\" *ngIf=\"currentStep == 0\" fxLayout=\"column\" fxLayoutGap=\"2em\">\n        <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n          <div\n            fxFlex=\"100\"\n            fxLayout=\"column\"\n            fxLayoutGap=\"0.6em\"\n            class=\"input-box\"\n            [ngClass]=\"{error: addEntityFormGroup.get('title').hasError('required')}\"\n          >\n            <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n              <label translate>thingplus.label.alarm-name</label>\n            </div>\n            <div fxFlex=\"100\" fxLayout=\"row\" fxLayoutAlign=\"space-between center\" fxLayoutGap=\"1em\">\n              <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"space-between center\" fxLayoutGap=\"0.6em\">\n                <input matInput formControlName=\"title\" required />\n              </div>\n            </div>\n            <div class=\"error-box\" *ngIf=\"addEntityFormGroup.get('title').hasError('required')\" translate>\n              thingplus.help.error-required-alarm-name\n            </div>\n          </div>\n        </div>\n        <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n          <div\n            fxFlex=\"100\"\n            fxLayout=\"column\"\n            fxLayoutGap=\"0.6em\"\n            class=\"input-box\"\n            [ngClass]=\"{'disabled': ownerLevel > 1}\"\n          >\n            <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n              <label translate>thingplus.label.customerL2</label>\n            </div>\n            <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.6em\">\n              <mat-select\n                formControlName=\"customerL2\"\n                *ngIf=\"ownerLevel <= 1\"\n                (selectionChange)=\"setCustomerL2($event)\"\n              >\n                <mat-option *ngFor=\"let customerL2 of customerL2List\" [value]=\"customerL2.value\">\n                  {{customerL2.name}}\n                </mat-option>\n              </mat-select>\n              <input matInput formControlName=\"customerL2Name\" *ngIf=\"ownerLevel > 1\" readonly />\n            </div>\n          </div>\n        </div>\n        <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n          <div fxFlex=\"100\" fxLayout=\"column\" fxLayoutGap=\"0.6em\" class=\"input-box\">\n            <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n              <label translate>thingplus.label.device</label>\n            </div>\n            <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.6em\">\n              <mat-select formControlName=\"device\">\n                <mat-option *ngFor=\"let device of deviceList\" [value]=\"device.value\"> {{device.name}} </mat-option>\n              </mat-select>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"step-content step-content-1\" *ngIf=\"currentStep == 1\" fxLayout=\"column\" fxLayoutGap=\"2em\">\n        <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n          <div fxFlex=\"100\" fxLayout=\"column\" fxLayoutGap=\"0.6em\" class=\"input-box\">\n            <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n              <mat-checkbox (change)=\"checkEntire($event, 'deviceState')\">\n                {{'thingplus.label.device-state' | translate}}\n              </mat-checkbox>\n            </div>\n            <div\n              class=\"group-box\"\n              fxFlex=\"100\"\n              fxLayout=\"column\"\n              fxLayoutAlign=\"start stretch\"\n              fxLayoutGap=\"1em\"\n              formGroupName=\"deviceState\"\n            >\n              <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n                <mat-checkbox fxFlex=\"50\" formControlName=\"delayed\">\n                  {{'thingplus.alarm-type.delayed' | translate}}\n                </mat-checkbox>\n                <mat-checkbox fxFlex=\"50\" formControlName=\"unconnected\">\n                  {{'thingplus.alarm-type.unconnected' | translate}}\n                </mat-checkbox>\n              </div>\n            </div>\n          </div>\n        </div>\n        <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n          <div fxFlex=\"100\" fxLayout=\"column\" fxLayoutGap=\"0.6em\" class=\"input-box\">\n            <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n              <mat-checkbox (change)=\"checkEntire($event, 'electricQuality')\">\n                {{'thingplus.label.electric-quality' | translate}}\n              </mat-checkbox>\n            </div>\n            <div\n              class=\"group-box\"\n              fxFlex=\"100\"\n              fxLayout=\"column\"\n              fxLayoutAlign=\"start stretch\"\n              fxLayoutGap=\"1em\"\n              formGroupName=\"electricQuality\"\n            >\n              <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n                <mat-checkbox fxFlex=\"50\" formControlName=\"over-current\">\n                  {{'thingplus.alarm-type.over-current' | translate}}\n                </mat-checkbox>\n                <mat-checkbox fxFlex=\"50\" formControlName=\"low-voltage\">\n                  {{'thingplus.alarm-type.low-voltage' | translate}}\n                </mat-checkbox>\n              </div>\n              <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n                <mat-checkbox fxFlex=\"50\" formControlName=\"high-voltage\">\n                  {{'thingplus.alarm-type.high-voltage' | translate}}\n                </mat-checkbox>\n                <mat-checkbox fxFlex=\"50\" formControlName=\"volt-imbalance\">\n                  {{'thingplus.alarm-type.volt-imbalance' | translate}}\n                </mat-checkbox>\n              </div>\n              <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n                <mat-checkbox fxFlex=\"50\" formControlName=\"curr-imbalance\">\n                  {{'thingplus.alarm-type.curr-imbalance' | translate}}\n                </mat-checkbox>\n                <mat-checkbox fxFlex=\"50\" formControlName=\"thd\">\n                  {{'thingplus.alarm-type.thd' | translate}}\n                </mat-checkbox>\n              </div>\n              <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n                <mat-checkbox fxFlex=\"50\" formControlName=\"power-factor\">\n                  {{'thingplus.alarm-type.power-factor' | translate}}\n                </mat-checkbox>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"step-content step-content-2\" *ngIf=\"currentStep == 2\" fxLayout=\"column\" fxLayoutGap=\"2em\">\n        <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start end\">\n          <div fxFlex fxLayout=\"column\" fxLayoutGap=\"0.6em\" class=\"input-box\">\n            <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n              <label translate>thingplus.label.add-user</label>\n            </div>\n            <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.6em\">\n              <mat-select\n                formControlName=\"user\"\n                multiple\n                (selectionChange)=\"setUser($event)\"\n                placeholder=\"{{'thingplus.selector.select-user' | translate}}\"\n              >\n                <mat-select-trigger>\n                  <span *ngIf=\"addEntityFormGroup.get('user').value.length > 0\">\n                    {{'thingplus.selector.selected-count' | translate:{count:\n                    addEntityFormGroup.get('user').value.length} }}\n                  </span>\n                </mat-select-trigger>\n                <mat-option *ngFor=\"let user of userList\" [value]=\"user.value\">\n                  {{user.name}}{{user.phone ? \" : \" + user.phone : ''}}\n                </mat-option>\n              </mat-select>\n            </div>\n          </div>\n        </div>\n        <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n          <div\n            fxFlex=\"100\"\n            fxLayout=\"column\"\n            fxLayoutGap=\"0.6em\"\n            class=\"input-box\"\n            [ngClass]=\"{error: addEntityFormGroup.get('newSms').hasError('pattern')}\"\n          >\n            <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n              <label translate>thingplus.label.add-sms</label>\n            </div>\n            <div fxFlex=\"100\" fxLayout=\"row\" fxLayoutAlign=\"space-between center\" fxLayoutGap=\"1em\">\n              <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"space-between center\" fxLayoutGap=\"0.6em\">\n                <input matInput type=\"sms\" fxFlex formControlName=\"newSms\" />\n                <button class=\"sms-add-button\" type=\"button\" (click)=\"addSms($event)\" translate>\n                  thingplus.action.add\n                </button>\n              </div>\n            </div>\n            <div class=\"error-box\" *ngIf=\"addEntityFormGroup.get('newSms').hasError('pattern')\" translate>\n              thingplus.help.error-invalid-sms\n            </div>\n          </div>\n        </div>\n        <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n          <div class=\"grid-box\" fxLayout=\"row wrap\" fxLayoutAlign=\"start\">\n            <div\n              class=\"chip sms-chip\"\n              *ngFor=\"let sms of smsList\"\n              fxLayoutAlign=\"space-between center\"\n              fxLayoutGap=\"1em\"\n            >\n              <label class=\"chip-label\" fxFlex>{{sms}}</label>\n              <button class=\"sms-delete-button material-icons\" type=\"button\" (click)=\"deleteSms($event, sms)\">\n                close\n              </button>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div mat-dialog-actions fxLayout=\"row\" fxLayoutAlign=\"end center\" fxLayoutGap=\"1em\">\n      <button\n        class=\"button prev-button\"\n        [disabled]=\"(isLoading$ | async)\"\n        type=\"button\"\n        (click)=\"prevStep()\"\n        *ngIf=\"currentStep > 0\"\n        translate\n      >\n        thingplus.action.prev-step\n      </button>\n      <button\n        class=\"button close-button\"\n        [disabled]=\"(isLoading$ | async)\"\n        type=\"button\"\n        (click)=\"cancel()\"\n        cdkFocusInitial\n        *ngIf=\"currentStep == 0\"\n        translate\n      >\n        thingplus.action.close\n      </button>\n      <button\n        class=\"button next-button\"\n        type=\"button\"\n        (click)=\"nextStep()\"\n        [disabled]=\"(isLoading$ | async)\"\n        *ngIf=\"currentStep < 2\"\n        translate\n      >\n        thingplus.action.next-step\n      </button>\n      <button\n        class=\"button save-button\"\n        type=\"submit\"\n        [disabled]=\"(isLoading$ | async) || addEntityForm.invalid\"\n        *ngIf=\"currentStep == 2\"\n        translate\n      >\n        thingplus.action.save\n      </button>\n    </div>\n  </form>\n</div>\n",
+                "customCss": "#add-sms-alarm-form form {\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n  min-height: 70vh;\n}\n#add-sms-alarm-form .dialog-title-box {\n  padding: 2em;\n  border-bottom: 1px solid var(--tb-service-border-1);\n}\n#add-sms-alarm-form .dialog-title {\n  color: var(--tb-service-font-5);\n  font-size: 1.6em;\n}\n#add-sms-alarm-form .dialog-close {\n  all: unset;\n  cursor: pointer;\n  color: var(--tb-service-font-3);\n  transition-property: color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#add-sms-alarm-form .dialog-close i {\n  font-size: 1.4em;\n}\n#add-sms-alarm-form .dialog-close:hover {\n  color: var(--tb-service-font-5);\n}\n\n#add-sms-alarm-form .step-controller {\n  padding: 4em;\n}\n#add-sms-alarm-form .step {\n  position: relative;\n  display: inline-block;\n  padding: 0.3em;\n  background-color: var(--tb-service-border-1);\n  border: 1px solid var(--tb-service-border-1);\n  color: var(--tb-service-border-1);\n  transition-property: color, border-color, background-color;\n  transition-duration: var(--tb-config-color-duration);\n  border-radius: 50%;\n  cursor: pointer;\n}\n#add-sms-alarm-form .step i {\n  font-size: 1.4em;\n}\n#add-sms-alarm-form .step.prev {\n  background-color: var(--tb-service-accent);\n  border: 1px solid var(--tb-service-accent);\n  color: var(--tb-service-font-0);\n}\n#add-sms-alarm-form .step.current {\n  background-color: var(--tb-service-font-0);\n  border: 1px solid var(--tb-service-accent);\n  color: var(--tb-service-font-0);\n}\n#add-sms-alarm-form .step:after {\n  content: attr(data-label);\n  position: absolute;\n  top: 125%;\n  left: 50%;\n  transform: translateX(-50%);\n  color: var(--tb-service-font-3);\n  white-space: nowrap;\n  font-size: 1.2em;\n}\n#add-sms-alarm-form .step.current:after {\n  color: var(--tb-service-font-5);\n}\n#add-sms-alarm-form .step-progress-line {\n  width: 100%;\n  height: 2px;\n  background-color: var(--tb-service-border-1);\n  transition-property: background-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#add-sms-alarm-form .step-progress-line.prev {\n  background-color: var(--tb-service-accent);\n}\n\n#add-sms-alarm-form .mat-dialog-content {\n  padding: var(--tb-config-padding) !important;\n}\n#add-sms-alarm-form .mat-dialog-content::-webkit-scrollbar {\n  width: 6px;\n  height: 6px;\n}\n#add-sms-alarm-form .mat-dialog-content::-webkit-scrollbar-thumb {\n  border: 2px solid #00000000;\n  background-clip: padding-box;\n  background-color: var(--tb-service-accent);\n}\n#add-sms-alarm-form .mat-dialog-content::-webkit-scrollbar-thumb:hover {\n  border: 1px solid #00000000;\n}\n\n#add-sms-alarm-form .label-box {\n  color: var(--tb-service-font-3);\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#add-sms-alarm-form .input-box.disabled .label-box {\n  color: var(--tb-service-font-1);\n}\n#add-sms-alarm-form .value-box {\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#add-sms-alarm-form .value-box.no-border {\n  border: none !important;\n}\n\n#add-sms-alarm-form .input-box:not(.disabled) .value-box:hover {\n  border-color: var(--tb-service-border-3);\n}\n#add-sms-alarm-form .input-box:not(.disabled) .value-box:focus-within {\n  border-color: var(--tb-service-accent);\n  caret-color: var(--tb-service-accent);\n}\n#add-sms-alarm-form .value-box *::placeholder {\n  color: var(--tb-service-font-4);\n}\n#add-sms-alarm-form .value-box input {\n  color: var(--tb-service-font-5);\n  font-size: 1.4em;\n  padding: calc(16em / 14);\n  caret-color: var(--tb-service-accent);\n}\n#add-sms-alarm-form .input-box.disabled .value-box {\n  background-color: var(--tb-service-background-1);\n}\n#add-sms-alarm-form .input-box.disabled .value-box input {\n  color: var(--tb-service-font-2);\n  cursor: default;\n}\n#add-sms-alarm-form .radio-btn {\n  all: unset;\n  color: var(--tb-service-font-5);\n  border: 1px solid var(--tb-service-border-0);\n  font-size: 1.4em;\n  padding: calc(16em / 14);\n  text-align: center;\n  cursor: pointer;\n}\n#add-sms-alarm-form .input-box:not(.disabled) .radio-btn:not(.active):hover {\n  border-color: var(--tb-service-border-3);\n}\n#add-sms-alarm-form .input-box:not(.disabled) .radio-btn.active {\n  color: var(--tb-service-accent);\n  border-color: var(--tb-service-accent);\n}\n#add-sms-alarm-form .input-box.disabled .radio-btn:not(.active) {\n  color: var(--tb-service-font-1);\n  cursor: default;\n}\n#add-sms-alarm-form .input-box.disabled .radio-btn.active {\n  border-color: var(--tb-service-border-3);\n  cursor: default;\n}\n\n#add-sms-alarm-form .grid-box {\n  gap: 1em;\n  max-width: 100%;\n}\n#add-sms-alarm-form .chip {\n  border: 1px solid var(--tb-service-border-0);\n  color: var(--tb-service-font-5);\n  padding: 1em;\n  overflow: hidden;\n}\n#add-sms-alarm-form .chip-label {\n  font-size: 1.4em;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n#add-sms-alarm-form .sms-add-button {\n  border: none;\n  padding: 0.4em 1em;\n  margin-right: calc(16em / 14);\n  font-size: 1.4em;\n  color: var(--tb-service-accent);\n  border: 1px solid var(--tb-service-accent);\n  background-color: var(--tb-service-background-0);\n  cursor: pointer;\n  transition-property: color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#add-sms-alarm-form .input-box.error .sms-add-button {\n  cursor: default;\n  color: var(--tb-service-disabled);\n  border-color: var(--tb-service-disabled);\n}\n#add-sms-alarm-form .input-box:not(.error) .sms-add-button:hover {\n  color: var(--tb-service-accent-hover);\n  border-color: var(--tb-service-accent-hover);\n}\n#add-sms-alarm-form .input-box:not(.error) .sms-add-button:active {\n  color: var(--tb-service-accent-pressed);\n  border-color: var(--tb-service-accent-pressed);\n}\n#add-sms-alarm-form .sms-delete-button {\n  border: none;\n  padding: 0.1em;\n  font-size: 1.4em;\n  color: var(--tb-service-font-0);\n  background-color: var(--tb-service-font-1);\n  border-radius: 50%;\n  cursor: pointer;\n  transition-property: color, background-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#add-sms-alarm-form .sms-delete-button:hover {\n  background-color: var(--tb-service-font-2);\n}\n#add-sms-alarm-form .sms-delete-button:active {\n  background-color: var(--tb-service-font-3);\n}\n\n#add-sms-alarm-form .value-box .mat-select-trigger {\n  font-size: 1.4em;\n  padding: calc(16em / 14);\n  line-height: 1;\n}\n#add-sms-alarm-form .value-box .mat-select-value {\n  font-family: var(--tb-config-font-family);\n  font-weight: 300;\n  font-size: 1em;\n  color: var(--tb-service-font-5);\n}\n#add-sms-alarm-form .value-box .mat-select-arrow {\n  font-family: var(--tb-config-font-family);\n  font-weight: 300;\n  border-left: 0.4em solid transparent;\n  border-right: 0.4em solid transparent;\n  border-top: 0.4em solid;\n  color: var(--tb-service-accent);\n}\n#add-sms-alarm-form .group-box {\n  border: 1px solid var(--tb-service-border-0);\n  padding: 1.6em;\n}\n#add-sms-alarm-form .mat-checkbox.mat-checkbox-checked .mat-checkbox-background {\n  background-color: var(--tb-service-accent);\n}\n#add-sms-alarm-form .mat-checkbox-checkmark-path {\n  stroke: var(--tb-service-font-0) !important;\n}\n#add-sms-alarm-form .mat-checkbox .mat-checkbox-inner-container {\n  width: 1.8em;\n  height: 1.8em;\n}\n#add-sms-alarm-form .mat-checkbox .mat-checkbox-label {\n  color: var(--tb-service-font-3);\n  font-size: 1.4em;\n}\n#add-sms-alarm-form .mat-checkbox .mat-checkbox-frame {\n  border-color: var(--tb-service-border-0);\n}\n#add-sms-alarm-form .mat-checkbox.mat-checkbox-checked .mat-checkbox-frame {\n  border-color: var(--tb-service-accent);\n}\n#add-sms-alarm-form .error-box {\n  color: var(--tb-service-warn);\n  font-size: 1.2em;\n  margin-top: calc(0.6em / 1.2);\n}\n#add-sms-alarm-form .input-box.error .label-box {\n  color: var(--tb-service-warn);\n}\n#add-sms-alarm-form .input-box.error .value-box {\n  border: 1px solid var(--tb-service-warn);\n}\n#add-sms-alarm-form .input-box.error .error-box {\n  display: block;\n  margin-top: calc(0.6em / 1.2);\n}\n\n#add-sms-alarm-form .mat-dialog-actions {\n  padding: 2em;\n  border-top: 1px solid var(--tb-service-border-1);\n}\n#add-sms-alarm-form .button {\n  all: unset;\n  padding: 0.6em 1.4em;\n  font-size: 1.4em;\n  box-sizing: border-box;\n  cursor: pointer;\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#add-sms-alarm-form .save-button,\n#add-sms-alarm-form .next-button {\n  color: var(--tb-service-font-0);\n  background-color: var(--tb-service-accent);\n}\n#add-sms-alarm-form .save-button:hover,\n#add-sms-alarm-form .next-button:hover {\n  background-color: var(--tb-service-accent-hover);\n}\n#add-sms-alarm-form .save-button:active,\n#add-sms-alarm-form .next-button:active {\n  background-color: var(--tb-service-accent-pressed);\n}\n#add-sms-alarm-form .close-button,\n#add-sms-alarm-form .prev-button {\n  color: var(--tb-service-font-5);\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n}\n#add-sms-alarm-form .close-button:hover,\n#add-sms-alarm-form .prev-button:hover {\n  border-color: var(--tb-service-border-3);\n}\n#add-sms-alarm-form .close-button:active,\n#add-sms-alarm-form .prev-button:active {\n  background-color: var(--tb-service-border-0);\n}\n\n@media (min-width: 960px) {\n  #add-sms-alarm-form form {\n    width: 24vw;\n  }\n}\n",
+                "customFunction": "let $injector = widgetContext.$scope.$injector;\nlet customDialog = $injector.get(widgetContext.servicesMap.get('customDialog'));\nlet assetService = $injector.get(widgetContext.servicesMap.get('assetService'));\nlet entityRelationService = $injector.get(widgetContext.servicesMap.get('entityRelationService'));\nlet attributeService = $injector.get(widgetContext.servicesMap.get('attributeService'));\n\nconst t = widgetContext.custom.t;\n\nopenAddEntityDialog();\n\nfunction openAddEntityDialog() {\n  customDialog.customDialog(htmlTemplate, AddEntityDialogController).subscribe();\n}\n\nfunction AddEntityDialogController(instance) {\n  let vm = instance;\n  vm.ownerId = widgetContext.defaultSubscription.configuredDatasources[0].entity.id;\n  vm.ownerLevel = widgetContext.$scope.ownerLevel;\n  vm.t = t;\n  vm.currentStep = 0;\n  vm.newSms = '';\n  vm.smsList = [];\n  vm.customerL2List = [{ name: t('thingplus.selector.entire-customerL2'), value: '' }];\n  vm.deviceList = [{ name: t('thingplus.selector.entire-device'), value: '' }];\n  vm.userList = [{ name: t('thingplus.selector.select-all'), value: 'ENTIRE', phone: '' }];\n\n  if (vm.ownerLevel <= 1) {\n    vm.customerL2List = vm.customerL2List.concat(\n      widgetContext.custom.customerL2List\n        .map(x => {\n          return {\n            name: x.name,\n            value: x.id.id,\n          };\n        })\n        .sort((a, b) => {\n          if (a.name > b.name) return 1;\n          if (a.name < b.name) return -1;\n          return 0;\n        })\n    );\n  }\n  vm.deviceList = vm.deviceList.concat(\n    widgetContext.custom.deviceList\n      .map(x => {\n        return {\n          name: x.label,\n          value: x.id.id,\n        };\n      })\n      .sort((a, b) => {\n        if (a.name > b.name) return 1;\n        if (a.name < b.name) return -1;\n        return 0;\n      })\n  );\n  vm.userList = vm.userList.concat(\n    widgetContext.custom.userList\n      .map(x => {\n        return {\n          name: x.details.firstName,\n          value: x.id.id,\n          phone: x.details.additionalInfo && x.details.additionalInfo.phone ? x.details.additionalInfo.phone : '-',\n        };\n      })\n      .filter(x => x.phone !== '-')\n      .sort((a, b) => {\n        if (a.name > b.name) return 1;\n        if (a.name < b.name) return -1;\n        return 0;\n      })\n  );\n  vm.originUsers = [];\n  vm.addEntityFormGroup = vm.fb.group({\n    title: ['', [vm.validators.required]],\n    customerL2Name: [entityName],\n    device: [''],\n    deviceState: vm.fb.group({\n      delayed: [false],\n      unconnected: [false],\n    }),\n    electricQuality: vm.fb.group({\n      'over-current': [false],\n      'low-voltage': [false],\n      'high-voltage': [false],\n      'volt-imbalance': [false],\n      'curr-imbalance': [false],\n      thd: [false],\n      'power-factor': [false],\n    }),\n    user: [vm.originUsers],\n    newSms: ['', [vm.validators.pattern(/^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/)]],\n  });\n  if (vm.ownerLevel <= 1) {\n    vm.addEntityFormGroup.controls.customerL2 = vm.fb.control('');\n  }\n\n  vm.calcFontSize = function () {\n    const originWidth = widgetContext.settings.widget.originWidth;\n    let widgetFontSize = _.round((widgetContext.width / originWidth) * 10, 2);\n    if (widgetFontSize < 6.25) {\n      widgetFontSize = 6.25;\n    }\n    return widgetFontSize;\n  };\n  vm.cancel = function () {\n    vm.dialogRef.close(null);\n  };\n  vm.save = function () {\n    vm.addEntityFormGroup.markAsPristine();\n    let users = vm.addEntityFormGroup.get('user').value;\n    if (vm.smsList.length == 0 && users.length == 0) {\n      window.alert(t('thingplus.help.error-required-receiver'));\n      return;\n    }\n    saveAsset().subscribe(asset => {\n      widgetContext.rxjs\n        .forkJoin([changeName(asset), assignAsset(asset), saveRelation(asset), saveAttribute(asset)])\n        .subscribe(() => {\n          widgetContext.updateAliases();\n          vm.dialogRef.close(null);\n        });\n    });\n  };\n  vm.selectStep = function (e, index) {\n    vm.currentStep = index;\n  };\n  vm.prevStep = function () {\n    vm.currentStep--;\n  };\n  vm.nextStep = function () {\n    vm.currentStep++;\n  };\n  vm.setCustomerL2 = function (e) {\n    let customerL2 = vm.addEntityFormGroup.get('customerL2').value;\n    vm.deviceList = [{ name: t('thingplus.selector.entire-device'), value: '' }];\n    vm.addEntityFormGroup.patchValue(\n      {\n        device: '',\n      },\n      { emitEvent: false }\n    );\n    vm.deviceList = vm.deviceList.concat(\n      widgetContext.custom.deviceList\n        .filter(x => {\n          return customerL2 == '' || x.parent.id.id == customerL2;\n        })\n        .map(x => {\n          return {\n            name: x.label,\n            value: x.id.id,\n          };\n        })\n        .sort((a, b) => {\n          if (a.name > b.name) return 1;\n          if (a.name < b.name) return -1;\n          return 0;\n        })\n    );\n  };\n  vm.setUser = function (e) {\n    // 기존에 Entire이 선택되어 있던 경우\n    let newValue = _.cloneDeep(e.value);\n    if (vm.originUsers.includes('ENTIRE')) {\n      // Entire가 빠진 경우 모두 선택 해제\n      if (!e.value.includes('ENTIRE')) {\n        newValue = [];\n        // Entire가 아닌 요소가 빠진 경우 Entire 삭제\n      } else if (e.value.length < vm.originUsers.length) {\n        newValue = e.value.filter(x => x != 'ENTIRE');\n      }\n      // 기존에 Entire이 선택되어 있지 않은 경우\n    } else {\n      // Entire가 선택된 경우 모두 선택\n      if (e.value.includes('ENTIRE')) {\n        newValue = vm.userList.map(x => x.value);\n      }\n    }\n    vm.addEntityFormGroup.patchValue(\n      {\n        user: newValue,\n      },\n      { emitEvent: false }\n    );\n    vm.originUsers = newValue;\n  };\n  vm.getUserLength = function () {\n    let users = vm.addEntityFormGroup.get('user').value;\n    if (users.includes('ENTIRE')) {\n      return users.length - 1;\n    }\n    return users.length;\n  };\n  vm.checkEntire = function (e, target) {\n    let control = vm.addEntityFormGroup.get(target).value;\n    if (e.checked) {\n      for (let i in control) {\n        control[i] = true;\n      }\n    } else {\n      for (let i in control) {\n        control[i] = false;\n      }\n    }\n    vm.addEntityFormGroup.get(target).patchValue(control, { emitEvent: false });\n  };\n  vm.addSms = function (e) {\n    let newSms = vm.addEntityFormGroup.get('newSms');\n    if (newSms.hasError('pattern')) return;\n    if (newSms.value != '') {\n      vm.smsList.push(newSms.value);\n      vm.addEntityFormGroup.patchValue(\n        {\n          newSms: '',\n        },\n        { emitEvent: false }\n      );\n    }\n  };\n  vm.deleteSms = function (e, sms) {\n    let targetIndex = vm.smsList.indexOf(sms);\n    vm.smsList.splice(targetIndex, 1);\n  };\n\n  function saveAsset() {\n    let name = moment().valueOf() + '-' + Math.floor(1000000000000 * Math.random());\n    let body = {\n      name: name,\n      label: vm.addEntityFormGroup.get('title').value,\n      type: 'alarm',\n    };\n    return assetService.saveAsset(body);\n  }\n  function changeName(asset) {\n    asset.name = asset.id.id;\n    return assetService.saveAsset(asset);\n  }\n\n  function assignAsset(asset) {\n    if (vm.ownerLevel > 0) {\n      return assetService.assignAssetToCustomer(entityId.id, asset.id.id);\n    } else {\n      return widgetContext.rxjs.of([]);\n    }\n  }\n\n  function saveRelation(asset) {\n    let relationBody = {\n      from: entityId,\n      to: asset.id,\n      type: 'Alarms',\n    };\n    return entityRelationService.saveRelation(relationBody);\n  }\n\n  function saveAttribute(asset) {\n    let customerL2Id = '';\n    let deviceId = '';\n    if (vm.ownerLevel <= 1) {\n      customerL2Id = vm.addEntityFormGroup.get('customerL2').value;\n      deviceId = vm.addEntityFormGroup.get('device').value;\n    } else {\n      customerL2Id = entityId.id;\n      deviceId = vm.addEntityFormGroup.get('device').value;\n    }\n    let deviceState = vm.addEntityFormGroup.get('deviceState').value;\n    let electricQuality = vm.addEntityFormGroup.get('electricQuality').value;\n    let typeList = [];\n    for (let i in deviceState) {\n      if (deviceState[i]) {\n        typeList.push(i);\n      }\n    }\n    for (let i in electricQuality) {\n      if (electricQuality[i]) {\n        typeList.push(i);\n      }\n    }\n    let users = vm.addEntityFormGroup.get('user').value;\n    users = users.filter(x => x != 'ENTIRE');\n\n    let smsList = vm.userList.filter(x => users.includes(x.value)).map(x => x.phone);\n    smsList = smsList.concat(vm.smsList);\n    smsList = _.uniq(smsList);\n\n    let attributeBody = [\n      { key: 'isEnable', value: true },\n      { key: 'title', value: vm.addEntityFormGroup.get('title').value },\n      { key: 'typeList', value: typeList },\n      { key: 'customerL2', value: customerL2Id },\n      { key: 'device', value: deviceId },\n      { key: 'receiver', value: smsList.join(',') },\n    ];\n    return attributeService.saveEntityAttributes(asset.id, 'SERVER_SCOPE', attributeBody);\n  }\n}\n",
+                "customResources": [],
+                "openInSeparateDialog": false,
+                "openInPopover": false,
+                "id": "6f093864-1224-609b-2ccc-62bd5370bd54"
+              }
+            ],
+            "actionCellButton": [
+              {
+                "name": "Details",
+                "icon": "search",
+                "useShowWidgetActionFunction": null,
+                "showWidgetActionFunction": "return true;",
+                "type": "customPretty",
+                "customHtml": "<div id=\"detail-sms-alarm-form\">\n  <form\n    #detailEntityForm=\"ngForm\"\n    [formGroup]=\"detailEntityFormGroup\"\n    (ngSubmit)=\"save()\"\n    style=\"font-size: {{calcFontSize()}}px;\"\n  >\n    <div class=\"dialog-title-box\" fxLayoutAlign=\"space-between center\">\n      <span class=\"dialog-title\" translate>thingplus.dialog.detail-sms-alarm-title</span>\n      <button class=\"dialog-close\" (click)=\"cancel()\" type=\"button\">\n        <mat-icon class=\"material-icons\">close</mat-icon>\n      </button>\n    </div>\n    <mat-progress-bar color=\"warn\" mode=\"indeterminate\" *ngIf=\"isLoading$ | async\"> </mat-progress-bar>\n    <div style=\"height: 0.4em\" *ngIf=\"!(isLoading$ | async)\"></div>\n    <div mat-dialog-content fxFlex fxLayout=\"column\" fxLayoutGap=\"calc(16em / 14)\">\n      <label class=\"section-label\">1. {{'thingplus.label.step-basic' | translate}}</label>\n      <div fxLayout=\"row\" fxLayoutAlign=\"start center\">\n        <div fxFlex=\"100\" fxLayout=\"column\" class=\"input-box disabled\">\n          <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\">\n            <label translate>thingplus.label.alarm-name</label>\n          </div>\n          <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\">\n            <input matInput formControlName=\"title\" readonly />\n          </div>\n        </div>\n      </div>\n      <div fxLayout=\"row\" fxLayoutAlign=\"start center\">\n        <div fxFlex=\"100\" fxLayout=\"column\" class=\"input-box disabled\">\n          <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\">\n            <label translate>thingplus.label.customerL2</label>\n          </div>\n          <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\">\n            <input matInput formControlName=\"customerL2Name\" readonly />\n          </div>\n        </div>\n        <div fxFlex=\"100\" fxLayout=\"column\" class=\"input-box disabled\">\n          <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\">\n            <label translate>thingplus.label.device</label>\n          </div>\n          <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\">\n            <input matInput formControlName=\"device\" readonly />\n          </div>\n        </div>\n      </div>\n      <label class=\"section-label\">2. {{'thingplus.label.step-select-alarm' | translate}}</label>\n      <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n        <div fxFlex=\"100\" fxLayout=\"column\" class=\"input-box\">\n          <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\">\n            <label translate>thingplus.label.device-state</label>\n          </div>\n          <div\n            class=\"group-box\"\n            fxFlex=\"100\"\n            fxLayout=\"column\"\n            fxLayoutAlign=\"start stretch\"\n            fxLayoutGap=\"1em\"\n            formGroupName=\"deviceState\"\n          >\n            <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n              <mat-checkbox fxFlex=\"50\" formControlName=\"delayed\" disabled>\n                {{'thingplus.alarm-type.delayed' | translate}}\n              </mat-checkbox>\n              <mat-checkbox fxFlex=\"50\" formControlName=\"unconnected\" disabled>\n                {{'thingplus.alarm-type.unconnected' | translate}}\n              </mat-checkbox>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n        <div fxFlex=\"100\" fxLayout=\"column\" class=\"input-box\">\n          <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\">\n            <label translate>thingplus.label.electric-quality</label>\n          </div>\n          <div\n            class=\"group-box\"\n            fxFlex=\"100\"\n            fxLayout=\"column\"\n            fxLayoutAlign=\"start stretch\"\n            fxLayoutGap=\"1em\"\n            formGroupName=\"electricQuality\"\n          >\n            <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n              <mat-checkbox fxFlex=\"50\" formControlName=\"over-current\" disabled>\n                {{'thingplus.alarm-type.over-current' | translate}}\n              </mat-checkbox>\n              <mat-checkbox fxFlex=\"50\" formControlName=\"low-voltage\" disabled>\n                {{'thingplus.alarm-type.low-voltage' | translate}}\n              </mat-checkbox>\n            </div>\n            <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n              <mat-checkbox fxFlex=\"50\" formControlName=\"high-voltage\" disabled>\n                {{'thingplus.alarm-type.high-voltage' | translate}}\n              </mat-checkbox>\n              <mat-checkbox fxFlex=\"50\" formControlName=\"volt-imbalance\" disabled>\n                {{'thingplus.alarm-type.volt-imbalance' | translate}}\n              </mat-checkbox>\n            </div>\n            <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n              <mat-checkbox fxFlex=\"50\" formControlName=\"curr-imbalance\" disabled>\n                {{'thingplus.alarm-type.curr-imbalance' | translate}}\n              </mat-checkbox>\n              <mat-checkbox fxFlex=\"50\" formControlName=\"thd\" disabled>\n                {{'thingplus.alarm-type.thd' | translate}}\n              </mat-checkbox>\n            </div>\n            <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n              <mat-checkbox fxFlex=\"50\" formControlName=\"power-factor\" disabled>\n                {{'thingplus.alarm-type.power-factor' | translate}}\n              </mat-checkbox>\n            </div>\n          </div>\n        </div>\n      </div>\n      <label class=\"section-label\">3. {{'thingplus.label.step-set-receive' | translate}}</label>\n      <div fxLayout=\"row\" fxLayoutAlign=\"start center\">\n        <div class=\"grid-box\" fxLayout=\"row wrap\" fxLayoutAlign=\"start\">\n          <div class=\"chip sms-chip\" *ngFor=\"let sms of smsList\" fxLayoutAlign=\"space-between center\" fxLayoutGap=\"1em\">\n            <label class=\"chip-label\" fxFlex fxLayoutAlign=\"start center\" fxLayoutGap=\"0.3em\">\n              <span class=\"chip-name\" *ngIf=\"sms.name\">{{sms.name}}</span>\n              <span *ngIf=\"sms.name\">:</span>\n              <span>{{sms.value}}</span>\n            </label>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div mat-dialog-actions fxLayout=\"row\" fxLayoutAlign=\"end center\" fxLayoutGap=\"1em\">\n      <button\n        class=\"button close-button\"\n        [disabled]=\"(isLoading$ | async)\"\n        type=\"button\"\n        (click)=\"cancel()\"\n        cdkFocusInitial\n        translate\n      >\n        thingplus.action.close\n      </button>\n    </div>\n  </form>\n</div>\n",
+                "customCss": "#detail-sms-alarm-form form {\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n  min-height: 70vh;\n}\n#detail-sms-alarm-form .dialog-title-box {\n  padding: 2em;\n  border-bottom: 1px solid var(--tb-service-border-1);\n}\n#detail-sms-alarm-form .dialog-title {\n  color: var(--tb-service-font-5);\n  font-size: 1.6em;\n}\n#detail-sms-alarm-form .dialog-close {\n  all: unset;\n  cursor: pointer;\n  color: var(--tb-service-font-3);\n  transition-property: color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#detail-sms-alarm-form .dialog-close i {\n  font-size: 1.4em;\n}\n#detail-sms-alarm-form .dialog-close:hover {\n  color: var(--tb-service-font-5);\n}\n\n#detail-sms-alarm-form .mat-dialog-content {\n  padding: var(--tb-config-padding) !important;\n}\n#detail-sms-alarm-form .mat-dialog-content::-webkit-scrollbar {\n  width: 6px;\n  height: 6px;\n}\n#detail-sms-alarm-form .mat-dialog-content::-webkit-scrollbar-thumb {\n  border: 2px solid #00000000;\n  background-clip: padding-box;\n  background-color: var(--tb-service-accent);\n}\n#detail-sms-alarm-form .mat-dialog-content::-webkit-scrollbar-thumb:hover {\n  border: 1px solid #00000000;\n}\n\n#detail-sms-alarm-form .section-label {\n  font-size: 1.4em;\n  font-weight: 500;\n  color: var(--tb-service-font-5);\n  margin-top: calc(16em / 14);\n}\n#detail-sms-alarm-form .section-label:first-child {\n  margin-top: 0;\n}\n#detail-sms-alarm-form .label-box {\n  color: var(--tb-service-font-4);\n  background-color: var(--tb-service-background-1);\n  font-size: 1.2em;\n  padding: calc(9em / 12) calc(16em / 12);\n  border: 1px solid var(--tb-service-border-0);\n  border-bottom: none;\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#detail-sms-alarm-form .value-box {\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#detail-sms-alarm-form .value-box.no-border {\n  border: none !important;\n}\n#detail-sms-alarm-form .value-box input {\n  color: var(--tb-service-font-5);\n  font-size: 1.4em;\n  padding: calc(16em / 14);\n  caret-color: var(--tb-service-accent);\n  cursor: default;\n}\n\n#detail-sms-alarm-form .radio-btn {\n  all: unset;\n  color: var(--tb-service-font-5);\n  border: 1px solid var(--tb-service-border-0);\n  background-color: var(--tb-service-background-1);\n  font-size: 1.4em;\n  padding: calc(16em / 14);\n  text-align: center;\n  cursor: pointer;\n}\n#detail-sms-alarm-form .input-box:not(.disabled) .radio-btn:not(.active):hover {\n  border-color: var(--tb-service-border-3);\n}\n#detail-sms-alarm-form .input-box:not(.disabled) .radio-btn.active {\n  color: var(--tb-service-accent);\n  border-color: var(--tb-service-accent);\n}\n#detail-sms-alarm-form .input-box.disabled .radio-btn:not(.active) {\n  color: var(--tb-service-font-1);\n  cursor: default;\n}\n#detail-sms-alarm-form .input-box.disabled .radio-btn.active {\n  border-color: var(--tb-service-border-3);\n  background-color: var(--tb-service-background-0);\n  cursor: default;\n}\n\n#detail-sms-alarm-form .grid-box {\n  gap: 1em;\n  max-width: 100%;\n}\n#detail-sms-alarm-form .chip {\n  border: 1px solid var(--tb-service-border-0);\n  color: var(--tb-service-font-5);\n  padding: 1em;\n  overflow: hidden;\n  max-width: 100%;\n}\n#detail-sms-alarm-form .chip-label {\n  font-size: 1.4em;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n#detail-sms-alarm-form .chip-name {\n  color: var(--tb-service-accent);\n  text-overflow: ellipsis;\n  overflow: hidden;\n}\n\n#detail-sms-alarm-form .group-box {\n  border: 1px solid var(--tb-service-border-0);\n  padding: 1.6em;\n}\n#detail-sms-alarm-form .mat-checkbox-background {\n  background-color: var(--tb-service-background-1);\n}\n#detail-sms-alarm-form .mat-checkbox.mat-checkbox-checked .mat-checkbox-background {\n  background-color: var(--tb-service-font-3);\n}\n#detail-sms-alarm-form .mat-checkbox-checkmark-path {\n  stroke: var(--tb-service-font-0) !important;\n}\n#detail-sms-alarm-form .mat-checkbox .mat-checkbox-inner-container {\n  width: 1.8em;\n  height: 1.8em;\n}\n#detail-sms-alarm-form .mat-checkbox .mat-checkbox-label {\n  color: var(--tb-service-font-5);\n  font-size: 1.4em;\n}\n#detail-sms-alarm-form .mat-checkbox .mat-checkbox-frame {\n  border-color: var(--tb-service-border-0);\n  z-index: 1;\n}\n#detail-sms-alarm-form .mat-checkbox.mat-checkbox-checked .mat-checkbox-frame {\n  border-color: var(--tb-service-font-3);\n}\n\n#detail-sms-alarm-form .mat-dialog-actions {\n  padding: 2em;\n  border-top: 1px solid var(--tb-service-border-1);\n}\n#detail-sms-alarm-form .button {\n  all: unset;\n  padding: 0.6em 1.4em;\n  font-size: 1.4em;\n  box-sizing: border-box;\n  cursor: pointer;\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#detail-sms-alarm-form .close-button {\n  color: var(--tb-service-font-5);\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n}\n#detail-sms-alarm-form .close-button:hover {\n  border-color: var(--tb-service-border-3);\n}\n#detail-sms-alarm-form .close-button:active {\n  background-color: var(--tb-service-border-0);\n}\n\n@media (min-width: 960px) {\n  #detail-sms-alarm-form form {\n    width: 24vw;\n  }\n}\n",
+                "customFunction": "let $injector = widgetContext.$scope.$injector;\nlet customDialog = $injector.get(widgetContext.servicesMap.get('customDialog'));\n\nconst t = widgetContext.custom.t;\n\nopenEditEntityDialog();\n\nfunction openEditEntityDialog() {\n  customDialog.customDialog(htmlTemplate, EditEntityDialogController).subscribe();\n}\n\nfunction EditEntityDialogController(instance) {\n  let vm = instance;\n  vm.ownerId = widgetContext.defaultSubscription.configuredDatasources[0].entity.id;\n  vm.ownerLevel = widgetContext.$scope.ownerLevel;\n  vm.t = t;\n  vm.smsList = [];\n  vm.customerL2List = [{ name: t('thingplus.selector.entire-customerL2'), value: '' }];\n  vm.deviceList = [{ name: t('thingplus.selector.entire-device'), value: '' }];\n  vm.userList = [{ name: t('thingplus.selector.select-all'), value: 'ENTIRE', phone: '' }];\n  if (vm.ownerLevel <= 1) {\n    vm.customerL2List = vm.customerL2List.concat(\n      widgetContext.custom.customerL2List\n        .map(x => {\n          return {\n            name: x.name,\n            value: x.id.id,\n          };\n        })\n        .sort((a, b) => {\n          if (a.name > b.name) return 1;\n          if (a.name < b.name) return -1;\n          return 0;\n        })\n    );\n  }\n  vm.deviceList = vm.deviceList.concat(\n    widgetContext.custom.deviceList\n      .map(x => {\n        return {\n          name: x.label,\n          value: x.id.id,\n        };\n      })\n      .sort((a, b) => {\n        if (a.name > b.name) return 1;\n        if (a.name < b.name) return -1;\n        return 0;\n      })\n  );\n  vm.userList = vm.userList.concat(\n    widgetContext.custom.userList\n      .map(x => {\n        return {\n          name: x.details.firstName,\n          value: x.id.id,\n          phone: x.details.additionalInfo && x.details.additionalInfo.phone ? x.details.additionalInfo.phone : '-',\n        };\n      })\n      .filter(x => x.phone !== '-')\n      .sort((a, b) => {\n        if (a.name > b.name) return 1;\n        if (a.name < b.name) return -1;\n        return 0;\n      })\n  );\n\n  let typeList = {};\n  let originTypeList = JSON.parse(additionalParams.typeList);\n  for (let i in originTypeList) {\n    typeList[originTypeList[i]] = true;\n  }\n\n  if (additionalParams.receiver) {\n    let originReceiver = additionalParams.receiver.split(',');\n    vm.smsList = vm.userList\n      .filter(x => originReceiver.includes(x.phone))\n      .map(x => {\n        return { name: x.name, value: x.phone };\n      });\n    vm.smsList = vm.smsList.concat(\n      originReceiver\n        .filter(x => !vm.userList.map(y => y.phone).includes(x))\n        .map(x => {\n          return { value: x };\n        })\n    );\n  }\n  let customerL2Index = vm.customerL2List.findIndex(x => x.value == additionalParams.customerL2);\n  let customerL2Name = customerL2Index > -1 ? vm.customerL2List[customerL2Index].name : '';\n  let deviceIndex = vm.deviceList.findIndex(x => x.value == additionalParams.device);\n  let deviceName = deviceIndex > -1 ? vm.deviceList[deviceIndex].name : '';\n  vm.detailEntityFormGroup = vm.fb.group({\n    title: [additionalParams.title, [vm.validators.required]],\n    customerL2Name: [customerL2Name],\n    device: [deviceName],\n    deviceState: vm.fb.group({\n      delayed: [typeList.delayed],\n      unconnected: [typeList.unconnected],\n    }),\n    electricQuality: vm.fb.group({\n      'over-current': [typeList['over-current']],\n      'low-voltage': [typeList['low-voltage']],\n      'high-voltage': [typeList['high-voltage']],\n      'volt-imbalance': [typeList['volt-imbalance']],\n      'curr-imbalance': [typeList['curr-imbalance']],\n      thd: [typeList.thd],\n      'power-factor': [typeList['power-factor']],\n    }),\n  });\n  if (vm.ownerLevel <= 1) {\n    vm.detailEntityFormGroup.controls.customerL2 = vm.fb.control(additionalParams.customerL2);\n  }\n\n  vm.calcFontSize = function () {\n    const originWidth = widgetContext.settings.widget.originWidth;\n    let widgetFontSize = _.round((widgetContext.width / originWidth) * 10, 2);\n    if (widgetFontSize < 6.25) {\n      widgetFontSize = 6.25;\n    }\n    return widgetFontSize;\n  };\n  vm.cancel = function () {\n    vm.dialogRef.close(null);\n  };\n}\n",
+                "customResources": [],
+                "openInSeparateDialog": false,
+                "openInPopover": false,
+                "id": "ed5373fe-1208-573e-9b38-b56ebb2efa9f"
+              },
+              {
+                "name": "Edit",
+                "icon": "edit",
+                "useShowWidgetActionFunction": null,
+                "showWidgetActionFunction": "return true;",
+                "type": "customPretty",
+                "customHtml": "<div id=\"edit-sms-alarm-form\">\n  <form\n    #editEntityForm=\"ngForm\"\n    [formGroup]=\"editEntityFormGroup\"\n    (ngSubmit)=\"save()\"\n    style=\"font-size: {{calcFontSize()}}px;\"\n  >\n    <div class=\"dialog-title-box\" fxLayoutAlign=\"space-between center\">\n      <span class=\"dialog-title\" translate>thingplus.dialog.edit-sms-alarm-title</span>\n      <button class=\"dialog-close\" (click)=\"cancel()\" type=\"button\">\n        <mat-icon class=\"material-icons\">close</mat-icon>\n      </button>\n    </div>\n    <mat-progress-bar color=\"warn\" mode=\"indeterminate\" *ngIf=\"isLoading$ | async\"> </mat-progress-bar>\n    <div style=\"height: 0.4em\" *ngIf=\"!(isLoading$ | async)\"></div>\n    <div class=\"step-controller\" fxLayoutAlign=\"space-between center\">\n      <div\n        class=\"step\"\n        [ngClass]=\"{'prev': currentStep > 0, 'current': currentStep == 0, 'next': currentStep < 0}\"\n        (click)=\"selectStep($event, 0)\"\n        fxLayoutAlign=\"center center\"\n        [attr.data-label]=\"t('thingplus.label.step-basic')\"\n      >\n        <i class=\"material-icons\">check</i>\n      </div>\n      <div class=\"step-progress-line\" [ngClass]=\"{'prev': currentStep > 0, 'next': currentStep < 0}\"></div>\n      <div\n        class=\"step\"\n        [ngClass]=\"{'prev': currentStep > 1, 'current': currentStep == 1, 'next': currentStep < 1}\"\n        (click)=\"selectStep($event, 1)\"\n        fxLayoutAlign=\"center center\"\n        [attr.data-label]=\"t('thingplus.label.step-select-alarm')\"\n      >\n        <i class=\"material-icons\">check</i>\n      </div>\n      <div class=\"step-progress-line\" [ngClass]=\"{'prev': currentStep > 1, 'next': currentStep < 1}\"></div>\n      <div\n        class=\"step\"\n        [ngClass]=\"{'prev': currentStep > 2, 'current': currentStep == 2, 'next': currentStep < 2}\"\n        (click)=\"selectStep($event, 2)\"\n        fxLayoutAlign=\"center center\"\n        [attr.data-label]=\"t('thingplus.label.step-set-receive')\"\n      >\n        <i class=\"material-icons\">check</i>\n      </div>\n    </div>\n    <div mat-dialog-content fxFlex fxLayout=\"column\" fxLayoutGap=\"2em\">\n      <div class=\"step-content step-content-0\" *ngIf=\"currentStep == 0\" fxLayout=\"column\" fxLayoutGap=\"2em\">\n        <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n          <div\n            fxFlex=\"100\"\n            fxLayout=\"column\"\n            fxLayoutGap=\"0.6em\"\n            class=\"input-box\"\n            [ngClass]=\"{error: editEntityFormGroup.get('title').hasError('required')}\"\n          >\n            <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n              <label translate>thingplus.label.alarm-name</label>\n            </div>\n            <div fxFlex=\"100\" fxLayout=\"row\" fxLayoutAlign=\"space-between center\" fxLayoutGap=\"1em\">\n              <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"space-between center\" fxLayoutGap=\"0.6em\">\n                <input matInput formControlName=\"title\" required />\n              </div>\n            </div>\n            <div class=\"error-box\" *ngIf=\"editEntityFormGroup.get('title').hasError('required')\" translate>\n              thingplus.help.error-required-alarm-name\n            </div>\n          </div>\n        </div>\n        <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n          <div\n            fxFlex=\"100\"\n            fxLayout=\"column\"\n            fxLayoutGap=\"0.6em\"\n            class=\"input-box\"\n            [ngClass]=\"{'disabled': ownerLevel > 1}\"\n          >\n            <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n              <label translate>thingplus.label.customerL2</label>\n            </div>\n            <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.6em\">\n              <mat-select\n                formControlName=\"customerL2\"\n                *ngIf=\"ownerLevel <= 1\"\n                (selectionChange)=\"setCustomerL2($event)\"\n              >\n                <mat-option *ngFor=\"let customerL2 of customerL2List\" [value]=\"customerL2.value\">\n                  {{customerL2.name}}\n                </mat-option>\n              </mat-select>\n              <input matInput formControlName=\"customerL2Name\" *ngIf=\"ownerLevel > 1\" readonly />\n            </div>\n          </div>\n        </div>\n        <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n          <div fxFlex=\"100\" fxLayout=\"column\" fxLayoutGap=\"0.6em\" class=\"input-box\">\n            <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n              <label translate>thingplus.label.device</label>\n            </div>\n            <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.6em\">\n              <mat-select formControlName=\"device\">\n                <mat-option *ngFor=\"let device of deviceList\" [value]=\"device.value\"> {{device.name}} </mat-option>\n              </mat-select>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"step-content step-content-1\" *ngIf=\"currentStep == 1\" fxLayout=\"column\" fxLayoutGap=\"2em\">\n        <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n          <div fxFlex=\"100\" fxLayout=\"column\" fxLayoutGap=\"0.6em\" class=\"input-box\">\n            <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n              <mat-checkbox (change)=\"checkEntire($event, 'deviceState')\">\n                {{'thingplus.label.device-state' | translate}}\n              </mat-checkbox>\n            </div>\n            <div\n              class=\"group-box\"\n              fxFlex=\"100\"\n              fxLayout=\"column\"\n              fxLayoutAlign=\"start stretch\"\n              fxLayoutGap=\"1em\"\n              formGroupName=\"deviceState\"\n            >\n              <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n                <mat-checkbox fxFlex=\"50\" formControlName=\"delayed\">\n                  {{'thingplus.alarm-type.delayed' | translate}}\n                </mat-checkbox>\n                <mat-checkbox fxFlex=\"50\" formControlName=\"unconnected\">\n                  {{'thingplus.alarm-type.unconnected' | translate}}\n                </mat-checkbox>\n              </div>\n            </div>\n          </div>\n        </div>\n        <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n          <div fxFlex=\"100\" fxLayout=\"column\" fxLayoutGap=\"0.6em\" class=\"input-box\">\n            <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n              <mat-checkbox (change)=\"checkEntire($event, 'electricQuality')\">\n                {{'thingplus.label.electric-quality' | translate}}\n              </mat-checkbox>\n            </div>\n            <div\n              class=\"group-box\"\n              fxFlex=\"100\"\n              fxLayout=\"column\"\n              fxLayoutAlign=\"start stretch\"\n              fxLayoutGap=\"1em\"\n              formGroupName=\"electricQuality\"\n            >\n              <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n                <mat-checkbox fxFlex=\"50\" formControlName=\"over-current\">\n                  {{'thingplus.alarm-type.over-current' | translate}}\n                </mat-checkbox>\n                <mat-checkbox fxFlex=\"50\" formControlName=\"low-voltage\">\n                  {{'thingplus.alarm-type.low-voltage' | translate}}\n                </mat-checkbox>\n              </div>\n              <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n                <mat-checkbox fxFlex=\"50\" formControlName=\"high-voltage\">\n                  {{'thingplus.alarm-type.high-voltage' | translate}}\n                </mat-checkbox>\n                <mat-checkbox fxFlex=\"50\" formControlName=\"volt-imbalance\">\n                  {{'thingplus.alarm-type.volt-imbalance' | translate}}\n                </mat-checkbox>\n              </div>\n              <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n                <mat-checkbox fxFlex=\"50\" formControlName=\"curr-imbalance\">\n                  {{'thingplus.alarm-type.curr-imbalance' | translate}}\n                </mat-checkbox>\n                <mat-checkbox fxFlex=\"50\" formControlName=\"thd\">\n                  {{'thingplus.alarm-type.thd' | translate}}\n                </mat-checkbox>\n              </div>\n              <div fxFlex=\"100\" fxLayoutAlign=\"space-between center\">\n                <mat-checkbox fxFlex=\"50\" formControlName=\"power-factor\">\n                  {{'thingplus.alarm-type.power-factor' | translate}}\n                </mat-checkbox>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"step-content step-content-2\" *ngIf=\"currentStep == 2\" fxLayout=\"column\" fxLayoutGap=\"2em\">\n        <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start end\">\n          <div fxFlex fxLayout=\"column\" fxLayoutGap=\"0.6em\" class=\"input-box\">\n            <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n              <label translate>thingplus.label.add-user</label>\n            </div>\n            <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.6em\">\n              <mat-select\n                formControlName=\"user\"\n                multiple\n                (selectionChange)=\"setUser($event)\"\n                placeholder=\"{{'thingplus.selector.select-user' | translate}}\"\n              >\n                <mat-select-trigger>\n                  <span *ngIf=\"editEntityFormGroup.get('user').value.length > 0\">\n                    {{'thingplus.selector.selected-count' | translate:{count:\n                    editEntityFormGroup.get('user').value.length} }}\n                  </span>\n                </mat-select-trigger>\n                <mat-option *ngFor=\"let user of userList\" [value]=\"user.value\">\n                  {{user.name}}{{user.phone ? \" : \" + user.phone : ''}}\n                </mat-option>\n              </mat-select>\n            </div>\n          </div>\n        </div>\n        <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n          <div\n            fxFlex=\"100\"\n            fxLayout=\"column\"\n            fxLayoutGap=\"0.6em\"\n            class=\"input-box\"\n            [ngClass]=\"{error: editEntityFormGroup.get('newSms').hasError('pattern')}\"\n          >\n            <div class=\"label-box\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayoutGap=\"0.4em\">\n              <label translate>thingplus.label.add-sms</label>\n            </div>\n            <div fxFlex=\"100\" fxLayout=\"row\" fxLayoutAlign=\"space-between center\" fxLayoutGap=\"1em\">\n              <div class=\"value-box\" fxFlex fxLayout=\"row\" fxLayoutAlign=\"space-between center\" fxLayoutGap=\"0.6em\">\n                <input matInput type=\"sms\" fxFlex formControlName=\"newSms\" />\n                <button class=\"sms-add-button\" type=\"button\" (click)=\"addSms($event)\" translate>\n                  thingplus.action.add\n                </button>\n              </div>\n            </div>\n            <div class=\"error-box\" *ngIf=\"editEntityFormGroup.get('newSms').hasError('pattern')\" translate>\n              thingplus.help.error-invalid-sms\n            </div>\n          </div>\n        </div>\n        <div fxLayout=\"row\" fxLayoutGap=\"1em\" fxLayoutAlign=\"start center\">\n          <div class=\"grid-box\" fxLayout=\"row wrap\" fxLayoutAlign=\"start\">\n            <div\n              class=\"chip sms-chip\"\n              *ngFor=\"let sms of smsList\"\n              fxLayoutAlign=\"space-between center\"\n              fxLayoutGap=\"1em\"\n            >\n              <label class=\"chip-label\" fxFlex>{{sms}}</label>\n              <button class=\"sms-delete-button material-icons\" type=\"button\" (click)=\"deleteSms($event, sms)\">\n                close\n              </button>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div mat-dialog-actions fxLayout=\"row\" fxLayoutAlign=\"end center\" fxLayoutGap=\"1em\">\n      <button\n        class=\"button prev-button\"\n        [disabled]=\"(isLoading$ | async)\"\n        type=\"button\"\n        (click)=\"prevStep()\"\n        *ngIf=\"currentStep > 0\"\n        translate\n      >\n        thingplus.action.prev-step\n      </button>\n      <button\n        class=\"button close-button\"\n        [disabled]=\"(isLoading$ | async)\"\n        type=\"button\"\n        (click)=\"cancel()\"\n        cdkFocusInitial\n        *ngIf=\"currentStep == 0\"\n        translate\n      >\n        thingplus.action.close\n      </button>\n      <button\n        class=\"button next-button\"\n        type=\"button\"\n        (click)=\"nextStep()\"\n        [disabled]=\"(isLoading$ | async)\"\n        *ngIf=\"currentStep < 2\"\n        translate\n      >\n        thingplus.action.next-step\n      </button>\n      <button\n        class=\"button save-button\"\n        type=\"submit\"\n        [disabled]=\"(isLoading$ | async) || editEntityForm.invalid\"\n        *ngIf=\"currentStep == 2\"\n        translate\n      >\n        thingplus.action.save\n      </button>\n    </div>\n  </form>\n</div>\n",
+                "customCss": "#edit-sms-alarm-form form {\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n  min-height: 70vh;\n}\n#edit-sms-alarm-form .dialog-title-box {\n  padding: 2em;\n  border-bottom: 1px solid var(--tb-service-border-1);\n}\n#edit-sms-alarm-form .dialog-title {\n  color: var(--tb-service-font-5);\n  font-size: 1.6em;\n}\n#edit-sms-alarm-form .dialog-close {\n  all: unset;\n  cursor: pointer;\n  color: var(--tb-service-font-3);\n  transition-property: color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#edit-sms-alarm-form .dialog-close i {\n  font-size: 1.4em;\n}\n#edit-sms-alarm-form .dialog-close:hover {\n  color: var(--tb-service-font-5);\n}\n\n#edit-sms-alarm-form .step-controller {\n  padding: 4em;\n}\n#edit-sms-alarm-form .step {\n  position: relative;\n  display: inline-block;\n  padding: 0.3em;\n  background-color: var(--tb-service-border-1);\n  border: 1px solid var(--tb-service-border-1);\n  color: var(--tb-service-border-1);\n  transition-property: color, border-color, background-color;\n  transition-duration: var(--tb-config-color-duration);\n  border-radius: 50%;\n  cursor: pointer;\n}\n#edit-sms-alarm-form .step i {\n  font-size: 1.4em;\n}\n#edit-sms-alarm-form .step.prev {\n  background-color: var(--tb-service-accent);\n  border: 1px solid var(--tb-service-accent);\n  color: var(--tb-service-font-0);\n}\n#edit-sms-alarm-form .step.current {\n  background-color: var(--tb-service-font-0);\n  border: 1px solid var(--tb-service-accent);\n  color: var(--tb-service-font-0);\n}\n#edit-sms-alarm-form .step:after {\n  content: attr(data-label);\n  position: absolute;\n  top: 125%;\n  left: 50%;\n  transform: translateX(-50%);\n  color: var(--tb-service-font-3);\n  white-space: nowrap;\n  font-size: 1.2em;\n}\n#edit-sms-alarm-form .step.current:after {\n  color: var(--tb-service-font-5);\n}\n#edit-sms-alarm-form .step-progress-line {\n  width: 100%;\n  height: 2px;\n  background-color: var(--tb-service-border-1);\n  transition-property: background-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#edit-sms-alarm-form .step-progress-line.prev {\n  background-color: var(--tb-service-accent);\n}\n\n#edit-sms-alarm-form .mat-dialog-content {\n  padding: var(--tb-config-padding) !important;\n}\n#edit-sms-alarm-form .mat-dialog-content::-webkit-scrollbar {\n  width: 6px;\n  height: 6px;\n}\n#edit-sms-alarm-form .mat-dialog-content::-webkit-scrollbar-thumb {\n  border: 2px solid #00000000;\n  background-clip: padding-box;\n  background-color: var(--tb-service-accent);\n}\n#edit-sms-alarm-form .mat-dialog-content::-webkit-scrollbar-thumb:hover {\n  border: 1px solid #00000000;\n}\n\n#edit-sms-alarm-form .label-box {\n  color: var(--tb-service-font-3);\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#edit-sms-alarm-form .input-box.disabled .label-box {\n  color: var(--tb-service-font-1);\n}\n#edit-sms-alarm-form .value-box {\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#edit-sms-alarm-form .value-box.no-border {\n  border: none !important;\n}\n\n#edit-sms-alarm-form .input-box:not(.disabled) .value-box:hover {\n  border-color: var(--tb-service-border-3);\n}\n#edit-sms-alarm-form .input-box:not(.disabled) .value-box:focus-within {\n  border-color: var(--tb-service-accent);\n  caret-color: var(--tb-service-accent);\n}\n#edit-sms-alarm-form .value-box *::placeholder {\n  color: var(--tb-service-font-4);\n}\n#edit-sms-alarm-form .value-box input {\n  color: var(--tb-service-font-5);\n  font-size: 1.4em;\n  padding: calc(16em / 14);\n  caret-color: var(--tb-service-accent);\n}\n#edit-sms-alarm-form .input-box.disabled .value-box {\n  background-color: var(--tb-service-background-1);\n}\n#edit-sms-alarm-form .input-box.disabled .value-box input {\n  color: var(--tb-service-font-2);\n  cursor: default;\n}\n#edit-sms-alarm-form .radio-btn {\n  all: unset;\n  color: var(--tb-service-font-5);\n  border: 1px solid var(--tb-service-border-0);\n  font-size: 1.4em;\n  padding: calc(16em / 14);\n  text-align: center;\n  cursor: pointer;\n}\n#edit-sms-alarm-form .input-box:not(.disabled) .radio-btn:not(.active):hover {\n  border-color: var(--tb-service-border-3);\n}\n#edit-sms-alarm-form .input-box:not(.disabled) .radio-btn.active {\n  color: var(--tb-service-accent);\n  border-color: var(--tb-service-accent);\n}\n#edit-sms-alarm-form .input-box.disabled .radio-btn:not(.active) {\n  color: var(--tb-service-font-1);\n  cursor: default;\n}\n#edit-sms-alarm-form .input-box.disabled .radio-btn.active {\n  border-color: var(--tb-service-border-3);\n  cursor: default;\n}\n\n#edit-sms-alarm-form .grid-box {\n  gap: 1em;\n  max-width: 100%;\n}\n#edit-sms-alarm-form .chip {\n  border: 1px solid var(--tb-service-border-0);\n  color: var(--tb-service-font-5);\n  padding: 1em;\n  overflow: hidden;\n}\n#edit-sms-alarm-form .chip-label {\n  font-size: 1.4em;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n#edit-sms-alarm-form .sms-add-button {\n  border: none;\n  padding: 0.4em 1em;\n  margin-right: calc(16em / 14);\n  font-size: 1.4em;\n  color: var(--tb-service-accent);\n  border: 1px solid var(--tb-service-accent);\n  background-color: var(--tb-service-background-0);\n  cursor: pointer;\n  transition-property: color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#edit-sms-alarm-form .input-box.error .sms-add-button {\n  cursor: default;\n  color: var(--tb-service-disabled);\n  border-color: var(--tb-service-disabled);\n}\n#edit-sms-alarm-form .input-box:not(.error) .sms-add-button:hover {\n  color: var(--tb-service-accent-hover);\n  border-color: var(--tb-service-accent-hover);\n}\n#edit-sms-alarm-form .input-box:not(.error) .sms-add-button:active {\n  color: var(--tb-service-accent-pressed);\n  border-color: var(--tb-service-accent-pressed);\n}\n#edit-sms-alarm-form .sms-delete-button {\n  border: none;\n  padding: 0.1em;\n  font-size: 1.4em;\n  color: var(--tb-service-font-0);\n  background-color: var(--tb-service-font-1);\n  border-radius: 50%;\n  cursor: pointer;\n  transition-property: color, background-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#edit-sms-alarm-form .sms-delete-button:hover {\n  background-color: var(--tb-service-font-2);\n}\n#edit-sms-alarm-form .sms-delete-button:active {\n  background-color: var(--tb-service-font-3);\n}\n\n#edit-sms-alarm-form .value-box .mat-select-trigger {\n  font-size: 1.4em;\n  padding: calc(16em / 14);\n  line-height: 1;\n}\n#edit-sms-alarm-form .value-box .mat-select-value {\n  font-family: var(--tb-config-font-family);\n  font-weight: 300;\n  font-size: 1em;\n  color: var(--tb-service-font-5);\n}\n#edit-sms-alarm-form .value-box .mat-select-arrow {\n  font-family: var(--tb-config-font-family);\n  font-weight: 300;\n  border-left: 0.4em solid transparent;\n  border-right: 0.4em solid transparent;\n  border-top: 0.4em solid;\n  color: var(--tb-service-accent);\n}\n#edit-sms-alarm-form .group-box {\n  border: 1px solid var(--tb-service-border-0);\n  padding: 1.6em;\n}\n#edit-sms-alarm-form .mat-checkbox.mat-checkbox-checked .mat-checkbox-background {\n  background-color: var(--tb-service-accent);\n}\n#edit-sms-alarm-form .mat-checkbox-checkmark-path {\n  stroke: var(--tb-service-font-0) !important;\n}\n#edit-sms-alarm-form .mat-checkbox .mat-checkbox-inner-container {\n  width: 1.8em;\n  height: 1.8em;\n}\n#edit-sms-alarm-form .mat-checkbox .mat-checkbox-label {\n  color: var(--tb-service-font-3);\n  font-size: 1.4em;\n}\n#edit-sms-alarm-form .mat-checkbox .mat-checkbox-frame {\n  border-color: var(--tb-service-border-0);\n}\n#edit-sms-alarm-form .mat-checkbox.mat-checkbox-checked .mat-checkbox-frame {\n  border-color: var(--tb-service-accent);\n}\n#edit-sms-alarm-form .error-box {\n  color: var(--tb-service-warn);\n  font-size: 1.2em;\n  margin-top: calc(0.6em / 1.2);\n}\n#edit-sms-alarm-form .input-box.error .label-box {\n  color: var(--tb-service-warn);\n}\n#edit-sms-alarm-form .input-box.error .value-box {\n  border: 1px solid var(--tb-service-warn);\n}\n#edit-sms-alarm-form .input-box.error .error-box {\n  display: block;\n  margin-top: calc(0.6em / 1.2);\n}\n\n#edit-sms-alarm-form .mat-dialog-actions {\n  padding: 2em;\n  border-top: 1px solid var(--tb-service-border-1);\n}\n#edit-sms-alarm-form .button {\n  all: unset;\n  padding: 0.6em 1.4em;\n  font-size: 1.4em;\n  box-sizing: border-box;\n  cursor: pointer;\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#edit-sms-alarm-form .save-button,\n#edit-sms-alarm-form .next-button {\n  color: var(--tb-service-font-0);\n  background-color: var(--tb-service-accent);\n}\n#edit-sms-alarm-form .save-button:hover,\n#edit-sms-alarm-form .next-button:hover {\n  background-color: var(--tb-service-accent-hover);\n}\n#edit-sms-alarm-form .save-button:active,\n#edit-sms-alarm-form .next-button:active {\n  background-color: var(--tb-service-accent-pressed);\n}\n#edit-sms-alarm-form .close-button,\n#edit-sms-alarm-form .prev-button {\n  color: var(--tb-service-font-5);\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n}\n#edit-sms-alarm-form .close-button:hover,\n#edit-sms-alarm-form .prev-button:hover {\n  border-color: var(--tb-service-border-3);\n}\n#edit-sms-alarm-form .close-button:active,\n#edit-sms-alarm-form .prev-button:active {\n  background-color: var(--tb-service-border-0);\n}\n\n@media (min-width: 960px) {\n  #edit-sms-alarm-form form {\n    width: 24vw;\n  }\n}\n",
+                "customFunction": "let $injector = widgetContext.$scope.$injector;\nlet customDialog = $injector.get(widgetContext.servicesMap.get('customDialog'));\nlet assetService = $injector.get(widgetContext.servicesMap.get('assetService'));\nlet entityRelationService = $injector.get(widgetContext.servicesMap.get('entityRelationService'));\nlet attributeService = $injector.get(widgetContext.servicesMap.get('attributeService'));\n\nconst t = widgetContext.custom.t;\n\nopenEditEntityDialog();\n\nfunction openEditEntityDialog() {\n  customDialog.customDialog(htmlTemplate, EditEntityDialogController).subscribe();\n}\n\nfunction EditEntityDialogController(instance) {\n  let vm = instance;\n  vm.ownerId = widgetContext.defaultSubscription.configuredDatasources[0].entity.id;\n  vm.ownerLevel = widgetContext.$scope.ownerLevel;\n  vm.t = t;\n  vm.currentStep = 0;\n  vm.newSms = '';\n  vm.smsList = [];\n  vm.customerL2List = [{ name: t('thingplus.selector.entire-customerL2'), value: '' }];\n  vm.deviceList = [{ name: t('thingplus.selector.entire-device'), value: '' }];\n  vm.userList = [{ name: t('thingplus.selector.select-all'), value: 'ENTIRE', phone: '' }];\n  if (vm.ownerLevel <= 1) {\n    vm.customerL2List = vm.customerL2List.concat(\n      widgetContext.custom.customerL2List\n        .map(x => {\n          return {\n            name: x.name,\n            value: x.id.id,\n          };\n        })\n        .sort((a, b) => {\n          if (a.name > b.name) return 1;\n          if (a.name < b.name) return -1;\n          return 0;\n        })\n    );\n  }\n  vm.deviceList = vm.deviceList.concat(\n    widgetContext.custom.deviceList\n      .map(x => {\n        return {\n          name: x.label,\n          value: x.id.id,\n        };\n      })\n      .sort((a, b) => {\n        if (a.name > b.name) return 1;\n        if (a.name < b.name) return -1;\n        return 0;\n      })\n  );\n  vm.userList = vm.userList.concat(\n    widgetContext.custom.userList\n      .map(x => {\n        return {\n          name: x.details.firstName,\n          value: x.id.id,\n          phone: x.details.additionalInfo && x.details.additionalInfo.phone ? x.details.additionalInfo.phone : '-',\n        };\n      })\n      .filter(x => x.phone !== '-')\n      .sort((a, b) => {\n        if (a.name > b.name) return 1;\n        if (a.name < b.name) return -1;\n        return 0;\n      })\n  );\n\n  let typeList = {};\n  let originTypeList = JSON.parse(additionalParams.typeList);\n  for (let i in originTypeList) {\n    typeList[originTypeList[i]] = true;\n  }\n\n  vm.originUsers = [];\n  vm.smsList = [];\n  if (additionalParams.receiver) {\n    let originReceiver = additionalParams.receiver.split(',');\n    vm.originUsers = vm.userList.filter(x => originReceiver.includes(x.phone)).map(x => x.value);\n    vm.smsList = originReceiver.filter(x => !vm.userList.map(x => x.phone).includes(x));\n  }\n\n  vm.editEntityFormGroup = vm.fb.group({\n    title: [additionalParams.title, [vm.validators.required]],\n    customerL2Name: [entityName],\n    device: [additionalParams.device],\n    deviceState: vm.fb.group({\n      delayed: [typeList.delayed],\n      unconnected: [typeList.unconnected],\n    }),\n    electricQuality: vm.fb.group({\n      'over-current': [typeList['over-current']],\n      'low-voltage': [typeList['low-voltage']],\n      'high-voltage': [typeList['high-voltage']],\n      'volt-imbalance': [typeList['volt-imbalance']],\n      'curr-imbalance': [typeList['curr-imbalance']],\n      thd: [typeList.thd],\n      'power-factor': [typeList['power-factor']],\n    }),\n    user: [vm.originUsers],\n    newSms: ['', [vm.validators.pattern(/^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/)]],\n  });\n  if (vm.ownerLevel <= 1) {\n    vm.editEntityFormGroup.controls.customerL2 = vm.fb.control('');\n  }\n\n  vm.calcFontSize = function () {\n    const originWidth = widgetContext.settings.widget.originWidth;\n    let widgetFontSize = _.round((widgetContext.width / originWidth) * 10, 2);\n    if (widgetFontSize < 6.25) {\n      widgetFontSize = 6.25;\n    }\n    return widgetFontSize;\n  };\n  vm.cancel = function () {\n    vm.dialogRef.close(null);\n  };\n  vm.save = function () {\n    vm.editEntityFormGroup.markAsPristine();\n    let users = vm.editEntityFormGroup.get('user').value;\n    if (vm.smsList.length == 0 && users.length == 0) {\n      window.alert(t('thingplus.help.error-required-receiver'));\n      return;\n    }\n    getAsset().subscribe(asset => {\n      widgetContext.rxjs.forkJoin([saveAsset(asset), saveAttribute(asset)]).subscribe(() => {\n        widgetContext.updateAliases();\n        vm.dialogRef.close(null);\n      });\n    });\n  };\n  vm.selectStep = function (e, index) {\n    vm.currentStep = index;\n  };\n  vm.prevStep = function () {\n    vm.currentStep--;\n  };\n  vm.nextStep = function () {\n    vm.currentStep++;\n  };\n  vm.setCustomerL2 = function (e) {\n    let customerL2 = vm.editEntityFormGroup.get('customerL2').value;\n    vm.deviceList = [{ name: t('thingplus.selector.entire-device'), value: '' }];\n    vm.editEntityFormGroup.patchValue(\n      {\n        device: '',\n      },\n      { emitEvent: false }\n    );\n    vm.deviceList = vm.deviceList.concat(\n      widgetContext.custom.deviceList\n        .filter(x => {\n          return customerL2 == '' || x.parent.id.id == customerL2;\n        })\n        .map(x => {\n          return {\n            name: x.label,\n            value: x.id.id,\n          };\n        })\n        .sort((a, b) => {\n          if (a.name > b.name) return 1;\n          if (a.name < b.name) return -1;\n          return 0;\n        })\n    );\n  };\n  vm.setUser = function (e) {\n    // 기존에 Entire이 선택되어 있던 경우\n    let newValue = _.cloneDeep(e.value);\n    if (vm.originUsers.includes('ENTIRE')) {\n      // Entire가 빠진 경우 모두 선택 해제\n      if (!e.value.includes('ENTIRE')) {\n        newValue = [];\n        // Entire가 아닌 요소가 빠진 경우 Entire 삭제\n      } else if (e.value.length < vm.originUsers.length) {\n        newValue = e.value.filter(x => x != 'ENTIRE');\n      }\n      // 기존에 Entire이 선택되어 있지 않은 경우\n    } else {\n      // Entire가 선택된 경우 모두 선택\n      if (e.value.includes('ENTIRE')) {\n        newValue = vm.userList.map(x => x.value);\n      }\n    }\n    vm.editEntityFormGroup.patchValue(\n      {\n        user: newValue,\n      },\n      { emitEvent: false }\n    );\n    vm.originUsers = newValue;\n  };\n  vm.getUserLength = function () {\n    let users = vm.editEntityFormGroup.get('user').value;\n    if (users.includes('ENTIRE')) {\n      return users.length - 1;\n    }\n    return users.length;\n  };\n  vm.checkEntire = function (e, target) {\n    let control = vm.editEntityFormGroup.get(target).value;\n    if (e.checked) {\n      for (let i in control) {\n        control[i] = true;\n      }\n    } else {\n      for (let i in control) {\n        control[i] = false;\n      }\n    }\n    vm.editEntityFormGroup.get(target).patchValue(control, { emitEvent: false });\n  };\n  vm.addSms = function (e) {\n    let newSms = vm.editEntityFormGroup.get('newSms');\n    if (newSms.hasError('pattern')) return;\n    if (newSms.value != '') {\n      vm.smsList.push(newSms.value);\n      vm.editEntityFormGroup.patchValue(\n        {\n          newSms: '',\n        },\n        { emitEvent: false }\n      );\n    }\n  };\n  vm.deleteSms = function (e, sms) {\n    let targetIndex = vm.smsList.indexOf(sms);\n    vm.smsList.splice(targetIndex, 1);\n  };\n\n  function getAsset() {\n    return assetService.getAsset(entityId.id);\n  }\n  function saveAsset(asset) {\n    asset.label = vm.editEntityFormGroup.get('title').value;\n    return assetService.saveAsset(asset);\n  }\n  function changeName(asset) {\n    asset.name = asset.id.id;\n    return assetService.saveAsset(asset);\n  }\n\n  function saveAttribute(asset) {\n    let customerL2Id = '';\n    let deviceId = '';\n    if (vm.ownerLevel <= 1) {\n      customerL2Id = vm.editEntityFormGroup.get('customerL2').value;\n      deviceId = vm.editEntityFormGroup.get('device').value;\n    } else {\n      customerL2Id = entityId.id;\n      deviceId = vm.editEntityFormGroup.get('device').value;\n    }\n    let deviceState = vm.editEntityFormGroup.get('deviceState').value;\n    let electricQuality = vm.editEntityFormGroup.get('electricQuality').value;\n    let typeList = [];\n    for (let i in deviceState) {\n      if (deviceState[i]) {\n        typeList.push(i);\n      }\n    }\n    for (let i in electricQuality) {\n      if (electricQuality[i]) {\n        typeList.push(i);\n      }\n    }\n    let users = vm.editEntityFormGroup.get('user').value;\n    users = users.filter(x => x != 'ENTIRE');\n\n    let smsList = vm.userList.filter(x => users.includes(x.value)).map(x => x.phone);\n    smsList = smsList.concat(vm.smsList);\n    smsList = _.uniq(smsList);\n\n    let attributeBody = [\n      { key: 'isEnable', value: true },\n      { key: 'title', value: vm.editEntityFormGroup.get('title').value },\n      { key: 'typeList', value: typeList },\n      { key: 'customerL2', value: customerL2Id },\n      { key: 'device', value: deviceId },\n      { key: 'receiver', value: smsList.join(',') },\n    ];\n    return attributeService.saveEntityAttributes(asset.id, 'SERVER_SCOPE', attributeBody);\n  }\n}\n",
+                "customResources": [],
+                "openInSeparateDialog": false,
+                "openInPopover": false,
+                "id": "abddc64a-f490-3a79-94e0-06f3b518cc58"
+              },
+              {
+                "name": "delete",
+                "icon": "delete",
+                "useShowWidgetActionFunction": null,
+                "showWidgetActionFunction": "return true;",
+                "type": "customPretty",
+                "customHtml": "<div id=\"delete-sms-alarm-form\">\n  <form\n    #deleteEntityForm=\"ngForm\"\n    [formGroup]=\"deleteEntityFormGroup\"\n    (ngSubmit)=\"save()\"\n    style=\"font-size: {{calcFontSize()}}px;\"\n  >\n    <div class=\"dialog-title-box\" fxLayoutAlign=\"space-between center\">\n      <span class=\"dialog-title\" translate>thingplus.dialog.delete-sms-alarm-title</span>\n      <button class=\"dialog-close\" (click)=\"cancel()\" type=\"button\">\n        <mat-icon class=\"material-icons\">close</mat-icon>\n      </button>\n    </div>\n    <mat-progress-bar color=\"warn\" mode=\"indeterminate\" *ngIf=\"isLoading$ | async\"> </mat-progress-bar>\n    <div style=\"height: 4px\" *ngIf=\"!(isLoading$ | async)\"></div>\n    <div mat-dialog-content fxLayout=\"column\">\n      <div fxLayout=\"row\" fxLayoutGap=\"8px\" fxLayout.xs=\"column\" fxLayoutGap.xs=\"0\">\n        <div class=\"label\">{{'thingplus.dialog.delete-sms-alarm-content' | translate:{entityName:entityName} }}</div>\n      </div>\n    </div>\n    <div mat-dialog-actions fxLayout=\"row\" fxLayoutAlign=\"end center\" fxLayoutGap=\"1em\">\n      <button\n        class=\"button close-button\"\n        [disabled]=\"(isLoading$ | async)\"\n        type=\"button\"\n        (click)=\"cancel()\"\n        cdkFocusInitial\n        translate\n      >\n        thingplus.action.close\n      </button>\n      <button\n        class=\"button delete-button\"\n        type=\"submit\"\n        [disabled]=\"(isLoading$ | async) || deleteEntityForm.invalid\"\n        translate\n      >\n        thingplus.action.delete\n      </button>\n    </div>\n  </form>\n</div>\n",
+                "customCss": "#delete-sms-alarm-form form {\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n}\n#delete-sms-alarm-form .dialog-title-box {\n  padding: 2em;\n  border-bottom: 1px solid var(--tb-service-border-1);\n}\n#delete-sms-alarm-form .dialog-title {\n  color: var(--tb-service-font-5);\n  font-size: 1.6em;\n}\n#delete-sms-alarm-form .dialog-close {\n  all: unset;\n  cursor: pointer;\n  color: var(--tb-service-font-3);\n  transition-property: color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#delete-sms-alarm-form .dialog-close i {\n  font-size: 1.4em;\n}\n#delete-sms-alarm-form .dialog-close:hover {\n  color: var(--tb-service-font-5);\n}\n\n#delete-sms-alarm-form .mat-dialog-content {\n  padding: var(--tb-config-padding) !important;\n}\n#delete-sms-alarm-form .mat-dialog-content::-webkit-scrollbar {\n  width: 6px;\n  height: 6px;\n}\n#delete-sms-alarm-form .mat-dialog-content::-webkit-scrollbar-thumb {\n  border: 2px solid #00000000;\n  background-clip: padding-box;\n  background-color: var(--tb-service-accent);\n}\n#delete-sms-alarm-form .mat-dialog-content::-webkit-scrollbar-thumb:hover {\n  border: 1px solid #00000000;\n}\n\n#delete-sms-alarm-form .label {\n  color: var(--tb-service-font-5);\n  font-size: 1.4em;\n}\n\n#delete-sms-alarm-form .mat-dialog-actions {\n  padding: 2em;\n  border-top: 1px solid var(--tb-service-border-1);\n}\n#delete-sms-alarm-form .button {\n  all: unset;\n  padding: 0.6em 1.4em;\n  font-size: 1.4em;\n  box-sizing: border-box;\n  cursor: pointer;\n  transition-property: color, background-color, border-color;\n  transition-duration: var(--tb-config-color-duration);\n}\n#delete-sms-alarm-form .delete-button {\n  color: var(--tb-service-font-0);\n  background-color: var(--tb-service-warn);\n}\n#delete-sms-alarm-form .delete-button:hover {\n  background-color: var(--tb-service-warn-hover);\n}\n#delete-sms-alarm-form .delete-button:active {\n  background-color: var(--tb-service-warn-pressed);\n}\n#delete-sms-alarm-form .close-button {\n  color: var(--tb-service-font-5);\n  background-color: var(--tb-service-background-0);\n  border: 1px solid var(--tb-service-border-0);\n}\n#delete-sms-alarm-form .close-button:hover {\n  border-color: var(--tb-service-border-3);\n}\n#delete-sms-alarm-form .close-button:active {\n  background-color: var(--tb-service-border-0);\n}\n\n@media (min-width: 960px) {\n  #delete-sms-alarm-form form {\n    width: 24vw;\n  }\n}\n",
+                "customFunction": "let $injector = widgetContext.$scope.$injector;\nlet dialogs = $injector.get(widgetContext.servicesMap.get('dialogs'));\nlet customDialog = $injector.get(widgetContext.servicesMap.get('customDialog'));\nlet assetService = $injector.get(widgetContext.servicesMap.get('assetService'));\n\nconst t = widgetContext.custom.t;\n\nopenDeleteEntityDialog();\n\nfunction openDeleteEntityDialog() {\n  customDialog.customDialog(htmlTemplate, DeleteEntityDialogController).subscribe();\n}\n\nfunction DeleteEntityDialogController(instance) {\n  let vm = instance;\n  vm.deleteEntityFormGroup = vm.fb.group({});\n  vm.entityName = entityLabel;\n\n  vm.calcFontSize = function () {\n    const originWidth = widgetContext.settings.widget.originWidth;\n    let widgetFontSize = _.round((widgetContext.width / originWidth) * 10, 2);\n    if (widgetFontSize < 6.25) {\n      widgetFontSize = 6.25;\n    }\n    return widgetFontSize;\n  };\n  vm.cancel = function () {\n    vm.dialogRef.close(null);\n  };\n  vm.save = function () {\n    vm.deleteEntityFormGroup.markAsPristine();\n    deleteEntityObservable(entityId).subscribe(\n      function success() {\n        widgetContext.updateAliases();\n        vm.dialogRef.close(null);\n      },\n      function fail() {\n        showErrorDialog();\n        vm.dialogRef.close(null);\n      }\n    );\n  };\n\n  function deleteEntityObservable(entityId) {\n    return assetService.deleteAsset(entityId.id);\n  }\n\n  function showErrorDialog() {\n    let title = t('thingplus.dialog.error-delete-title');\n    let content = t('thingplus.dialog.error-delete-content');\n    dialogs.alert(title, content, 'CLOSE').subscribe(function (result) {});\n  }\n}\n",
+                "customResources": [],
+                "openInSeparateDialog": false,
+                "openInPopover": false,
+                "id": "f7037445-e664-764e-2db4-6c4a95815a32"
+              }
+            ],
+            "customAction": [
+              {
+                "name": "Enable",
+                "icon": "more_horiz",
+                "useShowWidgetActionFunction": null,
+                "showWidgetActionFunction": "return true;",
+                "type": "custom",
+                "customFunction": "let $injector = widgetContext.$scope.$injector;\nlet attributeService = $injector.get(widgetContext.servicesMap.get('attributeService'));\nlet attributeBody = [\n    {key: 'isEnable', value: additionalParams.isEnable == 'true'? false : true}\n]\nattributeService.saveEntityAttributes(entityId, 'SERVER_SCOPE', attributeBody).subscribe(()=>{})",
+                "openInSeparateDialog": false,
+                "openInPopover": false,
+                "id": "714c9bd7-e1cc-fb5f-f47e-75bd595b5211"
+              }
+            ]
+          }
+        },
+        "row": 0,
+        "col": 0,
+        "id": "ce9e35f2-d3ee-bc3b-f124-45cbd3e179f8"
+      }
+    },
+    "states": {
+      "sms-alarm": {
+        "name": "{i18n:thingplus.menu.sms-alarm}",
+        "root": true,
+        "layouts": {
+          "main": {
+            "widgets": {
+              "ce9e35f2-d3ee-bc3b-f124-45cbd3e179f8": {
+                "sizeX": 95,
+                "sizeY": 43,
+                "row": 1,
+                "col": 1
+              }
+            },
+            "gridSettings": {
+              "backgroundColor": "var(--tb-service-background-4)",
+              "columns": 97,
+              "margin": 0,
+              "backgroundSizeMode": "100%",
+              "autoFillHeight": true,
+              "backgroundImageUrl": null,
+              "mobileAutoFillHeight": true,
+              "mobileRowHeight": 70
+            }
+          }
+        }
+      },
+      "system-alarm": {
+        "name": "{i18n:thingplus.menu.system-alarm}",
+        "root": false,
+        "layouts": {
+          "main": {
+            "widgets": {
+              "8c1d608c-19b2-dc01-9f18-af9d3b77c5a7": {
+                "sizeX": 95,
+                "sizeY": 43,
+                "row": 1,
+                "col": 1
+              }
+            },
+            "gridSettings": {
+              "backgroundColor": "var(--tb-service-background-4)",
+              "columns": 97,
+              "margin": 0,
+              "backgroundSizeMode": "100%",
+              "autoFillHeight": true,
+              "backgroundImageUrl": null,
+              "mobileAutoFillHeight": true,
+              "mobileRowHeight": 70
+            }
+          }
+        }
+      }
+    },
+    "entityAliases": {
+      "435b7f5a-9b50-3ef0-afcf-cfa8c7f9828d": {
+        "id": "435b7f5a-9b50-3ef0-afcf-cfa8c7f9828d",
+        "alias": "Current User Owner",
+        "filter": {
+          "type": "singleEntity",
+          "resolveMultiple": false,
+          "singleEntity": {
+            "entityType": "CURRENT_USER_OWNER",
+            "id": "13814000-1dd2-11b2-8080-808080808080"
+          }
+        }
+      },
+      "1e4f93be-d6f5-44cf-3957-596c48ed00d4": {
+        "id": "1e4f93be-d6f5-44cf-3957-596c48ed00d4",
+        "alias": "All Customers",
+        "filter": {
+          "type": "relationsQuery",
+          "resolveMultiple": true,
+          "rootStateEntity": true,
+          "stateEntityParamName": null,
+          "defaultStateEntity": {
+            "entityType": "CURRENT_USER_OWNER",
+            "id": "13814000-1dd2-11b2-8080-808080808080"
+          },
+          "rootEntity": {
+            "entityType": "CURRENT_USER_OWNER",
+            "id": null
+          },
+          "direction": "FROM",
+          "maxLevel": 2,
+          "fetchLastLevelOnly": false,
+          "filters": [
+            {
+              "relationType": "Contains",
+              "entityTypes": [
+                "CUSTOMER"
+              ]
+            }
+          ]
+        }
+      },
+      "e349290f-640e-558a-503f-474da2b01a27": {
+        "id": "e349290f-640e-558a-503f-474da2b01a27",
+        "alias": "Selected Entity",
+        "filter": {
+          "type": "stateEntity",
+          "resolveMultiple": false,
+          "stateEntityParamName": null,
+          "defaultStateEntity": {
+            "entityType": "CURRENT_USER_OWNER",
+            "id": "13814000-1dd2-11b2-8080-808080808080"
+          }
+        }
+      },
+      "8410d4b7-b582-445b-89f3-345e51de7a8a": {
+        "id": "8410d4b7-b582-445b-89f3-345e51de7a8a",
+        "alias": "Alarm Assets",
+        "filter": {
+          "type": "assetSearchQuery",
+          "resolveMultiple": true,
+          "rootStateEntity": true,
+          "stateEntityParamName": null,
+          "defaultStateEntity": {
+            "entityType": "CURRENT_USER_OWNER",
+            "id": null
+          },
+          "rootEntity": null,
+          "direction": "FROM",
+          "maxLevel": 1,
+          "fetchLastLevelOnly": false,
+          "relationType": "Alarms",
+          "assetTypes": [
+            "alarm"
+          ]
+        }
+      }
+    },
+    "filters": {
+      "b78f3f90-73d0-85f4-a732-7fcdbd371a33": {
+        "id": "b78f3f90-73d0-85f4-a732-7fcdbd371a33",
+        "filter": "Is CustomerL1",
+        "keyFilters": [
+          {
+            "key": {
+              "type": "ATTRIBUTE",
+              "key": "customerType"
+            },
+            "valueType": "STRING",
+            "predicates": [
+              {
+                "keyFilterPredicate": {
+                  "operation": "EQUAL",
+                  "value": {
+                    "defaultValue": "CUSTOMER_L1",
+                    "dynamicValue": null
+                  },
+                  "ignoreCase": false,
+                  "type": "STRING"
+                },
+                "userInfo": {
+                  "editable": true,
+                  "label": "",
+                  "autogeneratedLabel": true,
+                  "order": 0
+                }
+              }
+            ]
+          }
+        ],
+        "editable": true
+      },
+      "6d1822f9-671d-191e-0e26-4b58a0e4a4d0": {
+        "id": "6d1822f9-671d-191e-0e26-4b58a0e4a4d0",
+        "filter": "Is CustomerL2",
+        "keyFilters": [
+          {
+            "key": {
+              "type": "ATTRIBUTE",
+              "key": "customerType"
+            },
+            "valueType": "STRING",
+            "predicates": [
+              {
+                "keyFilterPredicate": {
+                  "operation": "EQUAL",
+                  "value": {
+                    "defaultValue": "CUSTOMER_L2",
+                    "dynamicValue": null
+                  },
+                  "ignoreCase": false,
+                  "type": "STRING"
+                },
+                "userInfo": {
+                  "editable": true,
+                  "label": "",
+                  "autogeneratedLabel": true,
+                  "order": 0
+                }
+              }
+            ]
+          }
+        ],
+        "editable": true
+      }
+    },
+    "timewindow": {
+      "displayValue": "",
+      "hideInterval": false,
+      "hideAggregation": false,
+      "hideAggInterval": false,
+      "hideTimezone": false,
+      "selectedTab": 0,
+      "realtime": {
+        "realtimeType": 0,
+        "interval": 1000,
+        "timewindowMs": 60000,
+        "quickInterval": "CURRENT_DAY"
+      },
+      "history": {
+        "historyType": 0,
+        "interval": 1000,
+        "timewindowMs": 60000,
+        "fixedTimewindow": {
+          "startTimeMs": 1674707696287,
+          "endTimeMs": 1674794096287
+        },
+        "quickInterval": "CURRENT_DAY"
+      },
+      "aggregation": {
+        "type": "AVG",
+        "limit": 25000
+      }
+    },
+    "settings": {
+      "stateControllerId": "entity",
+      "showTitle": false,
+      "showDashboardsSelect": false,
+      "showEntitiesSelect": false,
+      "showDashboardTimewindow": false,
+      "showDashboardExport": false,
+      "toolbarAlwaysOpen": true,
+      "titleColor": "rgba(0,0,0,0.870588)",
+      "showDashboardLogo": false,
+      "dashboardLogoUrl": null,
+      "hideToolbar": true,
+      "showFilters": false,
+      "showUpdateDashboardImage": false
+    }
+  },
+  "name": "Alarm Management"
+}

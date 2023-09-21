@@ -1,0 +1,813 @@
+{
+  "ruleChain": {
+    "additionalInfo": {
+      "description": ""
+    },
+    "name": "Execute Rules",
+    "type": "CORE",
+    "firstRuleNodeId": null,
+    "root": false,
+    "debugMode": false,
+    "configuration": null
+  },
+  "metadata": {
+    "firstNodeIndex": null,
+    "nodes": [
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 589,
+          "layoutY": 832
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbCheckRelationNode",
+        "name": "Check Reports",
+        "debugMode": false,
+        "configuration": {
+          "checkForSingleEntity": false,
+          "direction": "FROM",
+          "entityType": "ASSET",
+          "entityId": "16dc00b0-3fc8-11ee-bff8-a768675c6a17",
+          "relationType": "Reports"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 285,
+          "layoutY": 918
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbDuplicateRelatedNode",
+        "name": "To CustomerL1",
+        "debugMode": false,
+        "configuration": {
+          "relationsQuery": {
+            "fetchLastLevelOnly": false,
+            "direction": "FROM",
+            "maxLevel": 1,
+            "filters": [
+              {
+                "relationType": "Contains",
+                "entityTypes": [
+                  "CUSTOMER"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 287,
+          "layoutY": 1008
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbDuplicateRelatedNode",
+        "name": "To CustomerL2",
+        "debugMode": false,
+        "configuration": {
+          "relationsQuery": {
+            "fetchLastLevelOnly": false,
+            "direction": "FROM",
+            "maxLevel": 1,
+            "filters": [
+              {
+                "relationType": "Contains",
+                "entityTypes": [
+                  "CUSTOMER"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 281,
+          "layoutY": 735
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Request Analysis Trial",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 86400,
+          "useEndtime": true,
+          "endTime": "15:00:00",
+          "jsScript": "var now = new Date()\nnow.setMilliseconds(0)\nnow.setSeconds(0)\nvar msg = { };\nvar metadata = { ts: now.getTime(), next: \"Request Analysis Trial\" };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn { msg: msg, metadata: metadata, msgType: msgType };",
+          "originatorId": "08a3e6b0-96f0-11ed-8d0d-21e1d787e420",
+          "originatorType": "TENANT"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 605,
+          "layoutY": 237
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbDuplicateRelatedNode",
+        "name": "To Device",
+        "debugMode": false,
+        "configuration": {
+          "relationsQuery": {
+            "fetchLastLevelOnly": false,
+            "direction": "FROM",
+            "maxLevel": 3,
+            "filters": [
+              {
+                "relationType": "Contains",
+                "entityTypes": [
+                  "DEVICE"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 287,
+          "layoutY": 237
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Save Planned Work Time",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "useEndtime": true,
+          "endTime": "00:00:05",
+          "jsScript": "var now = new Date()\nnow.setMilliseconds(0)\nnow.setSeconds(0)\nvar msg = { };\nvar metadata = { ts: now.getTime(), offset: now.getTimezoneOffset(), next: \"Save Planned Work Time\" };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn { msg: msg, metadata: metadata, msgType: msgType };",
+          "originatorId": "08a3e6b0-96f0-11ed-8d0d-21e1d787e420",
+          "originatorType": "TENANT"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 888,
+          "layoutY": 651
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbDuplicateRelatedNode",
+        "name": "To Device",
+        "debugMode": false,
+        "configuration": {
+          "relationsQuery": {
+            "fetchLastLevelOnly": false,
+            "direction": "FROM",
+            "maxLevel": 3,
+            "filters": [
+              {
+                "relationType": "Contains",
+                "entityTypes": [
+                  "DEVICE"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 284,
+          "layoutY": 647
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Request Analysis State",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 3600,
+          "useEndtime": true,
+          "endTime": "00:00:00",
+          "jsScript": "var now = new Date()\nnow.setMilliseconds(0)\nnow.setSeconds(0)\nvar msg = { };\nvar metadata = { ts: now.getTime(), next: \"Request Analysis State\" };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn { msg: msg, metadata: metadata, msgType: msgType };",
+          "originatorId": "08a3e6b0-96f0-11ed-8d0d-21e1d787e420",
+          "originatorType": "TENANT"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 590,
+          "layoutY": 648
+        },
+        "type": "org.thingsboard.rule.engine.metadata.TbGetTenantAttributeNode",
+        "name": "Get Token",
+        "debugMode": false,
+        "configuration": {
+          "telemetry": false,
+          "attrMapping": {
+            "token": "jwtToken"
+          }
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 886,
+          "layoutY": 63
+        },
+        "type": "org.thingsboard.rule.engine.metadata.TbGetAttributesNode",
+        "name": "Get Status",
+        "debugMode": false,
+        "configuration": {
+          "tellFailureIfAbsent": false,
+          "clientAttributeNames": [],
+          "sharedAttributeNames": [],
+          "serverAttributeNames": [],
+          "latestTsKeyNames": [
+            "TP_ActivationState"
+          ],
+          "getLatestValueWithTs": false
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1198,
+          "layoutY": 450
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Set Default",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "var newMsg = [\n  {\n    ts: +metadata.ts,\n    values: {\n      TP_TotalPowerUsageRaw: 0,\n      TP_WorkPowerUsageRaw: 0,\n      TP_WaitPowerUsageRaw: 0,\n      TP_PowerPeakRaw: 0\n    }\n  },\n];\nreturn {msg: newMsg, metadata: metadata, msgType: msgType};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1514,
+          "layoutY": 446
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode",
+        "name": "Save",
+        "debugMode": false,
+        "configuration": {
+          "defaultTTL": 0
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1201,
+          "layoutY": 242
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Set Default",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "var newMsg = [\n  {\n    ts: +metadata.ts,\n    values: {\n      TP_WorkTimeRaw: 0,\n      TP_WaitTimeRaw: 0\n    }\n  }\n];\nreturn {msg: newMsg, metadata: metadata, msgType: msgType};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1517,
+          "layoutY": 238
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode",
+        "name": "Save",
+        "debugMode": false,
+        "configuration": {
+          "defaultTTL": 0
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1196,
+          "layoutY": 343
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "Check State",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "return metadata.TP_ConnectionState == 'true'"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 883,
+          "layoutY": 341
+        },
+        "type": "org.thingsboard.rule.engine.metadata.TbGetAttributesNode",
+        "name": "Get Status",
+        "debugMode": false,
+        "configuration": {
+          "tellFailureIfAbsent": false,
+          "clientAttributeNames": [],
+          "sharedAttributeNames": [],
+          "serverAttributeNames": [],
+          "latestTsKeyNames": [
+            "TP_ConnectionState",
+            "TP_ActivationState"
+          ],
+          "getLatestValueWithTs": false
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 601,
+          "layoutY": 343
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbDuplicateRelatedNode",
+        "name": "To Device",
+        "debugMode": false,
+        "configuration": {
+          "relationsQuery": {
+            "fetchLastLevelOnly": false,
+            "direction": "FROM",
+            "maxLevel": 3,
+            "filters": [
+              {
+                "relationType": "Contains",
+                "entityTypes": [
+                  "DEVICE"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 603,
+          "layoutY": 62
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbDuplicateRelatedNode",
+        "name": "To Device",
+        "debugMode": false,
+        "configuration": {
+          "relationsQuery": {
+            "fetchLastLevelOnly": false,
+            "direction": "FROM",
+            "maxLevel": 3,
+            "filters": [
+              {
+                "relationType": "Contains",
+                "entityTypes": [
+                  "DEVICE"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1196,
+          "layoutY": 143
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "Check State",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "return metadata.TP_ConnectionState == 'true'"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 883,
+          "layoutY": 141
+        },
+        "type": "org.thingsboard.rule.engine.metadata.TbGetAttributesNode",
+        "name": "Get Status",
+        "debugMode": false,
+        "configuration": {
+          "tellFailureIfAbsent": false,
+          "clientAttributeNames": [],
+          "sharedAttributeNames": [],
+          "serverAttributeNames": [],
+          "latestTsKeyNames": [
+            "TP_ConnectionState",
+            "TP_ActivationState"
+          ],
+          "getLatestValueWithTs": false
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 283,
+          "layoutY": 542
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Initialize Device Daily",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 86400,
+          "useEndtime": true,
+          "endTime": "15:00:00",
+          "jsScript": "var now = new Date()\nnow.setMinutes(0)\nnow.setSeconds(0)\nnow.setMilliseconds(0)\n\nvar msg = {\n  TP_WorkTimeDay: 0,\n  TP_WaitTimeDay: 0,\n  TP_TotalPowerUsageDay: 0,\n  TP_WorkPowerUsageDay: 0,\n  TP_WaitPowerUsageDay: 0,\n  TP_PowerPeakDay: 0,\n  TP_WorkRatioDay: 0\n};\nvar metadata = {ts:now.getTime()};\nvar msgType = 'POST_TELEMETRY_REQUEST';\n\nreturn { msg: msg, metadata: metadata, msgType: msgType };\n",
+          "originatorId": "08a3e6b0-96f0-11ed-8d0d-21e1d787e420",
+          "originatorType": "TENANT"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 285,
+          "layoutY": 451
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Initialize Device Hourly",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 3600,
+          "useEndtime": true,
+          "endTime": "00:00:00",
+          "jsScript": "var now = new Date()\nnow.setMinutes(0)\nnow.setSeconds(0)\nnow.setMilliseconds(0)\n\nvar msg = {\n  TP_WorkTimeHour: 0,\n  TP_WaitTimeHour: 0,\n  TP_TotalPowerUsageHour: 0,\n  TP_WorkPowerUsageHour: 0,\n  TP_WaitPowerUsageHour: 0,\n  TP_PowerPeakHour:0\n};\nvar metadata = {ts:now.getTime()};\nvar msgType = 'POST_TELEMETRY_REQUEST';\n\nreturn { msg: msg, metadata: metadata, msgType: msgType };\n",
+          "originatorId": "08a3e6b0-96f0-11ed-8d0d-21e1d787e420",
+          "originatorType": "TENANT"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 597,
+          "layoutY": 452
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbDuplicateRelatedNode",
+        "name": "To Device",
+        "debugMode": false,
+        "configuration": {
+          "relationsQuery": {
+            "fetchLastLevelOnly": false,
+            "direction": "FROM",
+            "maxLevel": 3,
+            "filters": [
+              {
+                "relationType": "Contains",
+                "entityTypes": [
+                  "DEVICE"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 885,
+          "layoutY": 452
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode",
+        "name": "Save",
+        "debugMode": false,
+        "configuration": {
+          "defaultTTL": 0
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 601,
+          "layoutY": 143
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbDuplicateRelatedNode",
+        "name": "To Device",
+        "debugMode": false,
+        "configuration": {
+          "relationsQuery": {
+            "fetchLastLevelOnly": false,
+            "direction": "FROM",
+            "maxLevel": 3,
+            "filters": [
+              {
+                "relationType": "Contains",
+                "entityTypes": [
+                  "DEVICE"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 889,
+          "layoutY": 832
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbDuplicateRelatedNode",
+        "name": "To Asset",
+        "debugMode": false,
+        "configuration": {
+          "relationsQuery": {
+            "fetchLastLevelOnly": false,
+            "direction": "FROM",
+            "maxLevel": 1,
+            "filters": [
+              {
+                "relationType": "Reports",
+                "entityTypes": [
+                  "ASSET"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "해당 주기가 변경되면 Operation 관련 룰 노드에서도 주기를 변경해줘야 함",
+          "layoutX": 287,
+          "layoutY": 142
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Check Operation",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "useEndtime": true,
+          "endTime": "00:00:05",
+          "jsScript": "var now = new Date()\nnow.setMilliseconds(0)\nnow.setSeconds(0)\nvar msg = { };\nvar metadata = { ts: now.getTime(), offset: now.getTimezoneOffset(), period: 60000, next: \"Check Operation\" };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn { msg: msg, metadata: metadata, msgType: msgType };",
+          "originatorId": "08a3e6b0-96f0-11ed-8d0d-21e1d787e420",
+          "originatorType": "TENANT"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 284,
+          "layoutY": 344
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Check Electric Data",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "useEndtime": true,
+          "endTime": "00:00:10",
+          "jsScript": "var now = new Date()\nnow.setMilliseconds(0)\nnow.setSeconds(0)\nvar msg = { };\nvar metadata = { ts: now.getTime(), offset: now.getTimezoneOffset(), next: \"Check Electric Data\" };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn { msg: msg, metadata: metadata, msgType: msgType };",
+          "originatorId": "08a3e6b0-96f0-11ed-8d0d-21e1d787e420",
+          "originatorType": "TENANT"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 281,
+          "layoutY": 826
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Send Report",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "useEndtime": true,
+          "endTime": "00:00:00",
+          "jsScript": "var now = new Date()\nnow.setMilliseconds(0)\nnow.setSeconds(0)\nvar msg = { };\nvar metadata = { ts: now.getTime(), offset: now.getTimezoneOffset(), next: \"Send Report\" };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn { msg: msg, metadata: metadata, msgType: msgType };",
+          "originatorId": "08a3e6b0-96f0-11ed-8d0d-21e1d787e420",
+          "originatorType": "TENANT"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 286,
+          "layoutY": 63
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Check Connection",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "useEndtime": true,
+          "endTime": "00:00:00",
+          "jsScript": "var now = new Date()\nnow.setMilliseconds(0)\nnow.setSeconds(0)\nvar msg = { };\nvar metadata = { ts: now.getTime(), next: \"Check Connection\" };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn { msg: msg, metadata: metadata, msgType: msgType };",
+          "originatorId": "08a3e6b0-96f0-11ed-8d0d-21e1d787e420",
+          "originatorType": "TENANT"
+        }
+      }
+    ],
+    "connections": [
+      {
+        "fromIndex": 0,
+        "toIndex": 25,
+        "type": "True"
+      },
+      {
+        "fromIndex": 1,
+        "toIndex": 2,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 1,
+        "toIndex": 0,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 0,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 3,
+        "toIndex": 8,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 5,
+        "toIndex": 4,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 7,
+        "toIndex": 8,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 8,
+        "toIndex": 6,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 10,
+        "toIndex": 11,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 12,
+        "toIndex": 13,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 14,
+        "toIndex": 10,
+        "type": "False"
+      },
+      {
+        "fromIndex": 15,
+        "toIndex": 14,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 16,
+        "toIndex": 15,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 17,
+        "toIndex": 9,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 18,
+        "toIndex": 12,
+        "type": "False"
+      },
+      {
+        "fromIndex": 19,
+        "toIndex": 18,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 20,
+        "toIndex": 22,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 21,
+        "toIndex": 22,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 22,
+        "toIndex": 23,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 24,
+        "toIndex": 19,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 26,
+        "toIndex": 24,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 27,
+        "toIndex": 16,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 28,
+        "toIndex": 1,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 28,
+        "toIndex": 0,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 29,
+        "toIndex": 17,
+        "type": "Success"
+      }
+    ],
+    "ruleChainConnections": [
+      {
+        "fromIndex": 4,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "15cd4e80-3290-11ee-bff8-a768675c6a17"
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 888,
+          "layoutY": 238,
+          "ruleChainNodeId": "rule-chain-node-31"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 6,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "32f75cd0-310a-11ee-bff8-a768675c6a17"
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1207,
+          "layoutY": 657,
+          "ruleChainNodeId": "rule-chain-node-32"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 9,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "818246e0-a842-11ed-8d0d-21e1d787e420"
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1515,
+          "layoutY": 61,
+          "ruleChainNodeId": "rule-chain-node-33"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 14,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "8ec5d0b0-a842-11ed-8d0d-21e1d787e420"
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1512,
+          "layoutY": 342,
+          "ruleChainNodeId": "rule-chain-node-34"
+        },
+        "type": "True"
+      },
+      {
+        "fromIndex": 18,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "8698c460-a842-11ed-8d0d-21e1d787e420"
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1517,
+          "layoutY": 145,
+          "ruleChainNodeId": "rule-chain-node-35"
+        },
+        "type": "True"
+      },
+      {
+        "fromIndex": 25,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "944c4e10-a842-11ed-8d0d-21e1d787e420"
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1195,
+          "layoutY": 829,
+          "ruleChainNodeId": "rule-chain-node-36"
+        },
+        "type": "Success"
+      }
+    ]
+  }
+}

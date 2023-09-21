@@ -1,0 +1,26 @@
+{
+  "schema": {
+    "title": "Settings",
+    "type": "object",
+    "properties": {
+      "widget": {
+        "type": "object",
+        "required": ["originWidth"],
+        "properties": {
+          "originWidth": {
+            "title": "Origin Widget Width",
+            "type": "number",
+            "default": 1630
+          }
+        }
+      }
+    }
+  },
+  "form": [["widget.originWidth"]],
+  "groupInfoes": [
+    {
+      "formIndex": 0,
+      "GroupTitle": "Widget"
+    }
+  ]
+}

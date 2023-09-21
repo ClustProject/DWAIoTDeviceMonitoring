@@ -1,0 +1,99 @@
+<div id="add-modified-state-form">
+  <form
+    #addEntityForm="ngForm"
+    [formGroup]="addEntityFormGroup"
+    (ngSubmit)="save()"
+    style="font-size: {{calcFontSize()}}px;"
+  >
+    <div class="dialog-title-box" fxLayoutAlign="space-between center">
+      <span class="dialog-title" translate>thingplus.dialog.create-modified-state-title</span>
+      <button class="dialog-close" (click)="cancel()" type="button">
+        <mat-icon class="material-icons">close</mat-icon>
+      </button>
+    </div>
+    <mat-progress-bar color="warn" mode="indeterminate" *ngIf="isLoading$ | async"> </mat-progress-bar>
+    <div style="height: 0.4em" *ngIf="!(isLoading$ | async)"></div>
+    <div mat-dialog-content fxLayout="column" fxLayoutGap="2em">
+      <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+        <div fxFlex="100" fxLayout="column" fxLayoutGap="0.6em" class="input-box">
+          <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+            <label translate>thingplus.label.start-time</label>
+          </div>
+          <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+            <div class="date-selector" fxLayoutAlign="space-between center">
+              <mat-datetimepicker #startDatePicker type="datetime"></mat-datetimepicker>
+              <input
+                class="hidden"
+                matInput
+                readonly
+                [(ngModel)]="startDate"
+                [ngModelOptions]="{ standalone: true }"
+                [max]="endDate"
+                [matDatetimepicker]="startDatePicker"
+                (ngModelChange)="setStartDate($event)"
+              />
+              <input class="start-date" (click)="startDatePicker.open()" formControlName="viewStartDate" readonly />
+              <div class="select-arrow"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+        <div fxFlex="100" fxLayout="column" fxLayoutGap="0.6em" class="input-box">
+          <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+            <label translate>thingplus.label.end-time</label>
+          </div>
+          <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+            <div class="date-selector" fxLayoutAlign="space-between center">
+              <mat-datetimepicker #endDatePicker type="datetime"></mat-datetimepicker>
+              <input
+                class="hidden"
+                matInput
+                readonly
+                [(ngModel)]="endDate"
+                [ngModelOptions]="{ standalone: true }"
+                [max]="endDate"
+                [matDatetimepicker]="endDatePicker"
+                (ngModelChange)="setEndDate($event)"
+              />
+              <input class="end-date" (click)="endDatePicker.open()" formControlName="viewEndDate" readonly />
+              <div class="select-arrow"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+        <div fxFlex="100" fxLayout="column" fxLayoutGap="0.6em" class="input-box">
+          <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+            <label translate>thingplus.label.after-state</label>
+          </div>
+          <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+            <mat-select formControlName="state">
+              <mat-option *ngFor="let state of stateList" [value]="state.value"> {{state.name}} </mat-option>
+            </mat-select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="1em">
+      <button
+        class="button close-button"
+        [disabled]="(isLoading$ | async)"
+        type="button"
+        (click)="cancel()"
+        cdkFocusInitial
+        translate
+      >
+        thingplus.action.close
+      </button>
+      <button
+        class="button save-button"
+        type="submit"
+        [disabled]="(isLoading$ | async) || addEntityForm.invalid"
+        translate
+      >
+        thingplus.action.save
+      </button>
+    </div>
+  </form>
+</div>

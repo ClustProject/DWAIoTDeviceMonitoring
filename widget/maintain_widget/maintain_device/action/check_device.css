@@ -1,0 +1,106 @@
+#check-device-form form {
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+  user-select: none;
+}
+#check-device-form .dialog-title-box {
+  padding: 2em;
+  border-bottom: 1px solid var(--tb-service-border-1);
+}
+#check-device-form .dialog-title {
+  color: var(--tb-service-font-5);
+  font-size: 1.6em;
+}
+#check-device-form .dialog-close {
+  all: unset;
+  cursor: pointer;
+  color: var(--tb-service-font-3);
+  transition-property: color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#check-device-form .dialog-close i {
+  font-size: 1.4em;
+}
+#check-device-form .dialog-close:hover {
+  color: var(--tb-service-font-5);
+}
+
+#check-device-form .mat-dialog-content {
+  padding: var(--tb-config-padding) !important;
+}
+#check-device-form .mat-dialog-content::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+#check-device-form .mat-dialog-content::-webkit-scrollbar-thumb {
+  border: 2px solid #00000000;
+  background-clip: padding-box;
+  background-color: var(--tb-service-accent);
+}
+#check-device-form .mat-dialog-content::-webkit-scrollbar-thumb:hover {
+  border: 1px solid #00000000;
+}
+
+#check-device-form .label {
+  color: var(--tb-service-font-5);
+  font-size: 1.4em;
+}
+#check-device-form i {
+  font-size: 1.4em;
+  color: var(--tb-service-accent);
+}
+
+#check-device-form .check-label-box {
+  font-size: 1.2em;
+  padding: calc(1em / 1.2);
+  border: solid 1px var(--tb-service-border-0);
+  background-color: var(--tb-service-background-1);
+  color: var(--tb-service-font-5);
+}
+#check-device-form .check-label-box i {
+  font-size: 1.2em;
+  color: var(--tb-service-font-3);
+}
+#check-device-form .check-value {
+  font-size: 1.6em;
+  padding: calc(1em / 1.6);
+  border: solid 1px var(--tb-service-border-0);
+  border-top: none;
+}
+#check-device-form .check-value.normal {
+  color: var(--tb-service-compare-high);
+}
+#check-device-form .check-value.abnormal {
+  color: var(--tb-service-compare-low);
+}
+
+#check-device-form .mat-dialog-actions {
+  padding: 2em;
+  border-top: 1px solid var(--tb-service-border-1);
+}
+#check-device-form .button {
+  all: unset;
+  padding: 0.6em 1.4em;
+  font-size: 1.4em;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition-property: color, background-color, border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+#check-device-form .close-button {
+  color: var(--tb-service-font-5);
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+}
+#check-device-form .close-button:hover {
+  border-color: var(--tb-service-border-3);
+}
+#check-device-form .close-button:active {
+  background-color: var(--tb-service-border-0);
+}
+
+@media (min-width: 960px) {
+  #check-device-form form {
+    width: 24vw;
+  }
+}

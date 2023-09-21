@@ -1,0 +1,358 @@
+{
+  "ruleChain": {
+    "additionalInfo": {
+      "description": ""
+    },
+    "name": "Check Connect Status & Send Slack Alarm",
+    "type": "CORE",
+    "firstRuleNodeId": null,
+    "root": false,
+    "debugMode": false,
+    "configuration": null
+  },
+  "metadata": {
+    "firstNodeIndex": null,
+    "nodes": [
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 900,
+          "layoutY": 525
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "Check Slack Active Attr",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "return metadata['ss_slackActive'] === 'true';"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1201,
+          "layoutY": 526
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Make Body",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "var newMetadata = {};\nnewMetadata.token =\n    'xoxb-2161421552-996634672371-7A8XcKmZRBtU4ygjTc1ttwhh';\nnewMetadata.channel = 'C011592N649';\nnewMetadata.text =\n    '*' + '통신 이상 해제' + '*\\n' + 'DeviceName : ' + metadata\n    .originatorName + '\\n' + 'DeviceLabel : ' + metadata\n    .originatorLabel + '\\n';\nnewMetadata.username = '금형산업진흥원';\nreturn {\n    msg: msg,\n    metadata: newMetadata,\n    msgType: msgType\n};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1500,
+          "layoutY": 526
+        },
+        "type": "org.thingsboard.rule.engine.rest.TbRestApiCallNode",
+        "name": "Send Slack",
+        "debugMode": false,
+        "configuration": {
+          "restEndpointUrlPattern": "https://slack.com/api/chat.postMessage?token=${token}&channel=${channel}&text=${text}&username=${username}",
+          "requestMethod": "POST",
+          "useSimpleClientHttpFactory": true,
+          "enableProxy": false,
+          "useSystemProxyProperties": false,
+          "proxyScheme": null,
+          "proxyHost": null,
+          "proxyPort": 0,
+          "proxyUser": null,
+          "proxyPassword": null,
+          "readTimeoutMs": 0,
+          "maxParallelRequestsCount": 0,
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "useRedisQueueForMsgPersistence": false,
+          "trimQueue": false,
+          "maxQueueSize": 0,
+          "credentials": {
+            "type": "anonymous"
+          }
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 337,
+          "layoutY": 572
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbDuplicateRelatedNode",
+        "name": "To Device",
+        "debugMode": false,
+        "configuration": {
+          "relationsQuery": {
+            "fetchLastLevelOnly": false,
+            "direction": "FROM",
+            "maxLevel": 2,
+            "filters": [
+              {
+                "relationType": "Contains",
+                "entityTypes": [
+                  "DEVICE"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 319,
+          "layoutY": 396
+        },
+        "type": "org.thingsboard.rule.engine.metadata.TbGetOriginatorFieldsNode",
+        "name": "Get Label",
+        "debugMode": false,
+        "configuration": {
+          "fieldsMapping": {
+            "name": "originatorName",
+            "label": "originatorLabel"
+          }
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 900,
+          "layoutY": 400
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Set Slack Active Attr",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "msg['slackActive'] = false;  \n\nreturn {msg: msg, metadata: metadata, msgType: msgType};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1200,
+          "layoutY": 401
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgAttributesNode",
+        "name": "Save Attr",
+        "debugMode": false,
+        "configuration": {
+          "scope": "SERVER_SCOPE",
+          "notifyDevice": false
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1200,
+          "layoutY": 126
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Set Slack Active Attr",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "msg['slackActive'] = true; \n\nreturn {msg: msg, metadata: metadata, msgType: msgType};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1499,
+          "layoutY": 126
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgAttributesNode",
+        "name": "Save Attr",
+        "debugMode": false,
+        "configuration": {
+          "scope": "SERVER_SCOPE",
+          "notifyDevice": false
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 899,
+          "layoutY": 251
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "Check Slack Active Attr",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "return metadata['ss_slackActive'] === 'true';"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 54,
+          "layoutY": 250
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Start",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 600,
+          "useEndtime": false,
+          "endTime": "23:01:59",
+          "jsScript": "var msg = { };\nvar metadata = {};\nvar msgType = \"POST_ATTRIBUTES_REQUEST\";\n\nreturn { msg: msg, metadata: metadata, msgType: msgType };",
+          "originatorId": "7d99c250-b8ba-11ed-8d0d-21e1d787e420",
+          "originatorType": "CUSTOMER"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 347,
+          "layoutY": 250
+        },
+        "type": "org.thingsboard.rule.engine.metadata.TbGetAttributesNode",
+        "name": "Get Slack Active Attr",
+        "debugMode": false,
+        "configuration": {
+          "tellFailureIfAbsent": false,
+          "clientAttributeNames": [],
+          "sharedAttributeNames": [],
+          "serverAttributeNames": [
+            "slackActive"
+          ],
+          "latestTsKeyNames": [
+            "f1_amp1"
+          ],
+          "getLatestValueWithTs": true
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 621,
+          "layoutY": 251
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "Check Connect Status",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "var now = new Date().getTime();\n\nvar data = 0;\n\nif (metadata['f1_amp1'] != undefined) {\n    data = JSON.parse(metadata['f1_amp1']);\n}\n\nvar limitTime = 60 * 60 * 1000;\n\nreturn now - data.ts > limitTime;"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1200,
+          "layoutY": 250
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Make Body",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "var newMetadata = {};\nnewMetadata.token =\n    'xoxb-2161421552-996634672371-7A8XcKmZRBtU4ygjTc1ttwhh';\nnewMetadata.channel = 'C011592N649';\nnewMetadata.text =\n    '*' + '통신 이상' + '*\\n' + 'DeviceName : ' + metadata\n    .originatorName + '\\n' + 'DeviceLabel : ' + metadata\n    .originatorLabel + '\\n';\nnewMetadata.username = '금형산업진흥원';\nreturn {\n    msg: msg,\n    metadata: newMetadata,\n    msgType: msgType\n};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1501,
+          "layoutY": 252
+        },
+        "type": "org.thingsboard.rule.engine.rest.TbRestApiCallNode",
+        "name": "Send Slack",
+        "debugMode": false,
+        "configuration": {
+          "restEndpointUrlPattern": "https://slack.com/api/chat.postMessage?token=${token}&channel=${channel}&text=${text}&username=${username}",
+          "requestMethod": "POST",
+          "useSimpleClientHttpFactory": true,
+          "enableProxy": false,
+          "useSystemProxyProperties": false,
+          "proxyScheme": null,
+          "proxyHost": null,
+          "proxyPort": 0,
+          "proxyUser": null,
+          "proxyPassword": null,
+          "readTimeoutMs": 0,
+          "maxParallelRequestsCount": 0,
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "useRedisQueueForMsgPersistence": false,
+          "trimQueue": false,
+          "maxQueueSize": 0,
+          "credentials": {
+            "type": "anonymous"
+          }
+        }
+      }
+    ],
+    "connections": [
+      {
+        "fromIndex": 0,
+        "toIndex": 1,
+        "type": "True"
+      },
+      {
+        "fromIndex": 1,
+        "toIndex": 2,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 3,
+        "toIndex": 4,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 4,
+        "toIndex": 11,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 5,
+        "toIndex": 6,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 7,
+        "toIndex": 8,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 9,
+        "toIndex": 7,
+        "type": "False"
+      },
+      {
+        "fromIndex": 9,
+        "toIndex": 13,
+        "type": "False"
+      },
+      {
+        "fromIndex": 10,
+        "toIndex": 3,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 11,
+        "toIndex": 12,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 12,
+        "toIndex": 5,
+        "type": "False"
+      },
+      {
+        "fromIndex": 12,
+        "toIndex": 9,
+        "type": "True"
+      },
+      {
+        "fromIndex": 12,
+        "toIndex": 0,
+        "type": "False"
+      },
+      {
+        "fromIndex": 13,
+        "toIndex": 14,
+        "type": "Success"
+      }
+    ],
+    "ruleChainConnections": null
+  }
+}

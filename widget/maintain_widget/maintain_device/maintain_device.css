@@ -1,0 +1,332 @@
+#widget {
+  width: 100%;
+  height: 100%;
+  font-size: 10px;
+  font-family: var(--tb-config-font-family);
+  user-select: none;
+}
+
+.widget-tab {
+  width: 100%;
+  height: 5em;
+  min-height: 30px;
+  background-color: var(--tb-service-background-2);
+  border-bottom: 1px solid var(--tb-service-border-1);
+}
+.tab {
+  min-width: 8em;
+  height: 100%;
+  font-size: 1.4em;
+  font-weight: 500;
+  border-right: 1px solid var(--tb-service-border-1);
+  color: var(--tb-service-font-3);
+  cursor: pointer;
+}
+.tab.active {
+  background-color: var(--tb-service-background-0);
+  color: var(--tb-service-font-5);
+  border-top: 0.2em solid var(--tb-service-accent);
+  border-bottom: 1px solid var(--tb-service-background-0);
+  box-sizing: content-box !important;
+}
+
+/*
+  Widget Header Area
+*/
+header.widget-header {
+  width: 100%;
+  padding: var(--tb-config-padding);
+}
+
+/* widget-header-right-section */
+.normal-label {
+  font-size: 1.2em;
+  font-weight: 500;
+  line-height: 1.17;
+  letter-spacing: -0.03em;
+  color: var(--tb-service-font-3);
+  white-space: nowrap;
+}
+.widget-header-right-section .mat-select {
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+  transition-property: border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+.widget-header-right-section .mat-select:hover {
+  border-color: var(--tb-service-border-3);
+}
+.widget-header-right-section .mat-select-trigger {
+  width: 13em;
+  min-width: 130px;
+  padding: calc(9em / 14);
+  font-size: 1.4em;
+  line-height: 1;
+}
+.widget-header-right-section .mat-select-value {
+  font-family: var(--tb-config-font-family);
+  font-weight: 300;
+  font-size: 1em;
+  color: var(--tb-service-font-5);
+}
+.widget-header-right-section .mat-select-arrow {
+  font-family: var(--tb-config-font-family);
+  font-weight: 300;
+  border-left: 0.4em solid transparent;
+  border-right: 0.4em solid transparent;
+  border-top: 0.4em solid;
+  color: var(--tb-service-accent);
+}
+.widget-header-right-section .widget-header-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.6em 1.2em;
+  cursor: pointer;
+  border: 1px solid var(--tb-service-accent);
+  background-color: var(--tb-service-accent);
+  color: var(--tb-service-font-0);
+  transition-property: background-color, border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+.widget-header-right-section .widget-header-action span {
+  font-size: 1.4em;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.widget-header-right-section .widget-header-action i {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+.widget-header-right-section .widget-header-action:hover {
+  border-color: var(--tb-service-accent-hover);
+  background-color: var(--tb-service-accent-hover);
+}
+.widget-header-right-section .widget-header-action:active {
+  border-color: var(--tb-service-accent-pressed);
+  background-color: var(--tb-service-accent-pressed);
+}
+
+/*
+  Widget Content Area
+*/
+main.widget-content {
+  width: 100%;
+}
+
+/* table-section */
+.table-section {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+.table-section::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.table-section::-webkit-scrollbar-thumb {
+  border: 2px solid #00000000;
+  background-clip: padding-box;
+  background-color: var(--tb-service-accent);
+}
+.table-section::-webkit-scrollbar-thumb:hover {
+  border: 1px solid #00000000;
+}
+
+.table-section .table {
+  min-width: 100%;
+  border-spacing: 0px;
+  box-sizing: border-box;
+  table-layout: fixed;
+  border-collapse: collapse;
+  white-space: nowrap;
+}
+.table-section thead tr {
+  background-color: var(--tb-service-background-1);
+  border-top: 1px solid var(--tb-service-border-1);
+  border-bottom: 1px solid var(--tb-service-border-1);
+}
+.table-section th {
+  cursor: pointer;
+  color: var(--tb-service-font-3);
+  padding: 1.68em;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1em;
+  line-height: 1;
+  border: 1px solid var(--tb-service-border-1);
+}
+.table-section th:first-child {
+  border-left: none;
+}
+.table-section th:last-child {
+  border-right: none;
+}
+.table-section th.main .th-box {
+  justify-content: center !important;
+}
+.table-section th.sub {
+  background-color: var(--tb-service-background-3);
+  padding: 1em;
+}
+.table-section th .th-label {
+  font-size: 1.2em;
+  margin-right: 0.5em;
+}
+.table-section th.main .th-label {
+  margin-right: 0em;
+}
+.table-section th .th-help {
+  font-size: 1.4em;
+  color: var(--tb-service-font-3);
+}
+.table-section th .th-sort {
+  font-size: 1.4em;
+  opacity: 0;
+  vertical-align: top;
+  transition-property: transform, opacity;
+  transition-duration: var(--tb-config-color-duration);
+  color: var(--tb-service-accent);
+}
+.table-section th:not(.DESC):not(.ASC):hover .th-sort {
+  opacity: 0.4;
+}
+.table-section th.ASC .th-sort {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+.table-section th.DESC .th-sort {
+  opacity: 1;
+  transform: rotate(180deg);
+}
+.table-section th.main .th-sort {
+  display: none;
+}
+.table-section tbody tr {
+  border-bottom: 1px solid var(--tb-service-border-1);
+  transition-property: background-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+.table-section tbody tr:nth-child(odd) {
+  background-color: var(--tb-service-background-0);
+}
+.table-section tbody tr:nth-child(even) {
+  background-color: var(--tb-service-background-1);
+}
+.table-section td {
+  line-height: 1;
+  border: 1px solid var(--tb-service-border-1);
+}
+.table-section td:first-child {
+  border-left: none;
+}
+.table-section td:last-child {
+  border-right: none;
+}
+.table-section td:not(.action) {
+  color: var(--tb-service-font-4);
+  padding: 1.2em;
+  font-size: 1.4em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: text;
+}
+.table-section tbody tr:hover {
+  background-color: var(--tb-service-background-2);
+}
+.table-section td.action {
+  font-size: 1em;
+  padding: 0em 1.68em;
+  text-overflow: initial;
+}
+.table-section .cell-action {
+  font-size: 2em;
+  cursor: pointer;
+  color: var(--tb-service-font-3);
+  transition-property: color;
+  transition-duration: var(--tb-config-color-duration);
+}
+.table-section .cell-action:hover {
+  color: var(--tb-service-font-5);
+}
+.table-section .cell-action.active {
+  color: var(--tb-service-accent);
+}
+.table-section .activate-switch {
+  position: relative;
+  width: 3.6em;
+  height: 1.6em;
+  border-radius: 0.8em;
+  background-color: var(--tb-service-font-3);
+  transition-property: background-color;
+  transition-duration: var(--tb-config-color-duration);
+  margin: auto;
+  cursor: pointer;
+}
+.table-section .activate-switch.active {
+  background-color: var(--tb-service-accent);
+}
+.table-section .activate-switch .ball {
+  position: absolute;
+  top: 50%;
+  left: 0.8em;
+  transform: translate(-50%, -50%);
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 0.6em;
+  background-color: var(--tb-service-background-0);
+  transition-property: left;
+  transition-duration: var(--tb-config-color-duration);
+}
+.table-section .activate-switch.active .ball {
+  left: calc(100% - 0.8em);
+}
+
+/*
+  Widget Footer Area
+*/
+footer.widget-footer {
+  width: 100%;
+  padding: var(--tb-config-padding);
+}
+
+/* page-section */
+.page-section .page-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2em;
+  min-width: 20px;
+  height: 2em;
+  min-height: 20px;
+  font-size: 1.2em;
+  background-color: var(--tb-service-background-0);
+  border: 1px solid var(--tb-service-border-0);
+  cursor: pointer;
+  color: var(--tb-service-font-4);
+  transition-property: border-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+.page-section .first-button,
+.page-section .last-button,
+.page-section .prev-button,
+.page-section .next-button {
+  font-size: 1.6em;
+  width: 1.5em;
+  height: 1.5em;
+}
+.page-section .page-button:not(.active):hover {
+  border: 1px solid var(--tb-service-accent-hover);
+}
+.page-section .page-button:not(.active):active {
+  border: 1px solid var(--tb-service-accent-pressed);
+}
+.page-section .page-button.big-page {
+  width: 3.5em;
+  min-width: 35px;
+}
+.page-section .page-number-button.active {
+  border: 1px solid var(--tb-service-accent);
+  color: var(--tb-service-accent);
+}

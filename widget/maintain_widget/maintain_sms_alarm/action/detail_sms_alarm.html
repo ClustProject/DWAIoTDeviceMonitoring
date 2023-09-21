@@ -1,0 +1,142 @@
+<div id="detail-sms-alarm-form">
+  <form
+    #detailEntityForm="ngForm"
+    [formGroup]="detailEntityFormGroup"
+    (ngSubmit)="save()"
+    style="font-size: {{calcFontSize()}}px;"
+  >
+    <div class="dialog-title-box" fxLayoutAlign="space-between center">
+      <span class="dialog-title" translate>thingplus.dialog.detail-sms-alarm-title</span>
+      <button class="dialog-close" (click)="cancel()" type="button">
+        <mat-icon class="material-icons">close</mat-icon>
+      </button>
+    </div>
+    <mat-progress-bar color="warn" mode="indeterminate" *ngIf="isLoading$ | async"> </mat-progress-bar>
+    <div style="height: 0.4em" *ngIf="!(isLoading$ | async)"></div>
+    <div mat-dialog-content fxFlex fxLayout="column" fxLayoutGap="calc(16em / 14)">
+      <label class="section-label">1. {{'thingplus.label.step-basic' | translate}}</label>
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <div fxFlex="100" fxLayout="column" class="input-box disabled">
+          <div class="label-box" fxLayout="row" fxLayoutAlign="start center">
+            <label translate>thingplus.label.alarm-name</label>
+          </div>
+          <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center">
+            <input matInput formControlName="title" readonly />
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <div fxFlex="100" fxLayout="column" class="input-box disabled">
+          <div class="label-box" fxLayout="row" fxLayoutAlign="start center">
+            <label translate>thingplus.label.customerL2</label>
+          </div>
+          <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center">
+            <input matInput formControlName="customerL2Name" readonly />
+          </div>
+        </div>
+        <div fxFlex="100" fxLayout="column" class="input-box disabled">
+          <div class="label-box" fxLayout="row" fxLayoutAlign="start center">
+            <label translate>thingplus.label.device</label>
+          </div>
+          <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center">
+            <input matInput formControlName="device" readonly />
+          </div>
+        </div>
+      </div>
+      <label class="section-label">2. {{'thingplus.label.step-select-alarm' | translate}}</label>
+      <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+        <div fxFlex="100" fxLayout="column" class="input-box">
+          <div class="label-box" fxLayout="row" fxLayoutAlign="start center">
+            <label translate>thingplus.label.device-state</label>
+          </div>
+          <div
+            class="group-box"
+            fxFlex="100"
+            fxLayout="column"
+            fxLayoutAlign="start stretch"
+            fxLayoutGap="1em"
+            formGroupName="deviceState"
+          >
+            <div fxFlex="100" fxLayoutAlign="space-between center">
+              <mat-checkbox fxFlex="50" formControlName="delayed" disabled>
+                {{'thingplus.alarm-type.delayed' | translate}}
+              </mat-checkbox>
+              <mat-checkbox fxFlex="50" formControlName="unconnected" disabled>
+                {{'thingplus.alarm-type.unconnected' | translate}}
+              </mat-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+        <div fxFlex="100" fxLayout="column" class="input-box">
+          <div class="label-box" fxLayout="row" fxLayoutAlign="start center">
+            <label translate>thingplus.label.electric-quality</label>
+          </div>
+          <div
+            class="group-box"
+            fxFlex="100"
+            fxLayout="column"
+            fxLayoutAlign="start stretch"
+            fxLayoutGap="1em"
+            formGroupName="electricQuality"
+          >
+            <div fxFlex="100" fxLayoutAlign="space-between center">
+              <mat-checkbox fxFlex="50" formControlName="over-current" disabled>
+                {{'thingplus.alarm-type.over-current' | translate}}
+              </mat-checkbox>
+              <mat-checkbox fxFlex="50" formControlName="low-voltage" disabled>
+                {{'thingplus.alarm-type.low-voltage' | translate}}
+              </mat-checkbox>
+            </div>
+            <div fxFlex="100" fxLayoutAlign="space-between center">
+              <mat-checkbox fxFlex="50" formControlName="high-voltage" disabled>
+                {{'thingplus.alarm-type.high-voltage' | translate}}
+              </mat-checkbox>
+              <mat-checkbox fxFlex="50" formControlName="volt-imbalance" disabled>
+                {{'thingplus.alarm-type.volt-imbalance' | translate}}
+              </mat-checkbox>
+            </div>
+            <div fxFlex="100" fxLayoutAlign="space-between center">
+              <mat-checkbox fxFlex="50" formControlName="curr-imbalance" disabled>
+                {{'thingplus.alarm-type.curr-imbalance' | translate}}
+              </mat-checkbox>
+              <mat-checkbox fxFlex="50" formControlName="thd" disabled>
+                {{'thingplus.alarm-type.thd' | translate}}
+              </mat-checkbox>
+            </div>
+            <div fxFlex="100" fxLayoutAlign="space-between center">
+              <mat-checkbox fxFlex="50" formControlName="power-factor" disabled>
+                {{'thingplus.alarm-type.power-factor' | translate}}
+              </mat-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+      <label class="section-label">3. {{'thingplus.label.step-set-receive' | translate}}</label>
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <div class="grid-box" fxLayout="row wrap" fxLayoutAlign="start">
+          <div class="chip sms-chip" *ngFor="let sms of smsList" fxLayoutAlign="space-between center" fxLayoutGap="1em">
+            <label class="chip-label" fxFlex fxLayoutAlign="start center" fxLayoutGap="0.3em">
+              <span class="chip-name" *ngIf="sms.name">{{sms.name}}</span>
+              <span *ngIf="sms.name">:</span>
+              <span>{{sms.value}}</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="1em">
+      <button
+        class="button close-button"
+        [disabled]="(isLoading$ | async)"
+        type="button"
+        (click)="cancel()"
+        cdkFocusInitial
+        translate
+      >
+        thingplus.action.close
+      </button>
+    </div>
+  </form>
+</div>

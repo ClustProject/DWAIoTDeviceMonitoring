@@ -1,0 +1,355 @@
+:root {
+  --tb-config-font-family: Pretendard, "Noto Sans KR", Roboto, sans-serif;
+  --tb-config-color-duration: 0.2s;
+  --tb-config-padding: 2em;
+  --tb-config-letter-spacing: -0.05em;
+  --tb-service-primary: #292d30;
+  --tb-service-accent: #ed6d00;
+  --tb-service-warn: #ff3d00;
+  --tb-service-warn-rgb: 255, 61, 0;
+  --tb-service-warn-a100: #ff3d0019;
+  --tb-service-accent-hover: #f18a33;
+  --tb-service-accent-pressed: #be5700;
+  --tb-service-accent-a100: #ed6d0019;
+  --tb-service-warn-hover: #ff6433;
+  --tb-service-warn-pressed: #cc3100;
+  --tb-service-disabled: #cccccc;
+  --tb-service-stopped: #314d68;
+  --tb-service-waiting: #1f5b98;
+  --tb-service-working: #00a4aa;
+  --tb-service-unconnected: #db4e05;
+  --tb-service-inactivated: #68849c;
+  --tb-service-state-stopped: #dae3ed;
+  --tb-service-state-waiting: #aac5e0;
+  --tb-service-state-working: #00a4aa;
+  --tb-service-state-trial: #007187;
+  --tb-service-state-unconnected: #db4e05;
+  --tb-service-operation-l0: #1fa6e0;
+  --tb-service-operation-l1: #09a0d7;
+  --tb-service-operation-l2: #ffac00;
+  --tb-service-operation-l3: #ff6f00;
+  --tb-service-customerL2: #707173;
+  --tb-service-blur-customerL2: #e0e2e5;
+  --tb-service-font-0: #ffffff;
+  --tb-service-font-1: #cccccc;
+  --tb-service-font-2: #b2b2b2;
+  --tb-service-font-3: #999999;
+  --tb-service-font-4: #666666;
+  --tb-service-font-5: #191919;
+  --tb-service-font-6: #000000;
+  --tb-service-border-0: #ededed;
+  --tb-service-border-1: #e7e8eb;
+  --tb-service-border-2: #d0d4d9;
+  --tb-service-border-3: #191919;
+  --tb-service-border-4: #c8cbcf;
+  --tb-service-background-0: #ffffff;
+  --tb-service-background-1: #fcfcfd;
+  --tb-service-background-2: #f9f9fb;
+  --tb-service-background-3: #f3f4f8;
+  --tb-service-background-4: #edeff2;
+  --tb-service-background-5: #e5f4fa;
+  --tb-service-background-6: #e3e5e8;
+  --tb-service-background-0-hover: #ededed;
+  --tb-service-blur-accent: #f8c499;
+  --tb-service-blur-accent-2: #fdeadb;
+  --tb-service-blur-stopped: #eff1f3;
+  --tb-service-blur-waiting: #eaf0f6;
+  --tb-service-blur-working: #e5f6f6;
+  --tb-service-blur-unconnected: #fcede5;
+  --tb-service-blur-inactivated: #ecf0f3;
+  --tb-service-cold-line-0: #a2e8ef;
+  --tb-service-cold-line-1: #75dbe8;
+  --tb-service-cold-line-2: #30c8dc;
+  --tb-service-cold-line-3: #1aa7fe;
+  --tb-service-cold-line-4: #297aff;
+  --tb-service-cold-line-5: #7634ff;
+  --tb-service-working-line: #b1e8e6;
+  --tb-service-chart-line-0: #8cd3fe;
+  --tb-service-chart-line-1: #297aff;
+  --tb-service-chart-line-2: #ff6f00;
+  --tb-service-compare-high: #00a3a3;
+  --tb-service-compare-low: #e33d3d;
+  --tb-service-compare-bar: #a1b3bd;
+  --tb-service-progress: #09a0d7;
+  --tb-service-prev-schedule-1: #6f8aa3;
+  --tb-service-prev-schedule-2: #9db1c2;
+  --tb-service-prev-schedule-3: #becdd9;
+  --tb-service-next-schedule-1: #0388a2;
+  --tb-service-next-schedule-2: #3fbac8;
+  --tb-service-next-schedule-3: #abd6db;
+  --tb-service-group-line: #92979e;
+  --tb-alarm-critical: #f05713;
+  --tb-alarm-major: #fa9f01;
+  --tb-alarm-minor: #fa9f01;
+  --tb-alarm-warning: #fa9f01;
+  --tb-alarm-intermidiate: #1b85e0;
+  --tb-alarm-acknowledge: #aab0bb;
+  --tb-dialog-background: #f9f9fb;
+  --tb-dialog-background-contrast: #191919;
+  --tb-dialog-background-sub: #ffffff;
+  --tb-dialog-background-sub-contrast: #191919;
+  --tb-dialog-button: #ed6d00;
+  --tb-dialog-button-contrast: #ffffff;
+  --tb-dialog-border: rgba(0, 0, 0, 0.1);
+}
+
+/* Side Menu */
+.tb-side-menu {
+  color: #b2b2b2;
+}
+.tb-side-menu > li {
+  border-bottom: none !important;
+}
+.tb-side-menu > li > tb-menu-link > a.mat-button,
+.tb-side-menu > li > tb-menu-toggle > a.mat-button {
+  line-height: 56px;
+}
+.tb-side-menu a.mat-button:hover {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+}
+.tb-side-menu a.mat-button.tb-active {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+}
+.tb-side-menu .mat-icon {
+  color: #54575a;
+  display: flex;
+}
+.tb-side-menu .tb-active {
+  color: white;
+  border-left: 4px solid var(--tb-service-accent);
+  padding-left: 12px;
+}
+.tb-side-menu .tb-active .mat-icon {
+  color: var(--tb-service-accent);
+}
+.tb-side-menu .tb-button-toggle .tb-toggle-icon {
+  transform: scale(0.75);
+  color: #54575a;
+}
+.tb-side-menu .tb-button-toggle .tb-toggle-icon.tb-toggled {
+  transform: scale(0.75) rotateZ(180deg) !important;
+}
+.tb-side-menu .tb-menu-toggle-list .tb-active {
+  border-left: none;
+}
+.tb-side-menu .tb-menu-toggle-list .tb-active {
+  border-left: none;
+}
+.tb-side-menu .tb-menu-toggle-list .mat-icon {
+  color: #ffffff00;
+  transform: scale(0.5);
+}
+.tb-side-menu .tb-menu-toggle-list .tb-active .mat-icon {
+  color: var(--tb-service-accent);
+}
+.tb-side-menu-toolbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.tb-side-menu-toolbar::-webkit-scrollbar-thumb {
+  border: 2px solid #00000000;
+  background-clip: padding-box;
+  background-color: var(--tb-service-accent);
+}
+.tb-side-menu-toolbar::-webkit-scrollbar-thumb:hover {
+  border: 1px solid #00000000;
+}
+/* Dashboard Content */
+#gridster-child::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+#gridster-child::-webkit-scrollbar-thumb {
+  border: 2px solid #00000000;
+  background-clip: padding-box;
+  background-color: var(--tb-service-accent);
+}
+#gridster-child::-webkit-scrollbar-thumb:hover {
+  border: 1px solid #00000000;
+}
+/* Web Push Alarm */
+push-alarm-panel .card-left-side {
+  max-width: none !important;
+}
+push-alarm-panel .card-section::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+push-alarm-panel .card-section::-webkit-scrollbar-thumb {
+  border: 2px solid #00000000;
+  background-clip: padding-box;
+  background-color: var(--tb-service-accent);
+}
+push-alarm-panel .card-section::-webkit-scrollbar-thumb:hover {
+  border: 1px solid #00000000;
+}
+push-alarm-panel .alarm-target span {
+  max-width: 200px;
+}
+push-alarm-panel .card-action:nth-child(2) {
+  display: none;
+}
+push-alarm-panel .alarm-owner span:nth-child(2) {
+  display: none;
+}
+.tb-primary-toolbar #main {
+  display: block !important;
+}
+@media (max-width: 959px) {
+  gridster-item {
+    margin: 10px !important;
+  }
+}
+@media (min-width: 960px) and (max-width: 1279px) {
+  :root {
+    --tb-config-padding: 1em;
+  }
+  .tb-site-sidenav {
+    width: 175px !important;
+  }
+  .tb-logo-title {
+    height: 24px;
+  }
+  .tb-side-menu > li > tb-menu-link > a.mat-button,
+  .tb-side-menu > li > tb-menu-toggle > a.mat-button {
+    line-height: 35px;
+  }
+  .tb-side-menu .tb-menu-toggle-list > li > tb-menu-link > a.mat-button {
+    line-height: 30px;
+  }
+  .tb-side-menu a.mat-button .mat-button-wrapper span {
+    font-size: 10px;
+  }
+  .tb-side-menu .tb-menu-toggle-list a.mat-button .mat-button-wrapper span {
+    font-size: 10px;
+  }
+  .tb-side-menu .mat-icon {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+  }
+  push-alarm-panel {
+    width: 300px !important;
+    min-width: 300px !important;
+  }
+  push-alarm-panel .mat-padding {
+    padding: 16px 6px !important;
+  }
+  push-alarm-panel .card-section {
+    padding: 6px !important;
+  }
+  push-alarm-panel .card {
+    height: 75px !important;
+    padding: 8px !important;
+  }
+  push-alarm-panel .panel-title {
+    font-size: 12px !important;
+  }
+  push-alarm-panel .horizontal-line {
+    margin: 8px 0px !important;
+  }
+  push-alarm-panel .alarm-type {
+    font-size: 10px !important;
+  }
+  push-alarm-panel .alarm-target span {
+    font-size: 10px !important;
+    max-width: 95px;
+  }
+  push-alarm-panel .alarm-target i {
+    font-size: 12px !important;
+  }
+  push-alarm-panel .alarm-owner {
+    font-size: 10px !important;
+  }
+  push-alarm-panel .card-action {
+    font-size: 12px !important;
+    padding: 4px !important;
+  }
+}
+/* Dashboard Content */
+.mat-tooltip.tp-service-tooltip {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  color: white !important;
+  font-size: calc(100vw / 192) !important;
+  line-height: 1.5;
+  padding: 1em !important;
+}
+.mat-select-panel.tp-service-selector {
+  font-size: calc(140vw / 192) !important;
+  border-radius: 0px !important;
+}
+.mat-select-panel.tp-service-selector .mat-option {
+  color: var(--tb-service-font-5);
+}
+.mat-select-panel.tp-service-selector .mat-option.mat-active {
+  background-color: var(--tb-service-accent) !important;
+  color: var(--tb-service-font-0);
+}
+.mat-select-panel.tp-service-selector
+  .mat-option:not(.mat-active):nth-child(odd) {
+  background-color: var(--tb-service-background-0) !important;
+}
+.mat-select-panel.tp-service-selector
+  .mat-option:not(.mat-active):nth-child(even) {
+  background-color: var(--tb-service-background-2) !important;
+}
+.mat-select-panel.tp-service-selector .mat-option:not(.mat-active):hover {
+  background-color: var(--tb-service-background-3) !important;
+}
+@media (min-width: 1280px) and (max-width: 1599px) {
+  .tb-site-sidenav {
+    width: 210px !important;
+  }
+  .tb-logo-title {
+    height: 28px;
+  }
+  .tb-side-menu > li > tb-menu-link > a.mat-button,
+  .tb-side-menu > li > tb-menu-toggle > a.mat-button {
+    line-height: 40px;
+  }
+  .tb-side-menu .tb-menu-toggle-list > li > tb-menu-link > a.mat-button {
+    line-height: 30px;
+  }
+  .tb-side-menu a.mat-button .mat-button-wrapper span {
+    font-size: 12px;
+  }
+  .tb-side-menu .tb-menu-toggle-list a.mat-button .mat-button-wrapper span {
+    font-size: 10px;
+  }
+  .tb-side-menu .mat-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+  }
+  push-alarm-panel {
+    width: 390px !important;
+    min-width: 390px !important;
+  }
+  push-alarm-panel .card {
+    height: 100px !important;
+    padding: 12px !important;
+  }
+  push-alarm-panel .panel-title {
+    font-size: 14px !important;
+  }
+  push-alarm-panel .horizontal-line {
+    margin: 12px 0px !important;
+  }
+  push-alarm-panel .alarm-type {
+    font-size: 12px !important;
+  }
+  push-alarm-panel .alarm-target span {
+    font-size: 14px !important;
+    max-width: 130px;
+  }
+  push-alarm-panel .alarm-target i {
+    font-size: 16px !important;
+  }
+  push-alarm-panel .alarm-owner {
+    font-size: 12px !important;
+  }
+  push-alarm-panel .card-action {
+    font-size: 16px !important;
+    padding: 8px !important;
+  }
+}

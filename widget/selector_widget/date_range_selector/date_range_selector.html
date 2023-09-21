@@ -1,0 +1,62 @@
+<div id="widget" fxLayout="column" fxLayoutAlign="center center">
+  <header class="widget-header" fxLayoutAlign="space-between center">
+    <section class="widget-header-left-section" fxFlex fxLayoutAlign="start center" fxLayoutGap="1em">
+      <div class="widget-title" translate>title</div>
+    </section>
+    <section class="widget-header-right-section" fxFlex fxLayoutAlign="end center">
+      <div class="entity-controller" fxLayoutAlign="end center" fxLayoutGap="0.8em" fxShow.lt-md="false">
+        <span class="normal-label" translate>thingplus.selector.device-selection</span>
+        <mat-select
+          class="entity-selector"
+          [fxShow]="ownerLevel == 0"
+          (ngModelChange)="setCustomerL1($event)"
+          [ngModel]="selectedCustomerL1"
+        >
+          <mat-option *ngFor="let customerL1 of customerL1List" [value]="customerL1.value">
+            {{customerL1.name}}
+          </mat-option>
+        </mat-select>
+        <mat-select
+          class="entity-selector"
+          [fxShow]="ownerLevel <= 1"
+          (ngModelChange)="setCustomerL2($event)"
+          [ngModel]="selectedCustomerL2"
+        >
+          <mat-option *ngFor="let customerL2 of customerL2List" [value]="customerL2.value">
+            {{customerL2.name}}
+          </mat-option>
+        </mat-select>
+        <mat-select class="entity-selector" (ngModelChange)="setDevice($event)" [ngModel]="selectedDevice">
+          <mat-option *ngFor="let device of deviceList" [value]="device.value"> {{device.label}} </mat-option>
+        </mat-select>
+      </div>
+      <div class="date-controller" fxLayoutAlign="end center" fxLayoutGap="0.8em" fxShow.lt-md="false">
+        <div class="normal-label" translate>thingplus.selector.date-selection</div>
+        <mat-select
+          class="date-selector date-group-selector"
+          (ngModelChange)="setDateGroup($event)"
+          [ngModel]="selectedDateGroup"
+        >
+          <mat-option *ngFor="let dateGroup of dateGroupList" [value]="dateGroup.value">
+            {{dateGroup.name}}
+          </mat-option>
+        </mat-select>
+        <mat-select
+          class="date-selector date-range-selector"
+          (ngModelChange)="setDateRange($event)"
+          [ngModel]="selectedDateRange"
+        >
+          <mat-option *ngFor="let dateRange of dateRangeList" [value]="dateRange.value">
+            {{dateRange.name}}
+          </mat-option>
+        </mat-select>
+      </div>
+      <button class="action-btn text-btn" (click)="search($event)" fxShow.lt-md="false">
+        <span translate>thingplus.action.search</span>
+      </button>
+      <button class="action-btn text-btn" (click)="openFilter($event)" fxShow.gt-sm="false">
+        <span translate>thingplus.action.search</span>
+      </button>
+    </section>
+  </header>
+</div>

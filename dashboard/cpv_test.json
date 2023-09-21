@@ -1,0 +1,588 @@
+{
+  "title": "CPV Test",
+  "image": null,
+  "mobileHide": false,
+  "mobileOrder": null,
+  "configuration": {
+    "description": "",
+    "widgets": {
+      "2b86203f-4c8d-455e-f8b0-482d76d7f87a": {
+        "isSystemType": false,
+        "bundleAlias": "test",
+        "typeAlias": "test2",
+        "type": "latest",
+        "title": "New widget",
+        "image": null,
+        "description": null,
+        "sizeX": 7.5,
+        "sizeY": 3,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "6694f4ed-4c10-7922-0753-d76216c21ae5",
+              "filterId": null,
+              "dataKeys": [
+                {
+                  "name": "phone",
+                  "type": "entityField",
+                  "label": "전화",
+                  "color": "#2196f3",
+                  "settings": {},
+                  "_hash": 0.9670845696610035
+                }
+              ]
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "timewindowMs": 60000
+            }
+          },
+          "showTitle": true,
+          "backgroundColor": "#fff",
+          "color": "rgba(0, 0, 0, 0.87)",
+          "padding": "8px",
+          "settings": {},
+          "title": "New Test"
+        },
+        "row": 0,
+        "col": 0,
+        "id": "2b86203f-4c8d-455e-f8b0-482d76d7f87a"
+      },
+      "7053b053-6bfe-7287-5098-cdb7c382a545": {
+        "isSystemType": false,
+        "bundleAlias": "test",
+        "typeAlias": "processor",
+        "type": "latest",
+        "title": "New widget",
+        "image": null,
+        "description": null,
+        "sizeX": 7.5,
+        "sizeY": 1.5,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "6694f4ed-4c10-7922-0753-d76216c21ae5",
+              "filterId": null,
+              "dataKeys": []
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "timewindowMs": 60000
+            }
+          },
+          "showTitle": false,
+          "backgroundColor": "rgba(255,255,255,0)",
+          "color": "rgba(0, 0, 0, 0.87)",
+          "padding": "0px",
+          "settings": {
+            "key": "processor"
+          },
+          "title": "New Processor",
+          "showTitleIcon": false,
+          "titleTooltip": "",
+          "dropShadow": false,
+          "enableFullscreen": false,
+          "widgetStyle": {
+            "cursor": "default"
+          },
+          "titleStyle": {
+            "fontSize": "16px",
+            "fontWeight": 400
+          },
+          "noDataDisplayMessage": "",
+          "showLegend": false,
+          "actions": {
+            "headerButton": []
+          }
+        },
+        "row": 0,
+        "col": 0,
+        "id": "7053b053-6bfe-7287-5098-cdb7c382a545"
+      },
+      "63e03d51-f3ce-33ef-2645-e6cc4beb8c7d": {
+        "isSystemType": false,
+        "bundleAlias": "test",
+        "typeAlias": "collector",
+        "type": "latest",
+        "title": "New widget",
+        "image": null,
+        "description": null,
+        "sizeX": 7,
+        "sizeY": 1.5,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "e3717abc-a421-baa8-3a0d-bcdf95c6248a",
+              "filterId": null,
+              "dataKeys": [
+                {
+                  "name": "TP_InactivatedDevice",
+                  "type": "timeseries",
+                  "label": "TP_InactivatedDevice",
+                  "color": "#2196f3",
+                  "settings": {},
+                  "_hash": 0.6397641636799334
+                }
+              ]
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "timewindowMs": 60000
+            }
+          },
+          "showTitle": false,
+          "backgroundColor": "rgba(255,255,255,0)",
+          "color": "rgba(0, 0, 0, 0.87)",
+          "padding": "0px",
+          "settings": {
+            "key": "latest"
+          },
+          "title": "New Collector",
+          "showTitleIcon": false,
+          "titleTooltip": "",
+          "dropShadow": false,
+          "enableFullscreen": false,
+          "widgetStyle": {
+            "cursor": "default"
+          },
+          "titleStyle": {
+            "fontSize": "16px",
+            "fontWeight": 400
+          },
+          "noDataDisplayMessage": "",
+          "showLegend": false
+        },
+        "row": 0,
+        "col": 0,
+        "id": "63e03d51-f3ce-33ef-2645-e6cc4beb8c7d"
+      },
+      "ada556e7-0af3-5c69-5f00-dd2b8f8312cb": {
+        "isSystemType": false,
+        "bundleAlias": "test",
+        "typeAlias": "timeseries_collector",
+        "type": "timeseries",
+        "title": "New widget",
+        "image": null,
+        "description": null,
+        "sizeX": 8,
+        "sizeY": 2,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "319823ec-f7aa-7e80-42fe-a7b2180e6de5",
+              "filterId": null,
+              "dataKeys": [
+                {
+                  "name": "TP_AnalysisState",
+                  "type": "timeseries",
+                  "label": "TP_AnalysisState",
+                  "color": "#2196f3",
+                  "settings": {},
+                  "_hash": 0.14336581178242414
+                },
+                {
+                  "name": "TP_ModifiedState",
+                  "type": "timeseries",
+                  "label": "TP_ModifiedState",
+                  "color": "#4caf50",
+                  "settings": {},
+                  "_hash": 0.5889579876872204
+                },
+                {
+                  "name": "TP_ConnectionState",
+                  "type": "timeseries",
+                  "label": "TP_ConnectionState",
+                  "color": "#f44336",
+                  "settings": {},
+                  "_hash": 0.28835952079652216
+                },
+                {
+                  "name": "TP_OperationState",
+                  "type": "timeseries",
+                  "label": "TP_OperationState",
+                  "color": "#ffc107",
+                  "settings": {},
+                  "_hash": 0.046917656012244624
+                }
+              ]
+            }
+          ],
+          "timewindow": {
+            "hideInterval": false,
+            "hideAggregation": false,
+            "hideAggInterval": false,
+            "hideTimezone": false,
+            "selectedTab": 1,
+            "history": {
+              "historyType": 2,
+              "timewindowMs": 60000,
+              "interval": 1000,
+              "fixedTimewindow": {
+                "startTimeMs": 1694337201239,
+                "endTimeMs": 1694423601239
+              },
+              "quickInterval": "CURRENT_DAY"
+            },
+            "aggregation": {
+              "type": "NONE",
+              "limit": 50000
+            }
+          },
+          "showTitle": false,
+          "backgroundColor": "rgba(255,255,255,0)",
+          "color": "rgba(0, 0, 0, 0.87)",
+          "padding": "0px",
+          "settings": {
+            "key": "timeseriesCollector",
+            "timeWindow": "default",
+            "timewindowConfigFunction": "let newConfig = {\n  hideInterval: false,\n  hideAggregation: false,\n  hideAggInterval: false,\n  hideTimezone: false,\n  selectedTab: 0,\n  realtime: {\n    realtimeType: 0,\n    timewindowMs: 300000,\n    quickInterval: 'CURRENT_DAY',\n    interval: 30000\n  },\n  aggregation: {\n    type: 'NONE',\n    limit: 50000\n  }\n};\n\nreturn newConfig;\n"
+          },
+          "title": "New Timeseries Collector",
+          "dropShadow": false,
+          "enableFullscreen": false,
+          "titleStyle": {
+            "fontSize": "16px",
+            "fontWeight": 400
+          },
+          "useDashboardTimewindow": false,
+          "displayTimewindow": false,
+          "showTitleIcon": false,
+          "titleTooltip": "",
+          "widgetStyle": {},
+          "noDataDisplayMessage": "",
+          "showLegend": false,
+          "legendConfig": {
+            "direction": "column",
+            "position": "bottom",
+            "sortDataKeys": false,
+            "showMin": false,
+            "showMax": false,
+            "showAvg": true,
+            "showTotal": false
+          }
+        },
+        "row": 0,
+        "col": 0,
+        "id": "ada556e7-0af3-5c69-5f00-dd2b8f8312cb"
+      },
+      "136f8fd7-027b-7a93-b806-b18a98560c39": {
+        "isSystemType": false,
+        "bundleAlias": "test",
+        "typeAlias": "viewer_report_selector",
+        "type": "latest",
+        "title": "New widget",
+        "image": null,
+        "description": null,
+        "sizeX": 9,
+        "sizeY": 1,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "6694f4ed-4c10-7922-0753-d76216c21ae5",
+              "filterId": null,
+              "dataKeys": []
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "timewindowMs": 60000
+            }
+          },
+          "showTitle": false,
+          "backgroundColor": "rgba(255,255,255,0)",
+          "color": "var(--tb-service-accent)",
+          "padding": "0px",
+          "settings": {
+            "widget": {
+              "originWidth": 1630
+            },
+            "key": "viewerA"
+          },
+          "title": "thingplus.menu.report",
+          "showTitleIcon": false,
+          "titleTooltip": "",
+          "dropShadow": false,
+          "enableFullscreen": false,
+          "widgetStyle": {
+            "cursor": "default"
+          },
+          "titleStyle": {
+            "font-family": "var(--tb-config-font-family)",
+            "font-size": "2em",
+            "font-weight": 500,
+            "letter-spacing": "-0.05em",
+            "color": "var(--tb-service-font-5)"
+          },
+          "noDataDisplayMessage": "",
+          "showLegend": false
+        },
+        "row": 0,
+        "col": 0,
+        "id": "136f8fd7-027b-7a93-b806-b18a98560c39"
+      }
+    },
+    "states": {
+      "default": {
+        "name": "test",
+        "root": true,
+        "layouts": {
+          "main": {
+            "widgets": {
+              "7053b053-6bfe-7287-5098-cdb7c382a545": {
+                "sizeX": 11,
+                "sizeY": 10,
+                "row": 31,
+                "col": 13,
+                "mobileHide": false,
+                "pcHide": false
+              },
+              "63e03d51-f3ce-33ef-2645-e6cc4beb8c7d": {
+                "sizeX": 11,
+                "sizeY": 9,
+                "row": 35,
+                "col": 28,
+                "mobileHide": false,
+                "pcHide": false
+              },
+              "ada556e7-0af3-5c69-5f00-dd2b8f8312cb": {
+                "sizeX": 11,
+                "sizeY": 9,
+                "row": 32,
+                "col": 41,
+                "mobileHide": false,
+                "pcHide": false
+              },
+              "136f8fd7-027b-7a93-b806-b18a98560c39": {
+                "sizeX": 97,
+                "sizeY": 5,
+                "row": 0,
+                "col": 0
+              }
+            },
+            "gridSettings": {
+              "backgroundColor": "var(--tb-service-background-4)",
+              "columns": 97,
+              "margin": 0,
+              "backgroundSizeMode": "100%",
+              "autoFillHeight": false,
+              "backgroundImageUrl": null,
+              "mobileAutoFillHeight": false,
+              "mobileRowHeight": 70
+            }
+          }
+        }
+      },
+      "test2": {
+        "name": "test2",
+        "root": false,
+        "layouts": {
+          "main": {
+            "widgets": {
+              "2b86203f-4c8d-455e-f8b0-482d76d7f87a": {
+                "sizeX": 7,
+                "sizeY": 3,
+                "row": 0,
+                "col": 0
+              }
+            },
+            "gridSettings": {
+              "backgroundColor": "#eeeeee",
+              "columns": 24,
+              "margin": 10,
+              "backgroundSizeMode": "100%"
+            }
+          }
+        }
+      }
+    },
+    "entityAliases": {
+      "10ebc9f6-4023-5564-6f05-db998328418b": {
+        "id": "10ebc9f6-4023-5564-6f05-db998328418b",
+        "alias": "Owner",
+        "filter": {
+          "type": "singleEntity",
+          "resolveMultiple": false,
+          "singleEntity": {
+            "entityType": "CURRENT_USER_OWNER",
+            "id": "13814000-1dd2-11b2-8080-808080808080"
+          }
+        }
+      },
+      "fef2014b-8ebe-3c39-159c-8a410d815ac4": {
+        "id": "fef2014b-8ebe-3c39-159c-8a410d815ac4",
+        "alias": "device",
+        "filter": {
+          "type": "singleEntity",
+          "resolveMultiple": false,
+          "singleEntity": {
+            "entityType": "DEVICE",
+            "id": "b1629c30-4c92-11ee-bff8-a768675c6a17"
+          }
+        }
+      },
+      "6694f4ed-4c10-7922-0753-d76216c21ae5": {
+        "id": "6694f4ed-4c10-7922-0753-d76216c21ae5",
+        "alias": "Custom User Owner",
+        "filter": {
+          "type": "singleEntity",
+          "resolveMultiple": false,
+          "singleEntity": {
+            "entityType": "CURRENT_USER_OWNER",
+            "id": "13814000-1dd2-11b2-8080-808080808080"
+          }
+        }
+      },
+      "319823ec-f7aa-7e80-42fe-a7b2180e6de5": {
+        "id": "319823ec-f7aa-7e80-42fe-a7b2180e6de5",
+        "alias": "All Devices",
+        "filter": {
+          "type": "deviceSearchQuery",
+          "resolveMultiple": true,
+          "rootStateEntity": true,
+          "stateEntityParamName": null,
+          "defaultStateEntity": {
+            "entityType": "CURRENT_USER_OWNER",
+            "id": null
+          },
+          "rootEntity": null,
+          "direction": "FROM",
+          "maxLevel": 3,
+          "fetchLastLevelOnly": false,
+          "relationType": "Contains",
+          "deviceTypes": [
+            "device"
+          ]
+        }
+      },
+      "e3717abc-a421-baa8-3a0d-bcdf95c6248a": {
+        "id": "e3717abc-a421-baa8-3a0d-bcdf95c6248a",
+        "alias": "Selected Device",
+        "filter": {
+          "type": "deviceSearchQuery",
+          "resolveMultiple": true,
+          "rootStateEntity": true,
+          "stateEntityParamName": null,
+          "defaultStateEntity": {
+            "entityType": "CURRENT_USER_OWNER",
+            "id": "13814000-1dd2-11b2-8080-808080808080"
+          },
+          "rootEntity": null,
+          "direction": "FROM",
+          "maxLevel": 3,
+          "fetchLastLevelOnly": false,
+          "relationType": "Contains",
+          "deviceTypes": [
+            "device"
+          ]
+        }
+      }
+    },
+    "filters": {
+      "1d6fba31-81a2-aefe-bf42-4a69442beb0d": {
+        "id": "1d6fba31-81a2-aefe-bf42-4a69442beb0d",
+        "filter": "test",
+        "keyFilters": [
+          {
+            "key": {
+              "type": "ATTRIBUTE",
+              "key": "test"
+            },
+            "valueType": "STRING",
+            "predicates": [
+              {
+                "keyFilterPredicate": {
+                  "operation": "STARTS_WITH",
+                  "value": {
+                    "defaultValue": "test",
+                    "dynamicValue": null
+                  },
+                  "ignoreCase": false,
+                  "type": "STRING"
+                },
+                "userInfo": {
+                  "editable": true,
+                  "label": "",
+                  "autogeneratedLabel": true,
+                  "order": 0
+                }
+              }
+            ]
+          }
+        ],
+        "editable": true
+      },
+      "fc74a8d5-1c8c-429b-3c37-daf9d55d1731": {
+        "id": "fc74a8d5-1c8c-429b-3c37-daf9d55d1731",
+        "filter": "Activated",
+        "keyFilters": [
+          {
+            "key": {
+              "type": "TIME_SERIES",
+              "key": "TP_ActivationState"
+            },
+            "valueType": "BOOLEAN",
+            "predicates": [
+              {
+                "keyFilterPredicate": {
+                  "operation": "EQUAL",
+                  "value": {
+                    "defaultValue": true,
+                    "dynamicValue": null
+                  },
+                  "type": "BOOLEAN"
+                },
+                "userInfo": {
+                  "editable": true,
+                  "label": "",
+                  "autogeneratedLabel": true,
+                  "order": 0
+                }
+              }
+            ]
+          }
+        ],
+        "editable": true
+      }
+    },
+    "timewindow": {
+      "hideInterval": false,
+      "hideAggregation": false,
+      "hideAggInterval": false,
+      "hideTimezone": false,
+      "selectedTab": 0,
+      "realtime": {
+        "realtimeType": 1,
+        "timewindowMs": 86400000,
+        "quickInterval": "CURRENT_DAY",
+        "interval": 1000
+      },
+      "aggregation": {
+        "type": "NONE",
+        "limit": 50000
+      }
+    },
+    "settings": {
+      "stateControllerId": "entity",
+      "showTitle": false,
+      "showDashboardsSelect": true,
+      "showEntitiesSelect": true,
+      "showDashboardTimewindow": true,
+      "showDashboardExport": true,
+      "toolbarAlwaysOpen": true
+    }
+  },
+  "name": "CPV Test"
+}

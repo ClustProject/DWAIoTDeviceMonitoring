@@ -1,0 +1,86 @@
+<div id="edit-schedule-form">
+  <form
+    #editEntityForm="ngForm"
+    [formGroup]="editEntityFormGroup"
+    (ngSubmit)="save()"
+    style="font-size: {{calcFontSize()}}px;"
+  >
+    <div class="dialog-title-box" fxLayoutAlign="space-between center">
+      <span class="dialog-title" translate>thingplus.dialog.edit-schedule-title</span>
+      <button class="dialog-close" (click)="cancel()" type="button">
+        <mat-icon class="material-icons">close</mat-icon>
+      </button>
+    </div>
+    <mat-progress-bar color="warn" mode="indeterminate" *ngIf="isLoading$ | async"> </mat-progress-bar>
+    <div style="height: 0.4em" *ngIf="!(isLoading$ | async)"></div>
+    <div mat-dialog-content fxFlex fxLayout="column" fxLayoutGap="2em">
+      <div class="step-content" fxLayout="column" fxLayoutGap="2em">
+        <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+          <div fxFlex="100" fxLayout="column" fxLayoutGap="0.6em" class="input-box">
+            <div class="label-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.4em">
+              <label translate>thingplus.label.device-name</label>
+            </div>
+            <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.6em">
+              <input matInput formControlName="label" readonly />
+            </div>
+          </div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="start center">
+          <div class="sub-row" fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="start center">
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="1em" class="input-box">
+              <label class="side-label">{{targetDate}}</label>
+              <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="0.6em">
+                <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="0.6em">
+                  <input
+                    class="input-small"
+                    type="number"
+                    step="1"
+                    min="0"
+                    max="24"
+                    maxlength="2"
+                    matInput
+                    formControlName="hour"
+                  />
+                </div>
+                <span class="unit-label" translate>thingplus.time-format.hours</span>
+                <div class="value-box" fxFlex fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="0.6em">
+                  <input
+                    class="input-small"
+                    type="number"
+                    step="1"
+                    min="0"
+                    max="60"
+                    maxlength="2"
+                    matInput
+                    formControlName="min"
+                  />
+                </div>
+                <span class="unit-label" translate>thingplus.time-format.minute</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="1em">
+      <button
+        class="button close-button"
+        [disabled]="(isLoading$ | async)"
+        type="button"
+        (click)="cancel()"
+        cdkFocusInitial
+        translate
+      >
+        thingplus.action.close
+      </button>
+      <button
+        class="button save-button"
+        type="submit"
+        [disabled]="(isLoading$ | async) || editEntityForm.invalid"
+        translate
+      >
+        thingplus.action.save
+      </button>
+    </div>
+  </form>
+</div>

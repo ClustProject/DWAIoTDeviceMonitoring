@@ -1,0 +1,227 @@
+#widget {
+  width: 100%;
+  height: 100%;
+  font-size: 10px;
+  font-family: var(--tb-config-font-family);
+  user-select: none;
+  white-space: nowrap;
+  letter-spacing: var(--tb-config-letter-spacing);
+}
+
+/*
+  Widget Header Area
+*/
+header.widget-header {
+  width: 100%;
+  padding: var(--tb-config-padding);
+}
+
+.widget-header-right-section .widget-header-action {
+  padding: 0.6em;
+  padding-right: 0;
+  cursor: pointer;
+  color: var(--tb-service-font-3);
+  transition-property: color;
+  transition-duration: var(--tb-config-color-duration);
+}
+.widget-header-right-section .widget-header-action i {
+  font-size: 2em;
+  font-weight: bold;
+}
+.widget-header-right-section .widget-header-action:hover {
+  color: var(--tb-service-accent-hover);
+}
+.widget-header-right-section .widget-header-action:active {
+  color: var(--tb-service-accent-pressed);
+}
+
+/*
+  Widget Content Area
+*/
+main.widget-content {
+  width: 100%;
+}
+
+/* table-section */
+.table-section {
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.table-section::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.table-section::-webkit-scrollbar-thumb {
+  border: 2px solid #00000000;
+  background-clip: padding-box;
+  background-color: var(--tb-service-accent);
+}
+.table-section::-webkit-scrollbar-thumb:hover {
+  border: 1px solid #00000000;
+}
+.table-section .table {
+  width: 100%;
+  min-width: 100em;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+.table-section .tr {
+  width: 100%;
+  display: flex;
+  border-bottom: 1px solid var(--tb-service-border-1);
+  transition-property: background-color;
+  transition-duration: var(--tb-config-color-duration);
+}
+.table-section .tbody .tr:last-child {
+  border-bottom: none;
+}
+.table-section .th,
+.table-section .td {
+  width: 25em;
+  flex: 1 1 25%;
+}
+.table-section .tfoot .td:first-child {
+  width: 50em;
+  flex: 1 1 50%;
+}
+.table-section .thead {
+  overflow-y: scroll;
+}
+.table-section .thead::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  border-top: 1px solid var(--tb-service-border-1);
+  border-bottom: 1px solid var(--tb-service-border-1);
+  background-color: var(--tb-service-background-1);
+}
+.table-section .thead::-webkit-scrollbar-thumb {
+  border: 2px solid #00000000;
+  background-clip: padding-box;
+  background-color: var(--tb-service-accent);
+}
+.table-section .thead::-webkit-scrollbar-thumb:hover {
+  border: 1px solid #00000000;
+}
+.table-section .thead .tr {
+  background-color: var(--tb-service-background-1);
+  border-top: 1px solid var(--tb-service-border-1);
+}
+.table-section .th {
+  cursor: pointer;
+  color: var(--tb-service-font-3);
+  padding: 1.68em;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1em;
+  line-height: 1;
+  border-right: 1px solid var(--tb-service-border-1);
+}
+.table-section .th .th-label {
+  font-size: 1.2em;
+  margin-right: 0.5em;
+}
+.table-section .th .th-sort {
+  font-size: 1.4em;
+  opacity: 0;
+  vertical-align: top;
+  transition-property: transform, opacity;
+  transition-duration: var(--tb-config-color-duration);
+  color: var(--tb-service-accent);
+}
+.table-section .th:not(.DESC):not(.ASC):hover .th-sort {
+  opacity: 0.4;
+}
+.table-section .th.ASC .th-sort {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+.table-section .th.DESC .th-sort {
+  opacity: 1;
+  transform: rotate(180deg);
+}
+.table-section .tbody {
+  overflow-y: scroll;
+}
+.table-section .tbody::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.table-section .tbody::-webkit-scrollbar-thumb {
+  border: 2px solid #00000000;
+  background-clip: padding-box;
+  background-color: var(--tb-service-accent);
+}
+.table-section .tbody::-webkit-scrollbar-thumb:hover {
+  border: 1px solid #00000000;
+}
+.table-section .tbody .tr:nth-child(odd) {
+  background-color: var(--tb-service-background-0);
+}
+.table-section .tbody .tr:nth-child(even) {
+  background-color: var(--tb-service-background-1);
+}
+.table-section .tbody .td {
+  line-height: 1;
+  color: var(--tb-service-font-4);
+  padding: 1.68em;
+  font-size: 1em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: text;
+  border-right: 1px solid var(--tb-service-border-1);
+}
+.table-section .tbody .td span {
+  font-size: 1.4em;
+}
+.table-section .tbody .tr:hover {
+  background-color: var(--tb-service-background-2);
+}
+.table-section .tfoot {
+  overflow-y: scroll;
+}
+.table-section .tfoot::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  border-top: 1px solid var(--tb-service-border-1);
+  border-bottom: 1px solid var(--tb-service-border-1);
+}
+.table-section .tfoot::-webkit-scrollbar-thumb {
+  border: 2px solid #00000000;
+  background-clip: padding-box;
+  background-color: var(--tb-service-accent);
+}
+.table-section .tfoot::-webkit-scrollbar-thumb:hover {
+  border: 1px solid #00000000;
+}
+.table-section .tfoot .tr {
+  border-top: 1px solid var(--tb-service-border-1);
+}
+.table-section .tfoot .tr:nth-child(odd) {
+  background-color: var(--tb-service-background-0);
+}
+.table-section .tfoot .tr:nth-child(even) {
+  background-color: var(--tb-service-background-1);
+}
+.table-section .tfoot .td {
+  line-height: 1;
+  color: var(--tb-service-font-4);
+  padding: 1.68em;
+  font-size: 1em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: text;
+  border-right: 1px solid var(--tb-service-border-1);
+}
+.table-section .tfoot .td {
+  font-size: 1.4em;
+}
+.table-section .tfoot .tr:hover {
+  background-color: var(--tb-service-background-2);
+}
+
+.table-section .tfoot b {
+  color: var(--tb-service-accent);
+}
