@@ -63,16 +63,18 @@ function defineVariables() {
 
   $scope.comparePercentage = '';
   $scope.compareDirection = '';
-  $scope.headerActionList = self.ctx.actionsApi.getActionDescriptors('widgetHeaderButton').map(x => {
-    return { name: x.name, icon: x.icon, action: e => handleHeaderAction(x) };
+  $scope.headerActionList = self.ctx.actionsApi.getActionDescriptors('widgetHeaderButton').map((x) => {
+    return { name: x.name, icon: x.icon, action: (e) => handleHeaderAction(x) };
   });
 
   // Define Normal Variables
   custom.resizeThrottle = _.throttle(resize, 200, { trailing: true });
   custom.ownerDatasource = self.ctx.defaultSubscription.configuredDatasources[0];
   custom.isSample = custom.ownerDatasource.type == 'function';
-  custom.hiddenDatasources = self.ctx.datasources.filter(x => x.entityAliasId === custom.ownerDatasource.entityAliasId);
-  custom.mainDatasources = self.ctx.datasources.filter(x => x.entityAliasId !== custom.ownerDatasource.entityAliasId);
+  custom.hiddenDatasources = self.ctx.datasources.filter(
+    (x) => x.entityAliasId === custom.ownerDatasource.entityAliasId
+  );
+  custom.mainDatasources = self.ctx.datasources.filter((x) => x.entityAliasId !== custom.ownerDatasource.entityAliasId);
   custom.targetKey = self.ctx.defaultSubscription.configuredDatasources[1].dataKeys[0];
   custom.isInitialize = false;
   custom.chartLabels = [
@@ -138,7 +140,7 @@ function loadInitData() {
           custom.startTs
         }&useStrictDataTypes=true`
       )
-      .subscribe(datas => {
+      .subscribe((datas) => {
         // 분석 데이터 삭제
         if (custom.now - custom.startTs < HOUR_MS) {
           delete datas.TP_AnalysisState;
@@ -169,7 +171,7 @@ function loadTelemetryData() {
           custom.endTs
         }&useStrictDataTypes=true`
       )
-      .subscribe(datas => {
+      .subscribe((datas) => {
         resolve(datas);
       });
   });
@@ -215,9 +217,9 @@ function createTimeline(initData, telemetryData) {
   if (initData.TP_ModifiedState) {
     modifiedData = modifiedData.concat(initData.TP_ModifiedState);
   }
-  if (telemetryData.TP_ModifiedState) {
-    modifiedData = modifiedData.concat(telemetryData.TP_ModifiedState);
-  }
+  // if (telemetryData.TP_ModifiedState) {
+  //   modifiedData = modifiedData.concat(telemetryData.TP_ModifiedState);
+  // }
   for (let i in modifiedData) {
     let targetData = modifiedData[i].value;
     for (let j = 0; j < timeline.length; j++) {

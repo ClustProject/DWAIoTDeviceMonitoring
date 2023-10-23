@@ -100,8 +100,8 @@ function defineVariables() {
   $scope.selectedCustomerL2 = '';
   $scope.selectedDevice = '';
   $scope.ownerLevel = 2;
-  $scope.headerActionList = self.ctx.actionsApi.getActionDescriptors('widgetHeaderButton').map(x => {
-    return { name: x.name, icon: x.icon, action: e => handleHeaderAction(x) };
+  $scope.headerActionList = self.ctx.actionsApi.getActionDescriptors('widgetHeaderButton').map((x) => {
+    return { name: x.name, icon: x.icon, action: (e) => handleHeaderAction(x) };
   });
   $scope.customActionList = self.ctx.actionsApi.getActionDescriptors('customAction');
   $scope.yearList = [];
@@ -132,9 +132,11 @@ function defineVariables() {
   custom.ownerDatasource = self.ctx.defaultSubscription.configuredDatasources[0];
   custom.rootEntity = custom.ownerDatasource.entity;
   custom.isSample = custom.ownerDatasource.type == 'function';
-  custom.hiddenDatasources = self.ctx.datasources.filter(x => x.entityAliasId === custom.ownerDatasource.entityAliasId);
+  custom.hiddenDatasources = self.ctx.datasources.filter(
+    (x) => x.entityAliasId === custom.ownerDatasource.entityAliasId
+  );
   custom.mainDatasources = self.ctx.datasources.filter(
-    x => x.entityAliasId !== custom.ownerDatasource.entityAliasId && x.entityType == 'DEVICE'
+    (x) => x.entityAliasId !== custom.ownerDatasource.entityAliasId && x.entityType == 'DEVICE'
   );
   custom.originDataKeys = self.ctx.defaultSubscription.configuredDatasources[1].dataKeys;
   custom.targetDatasources = [];
@@ -337,7 +339,7 @@ function getCustomer(entities) {
     for (let i = 0; i < entities.length; i++) {
       promises.push(self.ctx.entityRelationService.findInfoByFrom(entities[i].id));
     }
-    self.ctx.rxjs.forkJoin(promises).subscribe(childs => {
+    self.ctx.rxjs.forkJoin(promises).subscribe((childs) => {
       let newChild = [];
       for (let j = 0; j < childs.length; j++) {
         for (let k = 0; k < childs[j].length; k++) {
@@ -414,7 +416,7 @@ function getDeviceInfo() {
     observables.push(self.ctx.http.get(`/api/customer/${customerId}/deviceInfos?pageSize=50000&page=0`));
   }
 
-  self.ctx.rxjs.forkJoin(observables).subscribe(async devices => {
+  self.ctx.rxjs.forkJoin(observables).subscribe(async (devices) => {
     for (let i in devices) {
       for (let j in devices[i].data) {
         custom.relations[devices[i].data[j].id.id].label =
@@ -425,7 +427,7 @@ function getDeviceInfo() {
 
     $scope.customerL1List = [{ name: t('thingplus.selector.entire-customerL1'), value: '' }];
     $scope.customerL1List = $scope.customerL1List.concat(
-      custom.customerL1List.map(x => {
+      custom.customerL1List.map((x) => {
         return { name: x.name, value: x.id.id };
       })
     );
@@ -434,14 +436,14 @@ function getDeviceInfo() {
     changeDeviceList();
     custom.targetDatasources = [];
     custom.targetCustomer = [];
-    custom.targetCustomer = custom.customerL2List.filter(customer => {
-      if ($scope.selectedDevice != '') {
-        return customer.child.findIndex(device => device.id.id == $scope.selectedDevice) != -1;
-      } else if ($scope.selectedCustomerL2 != '') {
-        return customer.id.id == $scope.selectedCustomerL2;
-      } else if ($scope.selectedCustomerL1 != '') {
-        return custom.relations[$scope.selectedCustomerL1].child.findIndex(child => child.id.id == customer.id.id);
-      }
+    custom.targetCustomer = custom.customerL2List.filter((customer) => {
+      // if ($scope.selectedDevice != '') {
+      //   return customer.child.findIndex((device) => device.id.id == $scope.selectedDevice) != -1;
+      // } else if ($scope.selectedCustomerL2 != '') {
+      //   return customer.id.id == $scope.selectedCustomerL2;
+      // } else if ($scope.selectedCustomerL1 != '') {
+      //   return custom.relations[$scope.selectedCustomerL1].child.findIndex((child) => child.id.id == customer.id.id);
+      // }
       return true;
     });
     $scope.scheduleList = custom.targetCustomer.map((customer, idx) => {
@@ -454,7 +456,7 @@ function getDeviceInfo() {
         timeList: [],
         isFold: false,
         child: customer.child
-          .filter(device => {
+          .filter((device) => {
             if ($scope.selectedDevice != '') {
               return device.id.id == $scope.selectedDevice;
             }
@@ -660,15 +662,15 @@ function changeCustomerL2List() {
 
   if ($scope.selectedCustomerL1 === '') {
     $scope.customerL2List = $scope.customerL2List.concat(
-      custom.customerL2List.map(x => {
+      custom.customerL2List.map((x) => {
         return { name: x.name, value: x.id.id };
       })
     );
   } else {
     $scope.customerL2List = $scope.customerL2List.concat(
       custom.customerL2List
-        .filter(x => x.parent.id.id === $scope.selectedCustomerL1)
-        .map(x => {
+        .filter((x) => x.parent.id.id === $scope.selectedCustomerL1)
+        .map((x) => {
           return { name: x.name, value: x.id.id };
         })
     );
@@ -683,15 +685,15 @@ function changeDeviceList() {
   if ($scope.selectedCustomerL2 === '') {
     if ($scope.selectedCustomerL1 === '') {
       $scope.deviceList = $scope.deviceList.concat(
-        custom.deviceList.map(x => {
+        custom.deviceList.map((x) => {
           return { name: x.name, label: x.label, value: x.id.id };
         })
       );
     } else {
       $scope.deviceList = $scope.deviceList.concat(
         custom.deviceList
-          .filter(x => x.parent.parent.id.id === $scope.selectedCustomerL1)
-          .map(x => {
+          .filter((x) => x.parent.parent.id.id === $scope.selectedCustomerL1)
+          .map((x) => {
             return { name: x.name, label: x.label, value: x.id.id };
           })
       );
@@ -699,8 +701,8 @@ function changeDeviceList() {
   } else {
     $scope.deviceList = $scope.deviceList.concat(
       custom.deviceList
-        .filter(x => x.parent.id.id === $scope.selectedCustomerL2)
-        .map(x => {
+        .filter((x) => x.parent.id.id === $scope.selectedCustomerL2)
+        .map((x) => {
           return { name: x.name, label: x.label, value: x.id.id };
         })
     );
@@ -717,7 +719,7 @@ function changeDeviceList() {
 
 function loadAttributes() {
   let { custom, $scope } = self.ctx;
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     let observables = [];
     for (let i in custom.targetDatasources) {
       let entityId = custom.targetDatasources[i].id;
@@ -728,7 +730,7 @@ function loadAttributes() {
         ])
       );
     }
-    self.ctx.rxjs.forkJoin(observables).subscribe(datas => {
+    self.ctx.rxjs.forkJoin(observables).subscribe((datas) => {
       resolve(datas);
     });
   });
@@ -736,9 +738,9 @@ function loadAttributes() {
 
 function loadHoliday() {
   let { custom, $scope } = self.ctx;
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     let entityId = custom.ownerDatasource.entity.id;
-    self.ctx.attributeService.getEntityAttributes(entityId, 'SERVER_SCOPE', ['plannedHoliday']).subscribe(datas => {
+    self.ctx.attributeService.getEntityAttributes(entityId, 'SERVER_SCOPE', ['plannedHoliday']).subscribe((datas) => {
       let result = [];
       if (datas && datas[0]) {
         result = datas[0].value;
@@ -751,7 +753,7 @@ function loadHoliday() {
 
 function loadData() {
   let { custom, $scope } = self.ctx;
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     let observables = [];
     let start = $scope.targetStart;
     let end = moment($scope.targetStart).endOf('month').valueOf();
@@ -764,7 +766,7 @@ function loadData() {
         )
       );
     }
-    self.ctx.rxjs.forkJoin(observables).subscribe(datas => {
+    self.ctx.rxjs.forkJoin(observables).subscribe((datas) => {
       resolve(datas);
     });
   });
@@ -999,7 +1001,7 @@ function createBlockTooltip(type, target, details) {
 
 function customActionHandler(action, type, target, details) {
   let { custom, $scope } = self.ctx;
-  let targetIndex = $scope.customActionList.findIndex(x => x.name == action);
+  let targetIndex = $scope.customActionList.findIndex((x) => x.name == action);
   if (targetIndex == -1) return;
   let descriptor = $scope.customActionList[targetIndex];
   let entityId = target.id;
