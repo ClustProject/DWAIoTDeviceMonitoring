@@ -39,7 +39,7 @@ header.widget-header {
 */
 .compare-section {
   width: 100%;
-  height: 6em;
+  height: 5em;
   padding: var(--tb-config-padding);
   padding-bottom: 0px;
 }
@@ -47,7 +47,7 @@ header.widget-header {
   height: 100%;
 }
 .compare-section .compare-label {
-  font-size: 1.2em;
+  font-size: 0.8em;
   color: var(--tb-service-font-4);
 }
 .compare-section .compare-value {
@@ -57,7 +57,7 @@ header.widget-header {
 }
 .compare-section .compare-direction {
   display: none;
-  font-size: 1.2em;
+  font-size: 0.8em;
 }
 .compare-section .compare-direction.high {
   display: inline-block;

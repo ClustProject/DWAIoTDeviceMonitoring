@@ -1,15 +1,15 @@
 <div id="widget" fxLayout="column" fxLayoutAlign="start center">
   <header class="widget-header" fxLayoutAlign="space-between center" fxLayoutGap="1em">
-    <section class="widget-header-left-section" fxFlex="100" fxLayoutAlign="start center" fxLayoutGap="1em">
+    <section class="widget-header-left-section" fxFlex="100" fxLayoutAlign="start center" fxLayoutGap="0.2em">
       <div class="widget-title" translate>title</div>
     </section>
-    <section class="widget-header-right-section" fxFlex="100" fxLayoutAlign="end center" fxLayoutGap="1em">
-      <div class="widget-action" fxLayoutAlign="end center" fxLayoutGap="1em">
+    <section class="widget-header-right-section" fxFlex="100" fxLayoutAlign="end center" fxLayoutGap="0.2em">
+      <div class="widget-action" fxLayoutAlign="end center" fxLayoutGap="0.5em">
         <div
           class="widget-header-action"
           *ngFor="let headerAction of headerActionList"
           fxLayoutAlign="start center"
-          fxLayoutGap="0.5em"
+          fxLayoutGap="1em"
           (click)="headerAction.action($event)"
         >
           <i class="material-icons">{{headerAction.icon}}</i>

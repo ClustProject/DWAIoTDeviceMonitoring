@@ -11,11 +11,11 @@
     </div>
   </div>
   <header class="widget-header" fxLayoutAlign="space-between center">
-    <section class="widget-header-left-section" fxFlex fxLayoutAlign="start center" fxLayoutGap="1em">
+    <section class="widget-header-left-section" fxFlex fxLayoutAlign="start center" fxLayoutGap="0.2드">
       <div class="widget-title" translate>title</div>
     </section>
-    <section class="widget-header-right-section" fxFlex fxLayoutAlign="end center" fxLayoutGap="1em">
-      <div class="entity-controller" *ngIf="ownerLevel == 0" fxLayoutAlign="end center" fxLayoutGap="1em">
+    <section class="widget-header-right-section" fxFlex fxLayoutAlign="end center" fxLayoutGap="0.2드">
+      <div class="entity-controller" *ngIf="ownerLevel == 0" fxLayoutAlign="end center" fxLayoutGap="0.2드">
         <span class="normal-label" translate>thingplus.selector.device-selection</span>
         <mat-select
           class="entity-selector"
@@ -41,7 +41,7 @@
           <mat-option *ngFor="let device of deviceList" [value]="device.value"> {{device.label}} </mat-option>
         </mat-select>
       </div>
-      <div class="date-controller" fxLayoutAlign="end center" fxLayoutGap="1em" fxShow.lt-md="false">
+      <div class="date-controller" fxLayoutAlign="end center" fxLayoutGap="0.5em" fxShow.lt-md="false">
         <div class="normal-label" translate>thingplus.selector.date-selection</div>
         <mat-select class="date-selector" (ngModelChange)="setYear($event)" [ngModel]="selectedYear">
           <mat-option *ngFor="let year of yearList" [value]="year.value"> {{year.label}} </mat-option>
