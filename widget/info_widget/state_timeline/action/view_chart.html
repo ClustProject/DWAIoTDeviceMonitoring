@@ -7,14 +7,14 @@
       </button>
     </div>
     <mat-progress-bar color="warn" mode="indeterminate" *ngIf="isLoading$ | async"> </mat-progress-bar>
-    <div style="height: 0.4em" *ngIf="!(isLoading$ | async)"></div>
+    <div style="height: 0.2em" *ngIf="!(isLoading$ | async)"></div>
     <div mat-dialog-content>
-      <div class="legend" fxLayoutAlign="start center" fxLayoutGap="2.4em">
+      <div class="legend" fxLayoutAlign="start center" fxLayoutGap="2em">
         <div
           class="legend-box"
           *ngFor="let legend of legendList"
           fxLayoutAlign="start center"
-          fxLayoutGap="0.5em"
+          fxLayoutGap="0.4em"
           (mouseenter)="legendEnter($event, legend)"
           (mouseleave)="legendLeave($event, legend)"
         >
@@ -24,7 +24,7 @@
       </div>
       <div class="chart"></div>
     </div>
-    <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="1em">
+    <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="0.5em">
       <button
         class="button close-button"
         [disabled]="(isLoading$ | async)"
